@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Payment Mode View Controller-->
+        <scene sceneID="4es-AM-oZK">
+            <objects>
+                <viewController storyboardIdentifier="PaymentModeViewController" id="Vil-wO-UtC" customClass="PaymentModeViewController" customModule="Kiwni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r4t-cp-leO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="if1-Fz-3Er">
+                                <rect key="frame" x="10" y="353" width="391.5" height="493"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-vF-yab">
+                                        <rect key="frame" x="136" y="10" width="159" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ekM-yJ-jXK">
+                                        <rect key="frame" x="20" y="43" width="236.5" height="392"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8m2-su-cNL">
+                                                <rect key="frame" x="0.0" y="0.0" width="147" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJZ-3Q-ZTS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="24" id="HmJ-nK-iRY"/>
+                                                        </constraints>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="SzH-Ek-3GE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Google" translatesAutoresizingMaskIntoConstraints="NO" id="7SO-qt-zhi">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="28" id="zuJ-ki-ywK"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Pay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-bq-ipr">
+                                                        <rect key="frame" x="68" y="0.0" width="79" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WAo-UZ-9hw">
+                                                <rect key="frame" x="0.0" y="33" width="124" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcR-Gp-lQT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="sJJ-Pm-K7P"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Amazonpay" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-zb-78t">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bN-oO-ZgE">
+                                                        <rect key="frame" x="68" y="0.0" width="56" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MIw-Q4-Bhb">
+                                                <rect key="frame" x="0.0" y="66" width="197.5" height="29"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFG-S7-5Fr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="29"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="J1i-SB-wwB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Upiid" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-xH-PYW">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="29"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Existing UPI Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cJ-qf-iBF">
+                                                        <rect key="frame" x="68" y="0.0" width="129.5" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="64a-X9-D2C">
+                                                <rect key="frame" x="0.0" y="100" width="117.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skp-Jw-uwz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="KHs-IR-cWZ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paypal" translatesAutoresizingMaskIntoConstraints="NO" id="yWb-CL-vhZ">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Pal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHb-ZV-f7O">
+                                                        <rect key="frame" x="68" y="0.0" width="49.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="x6c-7L-Bzm">
+                                                <rect key="frame" x="0.0" y="133" width="149.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-di-gcN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="L4E-Xk-MhF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Giftvoucher" translatesAutoresizingMaskIntoConstraints="NO" id="jZj-fv-JMj">
+                                                        <rect key="frame" x="34" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gift Vocher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-XC-MP1">
+                                                        <rect key="frame" x="72" y="0.0" width="77.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-5t-1sy">
+                                                <rect key="frame" x="0.0" y="166" width="147" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ex-E7-o2L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="SCQ-Yu-Cio"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Creditcard" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-C4-Hw5">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDl-uh-6d8">
+                                                        <rect key="frame" x="68" y="0.0" width="79" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lvZ-cD-huS">
+                                                <rect key="frame" x="0.0" y="199" width="141.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64D-2B-rxl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="5XF-PV-fgI"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Debitcard" translatesAutoresizingMaskIntoConstraints="NO" id="Frd-DQ-4vf">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9x-5H-Q1G">
+                                                        <rect key="frame" x="68" y="0.0" width="73.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mV4-B5-rHA">
+                                                <rect key="frame" x="0.0" y="232" width="184.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlf-m2-jqv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="ZZ0-Ic-dQZ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Netbankingcard" translatesAutoresizingMaskIntoConstraints="NO" id="9BK-na-gpn">
+                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NetBanking Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90S-zQ-LcZ">
+                                                        <rect key="frame" x="68" y="0.0" width="116.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="7Wm-gw-zIO">
+                                                <rect key="frame" x="0.0" y="265" width="160.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O9-qp-WfH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="D2F-OR-B17"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nocostemi" translatesAutoresizingMaskIntoConstraints="NO" id="mbQ-b3-6e4">
+                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="8" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Cost EMI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKs-hQ-DIJ">
+                                                        <rect key="frame" x="66" y="0.0" width="94.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="CXW-Ly-V1n">
+                                                <rect key="frame" x="0.0" y="298" width="121.5" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18I-DK-NjR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="a4q-nt-Wvw"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallets" translatesAutoresizingMaskIntoConstraints="NO" id="dLm-uX-VMj">
+                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rga-Zq-2f4">
+                                                        <rect key="frame" x="66" y="0.0" width="55.5" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nOz-eN-5ka">
+                                                <rect key="frame" x="0.0" y="331" width="190" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vql-af-YJo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="LVJ-Fd-fYF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Zestmoney" translatesAutoresizingMaskIntoConstraints="NO" id="1uq-OD-31y">
+                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zero Money EMI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3U-BH-lXy">
+                                                        <rect key="frame" x="66" y="0.0" width="124" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="WxC-ZO-WVN">
+                                                <rect key="frame" x="0.0" y="364" width="101" height="28"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQt-Kc-aE3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <state key="normal" image="PaymodeUncheck"/>
+                                                        <connections>
+                                                            <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="E0m-DT-C99"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="445-C7-qDB">
+                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwm-zt-nvE">
+                                                        <rect key="frame" x="66" y="0.0" width="35" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8m2-su-cNL" firstAttribute="centerX" secondItem="rsa-5t-1sy" secondAttribute="centerX" id="oNP-va-X66"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-bz-TXK">
+                                        <rect key="frame" x="121" y="454" width="150" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="RSM-90-kMA"/>
+                                        </constraints>
+                                        <state key="normal" title="PAY">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="payButtonClicked:" destination="Vil-wO-UtC" eventType="touchUpInside" id="sqA-HL-oIA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="493" id="DeF-86-Ifo"/>
+                                    <constraint firstItem="ekM-yJ-jXK" firstAttribute="leading" secondItem="if1-Fz-3Er" secondAttribute="leading" constant="20" id="JH4-dj-Nrm"/>
+                                    <constraint firstItem="PgQ-vF-yab" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="if1-Fz-3Er" secondAttribute="leading" constant="20" symbolic="YES" id="PFT-bW-oc0"/>
+                                    <constraint firstItem="PgQ-vF-yab" firstAttribute="top" secondItem="if1-Fz-3Er" secondAttribute="top" constant="10" id="YfA-CC-oVe"/>
+                                    <constraint firstItem="ekM-yJ-jXK" firstAttribute="top" secondItem="PgQ-vF-yab" secondAttribute="bottom" constant="15" id="Ywi-3W-E7P"/>
+                                    <constraint firstAttribute="trailing" secondItem="PgQ-vF-yab" secondAttribute="trailing" constant="96.5" id="lJo-zb-s6J"/>
+                                    <constraint firstAttribute="trailing" secondItem="ekM-yJ-jXK" secondAttribute="trailing" constant="135" id="sG3-NK-xWh"/>
+                                    <constraint firstItem="0TZ-bz-TXK" firstAttribute="centerX" secondItem="if1-Fz-3Er" secondAttribute="centerX" id="yiN-GK-q9w"/>
+                                    <constraint firstItem="0TZ-bz-TXK" firstAttribute="top" secondItem="ekM-yJ-jXK" secondAttribute="bottom" constant="19" id="zec-GS-7QG"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zi2-do-wSf">
+                                <rect key="frame" x="15" y="70" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="D5O-im-ozq"/>
+                                    <constraint firstAttribute="height" constant="25" id="uF7-Js-9rB"/>
+                                </constraints>
+                                <state key="normal" image="BackButton"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="ZoH-oj-6zv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eTe-aG-vk1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="if1-Fz-3Er" secondAttribute="bottom" constant="50" id="Utb-HN-eCm"/>
+                            <constraint firstItem="zi2-do-wSf" firstAttribute="leading" secondItem="r4t-cp-leO" secondAttribute="leading" constant="15" id="eyz-zZ-Exb"/>
+                            <constraint firstItem="eTe-aG-vk1" firstAttribute="trailing" secondItem="if1-Fz-3Er" secondAttribute="trailing" constant="12.5" id="inl-ia-Ozp"/>
+                            <constraint firstItem="zi2-do-wSf" firstAttribute="top" secondItem="r4t-cp-leO" secondAttribute="top" constant="70" id="pp8-pD-iqB"/>
+                            <constraint firstItem="if1-Fz-3Er" firstAttribute="leading" secondItem="eTe-aG-vk1" secondAttribute="leading" constant="10" id="v7m-0I-Ir7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="zi2-do-wSf" id="ExY-Zb-D2i"/>
+                        <outlet property="payButton" destination="0TZ-bz-TXK" id="dTb-16-WAz"/>
+                        <outlet property="paymentModeView" destination="if1-Fz-3Er" id="v0W-i1-fuG"/>
+                        <outletCollection property="paymentModeButton" destination="rJZ-3Q-ZTS" collectionClass="NSMutableArray" id="5uV-nh-D4J"/>
+                        <outletCollection property="paymentModeButton" destination="CcR-Gp-lQT" collectionClass="NSMutableArray" id="jAp-eb-Bs8"/>
+                        <outletCollection property="paymentModeButton" destination="hFG-S7-5Fr" collectionClass="NSMutableArray" id="grf-kE-ZRU"/>
+                        <outletCollection property="paymentModeButton" destination="skp-Jw-uwz" collectionClass="NSMutableArray" id="Llz-bq-TCo"/>
+                        <outletCollection property="paymentModeButton" destination="Kg4-di-gcN" collectionClass="NSMutableArray" id="1vS-1E-I32"/>
+                        <outletCollection property="paymentModeButton" destination="4Ex-E7-o2L" collectionClass="NSMutableArray" id="2ft-9k-9rS"/>
+                        <outletCollection property="paymentModeButton" destination="64D-2B-rxl" collectionClass="NSMutableArray" id="Phy-dg-nA6"/>
+                        <outletCollection property="paymentModeButton" destination="Qlf-m2-jqv" collectionClass="NSMutableArray" id="kA1-L3-R6f"/>
+                        <outletCollection property="paymentModeButton" destination="5O9-qp-WfH" collectionClass="NSMutableArray" id="Su0-qB-wk4"/>
+                        <outletCollection property="paymentModeButton" destination="18I-DK-NjR" collectionClass="NSMutableArray" id="rdO-JW-pS0"/>
+                        <outletCollection property="paymentModeButton" destination="Vql-af-YJo" collectionClass="NSMutableArray" id="GHh-gq-vF3"/>
+                        <outletCollection property="paymentModeButton" destination="aQt-Kc-aE3" collectionClass="NSMutableArray" id="8eq-jD-BPm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wp2-6K-j16" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5616.8000000000002" y="90.404797601199405"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Amazonpay" width="28" height="28"/>
+        <image name="BackButton" width="30" height="31"/>
+        <image name="Cash" width="28" height="28"/>
+        <image name="Creditcard" width="28" height="28"/>
+        <image name="Debitcard" width="28" height="28"/>
+        <image name="Giftvoucher" width="28" height="28"/>
+        <image name="Google" width="28" height="28"/>
+        <image name="Netbankingcard" width="28" height="28"/>
+        <image name="Nocostemi" width="28" height="28"/>
+        <image name="PaymodeUncheck" width="24" height="24"/>
+        <image name="Paypal" width="28" height="28"/>
+        <image name="Upiid" width="28" height="29"/>
+        <image name="Wallets" width="28" height="28"/>
+        <image name="Zestmoney" width="28" height="28"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

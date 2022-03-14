@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>512721841920-2qdhdn407jv3hokgk9qdvlr17c1i0o5h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.512721841920-2qdhdn407jv3hokgk9qdvlr17c1i0o5h</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>512721841920-uh5hc5ucrfdbij7r47r6kifp1bcnt6id.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB2Bq0FqEZDyE60RMmekjp8CBxFRJ0VDvc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>512721841920</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kiwni.user</string>
+	<key>PROJECT_ID</key>
+	<string>kiwni-platform</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kiwni-platform.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:512721841920:ios:91a4e08aab0e6772d60de5</string>
+</dict>
+</plist>

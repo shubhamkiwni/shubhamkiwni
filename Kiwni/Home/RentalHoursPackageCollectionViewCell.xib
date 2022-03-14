@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RentalHoursPackageCollectionViewCell" customModule="Kiwni" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbt-Cy-X5B">
+                        <rect key="frame" x="5" y="5" width="60" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps4-j9-YJt">
+                        <rect key="frame" x="5" y="22" width="60" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Ps4-j9-YJt" firstAttribute="trailing" secondItem="gbt-Cy-X5B" secondAttribute="trailing" id="BT7-Nk-Sg3"/>
+                <constraint firstItem="Ps4-j9-YJt" firstAttribute="top" secondItem="gbt-Cy-X5B" secondAttribute="bottom" constant="5" id="BYy-f8-Yon"/>
+                <constraint firstItem="gbt-Cy-X5B" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="CQv-RS-Dmz"/>
+                <constraint firstAttribute="trailing" secondItem="gbt-Cy-X5B" secondAttribute="trailing" constant="5" id="bp6-C4-l18"/>
+                <constraint firstItem="Ps4-j9-YJt" firstAttribute="leading" secondItem="gbt-Cy-X5B" secondAttribute="leading" id="rWe-31-DMn"/>
+                <constraint firstItem="gbt-Cy-X5B" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="sdv-Q4-oWV"/>
+            </constraints>
+            <size key="customSize" width="70" height="36"/>
+            <connections>
+                <outlet property="hoursLable" destination="gbt-Cy-X5B" id="bsG-f4-Cpe"/>
+                <outlet property="kmLable" destination="Ps4-j9-YJt" id="pVU-cA-60f"/>
+            </connections>
+            <point key="canvasLocation" x="23.188405797101453" y="79.6875"/>
+        </collectionViewCell>
+    </objects>
+</document>
