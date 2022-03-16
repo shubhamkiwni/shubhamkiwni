@@ -66,8 +66,13 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
                 print("back to car models view")
             
         } else {
-                let hvc = navigationController?.viewControllers[4] as! CarsViewController
-                navigationController?.popToViewController(hvc, animated: true)
+            
+            let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
+            self.navigationController?.pushViewController(VC, animated: true)
+//            navigationController?.popToViewController(VC, animated: true)
+            
+//                let hvc = navigationController?.viewControllers[4] as! CarsViewController
+//                navigationController?.popToViewController(hvc, animated: true)
                 print("back to car models view")
         }
     }
