@@ -1805,7 +1805,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWC-Sa-XYU">
                                 <rect key="frame" x="0.0" y="303" width="375" height="364"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-01-3hC">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-01-3hC">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="364"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -1819,7 +1819,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-8Q-LxV">
                                                             <rect key="frame" x="5" y="5" width="333" height="98"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audi" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-dx-wat">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2020AUS010001_640_01" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-dx-wat">
                                                                     <rect key="frame" x="5" y="5" width="115" height="73"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="73" id="7pX-8s-JqB"/>
@@ -1996,6 +1996,7 @@
                                                                 <constraint firstItem="AGB-SV-Hbp" firstAttribute="top" secondItem="l2Y-51-nxL" secondAttribute="bottom" constant="10" id="OQu-fj-TlE"/>
                                                                 <constraint firstItem="AGB-SV-Hbp" firstAttribute="centerX" secondItem="l2Y-51-nxL" secondAttribute="centerX" id="Psw-NX-fWf"/>
                                                                 <constraint firstItem="Hrq-6s-LNd" firstAttribute="centerX" secondItem="MIR-fH-1C1" secondAttribute="centerX" constant="-123.5" id="bTb-pB-8vd"/>
+                                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2D9-WN-FZ9" secondAttribute="trailing" constant="12" id="gW4-jd-zQw"/>
                                                                 <constraint firstItem="7jJ-ov-lyt" firstAttribute="leading" secondItem="MIR-fH-1C1" secondAttribute="leading" constant="10" id="mVa-Tr-QoT"/>
                                                                 <constraint firstItem="tMR-KT-GLb" firstAttribute="centerX" secondItem="2D9-WN-FZ9" secondAttribute="centerX" id="uc1-ft-EnY"/>
                                                                 <constraint firstItem="l2Y-51-nxL" firstAttribute="top" secondItem="7jJ-ov-lyt" secondAttribute="top" id="vey-jP-h1F"/>
@@ -2091,6 +2092,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="2020AUS010001_640_01" width="117" height="88"/>
         <image name="AC" width="17" height="17"/>
         <image name="Audi" width="65.5" height="36.5"/>
         <image name="BackButton" width="30" height="31"/>

@@ -25,13 +25,16 @@ class BookingAddressXIB: UIView {
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var carNameLabel: UILabel!
     @IBOutlet weak var carTypeLabel: UILabel!
+    @IBOutlet weak var estKMImageView: UIImageView!
+    @IBOutlet weak var estKMValueLabel: UILabel!
+    @IBOutlet weak var dottedImageView: UIImageView!
     
     internal override func awakeFromNib() {
         bookingDetailsView.layer.cornerRadius = 10.0
         bookingDetailsView.layer.borderColor = UIColor.black.cgColor
         bookingDetailsView.layer.borderWidth = 1.0
-        labelDesign("Pickuppoint", " New Airport Road, Viman Nagar, Pune, Maharashtra", sourceLabel)
-        labelDesign("Droppoint", " Lane No. 5, H. No. 2587, Dhule, Maharashtra", destinationLabel)
+//        labelDesign("SourceAddress", " New Airport Road, Viman Nagar, Pune, Maharashtra", sourceLabel)
+//        labelDesign("DestinationAddress", " Lane No. 5, H. No. 2587, Dhule, Maharashtra", destinationLabel)
         
     }
     
