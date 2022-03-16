@@ -95,8 +95,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="X1i-6f-8HU"/>
                     <connections>
+                        <outlet property="byContinuingLabel" destination="8hF-0U-3et" id="fLj-mu-Alg"/>
                         <outlet property="confirmButton" destination="Mqe-qO-Vaa" id="4yd-1s-WJH"/>
                         <outlet property="mobileNumTextField" destination="NWI-p8-8jY" id="M2q-gw-S2k"/>
+                        <outlet property="termsConditionButton" destination="OCt-6m-GrA" id="Pjd-8H-2np"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvS-fa-ffd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -169,7 +171,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKF-kj-8PP">
-                                <rect key="frame" x="87.5" y="391" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="418" width="200" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="K0f-1D-plT"/>
@@ -181,6 +183,12 @@
                                     <action selector="loginButtonPressed:" destination="XwV-Cn-Ajm" eventType="touchUpInside" id="2pm-gW-mrH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend Code in 00:03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDk-b5-blp">
+                                <rect key="frame" x="12" y="351" width="144" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="linkColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="htY-hr-LRp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -188,9 +196,10 @@
                             <constraint firstItem="ahB-KG-F0A" firstAttribute="leading" secondItem="vFx-Bb-Wfz" secondAttribute="leading" constant="15" id="074-98-Jcs"/>
                             <constraint firstItem="1lB-7H-mZ1" firstAttribute="height" secondItem="DsX-Gb-6Pj" secondAttribute="height" id="1dO-fU-UEW"/>
                             <constraint firstItem="fY9-BN-lR8" firstAttribute="width" secondItem="DsX-Gb-6Pj" secondAttribute="width" id="2yR-As-fZE"/>
+                            <constraint firstItem="eDk-b5-blp" firstAttribute="top" secondItem="DsX-Gb-6Pj" secondAttribute="bottom" constant="10" id="307-vP-WIl"/>
                             <constraint firstItem="iaT-cP-wZD" firstAttribute="leading" secondItem="htY-hr-LRp" secondAttribute="leading" constant="77" id="5nu-PR-Yr6"/>
+                            <constraint firstItem="AKF-kj-8PP" firstAttribute="top" secondItem="eDk-b5-blp" secondAttribute="bottom" constant="50" id="6RV-MZ-Kke"/>
                             <constraint firstItem="fY9-BN-lR8" firstAttribute="leading" secondItem="DsX-Gb-6Pj" secondAttribute="trailing" constant="10" id="9LI-I1-FHU"/>
-                            <constraint firstItem="AKF-kj-8PP" firstAttribute="top" secondItem="DsX-Gb-6Pj" secondAttribute="bottom" constant="50" id="CDC-kB-awV"/>
                             <constraint firstItem="DsX-Gb-6Pj" firstAttribute="top" secondItem="iaT-cP-wZD" secondAttribute="bottom" constant="39" id="Dvp-qp-bDT"/>
                             <constraint firstItem="fY9-BN-lR8" firstAttribute="top" secondItem="iaT-cP-wZD" secondAttribute="bottom" constant="39" id="Egn-3F-eNa"/>
                             <constraint firstItem="htY-hr-LRp" firstAttribute="trailing" secondItem="iaT-cP-wZD" secondAttribute="trailing" constant="161" id="Ehc-Op-2Y8"/>
@@ -215,6 +224,7 @@
                             <constraint firstItem="ahB-KG-F0A" firstAttribute="top" secondItem="vFx-Bb-Wfz" secondAttribute="top" constant="80" id="hSI-RU-YS3"/>
                             <constraint firstItem="n6m-gf-CUz" firstAttribute="top" secondItem="iaT-cP-wZD" secondAttribute="bottom" constant="39" id="lkj-y9-mI2"/>
                             <constraint firstItem="VmS-q3-ijL" firstAttribute="top" secondItem="ahB-KG-F0A" secondAttribute="bottom" constant="100" id="rtC-vf-Gkq"/>
+                            <constraint firstItem="eDk-b5-blp" firstAttribute="leading" secondItem="DsX-Gb-6Pj" secondAttribute="leading" id="tfB-qN-Ert"/>
                             <constraint firstItem="VXp-Qs-Xpx" firstAttribute="width" secondItem="DsX-Gb-6Pj" secondAttribute="width" id="yCF-e5-4qK"/>
                             <constraint firstItem="VXp-Qs-Xpx" firstAttribute="top" secondItem="iaT-cP-wZD" secondAttribute="bottom" constant="39" id="yqj-Go-0qZ"/>
                         </constraints>
@@ -230,6 +240,7 @@
                         <outlet property="otpText4" destination="VXp-Qs-Xpx" id="PUb-gR-nBP"/>
                         <outlet property="otpText5" destination="RU0-Yl-Zyk" id="pP4-iS-R4T"/>
                         <outlet property="otpText6" destination="n6m-gf-CUz" id="yKx-HD-wsc"/>
+                        <outlet property="resendOTPLabel" destination="eDk-b5-blp" id="gy9-Gc-Ms3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW8-S7-xQW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -240,6 +251,9 @@
     <resources>
         <image name="BackButton" width="30" height="31"/>
         <image name="kiwni splash screen" width="216" height="298"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

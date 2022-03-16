@@ -128,7 +128,7 @@
                                                         <rect key="frame" x="8" y="8" width="170" height="30"/>
                                                         <color key="backgroundColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="Round Trip">
+                                                        <state key="normal" title="ROUND TRIP">
                                                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -139,7 +139,7 @@
                                                         <rect key="frame" x="178" y="8" width="169" height="30"/>
                                                         <color key="backgroundColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="One Way">
+                                                        <state key="normal" title="ONE WAY">
                                                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>

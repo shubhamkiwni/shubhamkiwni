@@ -49,7 +49,6 @@
 		7A41AE3E27ABF8B30067BD3C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41AE3D27ABF8B30067BD3C /* FeedbackViewController.swift */; };
 		7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44009827B4D71B00A2334D /* CarTypesViewController.swift */; };
 		7A44009B27B4E91500A2334D /* CarTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44009A27B4E91500A2334D /* CarTypeTableViewCell.swift */; };
-		7A44009D27B4E94100A2334D /* CarsViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44009C27B4E94100A2334D /* CarsViewControllerr.swift */; };
 		7A4400B727B4F1A800A2334D /* CarModelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4400B327B4F1A800A2334D /* CarModelsTableViewCell.swift */; };
 		7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FCD0427ACF274004F9DC3 /* PopupViewController.swift */; };
 		7A5FCD0927ACF2A5004F9DC3 /* CustomPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5FCD0727ACF2A5004F9DC3 /* CustomPopupView.xib */; };
@@ -184,7 +183,6 @@
 		7A41AE3D27ABF8B30067BD3C /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		7A44009827B4D71B00A2334D /* CarTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTypesViewController.swift; sourceTree = "<group>"; };
 		7A44009A27B4E91500A2334D /* CarTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTypeTableViewCell.swift; sourceTree = "<group>"; };
-		7A44009C27B4E94100A2334D /* CarsViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewControllerr.swift; sourceTree = "<group>"; };
 		7A4400B327B4F1A800A2334D /* CarModelsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarModelsTableViewCell.swift; sourceTree = "<group>"; };
 		7A5FCD0427ACF274004F9DC3 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		7A5FCD0727ACF2A5004F9DC3 /* CustomPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPopupView.xib; sourceTree = "<group>"; };
@@ -583,7 +581,6 @@
 		84398FAD27BD05F5008C8782 /* CarTypeXIB */ = {
 			isa = PBXGroup;
 			children = (
-				7A44009C27B4E94100A2334D /* CarsViewControllerr.swift */,
 				7A81DB3127DF3E660046FF9F /* CarsViewController.swift */,
 				84FE635227BBBD440026289D /* CarsTableViewCell.swift */,
 				7A4400B327B4F1A800A2334D /* CarModelsTableViewCell.swift */,
@@ -1047,7 +1044,6 @@
 				7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */,
 				7A170E8127CF667000B0BE66 /* Provider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,
-				7A44009D27B4E94100A2334D /* CarsViewControllerr.swift in Sources */,
 				7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */,
 				7A170E7227CF4AA500B0BE66 /* RulesTableViewCell.swift in Sources */,
 				7A170E8F27CF89E900B0BE66 /* DateFormattingHelper.swift in Sources */,

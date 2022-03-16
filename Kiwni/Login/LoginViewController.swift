@@ -12,6 +12,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var mobileNumTextField: UITextField!
+    @IBOutlet weak var byContinuingLabel: UILabel!
+    @IBOutlet weak var termsConditionButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

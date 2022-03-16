@@ -161,9 +161,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var pickUpDatePickerButton: UIButton!
     @IBOutlet weak var returnByDatePickerButton: UIButton!
     
-    @IBOutlet weak var pickUpOnTimePickerView: UIView!
-    @IBOutlet weak var pickupOnTimePickerImage: UIImageView!
-    @IBOutlet weak var pickUpOnTimeLable: UILabel!
+    
     @IBOutlet weak var pickUpOnTimePickerButton: UIButton!
     
 //    @IBOutlet weak var returnByDatePicker: UIDatePicker!
@@ -180,6 +178,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     let newDatePicker: UIDatePicker = UIDatePicker()
     var datePickerTag = String()
+    
+    var estimatedDurationInTraffic: Int = 0
+    var selectedTripType: String = ""
+    var selectedTripTypeMode: String = ""
     
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
@@ -392,23 +394,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if returnByDatePickerButton.isHidden == true {
                 returnByDatePickerButton.isHidden = false
                 returnByLable.isHidden = false
-//                returnByDatePicker.isHidden = false
-//                returnByDatePickerImageView.isHidden = false
                 roundTripButton.backgroundColor = .black
                 oneWayButton.backgroundColor = .white
             }
         } else if rentalTag == 1 {
             returnByDatePickerButton.isHidden = true
             returnByLable.isHidden = true
-//            returnByDatePicker.isHidden = false
-//            returnByDatePickerImageView.isHidden = true
             roundTripButton.backgroundColor = .black
             oneWayButton.backgroundColor = .white
         } else if rentalTag == 2 {
             returnByDatePickerButton.isHidden = true
             returnByLable.isHidden = true
-//            returnByDatePicker.isHidden = false
-//            returnByDatePickerImageView.isHidden = true
             roundTripButton.backgroundColor = .black
             oneWayButton.backgroundColor = .white
         }
@@ -416,23 +412,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.sourceCoordinate = userCurrentlocation
         self.mapView.isUserInteractionEnabled = false
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
+        selectedTripTypeMode = roundTripButton.titleLabel?.text ?? ""
         
     }
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
         clearMap()
-        if rentalTag == 0 {
-            
-        } else if rentalTag == 1 {
-            
-        } else if rentalTag == 2 {
-            
-        }
-        
         if returnByDatePickerButton.isHidden == false {
             returnByDatePickerButton.isHidden = true
             returnByLable.isHidden = true
-//            returnByDatePicker.isHidden = true
-//            returnByDatePickerImageView.isHidden = true
             
         }
         roundTripButton.backgroundColor = .white
@@ -441,6 +428,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.sourceCoordinate = userCurrentlocation
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         self.mapView.isUserInteractionEnabled = false
+        selectedTripTypeMode = oneWayButton.titleLabel?.text ?? ""
     }
     
     //MARK:- Confirm location Button Tapped
@@ -484,6 +472,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else {
             print("View Cabs Button Pressed")
             let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarTypesViewController") as! CarTypesViewController
+            VC.pickedSourceCoordinate = sourceCoordinate
+            VC.pickedDropCoordinate = destinationCoordinate
+            VC.estimatedKM = estimatedDurationInTraffic
+            VC.pickUpCityName = pickupcityName ?? ""
+            VC.dropCityName = destinationcityName ?? ""
+            VC.pickUpOnDate = pickUpDatePickerButton.titleLabel?.text ?? ""
+            VC.returnByDate = returnByDatePickerButton.titleLabel?.text ?? ""
+            VC.pickUpOnTime = pickUpOnTimePickerButton.titleLabel?.text ?? ""
+            if selectedTripType == "" {
+                selectedTripType = "Outstation"
+                selectedTripTypeMode = "ROUND TRIP"
+                VC.tripType = selectedTripType
+                VC.tripTypeMode = selectedTripTypeMode
+            } else {
+                VC.tripType = selectedTripType
+                VC.tripTypeMode = selectedTripTypeMode
+            }
             navigationController?.pushViewController(VC, animated: true)
         }
         
@@ -579,6 +584,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
             cell.tripTypeLable.text = dataArray[indexPath.row]
+            
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
                 cell.backgroundColor = .lightGray
@@ -611,21 +617,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if returnByDatePickerButton.isHidden == true {
                     returnByDatePickerButton.isHidden = false
                     returnByLable.isHidden = false
-//                    returnByDatePicker.isHidden = false
-//                    returnByDatePickerImageView.isHidden = false
                 }
                 roundTripButton.setTitle("ROUND TRIP", for: .normal)
                 oneWayButton.setTitle("ONE WAY", for: .normal)
                 clearMap()
-//                pickUpOnDatePicker.date = Date()
-//                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
-               
+                selectedTripType = "Outstation"
+                print("Outstation:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
             } else if indexPath.row == 1 {
                 
                 rentalTag = 1
+                
                 roundTripButton.setTitle("AIRPORT PICKUP", for: .normal)
                 oneWayButton.setTitle("AIRPORT DROP", for: .normal)
                 
@@ -640,6 +644,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
+                selectedTripType = "Airport"
+                selectedTripTypeMode = "Airport Pickup"
+                print("Airport:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
                 
             } else if indexPath.row == 2 {
                 
@@ -658,7 +665,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
-                
+                selectedTripType = "Rental"
+                selectedTripTypeMode = "CURRENT BOOKING"
+                print("Rental:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
             }
             print("Select click")
         } else {
@@ -754,6 +763,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         self.pickUpTextField.text = self.selectedPickUpAddress
                         UserDefaults.standard.setValue(self.selectedPickUpAddress, forKey:"SourceAddress")
                         self.pickupcityName = response?.firstResult()?.locality
+                        print("pickupcityName:", self.pickupcityName ?? "")
                         UserDefaults.standard.setValue(self.pickupcityName, forKey:"PickupCityName")
                         //                            print("sourceTextfield text:  ",self.pickupTextField.text , self.selectedAddress)
                         
@@ -763,6 +773,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         print(self.selectedDropAddress)
                         UserDefaults.standard.setValue(self.selectedDropAddress, forKey:"DestinationAddress")
                         self.destinationcityName = response?.firstResult()?.locality
+                        print("destinationcityName:", self.destinationcityName ?? "")
                         UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
                     }
                 }
@@ -910,16 +921,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self.dur_dic = self.ele_dic.value(forKey: "duration")as! NSDictionary
                     // print("duration text is--->",self.dur_dic.object(forKey: "text")as! String)
                     // print("duration value is--->",self.dur_dic.object(forKey: "value")as! Int)
+                    
                     self.dur_dic_traffic = self.ele_dic.value(forKey: "duration_in_traffic")as! NSDictionary
-                    print("duration_in_traffic text is--->",self.dur_dic_traffic.object(forKey: "text")as! String)
+                    if (self.dur_dic_traffic.count == 0 ) {
+                        print("Empty")
+                    }
+                    else {
+                        print("Not Empty")
+                        print("duration_in_traffic text is--->",self.dur_dic_traffic.object(forKey: "text")as! String)
+                        print("duration_in_traffic value is--->",self.dur_dic_traffic.object(forKey: "value")as! Int)
+                        estimatedDurationInTraffic = self.dur_dic_traffic.object(forKey: "value")as! Int / 100
+                        print("estimatedDurationInTraffic:", estimatedDurationInTraffic)
+                        self.durationInTrafficWithText = self.dur_dic_traffic.object(forKey: "text") as? NSString
+                        UserDefaults.standard.setValue(self.durationInTrafficWithText, forKey: "DurationInTraffic")
+                    }
                     
-                    self.durationInTrafficWithText = self.dur_dic_traffic.object(forKey: "text") as? NSString
                     
-                    UserDefaults.standard.setValue(self.durationInTrafficWithText, forKey: "DurationInTraffic")
                     
                     //                                self.distanceInKm = (inputString! as AnyObject).replacingOccurrences(of: "hours", with: "") as NSString
                     //
-                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
+//                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
                     //                                print("duration_in_traffic value is--->",self.durationInTraffic as Any)
                     //
                     //                                print("duration_in_traffic value is--->",self.dur_dic_traffic.object(forKey: "value")as! Int)
@@ -971,9 +992,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     }
                     
                 }
-
-        
-
 //        }
 //       else{
 //                print("Coordinates are there")
@@ -1125,8 +1143,6 @@ extension HomeViewController: CLLocationManagerDelegate
                     self.pickUpTextField.text = self.usercurrentLocationAddress
                     self.userCurrentlocation = locValue
                 }
-                
-                
             }
         }
         

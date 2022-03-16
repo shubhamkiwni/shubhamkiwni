@@ -19,6 +19,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var otpText5: UITextField!
     @IBOutlet weak var otpText6: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var resendOTPLabel: UILabel!
     
     var userMobileNumber : String? = ""
     var otp  = [String]()

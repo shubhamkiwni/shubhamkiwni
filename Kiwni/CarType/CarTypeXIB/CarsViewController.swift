@@ -52,7 +52,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        carsTableView.sectionHeaderHeight = 5.0
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         detailsView.layer.cornerRadius = 8.0
@@ -63,7 +63,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         packageDetailsView.layer.borderWidth = 1.0
         packageDetailsView.layer.borderColor = UIColor.lightGray.cgColor
         
-        self.carsTableView.reloadData()
+        
         
         tableViewData = [cellData(opened: false, carType: "Premium", carName: "Mahindra", avaiLabel: "AvaiLabel: 4", amount: "2000", selectionData: ["2012", "2013", "2014", "2015", "2012", "2013", "2014", "2015"]),
                          cellData(opened: false, carType: "Luxury", carName: "Tata", avaiLabel: "AvaiLabel: 3", amount: "3000", selectionData: ["2011", "2012", "2013"]),
@@ -73,18 +73,37 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                          cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
                          cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"])]
         
-        //        if rentalTag != 2 {
-        //            packageView.isHidden = true
-        //        }
+                if rentalTag != 2 {
+                    packageView.isHidden = true
+                }
         //        let screenWidth = screenRect.size.width
         //let screenHeight = screenRect.size.height
+        tableBaseView.layer.cornerRadius = 20.0
         carsTableView.layer.cornerRadius = 20.0
-        carsTableView.layer.masksToBounds = false
-        carsTableView.layer.shadowColor = UIColor.black.cgColor
-        carsTableView.layer.shadowOpacity = 0.2
-        carsTableView.layer.shadowOffset = CGSize.zero
-        carsTableView.layer.shadowRadius = 5
+      //  carsTableView.layer.masksToBounds = true
+        tableBaseView.layer.shadowColor = UIColor.black.cgColor
+        tableBaseView.layer.shadowOpacity = 0.2
+        tableBaseView.layer.shadowOffset = CGSize.zero
+        tableBaseView.layer.shadowRadius = 5
         
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        let hvc = navigationController?.viewControllers[3] as! CarTypesViewController
+        navigationController?.popToViewController(hvc, animated: true)
+    }
+    
+    @IBAction func sortButtonPressed(_ sender: UIButton) {
+        let svc = storyboard?.instantiateViewController(withIdentifier: "SortViewController") as! SortViewController
+        navigationController?.pushViewController(svc, animated: true)
+    }
+
+    @IBAction func filterButtonPressed(_ sender: UIButton) {
+        let fvc = storyboard?.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+        navigationController?.pushViewController(fvc, animated: true)
+    }
+
+    @IBAction func mapButtonPressed(_ sender: UIButton) {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -116,6 +135,11 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+            return CGSize(width: 100, height: 42)
+        }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
@@ -140,19 +164,18 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             if indexPath.row == 0 {
                 let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
     
-                //            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
-                //            cell.carNameLabel.text = tableViewData[indexPath.section].carName
-                //            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
-                //
-                //            cell.layer.cornerRadius = 10.0
-                //            cell.carsDetailsView.layer.cornerRadius = 10.0
-                //            cell.carsDetailsView.layer.masksToBounds = false
-                //            cell.carsDetailsView.layer.shadowColor = UIColor.black.cgColor
-                //            cell.carsDetailsView.layer.shadowOpacity = 0.5
-                //            cell.carsDetailsView.layer.shadowOffset = CGSize(width: -1, height: 1)
-                //            cell.carsDetailsView.layer.shadowRadius = 1
+//                            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
+//                            cell.carNameLabel.text = tableViewData[indexPath.section].carName
+//                            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
+                
+                            cell.layer.cornerRadius = 10.0
+                            cell.carsDetailsView.layer.cornerRadius = 10.0
+                            cell.carsDetailsView.layer.masksToBounds = false
+                            cell.carsDetailsView.layer.shadowColor = UIColor.black.cgColor
+                            cell.carsDetailsView.layer.shadowOpacity = 0.5
+                            cell.carsDetailsView.layer.shadowOffset = CGSize(width: -1, height: 1)
+                            cell.carsDetailsView.layer.shadowRadius = 1
     
-                //            cell.backgroundColor = .red
                 return cell
             } else {
                 let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
