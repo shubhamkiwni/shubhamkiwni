@@ -189,7 +189,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         pickUpDatePickerButton.titleLabel?.font =  UIFont(name: "", size: 14)
         
-        pickUpTextField.setIcon(UIImage(named: "PickPoint")!)
+        pickUpTextField.setIcon(UIImage(named: "Pickuppoint")!)
         dropTextField.setIcon(UIImage(named: "DropPoint")!)
         
         self.mapView.bringSubviewToFront(locatePinImage)
