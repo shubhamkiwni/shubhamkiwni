@@ -35,6 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            let LoginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
 //            window?.rootViewController = LoginVC
 //        }
+        
         NetworkMonitor.share.startMonitoring()
         IQKeyboardManager.shared.enable = true
         GMSServices .provideAPIKey("AIzaSyDWKeGELULicORJQXa1AvVtfLNPifnj7BQ")
