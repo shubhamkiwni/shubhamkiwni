@@ -471,25 +471,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             customErrorPopup("Please select drop location")
         } else {
             print("View Cabs Button Pressed")
-            let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarTypesViewController") as! CarTypesViewController
-            VC.pickedSourceCoordinate = sourceCoordinate
-            VC.pickedDropCoordinate = destinationCoordinate
-            VC.estimatedKM = estimatedDurationInTraffic
-            VC.pickUpCityName = pickupcityName ?? ""
-            VC.dropCityName = destinationcityName ?? ""
-            VC.pickUpOnDate = pickUpDatePickerButton.titleLabel?.text ?? ""
-            VC.returnByDate = returnByDatePickerButton.titleLabel?.text ?? ""
-            VC.pickUpOnTime = pickUpOnTimePickerButton.titleLabel?.text ?? ""
+            
+            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+            
+            carTypeVc.pickedSourceCoordinate = sourceCoordinate
+            carTypeVc.pickedDropCoordinate = destinationCoordinate
+            carTypeVc.estimatedKM = estimatedDurationInTraffic
+            carTypeVc.pickUpCityName = pickupcityName ?? ""
+            carTypeVc.dropCityName = destinationcityName ?? ""
+            carTypeVc.pickUpOnDate = pickUpDatePickerButton.titleLabel?.text ?? ""
+            carTypeVc.returnByDate = returnByDatePickerButton.titleLabel?.text ?? ""
+            carTypeVc.pickUpOnTime = pickUpOnTimePickerButton.titleLabel?.text ?? ""
             if selectedTripType == "" {
                 selectedTripType = "Outstation"
                 selectedTripTypeMode = "ROUND TRIP"
-                VC.tripType = selectedTripType
-                VC.tripTypeMode = selectedTripTypeMode
+                carTypeVc.tripType = selectedTripType
+                carTypeVc.tripTypeMode = selectedTripTypeMode
             } else {
-                VC.tripType = selectedTripType
-                VC.tripTypeMode = selectedTripTypeMode
+                carTypeVc.tripType = selectedTripType
+                carTypeVc.tripTypeMode = selectedTripTypeMode
             }
-            navigationController?.pushViewController(VC, animated: true)
+            navigationController?.pushViewController(carTypeVc, animated: true)
         }
         
     }

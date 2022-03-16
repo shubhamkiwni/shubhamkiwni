@@ -103,7 +103,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         } else {
 //            let pmVC = storyboard?.instantiateViewController(withIdentifier: "PaymentModeViewController") as! PaymentModeViewController
 //            navigationController?.pushViewController(pmVC, animated: true)
-            let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "PaymentModeViewController") as! PaymentModeViewController
+            let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "paymentStoryboard") as! PaymentModeViewController
             navigationController?.pushViewController(VC, animated: true)
         }
     }

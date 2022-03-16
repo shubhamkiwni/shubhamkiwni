@@ -48,6 +48,7 @@ class CarModelsTableViewCell: UITableViewCell {
     }
     
     @IBAction func nextView(_ sender: UIButton) {
+        print("Book Button Pressed")
         delegate1?.payment(getName: name)
     }
 }

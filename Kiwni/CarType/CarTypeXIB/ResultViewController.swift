@@ -9,7 +9,7 @@ import UIKit
 
 class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PaymentDelegate3, PaymentDelegate {
     func payment(getName: String) {
-        let next = storyboard?.instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
         navigationController?.pushViewController(next, animated: true)
     }
     

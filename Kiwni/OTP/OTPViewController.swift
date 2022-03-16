@@ -233,8 +233,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
 //
 //        }
         
-        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        navigationController?.pushViewController(VC, animated: true)
+//        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+        navigationController?.pushViewController(homeVc, animated: true)
     }
     
 }

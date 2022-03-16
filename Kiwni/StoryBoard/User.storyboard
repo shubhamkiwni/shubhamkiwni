@@ -241,11 +241,22 @@
                         <outlet property="otpText5" destination="RU0-Yl-Zyk" id="pP4-iS-R4T"/>
                         <outlet property="otpText6" destination="n6m-gf-CUz" id="yKx-HD-wsc"/>
                         <outlet property="resendOTPLabel" destination="eDk-b5-blp" id="gy9-Gc-Ms3"/>
+                        <segue destination="gZ4-ms-yS5" kind="show" identifier="GoToHome" id="kBl-WC-vVp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW8-S7-xQW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2719.1999999999998" y="-742.5787106446777"/>
+        </scene>
+        <!--GoToHome-->
+        <scene sceneID="7oC-FA-qgL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="GoToHome" id="gZ4-ms-yS5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xcC-SP-7Xr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6jk-Us-Wy5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3417" y="-846"/>
         </scene>
     </scenes>
     <resources>

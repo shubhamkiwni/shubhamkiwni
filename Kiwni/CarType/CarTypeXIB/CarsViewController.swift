@@ -16,7 +16,12 @@ struct cellData {
     var selectionData = [String]()
 }
 
-class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
+    func payment(getName: String) {
+        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+        navigationController?.pushViewController(next, animated: true)
+    }
+    
     
     
     //    @IBOutlet weak var viewDetailsButton: UIButton!
@@ -89,7 +94,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[3] as! CarTypesViewController
+        let hvc = navigationController?.viewControllers[1] as! CarTypesViewController
         navigationController?.popToViewController(hvc, animated: true)
     }
     
@@ -179,11 +184,11 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 return cell
             } else {
                 let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
-                //            seconCell.delegate1 = self
-                //            seconCell.bookButton.layer.cornerRadius = 5
-                //            seconCell.layer.borderColor = UIColor.black.cgColor
-                //            seconCell.layer.borderWidth = 0.5
-                //            seconCell.layer.cornerRadius = 5.0
+                seconCell.delegate1 = self
+                //seconCell.bookButton.layer.cornerRadius = 5
+                //seconCell.layer.borderColor = UIColor.black.cgColor
+                //seconCell.layer.borderWidth = 0.5
+                //seconCell.layer.cornerRadius = 5.0
                 return seconCell
             }
     

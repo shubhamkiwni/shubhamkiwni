@@ -140,8 +140,12 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-        navigationController?.popToViewController(hvc, animated: true)
+        
+        let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+        navigationController?.pushViewController(homeVc, animated: true)
+        
+//        let hvc = navigationController?.viewControllers[2] as! HomeViewController
+//        navigationController?.popToViewController(hvc, animated: true)
         rentalTag = 0
     }
     

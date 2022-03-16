@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DgL-zP-X3C">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,7 @@
         <!--Payment Mode View Controller-->
         <scene sceneID="4es-AM-oZK">
             <objects>
-                <viewController storyboardIdentifier="PaymentModeViewController" id="Vil-wO-UtC" customClass="PaymentModeViewController" customModule="Kiwni" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paymentStoryboard" id="Vil-wO-UtC" customClass="PaymentModeViewController" customModule="Kiwni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r4t-cp-leO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -340,6 +341,7 @@
                             <constraint firstItem="if1-Fz-3Er" firstAttribute="leading" secondItem="eTe-aG-vk1" secondAttribute="leading" constant="10" id="v7m-0I-Ir7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zSb-Fw-9fb"/>
                     <connections>
                         <outlet property="backButton" destination="zi2-do-wSf" id="ExY-Zb-D2i"/>
                         <outlet property="payButton" destination="0TZ-bz-TXK" id="dTb-16-WAz"/>
@@ -360,7 +362,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wp2-6K-j16" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5616.8000000000002" y="90.404797601199405"/>
+            <point key="canvasLocation" x="6526.0869565217399" y="90.401785714285708"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xuq-vN-mGI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DgL-zP-X3C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wf5-wq-nox">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vil-wO-UtC" kind="relationship" relationship="rootViewController" id="OnE-do-8pM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GVl-j5-fJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5615.9420289855079" y="90.401785714285708"/>
         </scene>
     </scenes>
     <resources>

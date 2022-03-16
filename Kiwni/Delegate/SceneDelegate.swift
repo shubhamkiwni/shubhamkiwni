@@ -23,18 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let status = UserDefaults.standard.bool(forKey: "status")
         print(status)
         
-        // add these lines
-        
-//        if(status == true){
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let HomeVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.HomeViewController) as! HomeViewController
-//            window?.rootViewController = HomeVC
-//        }
-//        else{
-//            let storyboard = UIStoryboard(name: "User", bundle: nil)
-//            let LoginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
-//            window?.rootViewController = LoginVC
-//        }
+        var storyboardName:String?
+        if (status == false) {
+            storyboardName = "Main"
+        }else{
+            storyboardName = "User"
+        }
+
+        let storyboard = UIStoryboard(name: storyboardName ?? "", bundle: nil)
+
+        let intialVC = storyboard.instantiateInitialViewController()
+
+        self.window?.rootViewController = intialVC
         
         NetworkMonitor.share.startMonitoring()
         IQKeyboardManager.shared.enable = true
