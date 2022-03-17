@@ -23,7 +23,7 @@ extension HomeViewController {
         let currentTime = timeFormatter.string(from: newdate.nextHalfHour)
         print("Current Time : ", currentTime)
         self.arrSlots = getTimeIntervals(fromTime:currentTime)
-        print(self.arrSlots)
+        print("Array from setTimePicker:", self.arrSlots)
         
 //        timeFormatter.dateFormat = "yyyy-MM-dd"
 //        timeFormatter.timeZone = TimeZone(identifier: "Asia/Kolkata")
@@ -42,11 +42,12 @@ extension HomeViewController {
       
         
         
-        timeFormatter.dateFormat = "E, MMM d"
+        timeFormatter.dateFormat = "E, MMM d, yyyy"
         currentDateString = timeFormatter.string(from: newdate)
         print("currentDateString : ",currentDateString ?? "")
         
-        strDate = currentDateString
+        
+//        strDate = currentDateString
     
     }
     
@@ -84,6 +85,8 @@ extension HomeViewController {
             break;
         }
         
+      
+          
 //        if(currentDateString == myPickerDateString){
 //            if(strNextTime == "12:00 AM"){
 //                break;
@@ -105,4 +108,3 @@ extension HomeViewController {
     }
     
 }
-

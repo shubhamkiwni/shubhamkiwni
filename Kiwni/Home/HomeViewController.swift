@@ -120,8 +120,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var kmArray = ["20km", "40km", "60km", "80km", "100km", "120km"]
     
     var dateArray: [String] = []
-    var currentDateString : String?
-    var myPickerDateString : String?
+    var currentDateString : String? = ""
+    var myPickerDateString : String? = ""
     
     var currentTimeString : String?
     var myPickerTimeString : String?
@@ -186,7 +186,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        newDatePicker.minimumDate = Date()
         pickUpDatePickerButton.titleLabel?.font =  UIFont(name: "", size: 14)
         
         pickUpTextField.setIcon(UIImage(named: "Pickuppoint")!)
@@ -214,14 +214,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         formatter.dateFormat = "E, MMM d, yyyy"
         let dateStr = formatter.string(from: Date())
-        
+        currentDateString = dateStr
+        print("strDate", currentDateString ?? "")
         pickUpDatePickerButton.setTitle(dateStr, for: .normal)
         returnByDatePickerButton.setTitle(dateStr, for: .normal)
-        print("dateStr",dateStr)
+        myPickerDateString = dateStr
+        currentDateString = dateStr
+//        print("dateStr",dateStr)
         
         
         // Add an event to call onDidChangeDate function when value is changed.
-        newDatePicker.addTarget(self, action: #selector(action), for: .valueChanged)
+        newDatePicker.addTarget(self, action: #selector(datePickerAction), for: .valueChanged)
         
         // Add DataPicker to the view
         self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.dismissBlurView(gesture:))))
@@ -315,7 +318,44 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         datePickerTag = "2"
     }
     
-    @objc func action() {
+    @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
+       
+        print("myPickerDateString : ", myPickerDateString)
+        
+        print("currentDateString: ", currentDateString )
+        if(currentDateString == myPickerDateString){
+            setTimeToPicker()
+            dropDown.dataSource = self.arrSlots
+                          dropDown.anchorView = sender
+                          dropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+                          dropDown.show() //7
+                          dropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+                              guard let _ = self else { return }
+                  //            self!.pickUpOnTimeLable.text = item //9
+                              self!.pickUpOnTimePickerButton.setTitle(item, for: .normal)
+                          }
+        }
+        else{
+            dropDown.dataSource = self.arrSlots
+                                     dropDown.anchorView = sender
+                                     dropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+                                     dropDown.show() //7
+                                     dropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+                                         guard let _ = self else { return }
+                             //            self!.pickUpOnTimeLable.text = item //9
+                                         self!.pickUpOnTimePickerButton.setTitle(item, for: .normal)
+                                     }
+        }
+      
+           
+        
+       
+        
+        
+        
+    }
+    
+    @objc func datePickerAction() {
         print(newDatePicker.date)
         let formatter = DateFormatter()
         
@@ -323,12 +363,104 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let dateStr = formatter.string(from: newDatePicker.date)
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
+            myPickerDateString = dateStr
+            strDate = myPickerDateString
+            print("myPickerDateString:", myPickerDateString)
+            if(currentDateString != myPickerDateString){
+                             self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
+                             print("Set Successfully")
+                             
+                             let currentTime = "12:00 AM"
+                             print("Current time after button click ", currentTime)
+                             
+                             self.arrSlots = getTimeIntervals(fromTime: currentTime)
+                             print("After 12 AM Array data : ", self.arrSlots)
+                
+               // dropDown.dataSource = self.arrSlots
+                //dropDown.reloadAllComponents()
+//                             if timeTableView.isHidden == true {
+//                                 timeTableView.isHidden = false
+//                             }
+//
+//                             let strDateTime = "\(strDate!) \(strTime!)"
+//                             let formatter = DateFormatter()
+//                             // "2021-12-30T14:28:00.000Z"
+//                             formatter.dateFormat = "yyyy-MM-dd hh:mm a"
+//                             let dd = formatter.date(from: strDateTime)
+//                             print(dd ?? (Any).self)
+//                             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//                             self.startTime = formatter.string(from: dd!)
+//                             //print(dd!)
+//                             //print(self.startTime)
+                             
+                             
+                         }
+            else{
+                             setTimeToPicker()
+//                             dropDown.dataSource = self.arrSlots
+//                            dropDown.reloadAllComponents()
+                         }
+                         
         } else if datePickerTag == "2" {
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
         }
         print("dateStr",dateStr)
         
     }
+    
+    
+    /*
+     {
+             
+             timePickerButton.isHidden = false
+             timeFormatter.dateFormat = "yyyy-MM-dd"
+             
+             myPickerDateString = timeFormatter.string(from: pickupDateTimePicker.date)
+             print("myPickerDateString : ",myPickerDateString ?? "")
+             
+             strDate = myPickerDateString
+             
+             
+             if(currentDateString != myPickerDateString){
+                 self.timePickerButton.setTitle("12:00 AM", for: .normal)
+                 print("Set Successfully")
+                 
+                 let currentTime = "12:00 AM"
+                 print("Current time after button click ", currentTime)
+                 
+                 self.arrSlots = getTimeIntervals(fromTime: currentTime)
+                 print(self.arrSlots)
+
+                 timeTableView.reloadData()
+                 if timeTableView.isHidden == true {
+                     timeTableView.isHidden = false
+                 }
+                 
+                 let strDateTime = "\(strDate!) \(strTime!)"
+                 let formatter = DateFormatter()
+                 // "2021-12-30T14:28:00.000Z"
+                 formatter.dateFormat = "yyyy-MM-dd hh:mm a"
+                 let dd = formatter.date(from: strDateTime)
+                 print(dd ?? (Any).self)
+                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                 self.startTime = formatter.string(from: dd!)
+                 //print(dd!)
+                 //print(self.startTime)
+                 
+                 
+             }else{
+                 setTimeToPicker()
+             }
+             
+             self.dismiss(animated: true) {
+                         if self.timeTableView.isHidden == false {
+                             self.timeTableView.isHidden = true
+                         }
+          }
+     }
+     */
+    
+    
     
     func nearbyPlaces() {
            placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
@@ -783,22 +915,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
-        //        if timeTableView.isHidden == false {
-        //            timeTableView.isHidden = true
-        //        } else {
-        //            timeTableView.isHidden = false
-        //        }
-        dropDown.dataSource = arrSlots
-        dropDown.anchorView = sender
-        dropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
-        dropDown.show() //7
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
-            guard let _ = self else { return }
-//            self!.pickUpOnTimeLable.text = item //9
-            self!.pickUpOnTimePickerButton.setTitle(item, for: .normal)
-        }
-    }
+    
     
     //MARK:- DRAW POLYLINE
     func drawpolyLine(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){

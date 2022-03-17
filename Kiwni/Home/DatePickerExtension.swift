@@ -24,5 +24,6 @@ extension HomeViewController {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
         self.view.addSubview(newDatePicker)
+        
     }
 }

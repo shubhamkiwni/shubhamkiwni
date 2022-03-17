@@ -49,6 +49,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.isHidden = true
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
+        
     }
     
     
