@@ -154,9 +154,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var returnByLable: UILabel!
     @IBOutlet weak var dateTimePickupView: UIView!
     
-//    @IBOutlet weak var pickUpOnDatePickerView: UIView!
-//    @IBOutlet weak var pickUpOnDatePickerImageView: UIImageView!
-//    @IBOutlet weak var pickUpOnDatePicker: UIDatePicker!
+    //    @IBOutlet weak var pickUpOnDatePickerView: UIView!
+    //    @IBOutlet weak var pickUpOnDatePickerImageView: UIImageView!
+    //    @IBOutlet weak var pickUpOnDatePicker: UIDatePicker!
     
     @IBOutlet weak var pickUpDatePickerButton: UIButton!
     @IBOutlet weak var returnByDatePickerButton: UIButton!
@@ -164,9 +164,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var pickUpOnTimePickerButton: UIButton!
     
-//    @IBOutlet weak var returnByDatePicker: UIDatePicker!
-//    @IBOutlet weak var returnByDatePickerView: UIView!
-//    @IBOutlet weak var returnByDatePickerImageView: UIImageView!
+    //    @IBOutlet weak var returnByDatePicker: UIDatePicker!
+    //    @IBOutlet weak var returnByDatePickerView: UIView!
+    //    @IBOutlet weak var returnByDatePickerImageView: UIImageView!
     
     @IBOutlet weak var rentalSelectaPackageLable: UILabel!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         returnByDatePickerButton.setTitle(dateStr, for: .normal)
         myPickerDateString = dateStr
         currentDateString = dateStr
-
+        
         // Add an event to call onDidChangeDate function when value is changed.
         newDatePicker.addTarget(self, action: #selector(datePickerAction), for: .valueChanged)
         
@@ -279,14 +279,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-
+        
         self.mapView.settings.compassButton = true
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.isUserInteractionEnabled = false
-
+        
         self.locatePinImage.isHidden = true
-       
+        
         
         pickUpTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
         dropTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
@@ -297,7 +297,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func dismissBlurView(gesture: UITapGestureRecognizer){
         blurEffectView.removeFromSuperview()
         newDatePicker.removeFromSuperview()
-        }
+    }
     
     
     
@@ -349,29 +349,29 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             else{
                 setTimeToPicker()
             }
-                         
+            
         } else if datePickerTag == "2" {
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
         }
         print("dateStr",dateStr)
         
     }
-
+    
     func nearbyPlaces() {
-           placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-               if let error = error {
-                   print("Pick Place error: \(error.localizedDescription)")
-                   return
-               }
-
-               if let placeLikelihoodList = placeLikelihoodList {
+        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placeLikelihoodList = placeLikelihoodList {
                 self.likeHoodList = placeLikelihoodList
                 print("self.likeHoodList:",self.likeHoodList as Any)
-//                   tableView.reloadData()
-               }
-           })
-       }
-
+                //                   tableView.reloadData()
+            }
+        })
+    }
+    
     
     
     //MARK:- TEXTFIELD DELEGATE for Pickup And Drop Textfield
@@ -595,7 +595,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
-   
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -655,6 +655,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
                 selectedTripType = "Outstation"
                 print("Outstation:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 1 {
                 
                 rentalTag = 1
@@ -664,19 +666,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
-//                returnByDatePicker.isHidden = true
-//                returnByDatePickerImageView.isHidden = true
+                //                returnByDatePicker.isHidden = true
+                //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = true
                 clearMap()
-//                pickUpOnDatePicker.date = Date()
-//                returnByDatePicker.date = Date()
+                //                pickUpOnDatePicker.date = Date()
+                //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Airport"
                 selectedTripTypeMode = "Airport Pickup"
                 print("Airport:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
-                
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 2 {
                 
                 rentalTag = 2
@@ -685,31 +688,33 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
-//                returnByDatePicker.isHidden = true
-//                returnByDatePickerImageView.isHidden = true
+                //                returnByDatePicker.isHidden = true
+                //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = false
                 clearMap()
-//                pickUpOnDatePicker.date = Date()
-//                returnByDatePicker.date = Date()
+                //                pickUpOnDatePicker.date = Date()
+                //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Rental"
                 selectedTripTypeMode = "CURRENT BOOKING"
                 print("Rental:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             }
             print("Select click")
         } else {
             let hoursCell = hoursPackegeCollectionView.cellForItem(at: indexPath) as! RentalHoursPackageCollectionViewCell
             hoursCell.layer.borderColor = UIColor.black.cgColor
-    }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == tripTypeCollectionView {
-        let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-        cell?.backgroundColor = .clear
-        print("Deselect click")
+            let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
+            cell?.backgroundColor = .clear
+            print("Deselect click")
         } else {
             let hoursCell = hoursPackegeCollectionView.cellForItem(at: indexPath) as! RentalHoursPackageCollectionViewCell
             hoursCell.layer.borderColor = UIColor.lightGray.cgColor
@@ -916,11 +921,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     // print("json data is--->",jsondata)
                     self.get_dest = jsondata.object(forKey: "destination_addresses")as! NSArray
-//                    var get_dest1 : String = ""
-//                    get_dest1 = self.get_dest.object(at: 0) as! String
+                    //                    var get_dest1 : String = ""
+                    //                    get_dest1 = self.get_dest.object(at: 0) as! String
                     // print("destination is--->",get_dest1)
                     self.org_add = jsondata.object(forKey: "origin_addresses")as! NSArray
-//                    let get_org : String = self.org_add.object(at: 0)as! String
+                    //                    let get_org : String = self.org_add.object(at: 0)as! String
                     // print("original address is--->",get_org)
                     self.row_arr = jsondata.object(forKey: "rows")as! NSArray
                     //print("Rows Array is--->",self.row_arr)
@@ -954,7 +959,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     //                                self.distanceInKm = (inputString! as AnyObject).replacingOccurrences(of: "hours", with: "") as NSString
                     //
-//                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
+                    //                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
                     //                                print("duration_in_traffic value is--->",self.durationInTraffic as Any)
                     //
                     //                                print("duration_in_traffic value is--->",self.dur_dic_traffic.object(forKey: "value")as! Int)
@@ -969,47 +974,47 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-
-
-
-//        if(sourceCoordinate == nil || destinationCoordinate == nil){
-
-                let lat = position.target.latitude
-                let lng = position.target.longitude
-
-                debugPrint(lat,lng)
-
-                let userLocation: CLLocationCoordinate2D!
-                userLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-
-                guard let locValue: CLLocationCoordinate2D = userLocation else { return }
-                print("locations = \(locValue.latitude) \(locValue.longitude)")
-                let geocoder = GMSGeocoder()
-                geocoder.reverseGeocodeCoordinate(userLocation) { response, error in
-                    if let location = response?.firstResult() {
-                        let lines = location.lines! as [String]
-//                        self.selectedAddress = lines.joined(separator: "\n")
-                        if(self.isconfirmLocation == false){
-                            if(self.strTxtFieldType == "ToDestination")
-                             {
-                                self.selectedPickUpAddress = lines.joined(separator: "\n")
-                                self.sourceCoordinate = userLocation
-                                self.pickUpTextField.text = self.selectedPickUpAddress
-                             }
-                            else if self.strTxtFieldType == "FromDestination" {
-                                self.selectedDropAddress = lines.joined(separator: "\n")
-                                self.destinationCoordinate = userLocation
-                                self.dropTextField.text = self.selectedDropAddress
-                                print(self.selectedDropAddress)
-                             }
-                        }
+        
+        
+        
+        //        if(sourceCoordinate == nil || destinationCoordinate == nil){
+        
+        let lat = position.target.latitude
+        let lng = position.target.longitude
+        
+        debugPrint(lat,lng)
+        
+        let userLocation: CLLocationCoordinate2D!
+        userLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        
+        guard let locValue: CLLocationCoordinate2D = userLocation else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(userLocation) { response, error in
+            if let location = response?.firstResult() {
+                let lines = location.lines! as [String]
+                //                        self.selectedAddress = lines.joined(separator: "\n")
+                if(self.isconfirmLocation == false){
+                    if(self.strTxtFieldType == "ToDestination")
+                    {
+                        self.selectedPickUpAddress = lines.joined(separator: "\n")
+                        self.sourceCoordinate = userLocation
+                        self.pickUpTextField.text = self.selectedPickUpAddress
                     }
-                    
+                    else if self.strTxtFieldType == "FromDestination" {
+                        self.selectedDropAddress = lines.joined(separator: "\n")
+                        self.destinationCoordinate = userLocation
+                        self.dropTextField.text = self.selectedDropAddress
+                        print(self.selectedDropAddress)
+                    }
                 }
-//        }
-//       else{
-//                print("Coordinates are there")
-//        }
+            }
+            
+        }
+        //        }
+        //       else{
+        //                print("Coordinates are there")
+        //        }
     }
     
 }
@@ -1105,7 +1110,7 @@ extension HomeViewController: CLLocationManagerDelegate
         let location: CLLocation = locations.last!
         print("Current Location: \(location)")
         
-       
+        
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
