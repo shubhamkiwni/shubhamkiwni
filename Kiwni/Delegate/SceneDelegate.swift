@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print(status)
         
         var storyboardName:String?
-        if (status == false) {
+        if (status == true) {
             storyboardName = "Main"
         }else{
             storyboardName = "User"

@@ -46,5 +46,33 @@ class EditProfileVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func logoutTapped(_ sender: UIButton) {
+        
+        // after user has successfully logged out
+        UserDefaults.standard.setValue(false, forKey: "status")
+        
+      /*  UserDefaults.standard.removeObject(forKey: "uid")
+        UserDefaults.standard.removeObject(forKey: "displayName")
+        UserDefaults.standard.removeObject(forKey: "email")
+        UserDefaults.standard.removeObject(forKey: "phoneNumber")
+        UserDefaults.standard.removeObject(forKey: "partyId")
+        UserDefaults.standard.removeObject(forKey: "Roles")
+        
+        UserDefaults.standard.setValue(nil, forKey: "uid")
+        UserDefaults.standard.setValue(nil, forKey: "displayName")
+        UserDefaults.standard.setValue(nil, forKey: "email")
+        UserDefaults.standard.setValue(nil, forKey: "phoneNumber")
+        UserDefaults.standard.setValue(nil, forKey: "partyId")
+        UserDefaults.standard.setValue(nil, forKey: "Roles")*/
+        
+       
+      //  AuthManager.shared.logout()
+        
+        
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let loginNavController = storyboard.instantiateViewController(identifier: "LoginViewController")
+        navigationController?.pushViewController(loginNavController, animated: true)
+//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
 
+    }
 }
