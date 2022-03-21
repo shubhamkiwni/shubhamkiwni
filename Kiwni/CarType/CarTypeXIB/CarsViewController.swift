@@ -94,8 +94,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[1] as! CarTypesViewController
-        navigationController?.popToViewController(hvc, animated: true)
+//        let hvc = navigationController?.viewControllers[1] as! CarTypesViewController
+//        navigationController?.popToViewController(hvc, animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sortButtonPressed(_ sender: UIButton) {

@@ -24,8 +24,7 @@ class OffersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-        navigationController?.popToViewController(hvc, animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

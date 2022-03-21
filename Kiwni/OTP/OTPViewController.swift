@@ -169,36 +169,42 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
 //        guard let otp1 = otpText1.text, !otp1.isEmpty else {
 ////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+//        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //
 //        guard let otp2 = otpText2.text, !otp2.isEmpty else {
 ////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+        //        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //
 //        guard let otp3 = otpText3.text, !otp3.isEmpty else {
 ////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+        //        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //
 //        guard let otp4 = otpText4.text, !otp4.isEmpty else {
 ////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+        //        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //
 //        guard let otp4 = otpText5.text, !otp4.isEmpty else {
 ////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+        //        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //
 //        guard let otp4 = otpText6.text, !otp4.isEmpty else {
 ////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
 //            print("Enter OTP")
+        //        customErrorPopup("Please enter OTP")
 //            return
 //        }
 //

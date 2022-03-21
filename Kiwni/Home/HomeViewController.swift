@@ -154,19 +154,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var returnByLable: UILabel!
     @IBOutlet weak var dateTimePickupView: UIView!
     
-    //    @IBOutlet weak var pickUpOnDatePickerView: UIView!
-    //    @IBOutlet weak var pickUpOnDatePickerImageView: UIImageView!
-    //    @IBOutlet weak var pickUpOnDatePicker: UIDatePicker!
     
     @IBOutlet weak var pickUpDatePickerButton: UIButton!
     @IBOutlet weak var returnByDatePickerButton: UIButton!
     
     
     @IBOutlet weak var pickUpOnTimePickerButton: UIButton!
-    
-    //    @IBOutlet weak var returnByDatePicker: UIDatePicker!
-    //    @IBOutlet weak var returnByDatePickerView: UIView!
-    //    @IBOutlet weak var returnByDatePickerImageView: UIImageView!
     
     @IBOutlet weak var rentalSelectaPackageLable: UILabel!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
@@ -1028,8 +1021,8 @@ extension HomeViewController: SidebarViewDelegate {
         }
         switch row {
         case .editProfile:
-            let vc=EditProfileVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            let epvc = storyboard?.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
+            navigationController?.pushViewController(epvc, animated: true)
         case .myRides:
             print("MyRidesViewController")
             let mrvc = storyboard?.instantiateViewController(withIdentifier: "MyRidesViewController") as! MyRidesViewController

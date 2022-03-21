@@ -62,13 +62,12 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             print("hide confirm booking")
         } else if resultVar == "Result" {
             
-                let hvc = navigationController?.viewControllers[6] as! ResultViewController
-                navigationController?.popToViewController(hvc, animated: true)
-                print("back to car models view")
+            navigationController?.popViewController(animated: true)
             
         } else {
-                let hvc = navigationController?.viewControllers[4] as! CarsViewController
-                navigationController?.popToViewController(hvc, animated: true)
+//                let hvc = navigationController?.viewControllers[4] as! CarsViewController
+//                navigationController?.popToViewController(hvc, animated: true)
+            navigationController?.popViewController(animated: true)
                 print("back to car models view")
         }
     }

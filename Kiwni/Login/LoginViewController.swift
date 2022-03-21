@@ -81,6 +81,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 ////                    self?.hideIndicator()
 //                    print("Got verification code")
               
+        if mobileNumTextField.text == "" {
+            customErrorPopup("Please enter mobile")
+        }
                
                 
                 let otpVC = UIStoryboard(name: "User", bundle:nil).instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController

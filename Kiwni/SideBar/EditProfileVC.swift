@@ -10,25 +10,41 @@ import UIKit
 
 class EditProfileVC: UIViewController {
 
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userMobileNumberLabel: UILabel!
+    @IBOutlet weak var userMailLabel: UILabel!
+    @IBOutlet weak var safetyImageView: UIImageView!
+    @IBOutlet weak var safetyPrivacyLabel: UIButton!
+    @IBOutlet weak var manageAccountLabel: UILabel!
+    @IBOutlet weak var twoStepVerificationLabel: UIButton!
+    @IBOutlet weak var emergencyContactLabel: UIButton!
+    @IBOutlet weak var rideSettingLabel: UIButton!
+    @IBOutlet weak var settingImageView: UIImageView!
+    @IBOutlet weak var manageAccountRideLabel: UILabel!
+    @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var logOutImageView: UIImageView!
+    @IBOutlet weak var line1: UIView!
+    @IBOutlet weak var line2: UIView!
+    @IBOutlet weak var line3: UIView!
+    @IBOutlet weak var line4: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        profileView.layer.cornerRadius = 15.0
+        profileView.layer.shadowColor = UIColor.black.cgColor
+        profileView.layer.shadowOpacity = 0.5
+        profileView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        profileView.layer.shadowRadius = 1
+        backButton.setTitle("", for: .normal)
         
-        self.view.addSubview(lbl)
-        lbl.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
-        lbl.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
-        lbl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive=true
-        lbl.heightAnchor.constraint(equalToConstant: 60).isActive=true
     }
     
-    let lbl: UILabel = {
-        let label=UILabel()
-        label.text = "Edit Profile"
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 30)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints=false
-        return label
-    }()
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 
 }

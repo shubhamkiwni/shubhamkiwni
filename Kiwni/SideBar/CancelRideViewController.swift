@@ -51,7 +51,7 @@ class CancelRideViewController: UIViewController {
     }
     
     @IBAction func cancelRideButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
         cancelDelegate?.cancelRide()
     }
 }
