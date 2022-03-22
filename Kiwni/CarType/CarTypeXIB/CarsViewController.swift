@@ -57,7 +57,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        carsTableView.sectionHeaderHeight = 5.0
+//        carsTableView.sectionHeaderHeight = 5.0
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         detailsView.layer.cornerRadius = 8.0
@@ -197,9 +197,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             if indexPath.row == 0 {
-                return 133
+                return 105
             } else {
-                return 96
+                return 80
             }
         }
     
@@ -212,7 +212,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-    
             }
         }
 }

@@ -1806,9 +1806,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWC-Sa-XYU">
                                 <rect key="frame" x="0.0" y="303" width="375" height="364"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-01-3hC">
+                                    <tableView clipsSubviews="YES" contentMode="scaleAspectFit" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-01-3hC">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="364"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carCell" rowHeight="109" id="EcL-Ri-ua0" customClass="CarsTableViewCell" customModule="Kiwni" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="49.5" width="343" height="109"/>
@@ -1880,7 +1880,7 @@
                                                         <constraint firstItem="dwz-8Q-LxV" firstAttribute="top" secondItem="hrR-f9-wSH" secondAttribute="top" constant="5" id="H69-cv-eeC"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="carsDetailsView" destination="dwz-8Q-LxV" id="EzD-Rt-U8Q"/>
                                                 </connections>
@@ -2012,7 +2012,7 @@
                                                         <constraint firstItem="MIR-fH-1C1" firstAttribute="leading" secondItem="prg-HL-7qL" secondAttribute="leading" constant="5" id="OWh-4a-flI"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="availabelStatusLabel" destination="tMR-KT-GLb" id="EBE-a1-SMs"/>
                                                     <outlet property="bookButton" destination="2D9-WN-FZ9" id="Owf-73-X2u"/>

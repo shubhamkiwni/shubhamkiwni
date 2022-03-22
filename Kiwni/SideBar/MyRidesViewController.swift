@@ -185,9 +185,13 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+        let cell:UpcomingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell") as! UpcomingTableViewCell
         if(strTripType == "Upcoming") {
-            return 385
+            if cell.carDetailsView.isHidden == true {
+                return 275
+            } else {
+                return 385
+            }
         } else {
             return 170
         }
