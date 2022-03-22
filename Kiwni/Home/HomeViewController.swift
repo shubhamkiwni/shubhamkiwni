@@ -607,16 +607,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else {
             print("View Cabs Button Pressed")
             
-            
+            let newdateformatter = DateFormatter()
+            newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
                 print("confirm Button startTime : ", strStartTime)
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 print("newDateString: ", newDateString)
-                let newdateformatter = DateFormatter()
-                newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
-    //            let datevalue = newdateformatter.date(from: newdate)
-    //            print(datevalue ?? (Any).self)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
                 self.startTime = newdateformatter.string(from: newdate)
                 print("self.startTime on confirm button clicked:", self.startTime ?? "")
@@ -624,8 +621,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("confirm Button startTime : ", strStartTime)
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 print("newDateString: ", newDateString)
-                let newdateformatter = DateFormatter()
-                newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
+                
                 let datevalue = newdateformatter.date(from: newDateString)
                 print(datevalue ?? (Any).self)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
