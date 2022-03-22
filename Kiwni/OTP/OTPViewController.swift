@@ -241,10 +241,8 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
 //        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         UserDefaults.standard.setValue(true, forKey: "status")
-        
-        
-        
         if userEnterdOtp == "" {
+            print("Please enter otp")
             customErrorPopup("Please enter otp")
         } else if userEnterdOtp.count < 6 {
             customErrorPopup("Please correct otp")
