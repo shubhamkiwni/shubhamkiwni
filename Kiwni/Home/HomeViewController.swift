@@ -207,7 +207,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let timeStr = formatter.string(from: Date())
         print(timeStr)
         
-        formatter.dateFormat = "E, d MMM"
+        formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: Date())
         currentDateString = dateStr
         print("strDate", currentDateString ?? "")
@@ -418,14 +418,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func datePickerAction() {
         print(newDatePicker.date)
         let formatter = DateFormatter()
+        
         formatter.dateFormat = "E, MMM d"
-
         let dateStr = formatter.string(from: newDatePicker.date)
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
             myPickerDateString = dateStr
             strDate = myPickerDateString
             print("myPickerDateString:", myPickerDateString)
+            
+            
             if(currentDateString != myPickerDateString){
                 self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
                 print("Set Successfully")
