@@ -30,7 +30,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("User Mobile Number : ", userMobileNumber ?? "")
+        print("User Mobile Numb : ", userMobileNumber ?? "")
         mobileNumberLabel.text = userMobileNumber ?? ""
         self.initialLoads()
         
