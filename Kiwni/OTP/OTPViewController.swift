@@ -208,15 +208,15 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
 //            return
 //        }
 //
-//        otp.append(otp1)
-//        otp.append(otpText2.text ?? "")
-//        otp.append(otpText3.text ?? "" )
-//        otp.append(otpText4.text ?? "")
-//        otp.append(otpText5.text ?? "")
-//        otp.append(otpText6.text ?? "")
-//        print(otp.joined())
-//
-//        self.userEnterdOtp = otp.joined()
+        otp.append(otpText1.text ?? "")
+        otp.append(otpText2.text ?? "")
+        otp.append(otpText3.text ?? "" )
+        otp.append(otpText4.text ?? "")
+        otp.append(otpText5.text ?? "")
+        otp.append(otpText6.text ?? "")
+        print(otp.joined())
+
+        self.userEnterdOtp = otp.joined()
 //        let checkOtp: String = self.userEnterdOtp
 //        print("User Enter OTP : \(self.userEnterdOtp)")
 //        if (NetworkMonitor.share.isConnected == false){
@@ -242,9 +242,20 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
 //        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         UserDefaults.standard.setValue(true, forKey: "status")
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-        navigationController?.pushViewController(homeVc, animated: true)
+        
+        
+        if userEnterdOtp == "" {
+            customErrorPopup("Please enter otp")
+        } else if userEnterdOtp.count < 6 {
+            customErrorPopup("Please correct otp")
+        } else {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+            navigationController?.pushViewController(homeVc, animated: true)
+        }
+       
+            
+
     }
     
 }

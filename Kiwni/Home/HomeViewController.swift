@@ -205,7 +205,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let timeStr = formatter.string(from: Date())
         print(timeStr)
         
-        formatter.dateFormat = "E, MMM d, yyyy"
+        formatter.dateFormat = "E, d MMM"
         let dateStr = formatter.string(from: Date())
         currentDateString = dateStr
         print("strDate", currentDateString ?? "")
@@ -322,7 +322,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print(newDatePicker.date)
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "E, MMM d, yyyy"
+        formatter.dateFormat = "E, d MMM"
         let dateStr = formatter.string(from: newDatePicker.date)
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)

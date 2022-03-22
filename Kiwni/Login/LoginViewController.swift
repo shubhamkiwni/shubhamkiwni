@@ -47,49 +47,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         print("Mobile Num: ", mobileNumTextField.text ?? "")
         
-      
+        
     }
     
     @IBAction func confirmButtonPressed(_ sender: UIButton) {
-//        let otpVC = storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
-//        navigationController?.pushViewController(otpVC, animated: true)
-//
-//        guard  let phonenumber = mobileNumTextField.text else {return}
-//        let number = "+91\(phonenumber)"
-//        print("number : ", number)
-//        if (NetworkMonitor.share.isConnected == false){
-//
-//            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-//            return
-//        }
-//        self.showIndicator(withTitle: "Loading", and: "Please Wait")
-//
-//            AuthManager.shared.startAuth(phoneNumber: number){[weak self] success in
-//
-//                    self?.hideIndicator()
-//
-//                    guard success
-//
-//                    else  {
-//
-//                        self?.view.makeToast(ErrorMessage.list.numberBlock)
-//                        self?.mobileNumTextField.text = ""
-//                        print("Numb block")
-//                        return
-//
-//                    }
-////                    self?.hideIndicator()
-//                    print("Got verification code")
-              
+        //        let otpVC = storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
+        //        navigationController?.pushViewController(otpVC, animated: true)
+        //
+        //        guard  let phonenumber = mobileNumTextField.text else {return}
+        //        let number = "+91\(phonenumber)"
+        //        print("number : ", number)
+        //        if (NetworkMonitor.share.isConnected == false){
+        //
+        //            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+        //            return
+        //        }
+        //        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        //
+        //            AuthManager.shared.startAuth(phoneNumber: number){[weak self] success in
+        //
+        //                    self?.hideIndicator()
+        //
+        //                    guard success
+        //
+        //                    else  {
+        //
+        //                        self?.view.makeToast(ErrorMessage.list.numberBlock)
+        //                        self?.mobileNumTextField.text = ""
+        //                        print("Numb block")
+        //                        return
+        //
+        //                    }
+        ////                    self?.hideIndicator()
+        //                    print("Got verification code")
+        
+        let text = mobileNumTextField.text
+        
+        
         if mobileNumTextField.text == "" {
             customErrorPopup("Please enter mobile")
+        } else if  text!.count < 10 || text!.count > 10 {
+            customErrorPopup("Please enter 10 digit number")
+        } else {
+            let otpVC = UIStoryboard(name: "User", bundle:nil).instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
+            otpVC.userMobileNumber = mobileNumTextField.text
+            self.navigationController?.pushViewController(otpVC, animated: true)
         }
-               
-                
-                let otpVC = UIStoryboard(name: "User", bundle:nil).instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
-        self.navigationController?.pushViewController(otpVC, animated: true)
-                 
-//            }
+        //            }
     }
     
     
