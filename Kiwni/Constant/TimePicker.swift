@@ -42,7 +42,7 @@ extension HomeViewController {
       
         
         
-        timeFormatter.dateFormat = "E, MMM d, yyyy"
+        timeFormatter.dateFormat = "E, MMM d"
         currentDateString = timeFormatter.string(from: newdate)
         print("currentDateString : ",currentDateString ?? "")
         
