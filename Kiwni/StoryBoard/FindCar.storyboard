@@ -50,7 +50,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUNE TO NASHIK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLi-PA-6Gp">
                                 <rect key="frame" x="126.5" y="184" width="122.5" height="17"/>
-                                <color key="backgroundColor" red="0.46614470879999997" green="1" blue="0.11133776200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="XFL-cq-ZLW"/>
                                 </constraints>
@@ -101,7 +101,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tintColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="dSh-bh-z1j" firstAttribute="leading" secondItem="Na5-80-2SK" secondAttribute="trailing" constant="5" id="1zR-2P-G7u"/>
                                     <constraint firstItem="lKB-Iw-ftq" firstAttribute="top" secondItem="Rrg-e5-4mj" secondAttribute="top" constant="5" id="7Ir-PO-lF0"/>
@@ -2130,9 +2130,6 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
