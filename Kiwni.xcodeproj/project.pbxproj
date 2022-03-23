@@ -67,7 +67,9 @@
 		7A81DB3227DF3E660046FF9F /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81DB3127DF3E660046FF9F /* CarsViewController.swift */; };
 		7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */; };
 		7AA994FC27EAF7E300AF536F /* File.json in Resources */ = {isa = PBXBuildFile; fileRef = 7AA994FB27EAF7E300AF536F /* File.json */; };
-		7AA9950727EB066000AF536F /* WelcomeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9950627EB066000AF536F /* WelcomeElement.swift */; };
+		7AA9951527EB1A3500AF536F /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9951227EB1A3500AF536F /* Welcome.swift */; };
+		7AA9951627EB1A3500AF536F /* Cars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9951327EB1A3500AF536F /* Cars.swift */; };
+		7AA9951727EB1A3500AF536F /* CarModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9951427EB1A3500AF536F /* CarModels.swift */; };
 		7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF1DFC27C9036C00B262D4 /* PickupLocationOnSearchView.swift */; };
 		7AAF1DFF27C906B100B262D4 /* DropLocationOnSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF1DFE27C906B000B262D4 /* DropLocationOnSearchView.swift */; };
 		7AAF1E0727C9152200B262D4 /* DropLocationOnSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */; };
@@ -203,7 +205,9 @@
 		7A81DB3127DF3E660046FF9F /* CarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerExtension.swift; sourceTree = "<group>"; };
 		7AA994FB27EAF7E300AF536F /* File.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = File.json; sourceTree = "<group>"; };
-		7AA9950627EB066000AF536F /* WelcomeElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeElement.swift; sourceTree = "<group>"; };
+		7AA9951227EB1A3500AF536F /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		7AA9951327EB1A3500AF536F /* Cars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cars.swift; sourceTree = "<group>"; };
+		7AA9951427EB1A3500AF536F /* CarModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarModels.swift; sourceTree = "<group>"; };
 		7AAF1DFC27C9036C00B262D4 /* PickupLocationOnSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocationOnSearchView.swift; sourceTree = "<group>"; };
 		7AAF1DFE27C906B000B262D4 /* DropLocationOnSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropLocationOnSearchView.swift; sourceTree = "<group>"; };
 		7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropLocationOnSearchView.xib; sourceTree = "<group>"; };
@@ -345,7 +349,7 @@
 				84DD33A127C39F9B007E3260 /* Kiwni.entitlements */,
 				84398FB527BD07A8008C8782 /* ErrorMessage.swift */,
 				7AA994FB27EAF7E300AF536F /* File.json */,
-				7AA9950627EB066000AF536F /* WelcomeElement.swift */,
+				7AA9951127EB1A3500AF536F /* Welcome */,
 				7A170E8C27CF89D900B0BE66 /* Extension */,
 				84398FB927BD084C008C8782 /* DateFormatter */,
 				84398FB827BD083E008C8782 /* MBProgressHUD */,
@@ -430,6 +434,16 @@
 			children = (
 			);
 			path = "Home PageXIB";
+			sourceTree = "<group>";
+		};
+		7AA9951127EB1A3500AF536F /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				7AA9951227EB1A3500AF536F /* Welcome.swift */,
+				7AA9951327EB1A3500AF536F /* Cars.swift */,
+				7AA9951427EB1A3500AF536F /* CarModels.swift */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		84398FA127BD0323008C8782 /* Home */ = {
@@ -1004,7 +1018,6 @@
 				84DD33A027C39A9C007E3260 /* Toast.swift in Sources */,
 				7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */,
 				7A170E9027CF89E900B0BE66 /* DateFormatter.swift in Sources */,
-				7AA9950727EB066000AF536F /* WelcomeElement.swift in Sources */,
 				8412703927D87EC200FD92F0 /* UpdateAlertDetailViewController.swift in Sources */,
 				84DD339E27C39A6F007E3260 /* MBProgressHUD.swift in Sources */,
 				7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */,
@@ -1029,6 +1042,7 @@
 				84398FBB27BD0A22008C8782 /* TimePicker.swift in Sources */,
 				7AF91F0F27C604710023B399 /* KiwniComfirtXIB.swift in Sources */,
 				7A41AE3227ABA7B00067BD3C /* FAQViewController.swift in Sources */,
+				7AA9951627EB1A3500AF536F /* Cars.swift in Sources */,
 				7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */,
 				7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */,
 				7A170E8B27CF66B000B0BE66 /* APIManeger.swift in Sources */,
@@ -1037,6 +1051,7 @@
 				7A686F4127AA7D6A00DFF9A3 /* PastTableViewCell.swift in Sources */,
 				7A2DA04F27BA662100490E5B /* SafetyCollectionViewCell.swift in Sources */,
 				8436804627C38DCF00FAC71C /* AuthManager.swift in Sources */,
+				7AA9951527EB1A3500AF536F /* Welcome.swift in Sources */,
 				84DD339C27C39902007E3260 /* NetworkMonitor.swift in Sources */,
 				7A81DB3227DF3E660046FF9F /* CarsViewController.swift in Sources */,
 				7ACF79D7279EBA0900B8239F /* EditProfileVC.swift in Sources */,
@@ -1044,6 +1059,7 @@
 				7A41AE3E27ABF8B30067BD3C /* FeedbackViewController.swift in Sources */,
 				7AF91F2827C6361D0023B399 /* BusinessDetaisViewController.swift in Sources */,
 				7AAF1DFF27C906B100B262D4 /* DropLocationOnSearchView.swift in Sources */,
+				7AA9951727EB1A3500AF536F /* CarModels.swift in Sources */,
 				7AD28FDB27A7C624004E232D /* LoginViewController.swift in Sources */,
 				7A2DA04227BA597E00490E5B /* BookingAddressXIB.swift in Sources */,
 				7A686F4627AAAE7C00DFF9A3 /* AboutViewController.swift in Sources */,

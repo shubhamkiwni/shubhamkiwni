@@ -85,7 +85,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
-    var dictProjectionSchedule = [String : [WelcomeElement]]()
+    var dictProjectionSchedule = [String : [Welcome]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,7 +103,8 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
 
              let url = Bundle.main.url(forResource: "File", withExtension: "json")!
              let data = try Data(contentsOf: url)
-            dictProjectionSchedule = try JSONDecoder() .decode([String : [WelcomeElement]].self, from: data)
+            dictProjectionSchedule = try JSONDecoder() .decode([String : [Welcome]].self, from: data)
+//            let res = try JSONDecoder() .decode(Welcome, from: data)
              print("dictProjectionSchedule:",dictProjectionSchedule)
 
         }
