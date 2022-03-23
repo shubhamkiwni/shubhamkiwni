@@ -187,9 +187,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
                 seconCell.delegate1 = self
                 //seconCell.bookButton.layer.cornerRadius = 5
-                //seconCell.layer.borderColor = UIColor.black.cgColor
-                //seconCell.layer.borderWidth = 0.5
-                //seconCell.layer.cornerRadius = 5.0
+                seconCell.layer.borderColor = UIColor.black.cgColor
+                seconCell.layer.borderWidth = 0.5
+                seconCell.layer.cornerRadius = 5.0
                 return seconCell
             }
     

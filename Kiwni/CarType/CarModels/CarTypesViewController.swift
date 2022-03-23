@@ -85,9 +85,33 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
-    
+    var dictProjectionSchedule = [String : [WelcomeElement]]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let url = Bundle.main.url(forResource: "File", withExtension: "json")!
+//            let data = try! Data(contentsOf: url)
+//
+//        do {
+//            dictProjectionSchedule = try! JSONDecoder() .decode([String : [carDetails]].self, from: data)
+//            print("dictProjectionSchedule:", dictProjectionSchedule)
+//        } catch {
+//                print(<#T##Any#>)
+//        }
+        
+        do {
+
+             let url = Bundle.main.url(forResource: "File", withExtension: "json")!
+             let data = try Data(contentsOf: url)
+            dictProjectionSchedule = try JSONDecoder() .decode([String : [WelcomeElement]].self, from: data)
+             print("dictProjectionSchedule:",dictProjectionSchedule)
+
+        }
+        catch {
+            print("error get:",error)
+        }
+        
+        
         print(estimatedKM)
         estKMLabel.text = "Est. km \(estimatedKM)KM"
         tripVenueLabel.text = "\(pickUpCityName) To \(dropCityName)"

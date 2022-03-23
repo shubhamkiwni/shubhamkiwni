@@ -66,6 +66,8 @@
 		7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81B04327BB86F00070E1D7 /* PaymentModeViewController.swift */; };
 		7A81DB3227DF3E660046FF9F /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81DB3127DF3E660046FF9F /* CarsViewController.swift */; };
 		7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */; };
+		7AA994FC27EAF7E300AF536F /* File.json in Resources */ = {isa = PBXBuildFile; fileRef = 7AA994FB27EAF7E300AF536F /* File.json */; };
+		7AA9950727EB066000AF536F /* WelcomeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9950627EB066000AF536F /* WelcomeElement.swift */; };
 		7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF1DFC27C9036C00B262D4 /* PickupLocationOnSearchView.swift */; };
 		7AAF1DFF27C906B100B262D4 /* DropLocationOnSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF1DFE27C906B000B262D4 /* DropLocationOnSearchView.swift */; };
 		7AAF1E0727C9152200B262D4 /* DropLocationOnSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */; };
@@ -200,6 +202,8 @@
 		7A81B04327BB86F00070E1D7 /* PaymentModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModeViewController.swift; sourceTree = "<group>"; };
 		7A81DB3127DF3E660046FF9F /* CarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerExtension.swift; sourceTree = "<group>"; };
+		7AA994FB27EAF7E300AF536F /* File.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = File.json; sourceTree = "<group>"; };
+		7AA9950627EB066000AF536F /* WelcomeElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeElement.swift; sourceTree = "<group>"; };
 		7AAF1DFC27C9036C00B262D4 /* PickupLocationOnSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocationOnSearchView.swift; sourceTree = "<group>"; };
 		7AAF1DFE27C906B000B262D4 /* DropLocationOnSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropLocationOnSearchView.swift; sourceTree = "<group>"; };
 		7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropLocationOnSearchView.xib; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 			children = (
 				84DD33A127C39F9B007E3260 /* Kiwni.entitlements */,
 				84398FB527BD07A8008C8782 /* ErrorMessage.swift */,
+				7AA994FB27EAF7E300AF536F /* File.json */,
+				7AA9950627EB066000AF536F /* WelcomeElement.swift */,
 				7A170E8C27CF89D900B0BE66 /* Extension */,
 				84398FB927BD084C008C8782 /* DateFormatter */,
 				84398FB827BD083E008C8782 /* MBProgressHUD */,
@@ -789,6 +795,7 @@
 			files = (
 				7A2DA04327BA597E00490E5B /* BookingAddressXIB.xib in Resources */,
 				7AAF1E0727C9152200B262D4 /* DropLocationOnSearchView.xib in Resources */,
+				7AA994FC27EAF7E300AF536F /* File.json in Resources */,
 				7AAF1E0827C9152200B262D4 /* PickupLocationOnSearchView.xib in Resources */,
 				84A95A6827BCF20800319F40 /* Payment.storyboard in Resources */,
 				7A5FCD0927ACF2A5004F9DC3 /* CustomPopupView.xib in Resources */,
@@ -997,6 +1004,7 @@
 				84DD33A027C39A9C007E3260 /* Toast.swift in Sources */,
 				7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */,
 				7A170E9027CF89E900B0BE66 /* DateFormatter.swift in Sources */,
+				7AA9950727EB066000AF536F /* WelcomeElement.swift in Sources */,
 				8412703927D87EC200FD92F0 /* UpdateAlertDetailViewController.swift in Sources */,
 				84DD339E27C39A6F007E3260 /* MBProgressHUD.swift in Sources */,
 				7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */,
