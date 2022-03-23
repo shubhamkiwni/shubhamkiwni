@@ -6,173 +6,169 @@
 //
 
 import Foundation
-
-
-
-"Sedan": [
-  {
-    "carType": "sedan",
-    "availabel": "3",
-    "fare": "3100-9000",
-    "AC": "YES",
-    "seater": "4+1",
-    "bags": "3",
-    "cars": [
-      {
-        "carName": "mahindra",
-        "serviceType": "premium",
-        "availabel": "4",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2016",
-            "ratings": "4",
-            "fare": "1000"
-          },
-          {
-            "modelYear": "2017",
-            "ratings": "3",
-            "fare": "2000"
-          },
-          {
-            "modelYear": "2018",
-            "ratings": "2",
-            "fare": "3000"
-          },
-          {
-            "modelYear": "2019",
-            "ratings": "1",
-            "fare": "2000"
-          }
-        ]
-      },
-      {
-        "carName": "tata",
-        "serviceType": "luxury",
-        "availabel": "3",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2017",
-            "ratings": "4",
-            "fare": "1000"
-          },
-          {
-            "modelYear": "2018",
-            "ratings": "5",
-            "fare": "5000"
-          },
-          {
-            "modelYear": "2011",
-            "ratings": "2",
-            "fare": "2000"
-          }
-        ]
-      },
-      {
-        "carName": "hyudai",
-        "serviceType": "ultra-luxury",
-        "availabel": "5",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2017",
-            "ratings": "4",
-            "fare": "1000"
-          },
-          {
-            "modelYear": "2018",
-            "ratings": "5",
-            "fare": "5000"
-          },
-          {
-            "modelYear": "2019",
-            "ratings": "4",
-            "fare": "1000"
-          },
-          {
-            "modelYear": "2020",
-            "ratings": "5",
-            "fare": "5000"
-          }
-        ]
-      }
-    ]
-  }
-],
-"Suv": [
-  {
-    "carType": "suv",
-    "availabel": "2",
-    "fare": "3100-9000",
-    "AC": "YES",
-    "seater": "4+1",
-    "bags": "3",
-    "cars": [
-      {
-        "carName": "mahindra",
-        "serviceType": "premium",
-        "availabel": "2",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2017",
-            "ratings": "4",
-            "fare": "2000"
-          },
-          {
-            "modelYear": "2016",
-            "ratings": "4",
-            "fare": "1000"
-          }
-        ]
-      },
-      {
-        "carName": "toyota",
-        "serviceType": "luxury",
-        "availabel": "2",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2017",
-            "ratings": "4",
-            "fare": "1000"
-          },
-          {
-            "modelYear": "2018",
-            "ratings": "4",
-            "fare": "5000"
-          }
-        ]
-      }
-    ]
-  }
-],
-"Tempo": [
-  {
-    "carType": "tempo",
-    "availabel": "1",
-    "fare": "3100-9000",
-    "AC": "YES",
-    "seater": "4+1",
-    "bags": "3",
-    "cars": [
-      {
-        "carName": "mahindra",
-        "serviceType": "premium",
-        "availabel": "1",
-        "fare": "1000-1000",
-        "carModels": [
-          {
-            "modelYear": "2017",
-            "ratings": "4",
-            "fare": "1000"
-          }
-        ]
-      }
-    ]
-  }
-]
+{
+  "Sedan": [
+    {
+      "carType": "sedan",
+      "availabel": "3",
+      "fare": "3100-9000",
+      "AC": "YES",
+      "seater": "4+1",
+      "bags": "3",
+      "cars": [
+        {
+          "carName": "mahindra",
+          "serviceType": "premium",
+          "availabel": "4",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2016",
+              "ratings": "4",
+              "fare": "1000"
+            },
+            {
+              "modelYear": "2017",
+              "ratings": "3",
+              "fare": "2000"
+            },
+            {
+              "modelYear": "2018",
+              "ratings": "2",
+              "fare": "3000"
+            },
+            {
+              "modelYear": "2019",
+              "ratings": "1",
+              "fare": "2000"
+            }
+          ]
+        },
+        {
+          "carName": "tata",
+          "serviceType": "luxury",
+          "availabel": "3",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2017",
+              "ratings": "4",
+              "fare": "1000"
+            },
+            {
+              "modelYear": "2018",
+              "ratings": "5",
+              "fare": "5000"
+            },
+            {
+              "modelYear": "2011",
+              "ratings": "2",
+              "fare": "2000"
+            }
+          ]
+        },
+        {
+          "carName": "hyudai",
+          "serviceType": "ultra-luxury",
+          "availabel": "5",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2017",
+              "ratings": "4",
+              "fare": "1000"
+            },
+            {
+              "modelYear": "2018",
+              "ratings": "5",
+              "fare": "5000"
+            },
+            {
+              "modelYear": "2019",
+              "ratings": "4",
+              "fare": "1000"
+            },
+            {
+              "modelYear": "2020",
+              "ratings": "5",
+              "fare": "5000"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Suv": [
+    {
+      "carType": "suv",
+      "availabel": "2",
+      "fare": "3100-9000",
+      "AC": "YES",
+      "seater": "4+1",
+      "bags": "3",
+      "cars": [
+        {
+          "carName": "mahindra",
+          "serviceType": "premium",
+          "availabel": "2",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2017",
+              "ratings": "4",
+              "fare": "2000"
+            },
+            {
+              "modelYear": "2016",
+              "ratings": "4",
+              "fare": "1000"
+            }
+          ]
+        },
+        {
+          "carName": "toyota",
+          "serviceType": "luxury",
+          "availabel": "2",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2017",
+              "ratings": "4",
+              "fare": "1000"
+            },
+            {
+              "modelYear": "2018",
+              "ratings": "4",
+              "fare": "5000"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tempo": [
+    {
+      "carType": "tempo",
+      "availabel": "1",
+      "fare": "3100-9000",
+      "AC": "YES",
+      "seater": "4+1",
+      "bags": "3",
+      "cars": [
+        {
+          "carName": "mahindra",
+          "serviceType": "premium",
+          "availabel": "1",
+          "fare": "1000-1000",
+          "carModels": [
+            {
+              "modelYear": "2017",
+              "ratings": "4",
+              "fare": "1000"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
-
-

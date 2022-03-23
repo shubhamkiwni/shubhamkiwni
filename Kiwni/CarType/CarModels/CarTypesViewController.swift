@@ -85,11 +85,11 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
-    var dictProjectionSchedule = [String : [Welcome]]()
+    //var dictProjectionSchedule = [String : [CarsDetail]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let url = Bundle.main.url(forResource: "File", withExtension: "json")!
+//        let url = Bundle.main.url(forResource: "CarData", withExtension: "json")!
 //            let data = try! Data(contentsOf: url)
 //
 //        do {
@@ -99,18 +99,33 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
 //                print(<#T##Any#>)
 //        }
         
+//        do {
+//
+//             let url = Bundle.main.url(forResource: "CarData", withExtension: "json")!
+//             let data = try Data(contentsOf: url)
+//            print("data: ",data)
+// //           dictProjectionSchedule = try JSONDecoder() .decode([String : [CarsDetail]].self, from: data)
+//            let res = try JSONDecoder() .decode([CarsDetail].self, from: data)
+//             print("dictProjectionSchedule:",res)
+//
+//        }
+//        catch {
+//            print("error get:",error)
+//        }
+        
         do {
-
-             let url = Bundle.main.url(forResource: "File", withExtension: "json")!
-             let data = try Data(contentsOf: url)
-            dictProjectionSchedule = try JSONDecoder() .decode([String : [Welcome]].self, from: data)
-//            let res = try JSONDecoder() .decode(Welcome, from: data)
-             print("dictProjectionSchedule:",dictProjectionSchedule)
-
-        }
-        catch {
-            print("error get:",error)
-        }
+            var json: Any?
+                if let filePath = Bundle.main.path(forResource: "CarData", ofType: "json") {
+                    let fileUrl = URL(fileURLWithPath: filePath)
+                    let data = try Data(contentsOf: fileUrl)
+                    json = try? JSONSerialization.jsonObject(with: data)
+//                  let decodedData = try JSONDecoder().decode([Welcome].self, from: data)
+                    print("decodedData: ",json ?? nil)
+                    
+                }
+            } catch {
+                print("error: \(error)")
+            }
         
         
         print(estimatedKM)
