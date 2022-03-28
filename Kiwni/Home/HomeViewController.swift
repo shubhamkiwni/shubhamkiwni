@@ -1045,7 +1045,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
         }
-        
     }
     
     func durationDistance(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {

@@ -124,7 +124,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
                     
                 }
             } catch {
-                print("error: \(error)")
+                print("error get: \(error)")
             }
         
         

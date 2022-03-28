@@ -25,7 +25,7 @@ class DBHelper
         
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(dbPath)
-        print(fileURL)
+        print("fileURL:",fileURL)
         var db: OpaquePointer? = nil
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK
         {
