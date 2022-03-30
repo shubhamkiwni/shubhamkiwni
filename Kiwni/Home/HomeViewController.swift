@@ -643,7 +643,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
 //            if(self.distanceValue != nil){
                 
-                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "",serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: "one-way", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                 print("getAllProjectionAvailable: ",getAllProjectionAvailable)
                 UserDefaults.standard.setValue(self.startTime, forKey: "journeyTime")
                 UserDefaults.standard.setValue(self.endTime, forKey: "journeyEndTime")
@@ -672,7 +672,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             self.view.makeToast(ErrorMessage.list.nodatafound)
                         }
                         else{
-                           /* let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
                             
                             carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
                             carTypeVc.pickedDropCoordinate = self.destinationCoordinate
@@ -693,7 +693,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 carTypeVc.tripTypeMode = self.selectedTripTypeMode
                             }
                             self.navigationController?.pushViewController(carTypeVc, animated: true)
-                        */
+                        
                         }
                     case .failure(let error):
                         

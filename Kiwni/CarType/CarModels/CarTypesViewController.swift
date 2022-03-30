@@ -19,7 +19,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
     
     var carArray = ["Sedan", "Suv", "Tempo Traveller"]
-    var carImageArray = ["sedan", "SUV", "TEMPO TRAVELLER"]
+    var carImageArray = ["sedan", "SUV"]
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tripTypeLabel: UILabel!
@@ -93,7 +93,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         print(estimatedKM)
-        print("dictForScheduleDates:",dictForScheduleDates)
+//        print("dictForScheduleDates:",dictForScheduleDates)
         estKMLabel.text = "Est. km \(estimatedKM)KM"
         tripVenueLabel.text = "\(pickUpCityName) To \(dropCityName)"
         dateLabel.text = pickUpOnDate
@@ -123,6 +123,23 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             print("sourceCoordinate or destinationCoordinate are nil")
         }
+        
+        for (key, value) in self.dictForScheduleDates {
+            let array_item : NSArray! = self.dictForScheduleDates.value(forKey: key as! String) as? NSArray
+            //                        print("array_item:", array_item[0])
+            keyArray.append(key as! String)
+            var headerItem : ScheduleDate = array_item[0] as! ScheduleDate
+            headerItem.isHeader = true
+            headerItem.availableCount = array_item.count
+            finalArray.append(headerItem)
+            for item in array_item {
+                var schedule = item as? ScheduleDate
+                schedule?.isHeader = false
+                finalArray.append(schedule!)
+                
+            }
+        }
+        carTypeTableView.reloadData()
         
     }
     
@@ -157,7 +174,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return carArray.count
+        return keyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,7 +182,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.baseView.layer.cornerRadius = 10.0
         cell.baseView.layer.borderWidth = 1.0
         cell.baseView.layer.borderColor = UIColor.lightGray.cgColor
-        cell.carTypeLabel.text = carArray[indexPath.row]
+        cell.carTypeLabel.text = keyArray[indexPath.row]
         cell.carTypeImage.image = UIImage(named: carImageArray[indexPath.row])
         return cell
     }
@@ -175,9 +192,21 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("click")
+//        print(keyArray)
+        for i in finalArray {
+            
+            
+            if i.vehicle?.vehicleType == keyArray[indexPath.row] {
+//                    print(print(i.vehicle!))
+                selectedArray.append(i)
+                }
+            }
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
+        VC.carTypeString = keyArray[indexPath.row]
+        VC.carsArray = selectedArray
         navigationController?.pushViewController(VC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

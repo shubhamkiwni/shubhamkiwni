@@ -1882,7 +1882,13 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="avaiLabelStatus" destination="bBi-wj-3Lh" id="D7f-3t-ROU"/>
+                                                    <outlet property="carImage" destination="ngE-dx-wat" id="2I3-48-Okk"/>
+                                                    <outlet property="carNameLabel" destination="0LR-5W-DHL" id="d7p-uh-g1g"/>
+                                                    <outlet property="carTypeLabel" destination="Mkh-Je-6Sd" id="6iL-ty-5iR"/>
                                                     <outlet property="carsDetailsView" destination="dwz-8Q-LxV" id="EzD-Rt-U8Q"/>
+                                                    <outlet property="lineImageView" destination="4nu-cn-zIk" id="Kjf-QR-gv6"/>
+                                                    <outlet property="priceLabel" destination="bl1-z0-4QA" id="Qcs-iK-eWX"/>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carModelCell" rowHeight="76" id="74W-9N-JHG" customClass="CarModelsTableViewCell" customModule="Kiwni" customModuleProvider="target">

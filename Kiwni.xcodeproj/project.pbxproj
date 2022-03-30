@@ -16,7 +16,7 @@
 		7A170E7327CF4AA500B0BE66 /* RulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A170E7127CF4AA500B0BE66 /* RulesTableViewCell.xib */; };
 		7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */; };
 		7A170E8027CF667000B0BE66 /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */; };
-		7A170E8127CF667000B0BE66 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7C27CF667000B0BE66 /* Provider.swift */; };
+		7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */; };
 		7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7D27CF667000B0BE66 /* Passenger.swift */; };
 		7A170E8327CF667000B0BE66 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7E27CF667000B0BE66 /* Driver.swift */; };
 		7A170E8627CF669200B0BE66 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8427CF669200B0BE66 /* DBHelper.swift */; };
@@ -152,7 +152,7 @@
 		7A170E7127CF4AA500B0BE66 /* RulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesTableViewCell.xib; sourceTree = "<group>"; };
 		7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedByparty.swift; sourceTree = "<group>"; };
 		7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json4Swift_Base.swift; sourceTree = "<group>"; };
-		7A170E7C27CF667000B0BE66 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRideProvider.swift; sourceTree = "<group>"; };
 		7A170E7D27CF667000B0BE66 /* Passenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
 		7A170E7E27CF667000B0BE66 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		7A170E8427CF669200B0BE66 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 			children = (
 				7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */,
 				7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */,
-				7A170E7C27CF667000B0BE66 /* Provider.swift */,
+				7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */,
 				7A170E7D27CF667000B0BE66 /* Passenger.swift */,
 				7A170E7E27CF667000B0BE66 /* Driver.swift */,
 			);
@@ -1081,7 +1081,7 @@
 				7AF91F0A27C601660023B399 /* FilterViewController.swift in Sources */,
 				7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */,
 				7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */,
-				7A170E8127CF667000B0BE66 /* Provider.swift in Sources */,
+				7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,
 				7ABCE93027F45AEC005CD734 /* Vehicle.swift in Sources */,
 				7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */,

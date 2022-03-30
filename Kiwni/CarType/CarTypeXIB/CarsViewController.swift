@@ -49,15 +49,17 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var rentalPackageRuleLabel: UILabel!
     @IBOutlet weak var viewDetailsButton: UIButton!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
-    
+    var carsArray: [ScheduleDate] = []
     var tableViewData = [cellData]()
-    
+    var carTypeString = ""
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        carsTableView.sectionHeaderHeight = 5.0
+        carTypeLabel.text = carTypeString
+        print(carsArray[0])
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         detailsView.layer.cornerRadius = 8.0
@@ -154,11 +156,11 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
         func numberOfSections(in tableView: UITableView) -> Int {
-            tableViewData.count
+            carsArray.count
         }
     
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if tableViewData[section].opened == true {
+            if carsArray[section].opened == true {
                 return tableViewData[section].selectionData.count + 1
             } else {
                 return 1
@@ -173,7 +175,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 //                            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
 //                            cell.carNameLabel.text = tableViewData[indexPath.section].carName
 //                            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
-                
+                cell.carTypeLabel.text = carsArray[indexPath.row].vehicle?.classType
+                cell.carNameLabel.text = carsArray[indexPath.row].model
+                cell.avaiLabelStatus.text = carsArray[indexPath.row].status
                             cell.layer.cornerRadius = 10.0
                             cell.carsDetailsView.layer.cornerRadius = 10.0
                             cell.carsDetailsView.layer.masksToBounds = false
