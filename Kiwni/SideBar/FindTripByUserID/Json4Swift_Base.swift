@@ -27,10 +27,10 @@ struct Json4Swift_Base : Codable {
 	let status : String?
 	let rating : String?
 	let createdAt : String?
-	let createdByparty : CreatedByparty?
-	let provider : Provider?
-	let driver : Driver?
-	let passenger : Passenger?
+	let createdByparty : MyRideCreatedByparty?
+	let provider : MyRideProvider?
+	let driver : MyRideDriver?
+	let passenger : MyRidePassenger?
 	let reservationStatus : String?
 	let bookingChannel : String?
 	let serviceType : String?

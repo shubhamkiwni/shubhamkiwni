@@ -641,7 +641,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("Distance Value for two way : ", self.distanceValue)
             }
             
-            if(self.distanceValue != nil){
+//            if(self.distanceValue != nil){
                 
                 let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "",serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                 print("getAllProjectionAvailable: ",getAllProjectionAvailable)
@@ -651,11 +651,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
                 UserDefaults.standard.setValue("outstation", forKey: "serviceType")
                 UserDefaults.standard.setValue(strDirection, forKey: "direction")
-               
+                
                 if (NetworkMonitor.share.isConnected == false){
                         self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
                             return
                 }
+                    
                 self.showIndicator(withTitle: "Loading", and: "Please Wait")
                     
                 APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
@@ -671,9 +672,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             self.view.makeToast(ErrorMessage.list.nodatafound)
                         }
                         else{
-                            
-                            
-                            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                           /* let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
                             
                             carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
                             carTypeVc.pickedDropCoordinate = self.destinationCoordinate
@@ -684,7 +683,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
                             carTypeVc.pickUpOnTime = self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
                             carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
-                            
                             if self.selectedTripType == "" {
                                 self.selectedTripType = "Outstation"
                                 self.selectedTripTypeMode = "ROUND TRIP"
@@ -695,15 +693,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 carTypeVc.tripTypeMode = self.selectedTripTypeMode
                             }
                             self.navigationController?.pushViewController(carTypeVc, animated: true)
-//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FindCarViewController") as! FindCarViewController
-//                            vc.pickupCityName = self.pickupcityName as NSString?
-//                            vc.destinationCityName = self.destinationcityName as NSString?
-//                            vc.journeyDate = self.startTime as NSString?
-//                            vc.sourceCoordinate = self.sourceCoordinate
-//                            vc.destinationCoordinate = self.destinationCoordinate
-//                            vc.directionNameString = self.strDirection
-//                            vc.dictForScheduleDates = dictscheduleDates as NSDictionary
-//                            self.navigationController?.pushViewController(vc, animated: true)
+                        */
                         }
                     case .failure(let error):
                         
@@ -726,15 +716,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             self.view.makeToast(ErrorMessage.list.nodatafound)
                         }
                       
-// self.view.makeToast(ErrorMessage.list.nodatafound)
+//                                self.view.makeToast(ErrorMessage.list.nodatafound)
                        
                     }
                 }
-            }else{
-                self.view.makeToast(ErrorMessage.list.pleasewait)
-            }
-            
-            
+//            }else{
+//                self.view.makeToast(ErrorMessage.list.pleasewait)
+//            }
+
         }
         
     }
