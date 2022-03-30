@@ -107,6 +107,7 @@
 		84398FB627BD07A8008C8782 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FB527BD07A8008C8782 /* ErrorMessage.swift */; };
 		84398FBB27BD0A22008C8782 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FBA27BD0A22008C8782 /* TimePicker.swift */; };
 		84398FBD27BD0A5B008C8782 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FBC27BD0A5B008C8782 /* TimeSlot.swift */; };
+		84777ED627F45DA700930197 /* GetAllProjectionScheduleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84777ED527F45DA700930197 /* GetAllProjectionScheduleRequestModel.swift */; };
 		84A95A6827BCF20800319F40 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A95A6727BCF20800319F40 /* Payment.storyboard */; };
 		84A95A6A27BCF80600319F40 /* FindCar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A95A6927BCF80600319F40 /* FindCar.storyboard */; };
 		84DD339C27C39902007E3260 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD339B27C39902007E3260 /* NetworkMonitor.swift */; };
@@ -249,6 +250,7 @@
 		84398FB527BD07A8008C8782 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		84398FBA27BD0A22008C8782 /* TimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		84398FBC27BD0A5B008C8782 /* TimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		84777ED527F45DA700930197 /* GetAllProjectionScheduleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllProjectionScheduleRequestModel.swift; sourceTree = "<group>"; };
 		84A95A6727BCF20800319F40 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		84A95A6927BCF80600319F40 /* FindCar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindCar.storyboard; sourceTree = "<group>"; };
 		84DD339B27C39902007E3260 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				7ABCE92D27F45AEC005CD734 /* Rates.swift */,
 				7ABCE92E27F45AEC005CD734 /* ScheduleDate.swift */,
 				7ABCE92F27F45AEC005CD734 /* Provider.swift */,
+				84777ED527F45DA700930197 /* GetAllProjectionScheduleRequestModel.swift */,
 			);
 			path = ScheduleDateCarsModel;
 			sourceTree = "<group>";
@@ -1021,6 +1024,7 @@
 				8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */,
 				7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */,
 				7AE5A33C27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift in Sources */,
+				84777ED627F45DA700930197 /* GetAllProjectionScheduleRequestModel.swift in Sources */,
 				84398FBD27BD0A5B008C8782 /* TimeSlot.swift in Sources */,
 				7ABCE93127F45AEC005CD734 /* Rates.swift in Sources */,
 				84398FB627BD07A8008C8782 /* ErrorMessage.swift in Sources */,

@@ -641,26 +641,100 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("Distance Value for two way : ", self.distanceValue)
             }
             
-            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
-            
-            carTypeVc.pickedSourceCoordinate = sourceCoordinate
-            carTypeVc.pickedDropCoordinate = destinationCoordinate
-            carTypeVc.estimatedKM = estimatedDurationInTraffic
-            carTypeVc.pickUpCityName = pickupcityName ?? ""
-            carTypeVc.dropCityName = destinationcityName ?? ""
-            carTypeVc.pickUpOnDate = pickUpDatePickerButton.titleLabel?.text ?? ""
-            carTypeVc.returnByDate = returnByDatePickerButton.titleLabel?.text ?? ""
-            carTypeVc.pickUpOnTime = pickUpOnTimePickerButton.titleLabel?.text ?? ""
-            if selectedTripType == "" {
-                selectedTripType = "Outstation"
-                selectedTripTypeMode = "ROUND TRIP"
-                carTypeVc.tripType = selectedTripType
-                carTypeVc.tripTypeMode = selectedTripTypeMode
-            } else {
-                carTypeVc.tripType = selectedTripType
-                carTypeVc.tripTypeMode = selectedTripTypeMode
+            if(self.distanceValue != nil){
+                
+                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "",serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                print("getAllProjectionAvailable: ",getAllProjectionAvailable)
+                UserDefaults.standard.setValue(self.startTime, forKey: "journeyTime")
+                UserDefaults.standard.setValue(self.endTime, forKey: "journeyEndTime")
+                UserDefaults.standard.setValue(pickupcityName, forKey: "fromLocation")
+                UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
+                UserDefaults.standard.setValue("outstation", forKey: "serviceType")
+                UserDefaults.standard.setValue(strDirection, forKey: "direction")
+               
+                if (NetworkMonitor.share.isConnected == false){
+                        self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+                            return
+                }
+                self.showIndicator(withTitle: "Loading", and: "Please Wait")
+                    
+                APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
+                    
+                    switch result {
+                    case .success(let dictscheduleDates):
+                        
+//                       print("Dict Schedule Dates",dictscheduleDates)
+                        self.hideIndicator()
+                        
+                        if(dictscheduleDates.isEmpty){
+                            print("No Data Found")
+                            self.view.makeToast(ErrorMessage.list.nodatafound)
+                        }
+                        else{
+                            
+                            
+                            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                            
+                            carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
+                            carTypeVc.pickedDropCoordinate = self.destinationCoordinate
+                            carTypeVc.estimatedKM = self.estimatedDurationInTraffic
+                            carTypeVc.pickUpCityName = self.pickupcityName ?? ""
+                            carTypeVc.dropCityName = self.destinationcityName ?? ""
+                            carTypeVc.pickUpOnDate = self.pickUpDatePickerButton.titleLabel?.text ?? ""
+                            carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
+                            carTypeVc.pickUpOnTime = self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
+                            carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
+                            
+                            if self.selectedTripType == "" {
+                                self.selectedTripType = "Outstation"
+                                self.selectedTripTypeMode = "ROUND TRIP"
+                                carTypeVc.tripType = self.selectedTripType
+                                carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                            } else {
+                                carTypeVc.tripType = self.selectedTripType
+                                carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                            }
+                            self.navigationController?.pushViewController(carTypeVc, animated: true)
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FindCarViewController") as! FindCarViewController
+//                            vc.pickupCityName = self.pickupcityName as NSString?
+//                            vc.destinationCityName = self.destinationcityName as NSString?
+//                            vc.journeyDate = self.startTime as NSString?
+//                            vc.sourceCoordinate = self.sourceCoordinate
+//                            vc.destinationCoordinate = self.destinationCoordinate
+//                            vc.directionNameString = self.strDirection
+//                            vc.dictForScheduleDates = dictscheduleDates as NSDictionary
+//                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    case .failure(let error):
+                        
+                        self.hideIndicator()
+                        print(error)
+                        
+                        switch error {
+                        case .baseError(.notfound):
+                            self.view.makeToast(ErrorMessage.list.nodatafound)
+                        case .baseError(.internalservererror):
+                            self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                        case .baseError(.badRequest):
+                            self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                        case .baseError(.unauthorized):
+                            self.view.makeToast(ErrorMessage.list.sessionexpired)
+                        case .baseError(.forbidden):
+                            self.view.makeToast(ErrorMessage.list.pleasewait)
+                        
+                        default:
+                            self.view.makeToast(ErrorMessage.list.nodatafound)
+                        }
+                      
+// self.view.makeToast(ErrorMessage.list.nodatafound)
+                       
+                    }
+                }
+            }else{
+                self.view.makeToast(ErrorMessage.list.pleasewait)
             }
-            navigationController?.pushViewController(carTypeVc, animated: true)
+            
+            
         }
         
     }

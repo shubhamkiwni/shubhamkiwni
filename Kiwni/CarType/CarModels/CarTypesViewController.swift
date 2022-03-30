@@ -92,10 +92,8 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
         print(estimatedKM)
+        print("dictForScheduleDates:",dictForScheduleDates)
         estKMLabel.text = "Est. km \(estimatedKM)KM"
         tripVenueLabel.text = "\(pickUpCityName) To \(dropCityName)"
         dateLabel.text = pickUpOnDate
