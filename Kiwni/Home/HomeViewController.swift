@@ -181,6 +181,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        pickUpDatePickerButton.titleLabel!.minimumScaleFactor = 0.5
+        
         newDatePicker.minimumDate = Date()
         pickUpDatePickerButton.titleLabel?.font =  UIFont(name: "", size: 14)
         
@@ -755,7 +759,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
            
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
-                cell.backgroundColor = .lightGray
+                cell.backgroundColor = .systemGray5
             }
             return cell
         } else {
@@ -775,7 +779,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-            cell?.backgroundColor = .lightGray
+            cell?.backgroundColor = .systemGray5
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false
             if indexPath.row == 0 {

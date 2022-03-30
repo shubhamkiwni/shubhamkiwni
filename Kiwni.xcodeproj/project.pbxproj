@@ -73,6 +73,10 @@
 		7AAF1E0827C9152200B262D4 /* PickupLocationOnSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */; };
 		7AAF265127C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */; };
 		7AAF265327C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */; };
+		7ABCE93027F45AEC005CD734 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCE92C27F45AEC005CD734 /* Vehicle.swift */; };
+		7ABCE93127F45AEC005CD734 /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCE92D27F45AEC005CD734 /* Rates.swift */; };
+		7ABCE93227F45AEC005CD734 /* ScheduleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCE92E27F45AEC005CD734 /* ScheduleDate.swift */; };
+		7ABCE93327F45AEC005CD734 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCE92F27F45AEC005CD734 /* Provider.swift */; };
 		7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC64B3327CCBE1300B82341 /* Error Popup View.swift */; };
 		7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D4279EB99800B8239F /* SidebarView.swift */; };
 		7ACF79D7279EBA0900B8239F /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D6279EBA0900B8239F /* EditProfileVC.swift */; };
@@ -210,6 +214,10 @@
 		7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationOnSearchView.xib; sourceTree = "<group>"; };
 		7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentalHoursPackageCollectionViewCell.xib; sourceTree = "<group>"; };
 		7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalHoursPackageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7ABCE92C27F45AEC005CD734 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		7ABCE92D27F45AEC005CD734 /* Rates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
+		7ABCE92E27F45AEC005CD734 /* ScheduleDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDate.swift; sourceTree = "<group>"; };
+		7ABCE92F27F45AEC005CD734 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7AC64B3327CCBE1300B82341 /* Error Popup View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Popup View.swift"; sourceTree = "<group>"; };
 		7ACF79D4279EB99800B8239F /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		7ACF79D6279EBA0900B8239F /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
@@ -435,6 +443,17 @@
 			path = "Home PageXIB";
 			sourceTree = "<group>";
 		};
+		7ABCE92B27F45AEC005CD734 /* ScheduleDateCarsModel */ = {
+			isa = PBXGroup;
+			children = (
+				7ABCE92C27F45AEC005CD734 /* Vehicle.swift */,
+				7ABCE92D27F45AEC005CD734 /* Rates.swift */,
+				7ABCE92E27F45AEC005CD734 /* ScheduleDate.swift */,
+				7ABCE92F27F45AEC005CD734 /* Provider.swift */,
+			);
+			path = ScheduleDateCarsModel;
+			sourceTree = "<group>";
+		};
 		84398FA127BD0323008C8782 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +542,7 @@
 		84398FA727BD047B008C8782 /* CarType */ = {
 			isa = PBXGroup;
 			children = (
+				7ABCE92B27F45AEC005CD734 /* ScheduleDateCarsModel */,
 				84398FA827BD0487008C8782 /* CarModels */,
 				84398FAE27BD060B008C8782 /* CarTableViewCell */,
 				84398FAD27BD05F5008C8782 /* CarTypeXIB */,
@@ -1002,6 +1022,7 @@
 				7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */,
 				7AE5A33C27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift in Sources */,
 				84398FBD27BD0A5B008C8782 /* TimeSlot.swift in Sources */,
+				7ABCE93127F45AEC005CD734 /* Rates.swift in Sources */,
 				84398FB627BD07A8008C8782 /* ErrorMessage.swift in Sources */,
 				7AE5A34527C4AF3000C1E5D4 /* BrandCollectionViewCell.swift in Sources */,
 				84FE635927BBCFA10026289D /* Identifiers.swift in Sources */,
@@ -1014,6 +1035,7 @@
 				7ACF79DB279EC08D00B8239F /* MyRidesViewController.swift in Sources */,
 				7A686F3A27AA56E900DFF9A3 /* HomeViewControllerExtention.swift in Sources */,
 				7AE5A34627C4AF3000C1E5D4 /* ResultViewController.swift in Sources */,
+				7ABCE93327F45AEC005CD734 /* Provider.swift in Sources */,
 				7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */,
 				7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */,
 				7A2DA05127BA662100490E5B /* KiwniComfirtCollectionViewCell.swift in Sources */,
@@ -1034,6 +1056,7 @@
 				7A41AE3227ABA7B00067BD3C /* FAQViewController.swift in Sources */,
 				84DEA53027EB22D400A40F2C /* CarsDetail.swift in Sources */,
 				7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */,
+				7ABCE93227F45AEC005CD734 /* ScheduleDate.swift in Sources */,
 				7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */,
 				7A170E8B27CF66B000B0BE66 /* APIManeger.swift in Sources */,
 				7AD28FDD27A7C631004E232D /* OTPViewController.swift in Sources */,
@@ -1056,6 +1079,7 @@
 				7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */,
 				7A170E8127CF667000B0BE66 /* Provider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,
+				7ABCE93027F45AEC005CD734 /* Vehicle.swift in Sources */,
 				7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */,
 				7A170E7227CF4AA500B0BE66 /* RulesTableViewCell.swift in Sources */,
 				7A170E8F27CF89E900B0BE66 /* DateFormattingHelper.swift in Sources */,

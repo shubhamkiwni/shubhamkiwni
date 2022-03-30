@@ -46,7 +46,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         
         if NetworkMonitor.share.isConnected == true {
             APIManager.shareInstance.callinggFindTripByUserID() { response in
-                
+                self.showIndicator(withTitle: "Loading", and: "Please Wait")
                 switch response{
                 case .success(let responseArray):
                     print("User Success on ViewController")
@@ -66,7 +66,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     self.strTripType = "Upcoming"
                     self.tripsTableView.reloadData()
                     print("Count:",self.persons.count)
-                    print("Data:", self.persons[0].id)
+//                    print("Data:", self.persons[0].id)
                     
                     print("User Success on ViewController")
                     
@@ -78,7 +78,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         } else {
             self.persons = self.db.read()
             print("Count:",self.persons.count)
-            print("Data:", self.persons[0].id)
+//            print("Data:", self.persons[0].id)
         }
         
     }
