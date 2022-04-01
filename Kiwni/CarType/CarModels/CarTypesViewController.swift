@@ -192,12 +192,10 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("click")
-//        print(keyArray)
+//      print(keyArray)
+        selectedArray = []
         for i in finalArray {
-            
-            
             if i.vehicle?.vehicleType == keyArray[indexPath.row] {
-//                    print(print(i.vehicle!))
                 selectedArray.append(i)
                 }
             }

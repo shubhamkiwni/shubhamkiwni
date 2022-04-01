@@ -55,6 +55,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
     var carModelArray: [ScheduleDate] = []
+    var modelyearArray : [String]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
         //        carsTableView.sectionHeaderHeight = 5.0
@@ -72,10 +73,13 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         packageDetailsView.layer.borderWidth = 1.0
         packageDetailsView.layer.borderColor = UIColor.lightGray.cgColor
         
-
-//        for i in carsArray{
-//            tableViewData = [cellData(opened: false, carType: carsArray[i].vehicle?.vehicleType ?? "", carName: "Mahindra", avaiLabel: "AvaiLabel: 4", amount: "2000", selectionData: ["2012", "2013", "2014", "2015", "2012", "2013", "2014", "2015"])]
-//        }
+        
+        for (index, object) in carsArray.enumerated() {
+          print("Item at \(index): \(object)")
+            tableViewData.append(cellData(opened: false, carType: carsArray[index].vehicle?.classType ?? "", carName: carsArray[index].vehicle?.model ?? "", avaiLabel: "AvaiLabel: 4", amount: "8000", selectionData: modelyearArray))
+        }
+//        print("tableViewData: ",tableViewData)
+//        print("tableViewData Count: ",tableViewData.count)
 
         
        /* tableViewData = [cellData(opened: false, carType: "Premium", carName: "Mahindra", avaiLabel: "AvaiLabel: 4", amount: "2000", selectionData: ["2012", "2013", "2014", "2015", "2012", "2013", "2014", "2015"]),
@@ -162,30 +166,29 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        carsArray.count
+        tableViewData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return carsArray.count
-//        if carsArray[section].opened == true {
-//            return (carsArray[section].vehicle?.rates?.count)! + 1
-//        } else {
-//            return carsArray.count
-//        }
+        if tableViewData[section].opened == true {
+            return tableViewData[section].selectionData.count + 1
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        if indexPath.row == 0 {
             let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
             
-            //                            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
-            //                            cell.carNameLabel.text = tableViewData[indexPath.section].carName
-            //                            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
-            cell.carTypeLabel.text = carsArray[indexPath.row].vehicle?.classType
-            print("Model name: ",carsArray[indexPath.row].model)
-            cell.carNameLabel.text = carsArray[indexPath.row].model
-            cell.avaiLabelStatus.text = carsArray[indexPath.row].status
+            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
+            cell.carNameLabel.text = tableViewData[indexPath.section].carName
+            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
+//            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
+//           // print("Model name: ",carsArray[indexPath.row].model)
+//            cell.carNameLabel.text = tableViewData[indexPath.section].carName
+//            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
             cell.layer.cornerRadius = 10.0
             cell.carsDetailsView.layer.cornerRadius = 10.0
             cell.carsDetailsView.layer.masksToBounds = false
@@ -199,12 +202,12 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
             seconCell.delegate1 = self
             
-            let years = carsArray[indexPath.row].vehicle?.regYear
-            print(years)
+//            let years = "2010"
+//            print(years)
 //            let myDate = DateFormattingHelper.strToDateTime(strDateTime: years)
 //            print("myDate: ", myDate)
             
-            if let myDate = DateFormattingHelper.strToDateTime(strDateTime: years)
+        /*    if let myDate = DateFormattingHelper.strToDateTime(strDateTime: years)
             {
                 print("myDate: ", myDate)
                 let formatter = DateFormatter()
@@ -224,8 +227,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 print("Str time from popup : ","\(dateStr), \(timeStr)" )
             } else {
                 print("add another format")
-            }
-            //seconCell.carModelRegisterYearLabel.text = carsArray[indexPath.row].vehicle?.regYear
+            }*/
+        seconCell.carModelRegisterYearLabel.text = "2020" //tableViewData[indexPath.section].selectionData[indexPath.row - 1]
+         
             return seconCell
         }
         
@@ -250,13 +254,47 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 //            }
 //        }
         
-        print("CarModelArray : ",carModelArray)
-        if carsArray[indexPath.section].opened == true {
-            carsArray[indexPath.section].opened = false
+        carModelArray = []
+        for i in carsArray {
+         
+                if i.vehicle?.model == carsArray[indexPath.row].model {
+                   // print("From vehicle class type:", i.vehicle?.classType)
+                    //print("From carsArray: ",carsArray[indexPath.row].vehicle?.classType)
+                   
+                    if (i.vehicle?.classType == carsArray[indexPath.row].vehicle?.classType){
+                        carModelArray.append(i)
+                    }
+                  
+                }
+        }
+//        print("Sorted Array Count : ",carModelArray.count)
+//        print("Sorted Array : ", carModelArray)
+//
+//        print("CarModelArray : ",carModelArray)
+        
+        modelyearArray = []
+        
+        for (index, object) in carsArray.enumerated() {
+            modelyearArray.append(carModelArray[index].vehicle?.regYear ?? "")
+            tableViewData = []
+            tableViewData.append(cellData(opened: false, carType: carModelArray[index].vehicle?.classType ?? "", carName: carModelArray[index].vehicle?.model ?? "", avaiLabel: "AvaiLabel: 4", amount: "8000", selectionData: modelyearArray))
+        }
+        
+        print("tableViewData: ",tableViewData)
+        print("tableViewData Count: ",tableViewData.count)
+        
+        print("Model Array : ",modelyearArray)
+        print("Model year array count : ", modelyearArray.count)
+       
+        
+        carsTableView.reloadData()
+        
+        if tableViewData[indexPath.section].opened == true {
+            tableViewData[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
             tableView.reloadSections(sections, with: .none)
         } else {
-            carsArray[indexPath.section].opened = true
+            tableViewData[indexPath.section].opened = true
             let sections = IndexSet.init(integer: indexPath.section)
             tableView.reloadSections(sections, with: .none)
         }

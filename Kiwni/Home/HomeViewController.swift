@@ -680,7 +680,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("Distance Value for two way : ", self.distanceValue)
             }*/
             
-//            if(self.distanceValue != nil){
+            if(self.distanceValue != nil){
                 
                 let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                 print("getAllProjectionAvailable: ",getAllProjectionAvailable)
@@ -759,12 +759,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                        
                     }
                 }
-//            }else{
-//                self.view.makeToast(ErrorMessage.list.pleasewait)
-//            }
-
+           }
+            else{
+                self.view.makeToast(ErrorMessage.list.pleasewait)
+            }
         }
-        
     }
     
     func pickupGetCurrentLocation() {
