@@ -88,6 +88,12 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    static let yyyyMMdd_T_HHmmss_SSS_SSSZ: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS.SSSZ"
+        return dateFormatter
+    }()
+    
     /**
      Returns formatter with 'MMM dd, yyyy' format
      */

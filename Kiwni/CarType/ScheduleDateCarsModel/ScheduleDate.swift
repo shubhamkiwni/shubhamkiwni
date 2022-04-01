@@ -18,7 +18,7 @@ struct ScheduleDate : Codable {
     var availableCount : Int = 0
     let matchExactTime : Bool = false
     let imagePath : String
-    let opened: Bool = false
+    var opened: Bool = false
 
     enum CodingKeys: String, CodingKey {
 

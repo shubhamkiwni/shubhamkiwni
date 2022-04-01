@@ -131,7 +131,6 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
             var headerItem : ScheduleDate = array_item[0] as! ScheduleDate
             headerItem.isHeader = true
             headerItem.availableCount = array_item.count
-            finalArray.append(headerItem)
             for item in array_item {
                 var schedule = item as? ScheduleDate
                 schedule?.isHeader = false
@@ -202,6 +201,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
                 selectedArray.append(i)
                 }
             }
+        
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
         VC.carTypeString = keyArray[indexPath.row]
         VC.carsArray = selectedArray

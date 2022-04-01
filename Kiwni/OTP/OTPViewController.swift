@@ -164,50 +164,50 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
 //        let hVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
 //        navigationController?.pushViewController(hVC, animated: true)
-//        otp.removeAll()
-//
-//        guard let otp1 = otpText1.text, !otp1.isEmpty else {
-////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-//        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
-//        guard let otp2 = otpText2.text, !otp2.isEmpty else {
-////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-        //        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
-//        guard let otp3 = otpText3.text, !otp3.isEmpty else {
-////            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-        //        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
-//        guard let otp4 = otpText4.text, !otp4.isEmpty else {
-////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-        //        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
-//        guard let otp4 = otpText5.text, !otp4.isEmpty else {
-////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-        //        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
-//        guard let otp4 = otpText6.text, !otp4.isEmpty else {
-////           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
-//            print("Enter OTP")
-        //        customErrorPopup("Please enter OTP")
-//            return
-//        }
-//
+        otp.removeAll()
+
+        guard let otp1 = otpText1.text, !otp1.isEmpty else {
+//            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+        customErrorPopup("Please enter OTP")
+            return
+        }
+
+        guard let otp2 = otpText2.text, !otp2.isEmpty else {
+//            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+                customErrorPopup("Please enter OTP")
+            return
+        }
+
+        guard let otp3 = otpText3.text, !otp3.isEmpty else {
+//            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+                customErrorPopup("Please enter OTP")
+            return
+        }
+
+        guard let otp4 = otpText4.text, !otp4.isEmpty else {
+//           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+                customErrorPopup("Please enter OTP")
+            return
+        }
+
+        guard let otp5 = otpText5.text, !otp5.isEmpty else {
+//           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+                customErrorPopup("Please enter OTP")
+            return
+        }
+
+        guard let otp6 = otpText6.text, !otp6.isEmpty else {
+//           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
+            print("Enter OTP")
+                customErrorPopup("Please enter OTP")
+            return
+        }
+
         otp.append(otpText1.text ?? "")
         otp.append(otpText2.text ?? "")
         otp.append(otpText3.text ?? "" )
@@ -217,30 +217,41 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         print(otp.joined())
 
         self.userEnterdOtp = otp.joined()
-//        let checkOtp: String = self.userEnterdOtp
-//        print("User Enter OTP : \(self.userEnterdOtp)")
-//        if (NetworkMonitor.share.isConnected == false){
-//            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-//            return
-//        }
-//
-//        self.showIndicator(withTitle: "Loading", and: "Please Wait")
-//        AuthManager.shared.verifyCode(smsCode: checkOtp){ success in
-//                guard success else {
-//                    self.hideIndicator()
-//                    print("Wrong OTP")
-//                    self.view.makeToast(ErrorMessage.list.wrongOTP)
-//                    return
-//                }
-//            UserDefaults.standard.setValue(true, forKey: "status")
-//            print("Code Matches")
-//            let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            self.navigationController?.pushViewController(VC, animated: true)
-//
-//        }
+        let checkOtp: String = self.userEnterdOtp
+        print("User Enter OTP : \(self.userEnterdOtp)")
+        
+        if userEnterdOtp == "" {
+            print("Please enter otp")
+            customErrorPopup("Please enter otp")
+        } else if userEnterdOtp.count < 6 {
+            customErrorPopup("Please correct otp")
+        } else {
+            if (NetworkMonitor.share.isConnected == false){
+                self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+                return
+            }
+
+            self.showIndicator(withTitle: "Loading", and: "Please Wait")
+            AuthManager.shared.verifyCode(smsCode: checkOtp){ success in
+                    guard success else {
+                        self.hideIndicator()
+                        print("Wrong OTP")
+                        self.view.makeToast(ErrorMessage.list.wrongOTP)
+                        return
+                    }
+                UserDefaults.standard.setValue(true, forKey: "status")
+                print("Code Matches")
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+                self.navigationController?.pushViewController(homeVc, animated: true)
+
+            }
+        }
+        
+        
         
 //        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        UserDefaults.standard.setValue(true, forKey: "status")
+      /*  UserDefaults.standard.setValue(true, forKey: "status")
         if userEnterdOtp == "" {
             print("Please enter otp")
             customErrorPopup("Please enter otp")
@@ -249,11 +260,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-            navigationController?.pushViewController(homeVc, animated: true)
+            navigationController?.pushViewController(homeVc, animated: true)*/
         }
        
             
 
-    }
-    
 }
+    

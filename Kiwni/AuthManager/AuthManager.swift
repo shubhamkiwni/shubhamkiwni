@@ -92,9 +92,9 @@ class AuthManager {
                 self.id_token = result? .token
                 print("id_token : \(self.id_token ?? "")")
                 UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let HomeVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.HomeViewController) as! HomeViewController
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
+              /*  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)*/
                 
                 self.roles = result?.claims["Roles"] as! [String]
                 print("Roles : \(self.roles)")
@@ -121,7 +121,7 @@ class AuthManager {
                         print("Code Matches")
 
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let HomeVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.HomeViewController) as! HomeViewController
+                        let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
                         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
                     }
             })

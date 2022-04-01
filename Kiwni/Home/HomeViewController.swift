@@ -66,6 +66,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var journeyDate : String? = ""
     var strDirection : String? = ""
     var strServiceType: String? = ""
+    var strButtonTitle : String? = ""
     var userCurrentlocation: CLLocationCoordinate2D!
     var usercurrentLocationAddress : String? = ""
     
@@ -177,6 +178,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var estimatedDurationInTraffic: Int = 0
     var selectedTripType: String = ""
     var selectedTripTypeMode: String = ""
+    
+    var myDropDateString : String? = ""
     
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
@@ -321,6 +324,28 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         datePickerFunction()
         datePickerTag = "2"
+        timeFormatter.dateFormat = "yyyy-MM-dd"
+        myDropDateString = timeFormatter.string(from: newDatePicker.date)
+        print("myDropDateString : ",myDropDateString ?? "")
+        
+        strDate = myDropDateString
+        print("Drop Date String : \(strDate!) ")
+        if( myPickerDateString != myDropDateString){
+           
+            let strDateTime = "\(strDate!) \("23:59")"
+            print("drop strDateTime : ", strDateTime)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dd = formatter.date(from: strDateTime)
+            print(dd ?? (Any).self)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            self.endTime = formatter.string(from: dd!)
+            //print(dd!)
+           print("Drop Date Time : ", self.endTime)
+        }else{
+            //setTimeToPicker()
+            print("Select drop date and time")
+        }
     }
     
     @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
@@ -455,6 +480,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         print("dateStr",dateStr)
         
+       
+        
     }
     
     func nearbyPlaces() {
@@ -541,8 +568,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.isUserInteractionEnabled = false
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         selectedTripTypeMode = roundTripButton.titleLabel?.text ?? ""
-        strDirection  = selectedTripTypeMode
-        print("strDirection: ",strDirection)
+        strDirection = "two-way"
         
     }
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
@@ -560,8 +586,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         self.mapView.isUserInteractionEnabled = false
         selectedTripTypeMode = oneWayButton.titleLabel?.text ?? ""
-        strDirection  = selectedTripTypeMode
-        print("strDirection: ",selectedTripTypeMode)
+        
+        strDirection = "one-way"
     }
     
     //MARK:- Confirm location Button Tapped
@@ -633,17 +659,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("self.startTime on confirm button clicked:", self.startTime ?? "")
             }
             
-            if(strDirection == "ONE WAY" || strDirection == "AIRPORT PICKUP" || strDirection == "AIRPORT DROP" || strDirection == "CURRENT BOOKING" || strDirection == "SCHEDULE BOOKING"){
+//            if(roundTripButton.titleLabel?.text == "ROUND TRIP"){
+//                strDirection = "two-way"
+//            }else  if(oneWayButton.titleLabel?.text == "ONE WAY") {
+//                strDirection = "one-way"
+//            }
+            if(strDirection == "one-way"){
                 calculateEndTime(startTime: self.startTime! as NSString)
             }
-            else if(strDirection == "ROUND TRIP"){
+            else if(strDirection == "two-way"){
                 self.distanceValue = 2 * (self.distanceValue)
                 print("Distance Value for two way : ", self.distanceValue)
             }
             
+            /*if(strDirection == "ONE-WAY" || strButtonTitle == "AIRPORT PICKUP" || strDirection == "AIRPORT DROP" || strDirection == "CURRENT BOOKING" || strDirection == "SCHEDULE BOOKING"){
+                calculateEndTime(startTime: self.startTime! as NSString)
+            }
+            else if(strButtonTitle == "ROUND TRIP"){
+                self.distanceValue = 2 * (self.distanceValue)
+                print("Distance Value for two way : ", self.distanceValue)
+            }*/
+            
 //            if(self.distanceValue != nil){
                 
-                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: "one-way", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                 print("getAllProjectionAvailable: ",getAllProjectionAvailable)
                 UserDefaults.standard.setValue(self.startTime, forKey: "journeyTime")
                 UserDefaults.standard.setValue(self.endTime, forKey: "journeyEndTime")
