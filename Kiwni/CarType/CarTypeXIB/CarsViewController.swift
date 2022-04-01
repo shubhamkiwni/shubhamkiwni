@@ -274,7 +274,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         modelyearArray = []
         
-        for (index, object) in carsArray.enumerated() {
+        for (index, object) in carModelArray.enumerated() {
             modelyearArray.append(carModelArray[index].vehicle?.regYear ?? "")
             tableViewData = []
             tableViewData.append(cellData(opened: false, carType: carModelArray[index].vehicle?.classType ?? "", carName: carModelArray[index].vehicle?.model ?? "", avaiLabel: "AvaiLabel: 4", amount: "8000", selectionData: modelyearArray))
