@@ -19,7 +19,8 @@ struct ScheduleDate : Codable {
     let matchExactTime : Bool = false
     let imagePath : String
     var opened: Bool = false
-
+    var selectionData : [String] = []
+  
     enum CodingKeys: String, CodingKey {
 
         case id = "id"
@@ -36,6 +37,7 @@ struct ScheduleDate : Codable {
         case vehicle = "vehicle"
         case price = "price"
         case imagePath = "imagePath"
+        
         
     }
 
@@ -56,7 +58,7 @@ struct ScheduleDate : Codable {
         priceString = try String(format: "%.2f", values.decodeIfPresent(Double.self, forKey: .price) ?? 0.0)
         model = try values.decodeIfPresent(String.self, forKey: .model) ?? ""
         imagePath = try values.decodeIfPresent(String.self, forKey: .imagePath) ?? ""
-        
+       // selectionData =  try values.decode([String].self, forKey: .selectionData)
     }
 
 }
