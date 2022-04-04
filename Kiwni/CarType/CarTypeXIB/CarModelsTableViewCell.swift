@@ -30,6 +30,9 @@ class CarModelsTableViewCell: UITableViewCell {
     @IBOutlet weak var bookButton: UIButton!
     @IBOutlet weak var carModelsView: UIView!
     @IBOutlet weak var availabelStatusLabel: UILabel!
+    @IBOutlet weak var vehicalProviderLabel: UILabel!
+    @IBOutlet weak var vehicalProviderNoLabel: UILabel!
+    @IBOutlet weak var reviewButton: UIButton!
     
     var name = "Shubham"
     override func awakeFromNib() {

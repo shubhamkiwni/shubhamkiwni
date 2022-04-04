@@ -23,6 +23,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     @IBOutlet weak var bookingDetilsView: UIView!
     @IBOutlet weak var safetyComView: UIView!
     @IBOutlet weak var kiniComfirtView: UIView!
+    @IBOutlet weak var callButton: UIButton!
+    
     var bookingArray = [""]
     
     let bookingDetilsXIBView: BookingAddressXIB = UINib(nibName: "BookingAddressXIB", bundle: Bundle.main).instantiate(withOwner: nil, options: nil)[0] as! BookingAddressXIB
@@ -72,6 +74,21 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         }
     }
     
+    @IBAction func callButtonAction(_ sender: UIButton) {
+        if let phoneCallURL = URL(string: "telprompt://8308628266") {
+
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    if #available(iOS 10.0, *) {
+                        application.open(phoneCallURL, options: [:], completionHandler: nil)
+                    } else {
+                        // Fallback on earlier versions
+                         application.openURL(phoneCallURL as URL)
+
+                    }
+                }
+            }
+    }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         

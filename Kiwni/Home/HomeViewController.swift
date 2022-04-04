@@ -163,6 +163,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBOutlet weak var pickUpOnTimePickerButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
     
     @IBOutlet weak var rentalSelectaPackageLable: UILabel!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
@@ -542,6 +543,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return false
     }
     
+    @IBAction func callButtonAction(_ sender: UIButton) {
+        if let phoneCallURL = URL(string: "telprompt://8308628266") {
+
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    if #available(iOS 10.0, *) {
+                        application.open(phoneCallURL, options: [:], completionHandler: nil)
+                    } else {
+                        // Fallback on earlier versions
+                         application.openURL(phoneCallURL as URL)
+
+                    }
+                }
+            }
+    }
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
        
         clearMap()

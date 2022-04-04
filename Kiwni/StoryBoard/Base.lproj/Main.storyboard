@@ -40,25 +40,35 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dr6-tE-2zv">
-                                                        <rect key="frame" x="320" y="10" width="25" height="25"/>
+                                                        <rect key="frame" x="290" y="10" width="25" height="25"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="aEK-Zk-mP4"/>
-                                                            <constraint firstAttribute="height" constant="25" id="hoS-1h-HMK"/>
-                                                        </constraints>
                                                         <state key="normal" image="favourite"/>
                                                         <connections>
                                                             <action selector="favirateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tz6-qG-Nvc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-8a-bRS">
+                                                        <rect key="frame" x="325" y="10" width="25" height="25"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="Mobile icon"/>
+                                                        <connections>
+                                                            <action selector="callButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bWq-h8-yje"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4FB-6S-XwS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="dr6-tE-2zv" secondAttribute="trailing" constant="10" id="SZp-M3-Rkg"/>
+                                                    <constraint firstItem="dr6-tE-2zv" firstAttribute="top" secondItem="g1U-e0-fw5" secondAttribute="top" id="83w-ir-yKh"/>
+                                                    <constraint firstItem="PmI-8a-bRS" firstAttribute="leading" secondItem="dr6-tE-2zv" secondAttribute="trailing" constant="10" id="BZu-UJ-slg"/>
+                                                    <constraint firstItem="dr6-tE-2zv" firstAttribute="height" secondItem="g1U-e0-fw5" secondAttribute="height" id="JOq-vA-IZY"/>
+                                                    <constraint firstItem="PmI-8a-bRS" firstAttribute="top" secondItem="g1U-e0-fw5" secondAttribute="top" id="Nfa-Ce-U8r"/>
                                                     <constraint firstItem="g1U-e0-fw5" firstAttribute="leading" secondItem="nII-yK-sGC" secondAttribute="leading" constant="10" id="Ul3-VO-iFj"/>
+                                                    <constraint firstItem="PmI-8a-bRS" firstAttribute="height" secondItem="g1U-e0-fw5" secondAttribute="height" id="UmK-Ys-JA9"/>
+                                                    <constraint firstItem="PmI-8a-bRS" firstAttribute="width" secondItem="g1U-e0-fw5" secondAttribute="width" id="oAd-1J-EcB"/>
+                                                    <constraint firstItem="dr6-tE-2zv" firstAttribute="width" secondItem="g1U-e0-fw5" secondAttribute="width" id="tCa-2Y-O2q"/>
                                                     <constraint firstItem="g1U-e0-fw5" firstAttribute="top" secondItem="nII-yK-sGC" secondAttribute="top" constant="10" id="xbY-2O-GDK"/>
-                                                    <constraint firstItem="dr6-tE-2zv" firstAttribute="top" secondItem="nII-yK-sGC" secondAttribute="top" constant="10" id="yOG-0h-XzO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PmI-8a-bRS" secondAttribute="trailing" constant="5" id="zuj-2g-rNH"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-L3-WMZ">
@@ -420,6 +430,7 @@
                     <connections>
                         <outlet property="baseStackView" destination="m1j-c3-2Dt" id="gfW-Wy-33z"/>
                         <outlet property="btnConfirmLocation" destination="O3g-tN-KeB" id="mHZ-TZ-3s8"/>
+                        <outlet property="callButton" destination="PmI-8a-bRS" id="k5a-DK-LIy"/>
                         <outlet property="dateTimePickupView" destination="Ia3-Hk-BVb" id="nUa-up-2gk"/>
                         <outlet property="dropTextField" destination="mmG-Y1-XVc" id="TsA-p6-0Rb"/>
                         <outlet property="faviourateButton" destination="dr6-tE-2zv" id="P8C-HX-pmF"/>
@@ -2452,6 +2463,7 @@
         <image name="Calender" width="24" height="24"/>
         <image name="Clock" width="24" height="24"/>
         <image name="Logouticon" width="35" height="35"/>
+        <image name="Mobile icon" width="25" height="22"/>
         <image name="PinImage" width="70" height="70"/>
         <image name="Profile" width="23" height="23"/>
         <image name="Safetyicon" width="35" height="35"/>
