@@ -2256,7 +2256,7 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="logoutTapped:" destination="cd4-HM-RSW" eventType="touchUpInside" id="0yd-Iw-aMv"/>
+                                            <action selector="logoutTapped:" destination="cd4-HM-RSW" eventType="touchUpInside" id="OGO-oG-mVt"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2334,7 +2334,7 @@
                         <outlet property="line2" destination="4Gv-yU-KPx" id="xOz-3w-02s"/>
                         <outlet property="line3" destination="ApN-rO-2Go" id="5s1-k9-8eY"/>
                         <outlet property="line4" destination="UFj-AG-Kiw" id="BOQ-Er-U2N"/>
-                        <outlet property="logOutButton" destination="VXK-ia-BHF" id="eV2-WE-rkF"/>
+                        <outlet property="logOutButton" destination="VXK-ia-BHF" id="6hc-dO-08y"/>
                         <outlet property="mobileNumberEditButton" destination="0n1-sV-985" id="ixp-zj-lSm"/>
                         <outlet property="mobileNumberLabel" destination="1Zw-DM-qJ0" id="MFf-mA-Fob"/>
                         <outlet property="nameEditButton" destination="pb8-pk-yah" id="QNx-TA-zHH"/>
