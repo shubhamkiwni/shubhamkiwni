@@ -14,8 +14,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mobileNumTextField: UITextField!
     @IBOutlet weak var byContinuingLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
-    
+    @IBOutlet weak var welconToKiwniLabel: UILabel!
+    var myMutableString = NSMutableAttributedString()
+    var myString:NSString = "Welcome to KIWNI"
+
     override func viewDidLoad() {
+        myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSAttributedString.Key.font:UIFont(name: "Zapf Dingbats", size: 24.0)!])
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: NSRange(location:11,length:5))
+           // set label Attribute
+           welconToKiwniLabel.attributedText = myMutableString
         super.viewDidLoad()
         
         mobileNumTextField.delegate = self

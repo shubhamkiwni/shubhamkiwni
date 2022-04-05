@@ -69,7 +69,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to KIWNI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSt-zR-wjq">
                                 <rect key="frame" x="86" y="195" width="203" height="24"/>
                                 <fontDescription key="fontDescription" name="ZapfDingbatsITC" family="Zapf Dingbats" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.96837419749999998" green="0.65641888169999996" blue="0.26269197239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -99,6 +99,7 @@
                         <outlet property="confirmButton" destination="Mqe-qO-Vaa" id="4yd-1s-WJH"/>
                         <outlet property="mobileNumTextField" destination="NWI-p8-8jY" id="M2q-gw-S2k"/>
                         <outlet property="termsConditionButton" destination="OCt-6m-GrA" id="Pjd-8H-2np"/>
+                        <outlet property="welconToKiwniLabel" destination="WSt-zR-wjq" id="S6M-zx-sFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvS-fa-ffd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
