@@ -11,25 +11,25 @@ import UIKit
 class EditProfileVC: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var editProfileImageButton: UIButton!
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var mobileNumberLabel: UILabel!
     @IBOutlet weak var userMobileNumberLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userMailLabel: UILabel!
-    @IBOutlet weak var safetyImageView: UIImageView!
-    @IBOutlet weak var safetyPrivacyLabel: UIButton!
-    @IBOutlet weak var manageAccountLabel: UILabel!
-    @IBOutlet weak var twoStepVerificationLabel: UIButton!
-    @IBOutlet weak var emergencyContactLabel: UIButton!
-    @IBOutlet weak var rideSettingLabel: UIButton!
-    @IBOutlet weak var settingImageView: UIImageView!
-    @IBOutlet weak var manageAccountRideLabel: UILabel!
+    @IBOutlet weak var emergencyContactLabel: UILabel!
+    @IBOutlet weak var emergencyContactNumberLabel: UILabel!
     @IBOutlet weak var logOutButton: UIButton!
-    @IBOutlet weak var logOutImageView: UIImageView!
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
     @IBOutlet weak var line3: UIView!
     @IBOutlet weak var line4: UIView!
+    @IBOutlet weak var nameEditButton: UIButton!
+    @IBOutlet weak var mobileNumberEditButton: UIButton!
+    @IBOutlet weak var emailEditButton: UIButton!
+    @IBOutlet weak var emergencyNumberEditButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,11 @@ class EditProfileVC: UIViewController {
         profileView.layer.shadowOffset = CGSize(width: -1, height: 1)
         profileView.layer.shadowRadius = 1
         backButton.setTitle("", for: .normal)
+        editProfileImageButton.setTitle("", for: .normal)
+        nameEditButton.setTitle("", for: .normal)
+        mobileNumberEditButton.setTitle("", for: .normal)
+        emailEditButton.setTitle("", for: .normal)
+        emergencyNumberEditButton.setTitle("", for: .normal)
         
     }
     
@@ -74,5 +79,25 @@ class EditProfileVC: UIViewController {
         navigationController?.pushViewController(loginNavController, animated: true)
 //        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
 
+    }
+    
+    @IBAction func editProfileImageButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func nameEditButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func mobileNumberEditButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func emailEditButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func emergencyNumberEditButtonPressed(_ sender: UIButton) {
+        
     }
 }
