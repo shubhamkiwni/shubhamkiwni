@@ -92,6 +92,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         tableBaseView.layer.shadowOffset = CGSize.zero
         tableBaseView.layer.shadowRadius = 5
         
+        
+        
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -187,14 +189,36 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         if indexPath.row == 0 {
             let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
             
+            selectedIndex = indexPath.section
+            
+            if(carsArray.isEmpty == false){
+                let selectedModelInfo = carsArray[selectedIndex]
+                vehicleSortedArray.removeAll()
+                vehicleSortedArray = vehicleDetailsList.filter({ vehicleDetails in
+                    vehicleDetails.model == selectedModelInfo.modelName &&
+                    vehicleDetails.classType == selectedModelInfo.className
+                })
+            }
+            else{
+                print("Out of range")
+            }
+            print("After selecting vehicle key value",vehicleSortedArray)
+            print("After selecting vehicle key value.count",vehicleSortedArray.count)
+          
+            carsArray[selectedIndex].selectionData = []
+            
+            for i in 0 ..< vehicleSortedArray.count
+            {
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name))
+            }
+            print("finalArray[selectedIndex]",carsArray[selectedIndex])
+            
+            
             cell.carTypeLabel.text = carsArray[indexPath.section].className
             cell.carNameLabel.text = carsArray[indexPath.section].modelName
-//            var countValue  :  Int = 0
-//            countValue = carsArray[indexPath.section].selectionData[(carDetails[indexPath.row])]
-            cell.avaiLabelStatus.text = String(carsArray[indexPath.section].selectionData.count)
             
             print("Count Value:",carsArray[indexPath.section].selectionData.count)
-//            cell.avaiLabelStatus.text = carsArray[indexPath.section].selectionData[indexPath.row](carDetails(regyear: <#T##String?#>, providername: <#T##String?#>))
+            cell.avaiLabelStatus.text = "Availabel \(vehicleSortedArray.count)"
             
             
            

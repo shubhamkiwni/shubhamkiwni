@@ -151,7 +151,6 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         carTypeTableView.reloadData()
-        
     }
     
     @IBAction func viewDetailsButtonPressed(_ sender: UIButton) {
@@ -206,10 +205,32 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = carTypeTableView.dequeueReusableCell(withIdentifier: "cell") as! CarTypeTableViewCell
+        
+        let selectedVehicles =  vehicleDetailsList.filter { vehicleDetails in
+            vehicleDetails.vehicle?.vehicleType == keyArray[indexPath.row]
+            
+        }
+        
+        var modelClassInfoSet :Set<ModelClassInfo> = []
+        for selectedVehicle in selectedVehicles {
+          let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
+            
+            modelClassInfoSet.insert(modelClassInfo)
+        }
+        var modelClassInfoList : [ModelClassInfo] = []
+        
+        for list in modelClassInfoSet {
+            modelClassInfoList.append(list)
+        }
+        
+        print("selectedVehicles Array : ", modelClassInfoList)
+        print("selectedVehicles array count:", modelClassInfoList.count)
+        
         cell.baseView.layer.cornerRadius = 10.0
         cell.baseView.layer.borderWidth = 1.0
         cell.baseView.layer.borderColor = UIColor.lightGray.cgColor
         cell.carTypeLabel.text = keyArray[indexPath.row]
+        cell.availabelStatus.text = "Availabel \(modelClassInfoList.count)"
         cell.carTypeImage.image = UIImage(named: carImageArray[indexPath.row])
         return cell
     }

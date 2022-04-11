@@ -14,7 +14,7 @@ struct VehicleDetails : Codable {
     let driverMobileNo : String
     let model : String
     let classType: String
-    let vehicle : Vehicle?
+    var vehicle : Vehicle?
     let price : Double
     let priceString : String
     var isHeader: Bool = false
