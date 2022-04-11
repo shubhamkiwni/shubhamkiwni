@@ -29,7 +29,7 @@ class CarsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        applyShadow(cornerRadius: 8)
         
 //        carModelsView.addSubview(CarModelsXIB)
 //        CarModelsXIB.delegate2 = self

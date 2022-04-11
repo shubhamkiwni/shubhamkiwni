@@ -37,6 +37,7 @@ class CarModelsTableViewCell: UITableViewCell {
     var name = "Shubham"
     override func awakeFromNib() {
         super.awakeFromNib()
+        applyShadow(cornerRadius: 8)
 //        carModelsView.layer.masksToBounds = false
 //        carModelsView.layer.shadowColor = UIColor.black.cgColor
 //        carModelsView.layer.shadowOpacity = 0.5

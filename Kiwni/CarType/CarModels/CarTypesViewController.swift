@@ -85,10 +85,14 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
-    var finalArray : [ScheduleDate] = []
-    var selectedArray : [ScheduleDate] = []
-    var keyArray : [String] = []
+//    var finalArray : [ScheduleDate] = []
+//    var selectedArray : [ScheduleDate] = []
+    
     var dictForScheduleDates: NSDictionary! = nil
+    var vehicleDetailsList : [VehicleDetails] = []
+    var finalArray : [VehicleDetails] = []
+    var keyArray : [String] = []
+    
     @IBOutlet weak var callButton: UIButton!
     
     override func viewDidLoad() {
@@ -125,18 +129,25 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
             print("sourceCoordinate or destinationCoordinate are nil")
         }
         
-        for (key, value) in self.dictForScheduleDates {
-            let array_item : NSArray! = self.dictForScheduleDates.value(forKey: key as! String) as? NSArray
-            //                        print("array_item:", array_item[0])
-            keyArray.append(key as! String)
-            var headerItem : ScheduleDate = array_item[0] as! ScheduleDate
-            headerItem.isHeader = true
-            headerItem.availableCount = array_item.count
-            for item in array_item {
-                var schedule = item as? ScheduleDate
-                schedule?.isHeader = false
-                finalArray.append(schedule!)
+//        self.dictForScheduleDates = dictscheduleDates as NSDictionary
+        self.vehicleDetailsList.removeAll()
+        for (key, value) in self.dictForScheduleDates { //SUV, SEDAN
+            self.keyArray.append(key as! String)
+            if let classType = value as? [String:[String:[VehicleDetails]]] {  // LUXURY, ULTRA-LUXURY, PREMIUM
+                print("classType value found:")
                 
+                for value in classType.values{
+                    if let model = value as? [String:[VehicleDetails]] {  // AUDI 8, AUDI 4, MAHINDRA
+                        print("model value found")
+                        for value in model.values{
+                            if let vehicleDetails = value as? [VehicleDetails]{
+                                print("vehicleDetails found")
+                                self.vehicleDetailsList.append(contentsOf: vehicleDetails)
+                            }
+                        }
+                        
+                    }
+                }
             }
         }
         carTypeTableView.reloadData()
@@ -208,18 +219,32 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("click")
-//      print(keyArray)
-        selectedArray = []
-        for i in finalArray {
-            if i.vehicle?.vehicleType == keyArray[indexPath.row] {
-                selectedArray.append(i)
-                }
-            }
+        print("Vehicle type: ",keyArray[indexPath.row])
+        let selectedVehicles =  vehicleDetailsList.filter { vehicleDetails in
+            vehicleDetails.vehicle?.vehicleType == keyArray[indexPath.row]
+            
+        }
+        
+        var modelClassInfoSet :Set<ModelClassInfo> = []
+        for selectedVehicle in selectedVehicles {
+          let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
+            
+            modelClassInfoSet.insert(modelClassInfo)
+        }
+        var modelClassInfoList : [ModelClassInfo] = []
+        
+        for list in modelClassInfoSet {
+            modelClassInfoList.append(list)
+        }
+        
+        print("selectedVehicles Array : ", modelClassInfoList)
+        print("selectedVehicles array count:", modelClassInfoList.count)
+     
         
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
         VC.carTypeString = keyArray[indexPath.row]
-        VC.carsArray = selectedArray
+        VC.carsArray = modelClassInfoList
+        VC.vehicleDetailsList = vehicleDetailsList
         navigationController?.pushViewController(VC, animated: true)
         
     }

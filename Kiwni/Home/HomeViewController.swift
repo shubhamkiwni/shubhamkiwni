@@ -80,6 +80,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let defaultLocation = CLLocationCoordinate2D(latitude:19.7515 , longitude: 75.7139) // Maharashtra Coordinates
     var googleMapKey = "AIzaSyDnaIPR6Tp0sgrhj-fcXLivvaILrOdQMhs"
     
+    
+    var dictForScheduleDates: NSDictionary! = nil
+
+    
     private struct MapPath : Decodable{
         var routes : [Route]?
     }
@@ -726,7 +730,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             print("No Data Found")
                             self.view.makeToast(ErrorMessage.list.nodatafound)
                         }
-                        else{
+                        else{ 
                             let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
                             
                             carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
@@ -738,6 +742,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
                             carTypeVc.pickUpOnTime = self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
                             carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
+                           
                             if self.selectedTripType == "" {
                                 self.selectedTripType = "Outstation"
                                 self.selectedTripTypeMode = "ROUND TRIP"

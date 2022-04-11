@@ -51,21 +51,23 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
     @IBOutlet weak var callButton: UIButton!
     
-    var carsArray: [ScheduleDate] = []
-    var tableViewData = [ScheduleDate]()
+   
+    var tableViewData = [VehicleDetails]()
 //    var tableViewData = [cellData]()
     var carTypeString = ""
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
-    var carModelArray: [ScheduleDate] = []
-    var modelyearArray : [String]=[]
+    var carModelArray: [VehicleDetails] = []
+    
+    
+    var carsArray: [ModelClassInfo] = []
+    var vehicleSortedArray : [VehicleDetails] = []
+    var vehicleDetailsList : [VehicleDetails] = []
+    var selectedIndex : NSInteger! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        carsTableView.sectionHeaderHeight = 5.0
-        carTypeLabel.text = carTypeString
-        //print("carsArray count: ",carsArray.count)
-       // carsTableView.reloadData()
-        //print("vehicleType: ",carsArray[0].vehicle?.vehicleType ?? "")
+
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         detailsView.layer.cornerRadius = 8.0
@@ -76,33 +78,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         packageDetailsView.layer.borderWidth = 1.0
         packageDetailsView.layer.borderColor = UIColor.lightGray.cgColor
         
-//       var arr:[ScheduleDate] = carsArray
-//
-//        for (index, element) in carsArray.enumerated().reversed() {
-//            if arr.filter({ $0.vehicle?.model == element.vehicle?.model}).count > 1 {
-//                arr.append(element)
-//            }
-//        }
-//        print("Sorted array : ",arr)
-//        print("Sorted array count : ", arr.count)
-       
-        
-/*        for (index, object) in carsArray.enumerated() {
-          print("Item at \(index): \(object)")
-            tableViewData.append(cellData(opened: false, carType: carsArray[index].vehicle?.classType ?? "", carName: carsArray[index].vehicle?.model ?? "", avaiLabel: "AvaiLabel: 4", amount: "8000", selectionData: modelyearArray))
-           
-        }
-       print("tableViewData: ",tableViewData)
-        print("tableViewData Count: ",tableViewData.count)*/
-
-        
-       /* tableViewData = [cellData(opened: false, carType: "Premium", carName: "Mahindra", avaiLabel: "AvaiLabel: 4", amount: "2000", selectionData: ["2012", "2013", "2014", "2015", "2012", "2013", "2014", "2015"]),
-                         cellData(opened: false, carType: "Luxury", carName: "Tata", avaiLabel: "AvaiLabel: 3", amount: "3000", selectionData: ["2011", "2012", "2013"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"])]*/
         
         if rentalTag != 2 {
             packageView.isHidden = true
@@ -212,20 +187,17 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         if indexPath.row == 0 {
             let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
             
-           /* cell.carTypeLabel.text = tableViewData[indexPath.section].carType
-            cell.carNameLabel.text = tableViewData[indexPath.section].carName
-            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel*/
-            cell.carTypeLabel.text = carsArray[indexPath.section].vehicle?.classType
-           // print("Model name: ",carsArray[indexPath.row].model)
-            cell.carNameLabel.text = carsArray[indexPath.section].vehicle?.model
-            //cell.avaiLabelStatus.text = tableViewData[indexPath.section]
-            cell.layer.cornerRadius = 10.0
-            cell.carsDetailsView.layer.cornerRadius = 10.0
-            cell.carsDetailsView.layer.masksToBounds = false
-            cell.carsDetailsView.layer.shadowColor = UIColor.black.cgColor
-            cell.carsDetailsView.layer.shadowOpacity = 0.5
-            cell.carsDetailsView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            cell.carsDetailsView.layer.shadowRadius = 1
+            cell.carTypeLabel.text = carsArray[indexPath.section].className
+            cell.carNameLabel.text = carsArray[indexPath.section].modelName
+//            var countValue  :  Int = 0
+//            countValue = carsArray[indexPath.section].selectionData[(carDetails[indexPath.row])]
+            cell.avaiLabelStatus.text = String(carsArray[indexPath.section].selectionData.count)
+            
+            print("Count Value:",carsArray[indexPath.section].selectionData.count)
+//            cell.avaiLabelStatus.text = carsArray[indexPath.section].selectionData[indexPath.row](carDetails(regyear: <#T##String?#>, providername: <#T##String?#>))
+            
+            
+           
             return cell
         } else {
             let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
@@ -235,12 +207,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.star3.setTitle("", for: .normal)
             seconCell.star4.setTitle("", for: .normal)
             seconCell.star5.setTitle("", for: .normal)
-//            let years = "2010"
-//            print(years)
-//            let myDate = DateFormattingHelper.strToDateTime(strDateTime: years)
-//            print("myDate: ", myDate)
             
-        /*    if let myDate = DateFormattingHelper.strToDateTime(strDateTime: years)
+            
+       if let myDate = DateFormattingHelper.strToDateTime(strDateTime: carsArray[indexPath.section].selectionData[indexPath.row - 1].regyear)
             {
                 print("myDate: ", myDate)
                 let formatter = DateFormatter()
@@ -260,8 +229,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 print("Str time from popup : ","\(dateStr), \(timeStr)" )
             } else {
                 print("add another format")
-            }*/
-            seconCell.carModelRegisterYearLabel.text = /*carsArray[indexPath.section].selectionData[indexPath.row - 1]*/ "2020" /*carModelArray[indexPath.section].selectionData[indexPath.row - 1]*/
+            }
+            seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
             seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 6)
             seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
 
@@ -271,7 +240,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.section == selectedIndex {
             return 105
         } else {
             return 100
@@ -279,71 +248,54 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        //carsTableView.reloadData()
-        
-       carModelArray = []
-        for i in carsArray {
-                if i.vehicle?.model == carsArray[indexPath.row].model {
-                   // print("From vehicle class type:", i.vehicle?.classType)
-                    //print("From carsArray: ",carsArray[indexPath.row].vehicle?.classType)
-                    if (i.vehicle?.classType == carsArray[indexPath.row].vehicle?.classType){
-                        carModelArray.append(i)
-                    }
-                }
-        }
-        print("carModelArray: ",carModelArray)
-        print("carModelArray Count: ",carModelArray.count)
-        
-        for i in 0..<carsArray.count {
-            
-            if( carsArray[i].vehicle?.model == carsArray[indexPath.row].model)
-            {
-                carModelArray = []
-                if (carsArray[i].vehicle?.classType == carsArray[indexPath.row].vehicle?.classType){
-                    carModelArray.append(carsArray[i])
-                }
-            }
-//            var element = array[i]
-//            let splitData = element.components(separatedBy: ",")
-//
-//            // split data will always contain 3 values.
-//            var value1 = splitData[0]
-//            var value2 = splitData[1]
-//            var value3 = splitData[2]
-//
-//            print("value 1 is : " + value1 + " value 2 is : " + value2 + " value 3 is: " + value3)
-        }
-       
-        
-      for(j, object) in carsArray.enumerated(){
-            for (index, object) in carModelArray.enumerated() {
-                modelyearArray = []
-                modelyearArray.append(carModelArray[index].vehicle?.regYear ?? "")
-            }
-            carsArray[j].selectionData = modelyearArray
-           
-        }
- 
-       
-        
-        print("Model Array : ",modelyearArray)
-        print("Model year array count : ", modelyearArray.count)
-        print("carsArray in didselect: ",carsArray)
-        print("carsArray in didselect count : ", carsArray.count)
-        
-
-        
         if carsArray[indexPath.section].opened == true {
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+            carsTableView.reloadSections(sections, with: .none)
            
         } else {
+            
+            selectedIndex = indexPath.section
+            
+            if(carsArray.isEmpty == false){
+                let selectedModelInfo = carsArray[selectedIndex]
+                vehicleSortedArray.removeAll()
+                vehicleSortedArray = vehicleDetailsList.filter({ vehicleDetails in
+                    vehicleDetails.model == selectedModelInfo.modelName &&
+                    vehicleDetails.classType == selectedModelInfo.className
+                })
+            }
+            else{
+                print("Out of range")
+            }
+            print("After selecting vehicle key value",vehicleSortedArray)
+            print("After selecting vehicle key value.count",vehicleSortedArray.count)
+          
+            carsArray[selectedIndex].selectionData = []
+            
+            for i in 0 ..< vehicleSortedArray.count
+            {
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name))
+            }
+            print("finalArray[selectedIndex]",carsArray[selectedIndex])
+            
             carsArray[indexPath.section].opened = true
             let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+            carsTableView.reloadSections(sections, with: .none)
         }
     }
 }
 
+extension UIView{
+    func applyShadow(cornerRadius : CGFloat){
+        
+        layer.cornerRadius = 10.0
+        layer.masksToBounds = false
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 0.30
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+       
+        
+    }
+}

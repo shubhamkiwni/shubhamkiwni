@@ -59,8 +59,8 @@ class APIManager {
     }
     
     //MARK:-  scheduleDates API CALL
-    func getAllProjectionAvailableSchedules(getAllProjectionData: GetAllProjectionScheduleRequestModel, completionHandler: @escaping (Result<[String : [ScheduleDate]],ClientSpecificError >) -> Void){
-          AF.request(projectionScheduleMapUrl, method: .post, parameters: getAllProjectionData, encoder: JSONParameterEncoder.default, headers: tokenheaders).response { response  in
+    func getAllProjectionAvailableSchedules(getAllProjectionData: GetAllProjectionScheduleRequestModel, completionHandler: @escaping (Result<[String:[String:[String: [VehicleDetails]]]],ClientSpecificError >) -> Void){
+          AF.request(projectionScheduleDateUrl, method: .post, parameters: getAllProjectionData, encoder: JSONParameterEncoder.default, headers: tokenheaders).response { response  in
 //            debugPrint(response)
               switch response.result {
               case .success(let data):
@@ -68,7 +68,7 @@ class APIManager {
                        
                           if response.response?.statusCode == 200 {
                             
-                            dictProjectionSchedule = try JSONDecoder() .decode([String : [ScheduleDate]].self, from: data!)
+                              dictProjectionSchedule = try JSONDecoder() .decode([String:[String:[String:[VehicleDetails]]]].self, from: data!)
                            
                             completionHandler(.success(dictProjectionSchedule))
                             
