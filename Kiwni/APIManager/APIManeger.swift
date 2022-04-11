@@ -29,7 +29,8 @@ let partyId = UserDefaults.standard.string(forKey: "partyId")
 
 
 var dictForRegisterResponse : [String:Any]? = nil
-var dictProjectionSchedule = [String : [ScheduleDate]]()
+//var dictProjectionSchedule = [String : [ScheduleDate]]()
+var dictProjectionSchedule = [String:[String:[String: [VehicleDetails]]]]()
 
 class APIManager {
     static let shareInstance = APIManager()
