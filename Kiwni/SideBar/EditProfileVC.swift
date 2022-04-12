@@ -56,7 +56,7 @@ class EditProfileVC: UIViewController {
         // after user has successfully logged out
         UserDefaults.standard.setValue(false, forKey: "status")
         
-      /*  UserDefaults.standard.removeObject(forKey: "uid")
+       UserDefaults.standard.removeObject(forKey: "uid")
         UserDefaults.standard.removeObject(forKey: "displayName")
         UserDefaults.standard.removeObject(forKey: "email")
         UserDefaults.standard.removeObject(forKey: "phoneNumber")
@@ -68,7 +68,7 @@ class EditProfileVC: UIViewController {
         UserDefaults.standard.setValue(nil, forKey: "email")
         UserDefaults.standard.setValue(nil, forKey: "phoneNumber")
         UserDefaults.standard.setValue(nil, forKey: "partyId")
-        UserDefaults.standard.setValue(nil, forKey: "Roles")*/
+        UserDefaults.standard.setValue(nil, forKey: "Roles")
         
        
         AuthManager.shared.logout()
