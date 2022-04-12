@@ -258,7 +258,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
 //            seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 10)
 //            seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
-
+print("Success")
             return seconCell
         }
         
