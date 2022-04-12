@@ -222,9 +222,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
             print("Count Value:",carsArray[indexPath.section].selectionData.count)
             cell.avaiLabelStatus.text = "Availabel \(vehicleSortedArray.count)"
-            
-            
-           
             return cell
         } else {
             let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell

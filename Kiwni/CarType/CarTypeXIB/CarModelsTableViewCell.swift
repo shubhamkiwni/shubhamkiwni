@@ -9,6 +9,7 @@ import UIKit
 
 protocol PaymentDelegate  {
     func payment(getName: String)
+    func review()
 }
 
 
@@ -38,6 +39,8 @@ class CarModelsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         applyShadow(cornerRadius: 8)
+        bookButton.layer.cornerRadius = 5.0
+        
 //        carModelsView.layer.masksToBounds = false
 //        carModelsView.layer.shadowColor = UIColor.black.cgColor
 //        carModelsView.layer.shadowOpacity = 0.5
@@ -47,7 +50,7 @@ class CarModelsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -56,4 +59,9 @@ class CarModelsTableViewCell: UITableViewCell {
         
         delegate1?.payment(getName: name)
     }
+    
+    @IBAction func reviewButtonClick(_ sender: UIButton) {
+        delegate1?.review()
+    }
+    
 }
