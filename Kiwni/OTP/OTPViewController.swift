@@ -241,9 +241,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                     }
                 UserDefaults.standard.setValue(true, forKey: "status")
                 print("Code Matches")
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-                self.navigationController?.pushViewController(homeVc, animated: true)
+//                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+//                self.navigationController?.pushViewController(homeVc, animated: true)
 
             }
         }

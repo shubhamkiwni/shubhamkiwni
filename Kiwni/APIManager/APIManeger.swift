@@ -106,7 +106,75 @@ class APIManager {
               }
           }
       }
-    
+    //MARK:- Create Reservation API CALL
+   /* func createReservationForVehicleSchedule(getReservationModel: ReservationScheduleModel, completionHandler: @escaping (Result<Any, APIErrors>) -> Void){
+          AF.request(createReservtionUrl, method: .post, parameters: getReservationModel, encoder: JSONParameterEncoder.default, headers: tokenheaders).response { response  in
+            debugPrint(response)
+              switch response.result {
+              case .success(let data):
+                  do {
+                        let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                       
+                          if response.response?.statusCode == 201 {
+                          
+                            completionHandler(.success(json))
+                          }
+                          else if response.response?.statusCode == 400 {
+                            
+//                                completionHandler(.failure("Bad Request"))
+                            completionHandler(.failure(.custom(message: "Bad Request")))
+//                            completionHandler(.failure(Error.self as! Error))
+                            
+                            //completionHandler(.failure(Error.self as! Error))
+                          }
+                          else if response.response?.statusCode == 401 {
+                            completionHandler(.failure(.custom(message: "UnAuthorized")))
+                            //completionHandler(.failure(Error.self as! Error))
+                          
+                          }else if response.response?.statusCode == 500 {
+                            
+                            completionHandler(.failure(.custom(message: "Internal Server Error")))
+              
+                            //completionHandler(.failure(Error.self as! Error))
+                          }
+                          else
+                          {
+                            completionHandler(.failure(.custom(message: "Check check your network conttectivity")))
+                          }
+                  } catch {
+                      print(error.localizedDescription)
+                  }
+              case.failure(let err):
+                  print(err.localizedDescription)
+                  print(err)
+                
+              }
+          }
+      }
+
+   
+    func getRefreshToken(requestpayloadModel : FirebaseRequestPayload , completionHandler: @escaping (Result<FirebaseResponsePayload, APIErrors>) -> Void){
+        AF.request(refreshTokenUrl, method: .post, parameters: requestpayloadModel, encoder: JSONParameterEncoder.default, headers: refershtokenheader).response { response  in
+          debugPrint(response)
+            switch response.result {
+            case .success(let data):
+                do {
+                    let json = try JSONDecoder().decode(FirebaseResponsePayload.self, from: data!)
+                    print(json)
+                    completionHandler(.success(json))
+                      
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case.failure(let err):
+                print(err.localizedDescription)
+                print(err)
+              
+            }
+            
+        }
+        
+    }*/
     
 //    func callingFailuerFindTripByUserID(completion: @escaping (Result<failuerModel, Error>) -> Void) {
 //        

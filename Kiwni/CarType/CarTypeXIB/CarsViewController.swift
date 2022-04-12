@@ -18,7 +18,10 @@ struct cellData {
 
 class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
     func payment(getName: String) {
+        
+        
         let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+//        next.bookedVehicleDetails = vehicleSortedArray[selectedIndex]
         navigationController?.pushViewController(next, animated: true)
     }
     
@@ -257,6 +260,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
             seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 6)
             seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
+            seconCell.delegate1 = self
 
             return seconCell
         }
@@ -273,6 +277,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if carsArray[indexPath.section].opened == true {
+        
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
             carsTableView.reloadSections(sections, with: .none)

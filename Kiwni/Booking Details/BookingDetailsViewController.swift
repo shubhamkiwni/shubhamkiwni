@@ -42,6 +42,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     let button = UIButton()
     
     
+    var bookedVehicleDetails : [VehicleDetails] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bookingDetilsView.addSubview(bookingDetilsXIBView)
@@ -120,6 +122,10 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         } else {
 //            let pmVC = storyboard?.instantiateViewController(withIdentifier: "PaymentModeViewController") as! PaymentModeViewController
 //            navigationController?.pushViewController(pmVC, animated: true)
+            
+            
+            
+            
             let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "paymentStoryboard") as! PaymentModeViewController
             navigationController?.pushViewController(VC, animated: true)
         }

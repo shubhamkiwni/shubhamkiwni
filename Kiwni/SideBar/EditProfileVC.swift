@@ -71,7 +71,7 @@ class EditProfileVC: UIViewController {
         UserDefaults.standard.setValue(nil, forKey: "Roles")*/
         
        
-      //  AuthManager.shared.logout()
+        AuthManager.shared.logout()
         
         
         let storyboard = UIStoryboard(name: "User", bundle: nil)
