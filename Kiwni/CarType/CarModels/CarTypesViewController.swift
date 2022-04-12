@@ -208,7 +208,6 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let selectedVehicles =  vehicleDetailsList.filter { vehicleDetails in
             vehicleDetails.vehicle?.vehicleType == keyArray[indexPath.row]
-            
         }
         
         var modelClassInfoSet :Set<ModelClassInfo> = []
@@ -231,6 +230,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.baseView.layer.borderColor = UIColor.lightGray.cgColor
         cell.carTypeLabel.text = keyArray[indexPath.row]
         cell.availabelStatus.text = "Availabel \(modelClassInfoList.count)"
+        cell.seaterLabel.text = "\(selectedVehicles[indexPath.row].vehicle?.capacity ?? 0)+1 Seater"
         cell.carTypeImage.image = UIImage(named: carImageArray[indexPath.row])
         return cell
     }
