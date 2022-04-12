@@ -276,7 +276,7 @@ print("Success")
         if carsArray[indexPath.section].opened == true {
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
-//            carsTableView.reloadSections(sections, with: .none)
+            carsTableView.reloadSections(sections, with: .none)
            
         } else {
             
