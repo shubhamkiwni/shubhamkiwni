@@ -63,6 +63,7 @@
 		7A686F4627AAAE7C00DFF9A3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A686F4527AAAE7C00DFF9A3 /* AboutViewController.swift */; };
 		7A686F4827AAB2E900DFF9A3 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A686F4727AAB2E900DFF9A3 /* SupportViewController.swift */; };
 		7A686F4C27AAB5F300DFF9A3 /* SupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A686F4B27AAB5F300DFF9A3 /* SupportTableViewCell.swift */; };
+		7A745F1328056388008B4621 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A745F1228056388008B4621 /* ReviewViewController.swift */; };
 		7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81B04327BB86F00070E1D7 /* PaymentModeViewController.swift */; };
 		7A81DB3227DF3E660046FF9F /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81DB3127DF3E660046FF9F /* CarsViewController.swift */; };
 		7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */; };
@@ -205,6 +206,7 @@
 		7A686F4527AAAE7C00DFF9A3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7A686F4727AAB2E900DFF9A3 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		7A686F4B27AAB5F300DFF9A3 /* SupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableViewCell.swift; sourceTree = "<group>"; };
+		7A745F1228056388008B4621 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		7A81B04327BB86F00070E1D7 /* PaymentModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModeViewController.swift; sourceTree = "<group>"; };
 		7A81DB3127DF3E660046FF9F /* CarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerExtension.swift; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 				7AF91F0927C601660023B399 /* FilterViewController.swift */,
 				7AE5A34327C4AF3000C1E5D4 /* BrandCollectionViewCell.swift */,
 				7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */,
+				7A745F1228056388008B4621 /* ReviewViewController.swift */,
 			);
 			path = CarTypeXIB;
 			sourceTree = "<group>";
@@ -1085,6 +1088,7 @@
 				7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,
 				7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */,
+				7A745F1328056388008B4621 /* ReviewViewController.swift in Sources */,
 				7A170E7227CF4AA500B0BE66 /* RulesTableViewCell.swift in Sources */,
 				7A170E8F27CF89E900B0BE66 /* DateFormattingHelper.swift in Sources */,
 			);
