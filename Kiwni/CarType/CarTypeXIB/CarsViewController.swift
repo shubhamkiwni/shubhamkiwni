@@ -17,11 +17,13 @@ struct cellData {
 }
 
 class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
+    func review() {
+        let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+        present(reviewVC, animated: true, completion: nil)
+    }
+    
     func payment(getName: String) {
-        
-        
         let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
-//        next.bookedVehicleDetails = vehicleSortedArray[selectedIndex]
         navigationController?.pushViewController(next, animated: true)
     }
     
@@ -232,7 +234,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.star4.setTitle("", for: .normal)
             seconCell.star5.setTitle("", for: .normal)
             
-            
        if let myDate = DateFormattingHelper.strToDateTime(strDateTime: carsArray[indexPath.section].selectionData[indexPath.row - 1].regyear)
             {
                 print("myDate: ", myDate)
@@ -255,10 +256,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 print("add another format")
             }
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
-            seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 6)
-            seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
-            seconCell.delegate1 = self
-
+//            seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 10)
+//            seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
+print("Success")
             return seconCell
         }
         
@@ -274,10 +274,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if carsArray[indexPath.section].opened == true {
-        
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
-            carsTableView.reloadSections(sections, with: .none)
+//            carsTableView.reloadSections(sections, with: .none)
            
         } else {
             
@@ -320,8 +319,8 @@ extension UIView{
         layer.shadowRadius = 4.0
         layer.shadowOpacity = 0.30
         layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-       
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOffset = CGSize(width: 1, height: 1)
         
     }
 }
