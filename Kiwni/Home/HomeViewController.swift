@@ -307,7 +307,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         placesClient = GMSPlacesClient.shared()
         self.nearbyPlaces()
         
-        strDirection = "ROUND TRIP"
+        strDirection = "two-way"
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
     }
@@ -349,7 +349,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
            print("Drop Date Time : ", self.endTime)
         }else{
             //setTimeToPicker()
-            print("Select drop date and time")
+//            print("Select drop date and time")
+            customErrorPopup("Select drop date and time")
         }
     }
     
