@@ -76,7 +76,8 @@ class EditProfileVC: UIViewController {
         
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginViewController")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+        navigationController?.pushViewController(loginNavController, animated: true)
 
     }
     
