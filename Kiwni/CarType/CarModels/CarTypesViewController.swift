@@ -104,6 +104,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         dateLabel.text = pickUpOnDate
         timeLabel.text = pickUpOnTime
         tripTypeLabel.text = "\(tripType) (\(tripTypeMode))"
+        UserDefaults.standard.setValue(tripTypeLabel.text, forKey: "tripType")
         print(pickedSourceCoordinate as Any, pickedDropCoordinate as Any)
         print(pickUpCityName, dropCityName)
         print(pickUpOnDate, returnByDate)

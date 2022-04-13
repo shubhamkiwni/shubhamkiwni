@@ -606,7 +606,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         self.mapView.isUserInteractionEnabled = false
         selectedTripTypeMode = oneWayButton.titleLabel?.text ?? ""
-        
+        print("selectedTripTypeMode:", selectedTripTypeMode)
         strDirection = "one-way"
     }
     
@@ -745,7 +745,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                            
                             if self.selectedTripType == "" {
                                 self.selectedTripType = "Outstation"
-                                self.selectedTripTypeMode = "ROUND TRIP"
+//                                self.selectedTripTypeMode = "ROUND TRIP"
                                 carTypeVc.tripType = self.selectedTripType
                                 carTypeVc.tripTypeMode = self.selectedTripTypeMode
                             } else {

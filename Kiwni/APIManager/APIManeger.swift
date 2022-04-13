@@ -8,6 +8,10 @@
 import Foundation
 import Alamofire
 
+enum APIErrors : Error {
+   case custom(message :String)
+}
+
 enum BaseError: Error {
     case badRequest // 400
     case unauthorized // 401
@@ -35,7 +39,7 @@ var dictProjectionSchedule = [String:[String:[String: [VehicleDetails]]]]()
 class APIManager {
     static let shareInstance = APIManager()
     let tokenheaders : HTTPHeaders   = [.authorization("Bearer \( token ?? "")")]  //[.authorization("Bearer \(token)")] //
-    
+    let refershtokenheader : HTTPHeaders = [.contentType("application/json")]
     func callinggFindTripByUserID(completion: @escaping (Result<[Json4Swift_Base], Error>) -> Void) {
         
         AF.request(userRequestURL).response { response in
@@ -107,7 +111,7 @@ class APIManager {
           }
       }
     //MARK:- Create Reservation API CALL
-   /* func createReservationForVehicleSchedule(getReservationModel: ReservationScheduleModel, completionHandler: @escaping (Result<Any, APIErrors>) -> Void){
+    func createReservationForVehicleSchedule(getReservationModel: ReservationScheduleModel, completionHandler: @escaping (Result<Any, APIErrors>) -> Void){
           AF.request(createReservtionUrl, method: .post, parameters: getReservationModel, encoder: JSONParameterEncoder.default, headers: tokenheaders).response { response  in
             debugPrint(response)
               switch response.result {
@@ -174,7 +178,7 @@ class APIManager {
             
         }
         
-    }*/
+    }
     
 //    func callingFailuerFindTripByUserID(completion: @escaping (Result<failuerModel, Error>) -> Void) {
 //        

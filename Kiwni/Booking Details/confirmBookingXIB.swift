@@ -105,6 +105,11 @@ class confirmBooking: UIView {
         CollectionViewDesignclass.viewDesign(bookingDetailsView, cornerRadius: 10.0, color: UIColor.lightGray.cgColor, borderWidth: 1.0, maskCorner: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         CollectionViewDesignclass.viewDesign(rideFareView, cornerRadius: 0.0, color: UIColor.lightGray.cgColor, borderWidth: 1.0, maskCorner: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         CollectionViewDesignclass.viewDesign(businessDetailsView, cornerRadius: 10.0, color: UIColor.lightGray.cgColor, borderWidth: 1, maskCorner: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        
+        companyNameValueLabel.text = UserDefaults.standard.string(forKey: "companyName")
+        companyEmailValueLabel.text = UserDefaults.standard.string(forKey: "companyEmail")
+        companyPhoneValueLabel.text = UserDefaults.standard.string(forKey: "companyPhoneNo")
+        print(companyNameValueLabel.text, companyEmailValueLabel.text, companyPhoneValueLabel.text)
     }
     
     @IBAction func apply(_ sender: UIButton) {
@@ -129,12 +134,15 @@ class confirmBooking: UIView {
     @IBAction func personalButtonPressed(_ sender: UIButton) {
         businessButton.setImage(UIImage(named: "Uncheck"), for: .normal)
         personalButton.setImage(UIImage(named: "Check"), for: .normal)
-        
+        businessDetailsView.isHidden = true
+       
 
     }
     @IBAction func businessButtonPressed(_ sender: UIButton) {
+        
         businessButton.setImage(UIImage(named: "Check"), for: .normal)
         personalButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+        businessDetailsView.isHidden = false
         delegate?.openPopUp()
     }
 //    @IBAction func personalButtonPressed(_ sender: UIButton) {

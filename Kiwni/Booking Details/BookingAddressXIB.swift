@@ -36,6 +36,53 @@ class BookingAddressXIB: UIView {
 //        labelDesign("SourceAddress", " New Airport Road, Viman Nagar, Pune, Maharashtra", sourceLabel)
 //        labelDesign("DestinationAddress", " Lane No. 5, H. No. 2587, Dhule, Maharashtra", destinationLabel)
         
+        let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
+        let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""
+        let toLocation: String = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
+        let journeyEndTime : String = UserDefaults.standard.string(forKey: "journeyEndTime") ?? ""
+        let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
+        let classType: String = UserDefaults.standard.string(forKey: "classType") ?? ""
+        let modelName: String = UserDefaults.standard.string(forKey: "modelName") ?? ""
+        
+        var startTime = journeyTime.split(separator: ".")
+        startTime.removeLast()
+        print("StartTime : ", startTime)
+        
+        let str = startTime.joined(separator: ".")
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX") //"en_US_POSIX"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = formatter.date(from: str) {
+            formatter.dateFormat = "hh:mm a"
+            let timeStr = formatter.string(from: date)
+            print(timeStr) //add timeStr to your timeLabel here...
+            
+            formatter.dateFormat = "EEE, dd MMM"
+            let dateStr = formatter.string(from: date)
+            print(dateStr) //add dateStr to your dateLabel here...
+            
+            self.dateLabel.text = "Date :\(dateStr)"
+            self.timeLabel.text = "Time :\(timeStr)"
+            print("Date Label in booking details: ",self.dateLabel.text)
+            print("Time Label in booking details: ",self.timeLabel.text)
+        }
+        
+        print("classType from CarsViewcontroller:", classType)
+        print("modelName from CarsViewcontroller:", modelName)
+        print(distance)
+        print(fromLocation)
+        print(toLocation)
+        print(journeyEndTime)
+        print(journeyTime)
+        
+        self.sourceLabel.text = UserDefaults.standard.string(forKey: "SourceAddress")
+        self.destinationLabel.text = UserDefaults.standard.string(forKey: "DestinationAddress")
+        self.serviceTypeLabel.text = UserDefaults.standard.string(forKey: "tripType")
+        self.dateLabel.text = UserDefaults.standard.string(forKey: "journeyTime")
+        self.estKMValueLabel.text = UserDefaults.standard.string(forKey: "distance")
+        self.carNameLabel.text = UserDefaults.standard.string(forKey: "modelName")
+        self.carTypeLabel.text = UserDefaults.standard.string(forKey: "classType")
+        
     }
     
     func labelDesign(_ image: String,_ Labeltxt: String,_ labelnm: UILabel!) {

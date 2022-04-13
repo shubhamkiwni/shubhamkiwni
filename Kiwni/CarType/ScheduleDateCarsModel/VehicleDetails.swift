@@ -12,6 +12,7 @@ struct VehicleDetails : Codable {
     let driverId : Int
     let driverName : String
     let driverMobileNo : String
+    let vehicleId: Int
     let model : String
     let classType: String
     var vehicle : Vehicle?
@@ -21,6 +22,7 @@ struct VehicleDetails : Codable {
     var availableCount : Int = 0
     let matchExactTime : Bool = false
     let imagePath : String
+    let vehicleType: String
    
 
     enum CodingKeys: String, CodingKey {
@@ -40,6 +42,8 @@ struct VehicleDetails : Codable {
         case vehicle = "vehicle"
         case price = "price"
         case imagePath = "imagePath"
+        case vehicleType = "vehicleType"
+        case vehicleId = "vehicleId"
         
     }
 
@@ -61,6 +65,8 @@ struct VehicleDetails : Codable {
         model = try values.decodeIfPresent(String.self, forKey: .model) ?? ""
         imagePath = try values.decodeIfPresent(String.self, forKey: .imagePath) ?? ""
         classType = try values.decodeIfPresent(String.self, forKey: .classType) ?? ""
+        vehicleType = try values.decodeIfPresent(String.self, forKey: .vehicleType) ?? ""
+        vehicleId = try values.decodeIfPresent(Int.self, forKey: .vehicleId) ?? 0
     }
 
 }

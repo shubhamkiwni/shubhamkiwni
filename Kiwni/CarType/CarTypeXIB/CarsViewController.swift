@@ -221,13 +221,30 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
             for i in 0 ..< vehicleSortedArray.count
             {
-                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name))
+                
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear,
+                                                                         providername: vehicleSortedArray[i].vehicle?.provider?.name,
+                                                                         providerID: vehicleSortedArray[i].vehicle?.provider?.id, vehicalID: vehicleSortedArray[i].vehicleId, vehicleNumb: vehicleSortedArray[i].vehicle?.regNo,
+                                                                         driverID: 0,
+                                                                         driverLicense: "",
+                                                                         driverName: "",
+                                                                         driverPhone: "",
+                                                                         scheduleID: vehicleSortedArray[i].vehicle?.id,
+                                                                         distance: "",
+                                                                         fromLocation: "",
+                                                                         toLocation: "",
+                                                                         journeyEndTime: "",
+                                                                         journeyTime: "",
+                                                                         estimatedPrice: vehicleSortedArray[i].price))
             }
             print("finalArray[selectedIndex]",carsArray[selectedIndex])
             
             
             cell.carTypeLabel.text = carsArray[indexPath.section].className
             cell.carNameLabel.text = carsArray[indexPath.section].modelName
+            
+            UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
+            UserDefaults.standard.setValue(cell.carNameLabel.text, forKey: "modelName")
             
             print("Count Value:",carsArray[indexPath.section].selectionData.count)
             cell.avaiLabelStatus.text = "Availabel \(vehicleSortedArray.count)"
@@ -331,8 +348,9 @@ print("Success")
                 print(carsArray[indexPath.section])
                 
             }
-//            let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
-//            navigationController?.pushViewController(next, animated: true)
+            let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+            next.selectedCarValue = carsArray[indexPath.section].selectionData[indexPath.row - 1]
+            navigationController?.pushViewController(next, animated: true)
         }
     }
 }

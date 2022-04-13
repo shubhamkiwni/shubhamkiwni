@@ -50,6 +50,9 @@
 		7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44009827B4D71B00A2334D /* CarTypesViewController.swift */; };
 		7A44009B27B4E91500A2334D /* CarTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A44009A27B4E91500A2334D /* CarTypeTableViewCell.swift */; };
 		7A4400B727B4F1A800A2334D /* CarModelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4400B327B4F1A800A2334D /* CarModelsTableViewCell.swift */; };
+		7A5E73582806DE3700ACA10D /* ReservationScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E73572806DE3700ACA10D /* ReservationScheduleModel.swift */; };
+		7A5E735A2806EA6400ACA10D /* FirebaeRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E73592806EA6400ACA10D /* FirebaeRequestPayload.swift */; };
+		7A5E735C2806EA9200ACA10D /* FirebaseResponsePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E735B2806EA9200ACA10D /* FirebaseResponsePayload.swift */; };
 		7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FCD0427ACF274004F9DC3 /* PopupViewController.swift */; };
 		7A5FCD0927ACF2A5004F9DC3 /* CustomPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5FCD0727ACF2A5004F9DC3 /* CustomPopupView.xib */; };
 		7A5FCD0A27ACF2A5004F9DC3 /* CustomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FCD0827ACF2A5004F9DC3 /* CustomPopupView.swift */; };
@@ -193,6 +196,9 @@
 		7A44009827B4D71B00A2334D /* CarTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTypesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7A44009A27B4E91500A2334D /* CarTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTypeTableViewCell.swift; sourceTree = "<group>"; };
 		7A4400B327B4F1A800A2334D /* CarModelsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarModelsTableViewCell.swift; sourceTree = "<group>"; };
+		7A5E73572806DE3700ACA10D /* ReservationScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationScheduleModel.swift; sourceTree = "<group>"; };
+		7A5E73592806EA6400ACA10D /* FirebaeRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaeRequestPayload.swift; sourceTree = "<group>"; };
+		7A5E735B2806EA9200ACA10D /* FirebaseResponsePayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseResponsePayload.swift; sourceTree = "<group>"; };
 		7A5FCD0427ACF274004F9DC3 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		7A5FCD0727ACF2A5004F9DC3 /* CustomPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPopupView.xib; sourceTree = "<group>"; };
 		7A5FCD0827ACF2A5004F9DC3 /* CustomPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
@@ -582,6 +588,9 @@
 				7AF91F1B27C605BC0023B399 /* confirmBookingXIB.swift */,
 				7AF91F1F27C605D70023B399 /* CollectionViewDesign.swift */,
 				7AF91F2727C6361D0023B399 /* BusinessDetaisViewController.swift */,
+				7A5E73572806DE3700ACA10D /* ReservationScheduleModel.swift */,
+				7A5E73592806EA6400ACA10D /* FirebaeRequestPayload.swift */,
+				7A5E735B2806EA9200ACA10D /* FirebaseResponsePayload.swift */,
 			);
 			path = "Booking Details";
 			sourceTree = "<group>";
@@ -1006,7 +1015,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A5E735A2806EA6400ACA10D /* FirebaeRequestPayload.swift in Sources */,
 				7A5FCD1327AD1845004F9DC3 /* SafetyViewController.swift in Sources */,
+				7A5E73582806DE3700ACA10D /* ReservationScheduleModel.swift in Sources */,
 				7A686F3D27AA7D5900DFF9A3 /* UpcomingTableViewCell.swift in Sources */,
 				7A5FCD1527AD2A73004F9DC3 /* CancelRideViewController.swift in Sources */,
 				7A686F4C27AAB5F300DFF9A3 /* SupportTableViewCell.swift in Sources */,
@@ -1022,6 +1033,7 @@
 				7A170E6E27CF393800B0BE66 /* ViewDetailsViewController.swift in Sources */,
 				846C8D7328043B22003D4FFA /* VehicleDetails.swift in Sources */,
 				7AF91F2427C60B0A0023B399 /* ThankYouViewController.swift in Sources */,
+				7A5E735C2806EA9200ACA10D /* FirebaseResponsePayload.swift in Sources */,
 				846C8D7428043B22003D4FFA /* Provider.swift in Sources */,
 				7AF91F1D27C605BD0023B399 /* confirmBookingXIB.swift in Sources */,
 				7A686F4827AAB2E900DFF9A3 /* SupportViewController.swift in Sources */,
