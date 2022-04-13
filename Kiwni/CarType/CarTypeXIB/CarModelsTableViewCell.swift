@@ -10,6 +10,7 @@ import UIKit
 protocol PaymentDelegate  {
     func payment(getName: String)
     func review()
+    func usernameClicked(_ cell: CarModelsTableViewCell)
 }
 
 
@@ -57,7 +58,8 @@ class CarModelsTableViewCell: UITableViewCell {
     @IBAction func nextView(_ sender: UIButton) {
         print("Book Button Pressed")
         
-        delegate1?.payment(getName: name)
+        delegate1?.usernameClicked(self)
+//        delegate1?.payment(getName: name)
     }
     
     @IBAction func reviewButtonClick(_ sender: UIButton) {

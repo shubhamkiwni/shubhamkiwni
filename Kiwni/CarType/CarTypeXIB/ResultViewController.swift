@@ -8,6 +8,10 @@
 import UIKit
 
 class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PaymentDelegate3, PaymentDelegate {
+    func usernameClicked(_ cell: CarModelsTableViewCell) {
+        print("success")
+    }
+    
     func review() {
         print("success")
     }

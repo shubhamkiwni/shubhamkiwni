@@ -17,15 +17,21 @@ struct cellData {
 }
 
 class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
+    func payment(getName: String) {
+        print("Click")
+    }
+    
     func review() {
         let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
         present(reviewVC, animated: true, completion: nil)
     }
     
-    func payment(getName: String) {
-        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
-        navigationController?.pushViewController(next, animated: true)
-    }
+    
+//    func payment(getName: String) {
+//
+//        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+//        navigationController?.pushViewController(next, animated: true)
+//    }
     
     
     
@@ -69,6 +75,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     var vehicleSortedArray : [VehicleDetails] = []
     var vehicleDetailsList : [VehicleDetails] = []
     var selectedIndex : NSInteger! = nil
+    var clickedPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -274,6 +281,10 @@ print("Success")
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if carsArray[indexPath.section].opened == true {
+            
+          
+            
+            
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
             carsTableView.reloadSections(sections, with: .none)
@@ -307,6 +318,21 @@ print("Success")
             carsArray[indexPath.section].opened = true
             let sections = IndexSet.init(integer: indexPath.section)
             carsTableView.reloadSections(sections, with: .none)
+        }
+    }
+    
+    func usernameClicked(_ cell: CarModelsTableViewCell) {
+        if let indexPath = self.carsTableView.indexPath(for: cell) {
+            clickedPath = indexPath
+            print(clickedPath)
+            if let indexPath = clickedPath {
+                print(indexPath)
+                print("cell selected data: ",carsArray[indexPath.section].selectionData[indexPath.row - 1])
+                print(carsArray[indexPath.section])
+                
+            }
+//            let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+//            navigationController?.pushViewController(next, animated: true)
         }
     }
 }
