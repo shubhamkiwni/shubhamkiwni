@@ -87,7 +87,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var tripTypeMode: String = ""
 //    var finalArray : [ScheduleDate] = []
 //    var selectedArray : [ScheduleDate] = []
-    
+    var estimatedPriceList : [Double] = []
     var dictForScheduleDates: NSDictionary! = nil
     var vehicleDetailsList : [VehicleDetails] = []
     var finalArray : [VehicleDetails] = []
@@ -212,9 +212,9 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         var modelClassInfoSet :Set<ModelClassInfo> = []
+        
         for selectedVehicle in selectedVehicles {
-          let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
-            
+            let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
             modelClassInfoSet.insert(modelClassInfo)
         }
         var modelClassInfoList : [ModelClassInfo] = []
@@ -222,6 +222,18 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         for list in modelClassInfoSet {
             modelClassInfoList.append(list)
         }
+        
+        estimatedPriceList = []
+        
+        for selectedVehicle in selectedVehicles {
+            estimatedPriceList.append(round(selectedVehicle.price))
+        }
+        
+        print("estimatedPriceList Array : ", estimatedPriceList)
+        print("estimatedPriceList array count:", estimatedPriceList.count)
+        estimatedPriceList.sort()
+        print("estimatedPriceList sorted Array : ", estimatedPriceList)
+        print(estimatedPriceList.first, estimatedPriceList.last)
         
         print("selectedVehicles Array : ", modelClassInfoList)
         print("selectedVehicles array count:", modelClassInfoList.count)
@@ -231,8 +243,9 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.baseView.layer.borderColor = UIColor.lightGray.cgColor
         cell.carTypeLabel.text = keyArray[indexPath.row]
         cell.availabelStatus.text = "Availabel \(modelClassInfoList.count)"
-        cell.seaterLabel.text = "\(selectedVehicles[indexPath.row].vehicle?.capacity ?? 0)+1 Seater"
+        cell.seaterLabel.text = "\(selectedVehicles[indexPath.row].vehicle?.capacity ?? 0) + 1 Seater"
         cell.carTypeImage.image = UIImage(named: carImageArray[indexPath.row])
+        cell.priceLabel.text = "\(estimatedPriceList.first ?? 0) - \(estimatedPriceList.last ?? 0)"
         return cell
     }
     
@@ -248,11 +261,15 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         var modelClassInfoSet :Set<ModelClassInfo> = []
+        
         for selectedVehicle in selectedVehicles {
-          let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
+            let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
             
             modelClassInfoSet.insert(modelClassInfo)
         }
+        
+        
+        
         var modelClassInfoList : [ModelClassInfo] = []
         
         for list in modelClassInfoSet {

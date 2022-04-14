@@ -216,6 +216,19 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             }
             print("After selecting vehicle key value",vehicleSortedArray)
             print("After selecting vehicle key value.count",vehicleSortedArray.count)
+            
+            var estimatedPriceArr : [Double] = []
+            estimatedPriceArr.removeAll()
+            for pricevalue in vehicleSortedArray{
+                estimatedPriceArr.append(pricevalue.price)
+            }
+            estimatedPriceArr.sort()
+            print("estimatedPriceArr: ",estimatedPriceArr)
+            print("estimatedPriceArr.count: ",estimatedPriceArr.count)
+            
+            
+            let firstprice = String(round(estimatedPriceArr.first ?? 0))
+            let lastPrice = String(round(estimatedPriceArr.last ?? 0))
           
             carsArray[selectedIndex].selectionData = []
             
@@ -238,10 +251,10 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                                                                          estimatedPrice: vehicleSortedArray[i].price))
             }
             print("finalArray[selectedIndex]",carsArray[selectedIndex])
-            
-            
+ 
             cell.carTypeLabel.text = carsArray[indexPath.section].className
             cell.carNameLabel.text = carsArray[indexPath.section].modelName
+            cell.priceLabel.text = "\(firstprice) - \(lastPrice)"
             
             UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
             UserDefaults.standard.setValue(cell.carNameLabel.text, forKey: "modelName")

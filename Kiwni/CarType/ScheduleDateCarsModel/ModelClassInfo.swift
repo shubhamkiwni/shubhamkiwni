@@ -12,6 +12,7 @@ struct ModelClassInfo : Hashable {
     var className : String? = ""
     var opened: Bool = false
     var selectionData: [carDetails] = []
+//    var estimatedPrice : Double = 0
 }
 struct carDetails : Hashable{
     var regyear : String? = ""
@@ -30,6 +31,13 @@ struct carDetails : Hashable{
     var journeyEndTime: String? = ""
     var journeyTime: String? = ""
     var estimatedPrice: Double? = 0
+//    var carRates: [VehicalRates] = []
 }
 
+struct VehicalRates: Hashable {
+    let id : Int = 0
+    let serviceType : String = ""
+    let category : String = ""
+    let rate : Double = 0
+}
 

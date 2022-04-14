@@ -599,7 +599,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
-       
+        newDatePicker.date = Date()
         clearMap()
         if returnByDatePickerButton.isHidden == false {
             returnByDatePickerButton.isHidden = true
