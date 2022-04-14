@@ -1,5 +1,5 @@
 import Foundation
-struct Rates : Codable {
+struct Rates : Codable , Hashable {
 	let type : String
 	let id : Int
 	let serviceType : String

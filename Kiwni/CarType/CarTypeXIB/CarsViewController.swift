@@ -248,7 +248,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                                                                          toLocation: "",
                                                                          journeyEndTime: "",
                                                                          journeyTime: "",
-                                                                         estimatedPrice: vehicleSortedArray[i].price))
+                                                                         estimatedPrice: vehicleSortedArray[i].price, rate: vehicleSortedArray[i].vehicle?.rates ?? []))
             }
             print("finalArray[selectedIndex]",carsArray[selectedIndex])
  
@@ -293,9 +293,10 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 print("add another format")
             }
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
-//            seconCell.reviewButton.titleLabel?.font =  UIFont(name: "Review", size: 10)
-//            seconCell.bookButton.titleLabel?.font =  UIFont(name: "Book", size: 6)
-print("Success")
+            
+            let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
+            seconCell.fareLabel.text = priceString
+            
             return seconCell
         }
         
@@ -311,16 +312,10 @@ print("Success")
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if carsArray[indexPath.section].opened == true {
-            
-          
-            
-            
             carsArray[indexPath.section].opened = false
             let sections = IndexSet.init(integer: indexPath.section)
             carsTableView.reloadSections(sections, with: .none)
-           
         } else {
-            
             selectedIndex = indexPath.section
             
             if(carsArray.isEmpty == false){
@@ -341,7 +336,8 @@ print("Success")
             
             for i in 0 ..< vehicleSortedArray.count
             {
-                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name))
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name, rate:vehicleSortedArray[i].vehicle?.rates ?? []))
+                
             }
             print("finalArray[selectedIndex]",carsArray[selectedIndex])
             
@@ -363,6 +359,7 @@ print("Success")
             }
             let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
             next.selectedCarValue = carsArray[indexPath.section].selectionData[indexPath.row - 1]
+            next.strClasstype = carsArray[indexPath.section].className ?? ""
             navigationController?.pushViewController(next, animated: true)
         }
     }

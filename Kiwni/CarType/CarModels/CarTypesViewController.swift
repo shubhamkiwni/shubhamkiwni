@@ -87,7 +87,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var tripTypeMode: String = ""
 //    var finalArray : [ScheduleDate] = []
 //    var selectedArray : [ScheduleDate] = []
-    var estimatedPriceList : [Double] = []
+    
     var dictForScheduleDates: NSDictionary! = nil
     var vehicleDetailsList : [VehicleDetails] = []
     var finalArray : [VehicleDetails] = []
@@ -217,14 +217,10 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
             let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, selectionData: [])
             modelClassInfoSet.insert(modelClassInfo)
         }
-        var modelClassInfoList : [ModelClassInfo] = []
-        
-        for list in modelClassInfoSet {
-            modelClassInfoList.append(list)
-        }
-        
+       
+        var estimatedPriceList : [Double] = []
         estimatedPriceList = []
-        
+        estimatedPriceList.removeAll()
         for selectedVehicle in selectedVehicles {
             estimatedPriceList.append(round(selectedVehicle.price))
         }
@@ -234,6 +230,12 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         estimatedPriceList.sort()
         print("estimatedPriceList sorted Array : ", estimatedPriceList)
         print(estimatedPriceList.first, estimatedPriceList.last)
+       
+        var modelClassInfoList : [ModelClassInfo] = []
+        
+        for list in modelClassInfoSet {
+            modelClassInfoList.append(list)
+        }
         
         print("selectedVehicles Array : ", modelClassInfoList)
         print("selectedVehicles array count:", modelClassInfoList.count)

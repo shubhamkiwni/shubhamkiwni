@@ -16,8 +16,9 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     func click() {
         print("click")
     }
-    
     var selectedCarValue = carDetails()
+    var strClasstype: String = ""
+    var rateId: Int = 0
     
     var resultVar = ""
     @IBOutlet weak var bookingDetilsView: UIView!
@@ -63,6 +64,31 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         let inputstring =  dateFormatter.string(from: Date())
         self.reservationTime = inputstring.replacingOccurrences(of: "+0530", with: "Z")
         print("reservationTime:\(self.reservationTime!))")
+        
+//        let strServiceType = "one-way-outstation-ultra-luxury"
+        
+        let strServiceType : String = UserDefaults.standard.string(forKey:"serviceType") ?? ""
+        let strdirection :String  =  UserDefaults.standard.string(forKey:"direction") ?? ""
+       
+        let rateStr : String = "\(strdirection)-\(strServiceType)-\(strClasstype.lowercased())"
+        print("Rate Str : ", rateStr)
+        
+        var rateValueArray = selectedCarValue.rate
+        print(rateValueArray.count, rateValueArray)
+        
+        for i in  0 ..< rateValueArray.count{
+            if(rateStr == rateValueArray[i].serviceType){
+                print("Match found")
+                print(rateValueArray[i].serviceType)
+                print(rateValueArray[i].id)
+                rateId = rateValueArray[i].id
+                print(rateId)
+                
+            }else{
+                print("No Match found")
+            }
+        }
+        
     }
     
     
@@ -166,7 +192,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
             
             
-            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: 1)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: estimatedPrice, vehicleNo: vehicleNumb)
+            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: estimatedPrice, vehicleNo: vehicleNumb)
             print("resevation Model :\(reservationModelData)")
             
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
