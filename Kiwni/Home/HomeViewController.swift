@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var dropDateAndTime : String? = ""
     var strSelectedTime : String? = ""
     var startTime : String? = ""
-    var endTime : String? = ""
+    var journeyendTime : String? = ""
     var journeyDate : String? = ""
     var strDirection : String? = ""
     var strServiceType: String? = ""
@@ -184,6 +184,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var selectedTripType: String = ""
     var selectedTripTypeMode: String = ""
     
+    var myPickUpDateString : String? = ""
     var myDropDateString : String? = ""
     
     //MARK:- ViewDidLoad
@@ -320,38 +321,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func pickUpDatePickerButtonPressed(_ sender: UIButton) {
-        
+        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
+        timeFormatter.dateFormat = "yyyy-MM-dd"
+        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
+        print("myPickUpDateString : ",myPickUpDateString ?? "")
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {
-        
+        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "2"
-        timeFormatter.dateFormat = "yyyy-MM-dd"
-        myDropDateString = timeFormatter.string(from: newDatePicker.date)
-        print("myDropDateString : ",myDropDateString ?? "")
         
-        strDate = myDropDateString
-        print("Drop Date String : \(strDate!) ")
-        if( myPickerDateString != myDropDateString){
-           
-            let strDateTime = "\(strDate!) \("23:59")"
-            print("drop strDateTime : ", strDateTime)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            let dd = formatter.date(from: strDateTime)
-            print(dd ?? (Any).self)
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            self.endTime = formatter.string(from: dd!)
-            //print(dd!)
-           print("Drop Date Time : ", self.endTime)
-        }else{
-            //setTimeToPicker()
-//            print("Select drop date and time")
-            customErrorPopup("Select drop date and time")
-        }
     }
     
     @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
@@ -416,8 +398,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let after_add_time = formatter.string(from: addminutes)
                 print("after add time-->",after_add_time as Any)
                 let inputString = after_add_time
-                self.endTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
-                print("endTime : \(String(describing: self.endTime))")
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
                 
             } else if arr.count == 2
             {
@@ -430,8 +412,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let after_add_time  = formatter.string(from: addminutes)
                 print("after add time-->",after_add_time as Any)
                 let inputString = after_add_time
-                self.endTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
-                print("endTime : \(String(describing: self.endTime))")
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
                 
             } else if arr.count == 1
             {
@@ -444,23 +426,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("after add time-->",after_add_time as Any)
 
                 let inputString = after_add_time
-                self.endTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
-                print("endTime : \(String(describing: self.endTime))")
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
             }
         }
     }
     
     @objc func datePickerAction() {
-        print(newDatePicker.date)
+        
+        print("newDatePicker:",newDatePicker.date)
         let formatter = DateFormatter()
         
         formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: newDatePicker.date)
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
-            myPickerDateString = dateStr
-            strDate = myPickerDateString
-            print("myPickerDateString:", myPickerDateString)
+             
+            strDate = dateStr
+            print("myPickUpDateString:", strDate)
             
             
             if(currentDateString != myPickerDateString){
@@ -474,8 +457,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("After 12 AM Array data : ", self.arrSlots)
                 
                 strStartTime = ""
-                
-               
             }
             else{
                 setTimeToPicker()
@@ -483,6 +464,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else if datePickerTag == "2" {
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
+            strDate = dateStr
+            print("myReturnDateString:", strDate)
+            timeFormatter.dateFormat = "yyyy-MM-dd"
+            myDropDateString = timeFormatter.string(from: newDatePicker.date)
+            print("myDropDateString : ",myDropDateString ?? "")
+            
+            strDate = myDropDateString
+            print("Drop Date String : \(strDate!) ")
+            if( myPickerDateString != myDropDateString){
+               
+                let strDateTime = "\(strDate!) \("23:59")"
+                print("drop strDateTime : ", strDateTime)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                let dd = formatter.date(from: strDateTime)
+                print(dd ?? (Any).self)
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                self.journeyendTime = formatter.string(from: dd!)
+                //print(dd!)
+               print("Drop Date Time : ", self.journeyendTime)
+            }else{
+                //setTimeToPicker()
+    //            print("Select drop date and time")
+                customErrorPopup("Select drop date and time")
+            }
         }
         print("dateStr",dateStr)
         
@@ -703,10 +709,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             if(self.distanceValue != nil){
                 
-                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.endTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.startTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                 print("getAllProjectionAvailable: ",getAllProjectionAvailable)
                 UserDefaults.standard.setValue(self.startTime, forKey: "journeyTime")
-                UserDefaults.standard.setValue(self.endTime, forKey: "journeyEndTime")
+                UserDefaults.standard.setValue(self.journeyendTime, forKey: "journeyEndTime")
                 UserDefaults.standard.setValue(pickupcityName, forKey: "fromLocation")
                 UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
                 UserDefaults.standard.setValue("outstation", forKey: "serviceType")
