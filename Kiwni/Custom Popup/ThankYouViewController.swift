@@ -18,9 +18,25 @@ class ThankYouViewController: UIViewController {
     @IBOutlet weak var krnLabel: UILabel!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var okButton: UIButton!
+    var driverdetailsArray : [SocketReservationResponse] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SocketIOManager.sharedInstance.establishConnection()
+        
+        print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
+        
+        if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
+//            self.driverSchedulePopup.isHidden = true
+        }
+        else{
+//            self.driverSchedulePopup.isHidden = false
+            self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
+            print("Driver Details array : ", self.driverdetailsArray)
+            krnLabel.text = "KRN Number :\(String(self.driverdetailsArray[0].reservationId ?? 0))"
+        }
+           
+          
 
         CollectionViewDesignclass.viewDesign(thankYouView, cornerRadius: 10.0, color: UIColor.lightGray.cgColor, borderWidth: 0.0, maskCorner: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
 //        CollectionViewDesignclass.viewDesign(bookingDetailsView, cornerRadius: 0, color: UIColor.black.cgColor, borderWidth: 1)

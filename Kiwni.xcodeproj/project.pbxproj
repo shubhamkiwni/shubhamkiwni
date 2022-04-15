@@ -106,6 +106,12 @@
 		84398FB627BD07A8008C8782 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FB527BD07A8008C8782 /* ErrorMessage.swift */; };
 		84398FBB27BD0A22008C8782 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FBA27BD0A22008C8782 /* TimePicker.swift */; };
 		84398FBD27BD0A5B008C8782 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84398FBC27BD0A5B008C8782 /* TimeSlot.swift */; };
+		845137A328094DB300DFE0B0 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137A228094DB300DFE0B0 /* SocketIOManager.swift */; };
+		845137A528094E8A00DFE0B0 /* SocketReservationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137A428094E8A00DFE0B0 /* SocketReservationResponse.swift */; };
+		845137A728094EAB00DFE0B0 /* SocketCreatedByparty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137A628094EAB00DFE0B0 /* SocketCreatedByparty.swift */; };
+		845137A928094ECA00DFE0B0 /* SocketDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137A828094ECA00DFE0B0 /* SocketDriver.swift */; };
+		845137AB28094EE900DFE0B0 /* SocketPassenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137AA28094EE900DFE0B0 /* SocketPassenger.swift */; };
+		845137AD28094F0500DFE0B0 /* SocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137AC28094F0500DFE0B0 /* SocketProvider.swift */; };
 		846C8D6C28043A79003D4FFA /* ModelClassInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C8D6B28043A79003D4FFA /* ModelClassInfo.swift */; };
 		846C8D7128043B22003D4FFA /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C8D6D28043B20003D4FFA /* Rates.swift */; };
 		846C8D7228043B22003D4FFA /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C8D6E28043B21003D4FFA /* Vehicle.swift */; };
@@ -253,6 +259,12 @@
 		84398FB527BD07A8008C8782 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		84398FBA27BD0A22008C8782 /* TimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		84398FBC27BD0A5B008C8782 /* TimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		845137A228094DB300DFE0B0 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketIOManager.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketIOManager.swift; sourceTree = SOURCE_ROOT; };
+		845137A428094E8A00DFE0B0 /* SocketReservationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketReservationResponse.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketReservationResponse.swift; sourceTree = SOURCE_ROOT; };
+		845137A628094EAB00DFE0B0 /* SocketCreatedByparty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketCreatedByparty.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketCreatedByparty.swift; sourceTree = SOURCE_ROOT; };
+		845137A828094ECA00DFE0B0 /* SocketDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketDriver.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketDriver.swift; sourceTree = SOURCE_ROOT; };
+		845137AA28094EE900DFE0B0 /* SocketPassenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketPassenger.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketPassenger.swift; sourceTree = SOURCE_ROOT; };
+		845137AC28094F0500DFE0B0 /* SocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketProvider.swift; path = Kiwni/CarType/ScheduleDateCarsModel/SocketProvider.swift; sourceTree = SOURCE_ROOT; };
 		846C8D6B28043A79003D4FFA /* ModelClassInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelClassInfo.swift; sourceTree = "<group>"; };
 		846C8D6D28043B20003D4FFA /* Rates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
 		846C8D6E28043B21003D4FFA /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -665,6 +677,12 @@
 		84398FB127BD075B008C8782 /* SocketManager */ = {
 			isa = PBXGroup;
 			children = (
+				845137A228094DB300DFE0B0 /* SocketIOManager.swift */,
+				845137A428094E8A00DFE0B0 /* SocketReservationResponse.swift */,
+				845137A628094EAB00DFE0B0 /* SocketCreatedByparty.swift */,
+				845137A828094ECA00DFE0B0 /* SocketDriver.swift */,
+				845137AA28094EE900DFE0B0 /* SocketPassenger.swift */,
+				845137AC28094F0500DFE0B0 /* SocketProvider.swift */,
 			);
 			path = SocketManager;
 			sourceTree = "<group>";
@@ -1025,6 +1043,7 @@
 				7AF91F2027C605D70023B399 /* CollectionViewDesign.swift in Sources */,
 				8412703B27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift in Sources */,
 				7A35B40F2799292E00E0CFAE /* HomeViewController.swift in Sources */,
+				845137A728094EAB00DFE0B0 /* SocketCreatedByparty.swift in Sources */,
 				7AF91F2627C61FAA0023B399 /* PaymentViewController.swift in Sources */,
 				7A170E8A27CF66B000B0BE66 /* API.swift in Sources */,
 				846C8D7228043B22003D4FFA /* Vehicle.swift in Sources */,
@@ -1035,9 +1054,11 @@
 				7AF91F2427C60B0A0023B399 /* ThankYouViewController.swift in Sources */,
 				7A5E735C2806EA9200ACA10D /* FirebaseResponsePayload.swift in Sources */,
 				846C8D7428043B22003D4FFA /* Provider.swift in Sources */,
+				845137AD28094F0500DFE0B0 /* SocketProvider.swift in Sources */,
 				7AF91F1D27C605BD0023B399 /* confirmBookingXIB.swift in Sources */,
 				7A686F4827AAB2E900DFF9A3 /* SupportViewController.swift in Sources */,
 				7A41AE3927ABE68A0067BD3C /* OffersTableViewCell.swift in Sources */,
+				845137A328094DB300DFE0B0 /* SocketIOManager.swift in Sources */,
 				8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */,
 				7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */,
 				7AE5A33C27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift in Sources */,
@@ -1064,8 +1085,10 @@
 				7A170E8627CF669200B0BE66 /* DBHelper.swift in Sources */,
 				7A5FCD0A27ACF2A5004F9DC3 /* CustomPopupView.swift in Sources */,
 				7A170E8327CF667000B0BE66 /* Driver.swift in Sources */,
+				845137A528094E8A00DFE0B0 /* SocketReservationResponse.swift in Sources */,
 				7A41AE3427ABAF9C0067BD3C /* DesignExtension.swift in Sources */,
 				7AE5A33E27C4ADD800C1E5D4 /* HoursPackage2.swift in Sources */,
+				845137AB28094EE900DFE0B0 /* SocketPassenger.swift in Sources */,
 				7A2DA04527BA5C4400490E5B /* BookingDetailsViewController.swift in Sources */,
 				84398FB427BD0790008C8782 /* WebConstant.swift in Sources */,
 				7A35B40B2799292E00E0CFAE /* AppDelegate.swift in Sources */,
@@ -1102,6 +1125,7 @@
 				7A81B04427BB86F10070E1D7 /* PaymentModeViewController.swift in Sources */,
 				7A745F1328056388008B4621 /* ReviewViewController.swift in Sources */,
 				7A170E7227CF4AA500B0BE66 /* RulesTableViewCell.swift in Sources */,
+				845137A928094ECA00DFE0B0 /* SocketDriver.swift in Sources */,
 				7A170E8F27CF89E900B0BE66 /* DateFormattingHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

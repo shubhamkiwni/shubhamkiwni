@@ -14,6 +14,7 @@ target 'Kiwni' do
   pod 'Firebase/Core'
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'DropDown'
+  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
   target 'KiwniTests' do
     inherit! :search_paths
     # Pods for testing

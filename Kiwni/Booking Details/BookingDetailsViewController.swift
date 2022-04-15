@@ -75,11 +75,11 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
         confXIB.rideFareAmountLabel.text = String(round(selectedCarValue.estimatedPrice ?? 0))
-        confXIB.applyCoupnLabel.text = "0"
+        confXIB.applyCoupenAmountLabel.text = "0"
         
         strGST = (round(selectedCarValue.estimatedPrice ?? 0) * 0.05)
         print("strGST:", strGST)
-        confXIB.gstAmountLabel.text = String(strGST ?? 0)
+        confXIB.gstAmountLabel.text = String(round(strGST ?? 0))
         
         strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
         print("strTotalFare:", strTotalFare)

@@ -16,7 +16,7 @@ var dateTag: Int = 0
 var rentalTag: Int = 0
 var timeTag: Int = 0
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GMSMapViewDelegate, dropOnlocateSearchdelegate, UITextFieldDelegate, pickupOnlocateSearchdelegate  {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GMSMapViewDelegate, dropOnlocateSearchdelegate, UITextFieldDelegate, pickupOnlocateSearchdelegate,getReservationDetails {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tripTypeCollectionView: UICollectionView!
@@ -83,6 +83,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var dictForScheduleDates: NSDictionary! = nil
 
+    
+    @IBOutlet weak var driverSchedulePopup : UIView!
+    
+    @IBOutlet weak var krnNumLabel: UILabel!
+    @IBOutlet weak var onewaytripLabel: UILabel!
+    @IBOutlet weak var driverImageView: UIImageView!
+    @IBOutlet weak var estimatedFareValueLabel: UILabel!
+    @IBOutlet weak var estimateFareLabel : UILabel!
+    @IBOutlet weak var rideScheduleLabel: UILabel!
+    @IBOutlet weak var scheduledateLabel: UILabel!
+    @IBOutlet weak var drivercontactLabel : UILabel!
+    @IBOutlet weak var seperatorLabel : UILabel!
+    @IBOutlet weak var drivervehiclevalueLabel : UILabel!
+    @IBOutlet weak var drivernameLabel : UILabel!
+    @IBOutlet weak var driverOTPLabel : UILabel!
+    @IBOutlet weak var doneButton : UIButton!
+    
     
     private struct MapPath : Decodable{
         var routes : [Route]?
@@ -186,10 +203,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var myPickUpDateString : String? = ""
     var myDropDateString : String? = ""
+    var driverdetailsArray : [SocketReservationResponse] = []
+    var imageurlString : String! = ""
+    var selectedService : String! = ""
     
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(self.driverSchedulePopup)
+        self.driverSchedulePopup.addSubview(doneButton)
+        
+        SocketIOManager.sharedInstance.establishConnection()
+        self.driverSchedulePopup.isHidden = true
         
         pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
         pickUpDatePickerButton.titleLabel!.minimumScaleFactor = 0.5
@@ -311,6 +336,78 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         strDirection = "two-way"
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        SocketIOManager.sharedInstance.establishConnection()
+        print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
+        
+        if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
+//            self.driverSchedulePopup.isHidden = true
+        }
+        else{
+//            self.driverSchedulePopup.isHidden = false
+            self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
+            print("Driver Details array : ", self.driverdetailsArray)
+           
+           let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
+            let substring:String = drivernameString.components(separatedBy: " ")[0]
+            drivernameLabel.text = substring
+            
+            let dataDecoded:NSData = NSData(base64Encoded:  self.driverdetailsArray[0].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
+            let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
+            print("OTP after decoding: ", decodedString)
+            driverOTPLabel.text = "OTP:\(decodedString)"
+            
+           // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
+            let startTime = self.driverdetailsArray[0].startTime ?? ""
+            
+            if let myDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
+            {
+                print("myDate: ", myDate)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                formatter.timeZone = TimeZone(identifier: "UTC")
+                let myString = formatter.string(from: myDate)
+                let yourDate: Date? = formatter.date(from: myString)
+                formatter.dateFormat = "yyyy-MM-dd"
+                let dateStr = formatter.string(from: yourDate!)
+                print("dateStr : ", dateStr)
+                
+                formatter.dateFormat = "hh:mm a"
+                let timeStr = formatter.string(from: yourDate!)
+                print("timeStr : ", timeStr)
+                scheduledateLabel.text = "\(dateStr), \(timeStr)"
+                print("Str time from popup : ","\(dateStr), \(timeStr)" )
+            } else {
+                print("add another format")
+            }
+        
+            
+            let imageString : String
+            imageString = self.driverdetailsArray[0].driverImageUrl ?? ""
+            print("imageString : \(imageString)")
+            
+            imageurlString  = "\(imageString)"
+           print("UrlString : \(imageurlString)")
+           //cell.carImageView.image = UIImage(contentsOfFile: urlString)
+//           if let url = URL(string:imageurlString){
+//               driverImageView.load(url: url)
+//             }
+            
+            drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
+            drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
+            estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
+            onewaytripLabel.text = "\(driverdetailsArray[0].serviceType ?? "")" + "To" +  "\(driverdetailsArray[0].endlocationCity ?? "")"
+            krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
+            
+        }
+        
+    }
+    
+    @IBAction func doneButonClicked(_ sender: UIButton) {
+        print("Done Butoon Pressed")
+        self.driverSchedulePopup.isHidden = true
     }
     
     @objc func dismissBlurView(gesture: UITapGestureRecognizer){
@@ -1612,6 +1709,10 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
         }
         
         //self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getReservationDataArray(info: NSArray) {
+        print("Array Info: ", info)
     }
 }
 extension UITextField {
