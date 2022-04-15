@@ -8,8 +8,22 @@
 import UIKit
 
 class BookingDetailsViewController: UITableViewController, openPopUp {
+    
+    var companyNameString: String? = ""
+    var companyEmailString: String? = ""
+    var companyMobileNoString: String? = ""
+    
     func openPopUp() {
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BusinessDetaisViewController") as! BusinessDetaisViewController
+        VC.callBack = { (companyNameVar: String, companyEmailVar: String, companyNumberVar: String) in
+            print("Details:",companyNameVar,companyEmailVar,companyNumberVar)
+            self.companyNameString = companyNameVar
+            self.companyEmailString = companyEmailVar
+            self.companyMobileNoString = companyNumberVar
+            self.confXIB.companyNameValueLabel.text = self.companyNameString
+            self.confXIB.companyEmailValueLabel.text = self.companyEmailString
+            self.confXIB.companyPhoneValueLabel.text = self.companyMobileNoString
+                    }
         navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -19,7 +33,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     var selectedCarValue = carDetails()
     var strClasstype: String = ""
     var rateId: Int = 0
-    
+    var strGST: Double? = 0
+    var strTotalFare: Double? = 0
     var resultVar = ""
     @IBOutlet weak var bookingDetilsView: UIView!
     @IBOutlet weak var safetyComView: UIView!
@@ -59,6 +74,17 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.isHidden = true
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
+        confXIB.rideFareAmountLabel.text = String(round(selectedCarValue.estimatedPrice ?? 0))
+        confXIB.applyCoupnLabel.text = "0"
+        
+        strGST = (round(selectedCarValue.estimatedPrice ?? 0) * 0.05)
+        print("strGST:", strGST)
+        confXIB.gstAmountLabel.text = String(strGST ?? 0)
+        
+        strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
+        print("strTotalFare:", strTotalFare)
+        confXIB.totalAmountALble.text = String(strTotalFare ?? 0)
+        
         dateFormatter.locale = Locale(identifier: "IST")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let inputstring =  dateFormatter.string(from: Date())
@@ -176,6 +202,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             
             let estimatedPrice : Double
             estimatedPrice = round(selectedCarValue.estimatedPrice ?? 0)
+            
             print("Estimated price:\(estimatedPrice)")
             
             let providerName : String = (self.selectedCarValue.providername) ?? ""
@@ -192,7 +219,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
             
             
-            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: estimatedPrice, vehicleNo: vehicleNumb)
+            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb)
             print("resevation Model :\(reservationModelData)")
             
             self.showIndicator(withTitle: "Loading", and: "Please Wait")

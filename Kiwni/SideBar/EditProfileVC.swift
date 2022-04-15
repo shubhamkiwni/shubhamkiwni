@@ -45,6 +45,10 @@ class EditProfileVC: UIViewController {
         emailEditButton.setTitle("", for: .normal)
         emergencyNumberEditButton.setTitle("", for: .normal)
         
+        self.userNameLabel.text =  UserDefaults.standard.string(forKey: "displayName")
+        self.userMailLabel.text = UserDefaults.standard.string(forKey: "email")
+        self.userMobileNumberLabel.text = UserDefaults.standard.string(forKey: "phoneNumber")
+        
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

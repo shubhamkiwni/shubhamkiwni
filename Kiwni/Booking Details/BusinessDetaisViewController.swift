@@ -19,7 +19,7 @@ class BusinessDetaisViewController: UIViewController {
     @IBOutlet weak var companyEmailsTextField: UITextField!
     @IBOutlet weak var phoneNoTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
-    
+    var callBack: ((_ companyNameVar: String, _ companyEmailVar: String, _ companyNumberVar: String)-> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()        
         
@@ -35,10 +35,8 @@ class BusinessDetaisViewController: UIViewController {
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         
-        UserDefaults.standard.setValue(companyNameTextField.text, forKey: "companyName")
-        UserDefaults.standard.setValue(companyEmailsTextField.text, forKey: "companyEmail")
-        UserDefaults.standard.setValue(phoneNoTextField.text, forKey: "companyPhoneNo")
-        print(companyNameTextField.text, companyEmailsTextField.text, phoneNoTextField.text)
+        
+        callBack?(companyNameTextField.text ?? "",companyEmailsTextField.text ?? "",phoneNoTextField.text ?? "")
         
         navigationController?.popViewController(animated: true)
     }

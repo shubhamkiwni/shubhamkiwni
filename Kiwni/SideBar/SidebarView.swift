@@ -56,7 +56,8 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.clipsToBounds=true
-        let name = "Shubham Shinde"
+        let name = UserDefaults.standard.string(forKey: "displayName") ?? ""
+                
         titleArr = ["\(name)", "My Rides", "Payment", "Offers", "Safty", "FAQs", "Feedback", "Share App", "Refer & Earn", "Support", "About"]
 //        imageArray = ["11","11","11","11","11","11","11","11","11","11", "11"]
         setupViews()
@@ -100,7 +101,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cellLbl2 = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-(-5), width: 200, height: 20))
             print(cell.frame.height/2+50)
             cell.addSubview(cellLbl2)
-            cellLbl2.text = "8308628266"
+            cellLbl2.text = UserDefaults.standard.string(forKey: "phoneNumber")
             cellLbl2.font=UIFont.systemFont(ofSize: 12)
             cellLbl2.textColor=UIColor.black
         } else {
