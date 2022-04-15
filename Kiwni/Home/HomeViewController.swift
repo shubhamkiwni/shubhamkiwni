@@ -418,7 +418,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func pickUpDatePickerButtonPressed(_ sender: UIButton) {
-        newDatePicker.date = Date()
+//        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
 //        timeFormatter.dateFormat = "yyyy-MM-dd"
@@ -427,7 +427,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {
-        newDatePicker.date = Date()
+//        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "2"
         
@@ -536,12 +536,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: newDatePicker.date)
+    
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
              
             strDate = dateStr
             print("myPickUpDateString:", strDate)
-            
+            myPickerDateString = strDate
             
             if(currentDateString != myPickerDateString){
                 self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
@@ -763,6 +764,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             let newdateformatter = DateFormatter()
             newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
+            
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
                 print("confirm Button startTime : ", strStartTime)
@@ -773,13 +775,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("self.startTime on confirm button clicked:", self.startTime ?? "")
             } else {
                 print("confirm Button startTime : ", strStartTime)
+//                let newdate = String(self.myPickerDateString! + " " + strStartTime)
+//                print("newselectedDateString: ", newdate)
+//
+//
+//                let datevalue = newdateformatter.date(from: newdate)
+//                print(datevalue ?? (Any).self)
+//
+//                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+//                self.startTime = newdateformatter.string(from: datevalue!)
+//                print("self.startTime on confirm button clicked:", self.startTime ?? "")
+//
+                
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 print("newDateString: ", newDateString)
-                
-                let datevalue = newdateformatter.date(from: newDateString)
-                print(datevalue ?? (Any).self)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
-                self.startTime = newdateformatter.string(from: datevalue!)
+                self.startTime = newdateformatter.string(from: newdate)
                 print("self.startTime on confirm button clicked:", self.startTime ?? "")
             }
             
