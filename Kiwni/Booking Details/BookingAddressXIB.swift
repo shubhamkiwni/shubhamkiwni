@@ -59,10 +59,10 @@ class BookingAddressXIB: UIView {
             
             formatter.dateFormat = "EEE, dd MMM"
             let dateStr = formatter.string(from: date)
-            print(dateStr) //add dateStr to your dateLabel here...
+            print("Booking Details dateStr:",dateStr) //add dateStr to your dateLabel here...
             
-            self.dateLabel.text = "Date :\(dateStr)"
-            self.timeLabel.text = "Time :\(timeStr)"
+            self.dateLabel.text = "\(dateStr)"
+            self.timeLabel.text = "\(timeStr)"
             print("Date Label in booking details: ",self.dateLabel.text)
             print("Time Label in booking details: ",self.timeLabel.text)
         }
@@ -78,7 +78,7 @@ class BookingAddressXIB: UIView {
         self.sourceLabel.text = UserDefaults.standard.string(forKey: "SourceAddress")
         self.destinationLabel.text = UserDefaults.standard.string(forKey: "DestinationAddress")
         self.serviceTypeLabel.text = UserDefaults.standard.string(forKey: "tripType")
-        self.dateLabel.text = UserDefaults.standard.string(forKey: "journeyTime")
+//        self.dateLabel.text = UserDefaults.standard.string(forKey: "journeyTime")
         self.estKMValueLabel.text = UserDefaults.standard.string(forKey: "distance")
         self.carNameLabel.text = UserDefaults.standard.string(forKey: "modelName")
         self.carTypeLabel.text = UserDefaults.standard.string(forKey: "classType")

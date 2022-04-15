@@ -247,7 +247,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.availabelStatus.text = "Availabel \(modelClassInfoList.count)"
         cell.seaterLabel.text = "\(selectedVehicles[indexPath.row].vehicle?.capacity ?? 0) + 1 Seater"
         cell.carTypeImage.image = UIImage(named: carImageArray[indexPath.row])
-        cell.priceLabel.text = "\(estimatedPriceList.first ?? 0) - \(estimatedPriceList.last ?? 0)"
+        cell.priceLabel.text = "₹ \(estimatedPriceList.first ?? 0) - \(estimatedPriceList.last ?? 0)"
         return cell
     }
     

@@ -421,9 +421,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
-        timeFormatter.dateFormat = "yyyy-MM-dd"
-        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
-        print("myPickUpDateString : ",myPickUpDateString ?? "")
+//        timeFormatter.dateFormat = "yyyy-MM-dd"
+//        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
+//        print("myPickUpDateString : ",myPickUpDateString ?? "")
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {

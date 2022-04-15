@@ -254,7 +254,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
  
             cell.carTypeLabel.text = carsArray[indexPath.section].className
             cell.carNameLabel.text = carsArray[indexPath.section].modelName
-            cell.priceLabel.text = "\(firstprice) - \(lastPrice)"
+            cell.priceLabel.text = "₹ \(firstprice) - \(lastPrice)"
             
             UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
             UserDefaults.standard.setValue(cell.carNameLabel.text, forKey: "modelName")
@@ -295,7 +295,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
             
             let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
-            seconCell.fareLabel.text = priceString
+            seconCell.fareLabel.text = "₹ \(priceString)"
             
             return seconCell
         }
