@@ -779,18 +779,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("self.startTime on confirm button clicked in view cab:", self.journeystartTime ?? "")
             } else {
                 print("confirm Button startTime : ", strStartTime)
-//                let newdate = String(self.myPickerDateString! + " " + strStartTime)
-//                print("newselectedDateString: ", newdate)
-//
-//
-//                let datevalue = newdateformatter.date(from: newdate)
-//                print(datevalue ?? (Any).self)
-//
-//                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
-//                self.startTime = newdateformatter.string(from: datevalue!)
-//                print("self.startTime on confirm button clicked:", self.startTime ?? "")
-//
-                
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 print("newDateString: ", newDateString)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
@@ -799,8 +787,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 selecteddateformatter.dateFormat = "YYYY EEE, MMM dd hh:mm a"
                 
                 let currentDate = NSDate()
-                   let newFormatter = DateFormatter()
-                   newFormatter.dateFormat = "YYYY"
+                let newFormatter = DateFormatter()
+                newFormatter.dateFormat = "YYYY"
 
                 let YearString = newFormatter.string(from: currentDate as Date)
                 let newselectedDateString = String(YearString + " " + newDateString)
