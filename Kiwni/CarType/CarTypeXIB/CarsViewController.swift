@@ -62,7 +62,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
     @IBOutlet weak var callButton: UIButton!
     
-   
+    @IBOutlet weak var estimatedKmLabel: UILabel!
+    
     var tableViewData = [VehicleDetails]()
 //    var tableViewData = [cellData]()
     var carTypeString = ""
@@ -77,8 +78,34 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     var selectedIndex : NSInteger! = nil
     var clickedPath: IndexPath? = nil
     
+    var estimatedKM : Double = 0
+    var pickUpCityName: String = ""
+    var dropCityName: String = ""
+    var pickUpOnDate: String = ""
+    var returnByDate: String = ""
+    var pickUpOnTime: String = ""
+    var tripType: String = ""
+    var tripTypeMode: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        estimatedKmLabel.text = "Est.Km - \((UserDefaults.standard.string(forKey: "distance")) ?? "")km "
+
+        pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
+        dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
+        
+        tripLabel.text = "\(pickUpCityName) To \(dropCityName)"
+        dateLabel.text = UserDefaults.standard.string(forKey: "pickupDate") ?? ""
+        timeLabel.text = UserDefaults.standard.string(forKey: "pickupTime") ?? ""
+        tripTypeLabel.text = UserDefaults.standard.string(forKey: "tripType") ?? ""
+//        UserDefaults.standard.setValue(tripTypeLabel.text, forKey: "tripType")
+//        print(pickedSourceCoordinate as Any, pickedDropCoordinate as Any)
+        print(pickUpCityName, dropCityName)
+        print(pickUpOnDate, returnByDate)
+        print(pickUpOnTime)
+        print(tripType)
+        
 
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         

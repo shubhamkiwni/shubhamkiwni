@@ -850,12 +850,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             
                             carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
                             carTypeVc.pickedDropCoordinate = self.destinationCoordinate
-                            carTypeVc.estimatedKM = self.estimatedDurationInTraffic
+                            carTypeVc.estimatedKM = self.distanceValue
                             carTypeVc.pickUpCityName = self.pickupcityName ?? ""
                             carTypeVc.dropCityName = self.destinationcityName ?? ""
-                            carTypeVc.pickUpOnDate = self.pickUpDatePickerButton.titleLabel?.text ?? ""
+                            carTypeVc.pickUpOnDate = self.myPickerDateString ?? "" //self.pickUpDatePickerButton.titleLabel?.text ?? ""
                             carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
-                            carTypeVc.pickUpOnTime = self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
+                            carTypeVc.pickUpOnTime = self.strStartTime //self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
                             carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
                            
                             if self.selectedTripType == "" {

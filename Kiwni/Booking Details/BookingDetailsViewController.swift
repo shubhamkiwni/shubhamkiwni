@@ -74,16 +74,16 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.isHidden = true
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
-        confXIB.rideFareAmountLabel.text = String(round(selectedCarValue.estimatedPrice ?? 0))
+        confXIB.rideFareAmountLabel.text = "Rs.\(String(round(selectedCarValue.estimatedPrice ?? 0)))" 
         confXIB.applyCoupenAmountLabel.text = "0"
         
-        strGST = (round(selectedCarValue.estimatedPrice ?? 0) * 0.05)
+        strGST = ((round(selectedCarValue.estimatedPrice ?? 0) * 0.05))
         print("strGST:", strGST)
-        confXIB.gstAmountLabel.text = String(round(strGST ?? 0))
+        confXIB.gstAmountLabel.text = "Rs.\(String(round(strGST ?? 0)))"
         
         strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
         print("strTotalFare:", strTotalFare)
-        confXIB.totalAmountALble.text = String(strTotalFare ?? 0)
+        confXIB.totalAmountALble.text = "Rs.\(String(strTotalFare ?? 0))"
         
         dateFormatter.locale = Locale(identifier: "IST")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

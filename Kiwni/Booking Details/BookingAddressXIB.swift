@@ -79,7 +79,7 @@ class BookingAddressXIB: UIView {
         self.destinationLabel.text = UserDefaults.standard.string(forKey: "DestinationAddress")
         self.serviceTypeLabel.text = UserDefaults.standard.string(forKey: "tripType")
 //        self.dateLabel.text = UserDefaults.standard.string(forKey: "journeyTime")
-        self.estKMValueLabel.text = UserDefaults.standard.string(forKey: "distance")
+        self.estKMValueLabel.text = "Est.Km -\((UserDefaults.standard.string(forKey: "distance")) ?? "")km "
         self.carNameLabel.text = UserDefaults.standard.string(forKey: "modelName")
         self.carTypeLabel.text = UserDefaults.standard.string(forKey: "classType")
         

@@ -2168,6 +2168,7 @@
                         <outlet property="carsTableView" destination="xUq-01-3hC" id="Xlx-ub-nRL"/>
                         <outlet property="dateLabel" destination="ybG-xN-vCp" id="Dzh-rS-nLZ"/>
                         <outlet property="detailsView" destination="Itk-b2-R3H" id="twU-Ly-b88"/>
+                        <outlet property="estimatedKmLabel" destination="J6b-BK-AX5" id="9BE-Db-7Eb"/>
                         <outlet property="hoursPackegeCollectionView" destination="a8P-ux-vNp" id="6dd-LQ-VCM"/>
                         <outlet property="luggageCapasityLabel" destination="bhN-07-V55" id="vhd-ts-vle"/>
                         <outlet property="navigationView" destination="R8v-P0-fD5" id="dGa-ew-FwY"/>

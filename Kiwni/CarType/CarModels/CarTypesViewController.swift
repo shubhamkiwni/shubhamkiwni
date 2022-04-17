@@ -77,7 +77,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedPickUpAddress: String = ""
     var selectedDropAddress: String = ""
     
-    var estimatedKM : Int = 0
+    var estimatedKM : Double = 0
     var pickUpCityName: String = ""
     var dropCityName: String = ""
     var pickUpOnDate: String = ""
@@ -99,12 +99,18 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         print(estimatedKM)
 //        print("dictForScheduleDates:",dictForScheduleDates)
-        estKMLabel.text = "Est. km \(estimatedKM)KM"
+        estKMLabel.text = "Est.km -\(estimatedKM)km"
+
+        pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
+        dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
+        
         tripVenueLabel.text = "\(pickUpCityName) To \(dropCityName)"
         dateLabel.text = pickUpOnDate
         timeLabel.text = pickUpOnTime
         tripTypeLabel.text = "\(tripType) (\(tripTypeMode))"
         UserDefaults.standard.setValue(tripTypeLabel.text, forKey: "tripType")
+        UserDefaults.standard.setValue(dateLabel.text, forKey: "pickupDate")
+        UserDefaults.standard.setValue(timeLabel.text, forKey: "pickupTime")
         print(pickedSourceCoordinate as Any, pickedDropCoordinate as Any)
         print(pickUpCityName, dropCityName)
         print(pickUpOnDate, returnByDate)
