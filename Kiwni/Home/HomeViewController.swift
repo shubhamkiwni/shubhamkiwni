@@ -541,9 +541,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
              
             strDate = dateStr
-            print("strDate myPickUpDateString:", strDate)
+            print("strDate ", strDate)
             myPickerDateString = strDate
-            
+            print("myPickerDateString: ", myPickerDateString)
             if(currentDateString != myPickerDateString){
                 self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
                 print("Set Successfully")
@@ -768,11 +768,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
                 print("confirm Button startTime : ", strStartTime)
+                
+                
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
-                print("newDateString: ", newDateString)
+                print("newDateString in view cab: ", newDateString)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+                
+                print("newdatein view cab: ", newdate)
                 self.journeystartTime = newdateformatter.string(from: newdate)
-                print("self.startTime on confirm button clicked:", self.journeystartTime ?? "")
+                print("self.startTime on confirm button clicked in view cab:", self.journeystartTime ?? "")
             } else {
                 print("confirm Button startTime : ", strStartTime)
 //                let newdate = String(self.myPickerDateString! + " " + strStartTime)
@@ -790,15 +794,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 print("newDateString: ", newDateString)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
-                self.journeystartTime = newdateformatter.string(from: newdate)
+                
+                let selecteddateformatter = DateFormatter()
+                selecteddateformatter.dateFormat = "YYYY EEE, MMM dd hh:mm a"
+                
+                let currentDate = NSDate()
+                   let newFormatter = DateFormatter()
+                   newFormatter.dateFormat = "YYYY"
+
+                let YearString = newFormatter.string(from: currentDate as Date)
+                let newselectedDateString = String(YearString + " " + newDateString)
+                let selecteddate = selecteddateformatter.date(from: newselectedDateString)
+                print("Date after adding year:", selecteddate)
+                
+                self.journeystartTime = newdateformatter.string(from: selecteddate!)
                 print("self.startTime on confirm button clicked:", self.journeystartTime ?? "")
             }
             
-//            if(roundTripButton.titleLabel?.text == "ROUND TRIP"){
-//                strDirection = "two-way"
-//            }else  if(oneWayButton.titleLabel?.text == "ONE WAY") {
-//                strDirection = "one-way"
-//            }
             if(strDirection == "one-way"){
                 calculateEndTime(startTime: self.journeystartTime! as NSString)
             }

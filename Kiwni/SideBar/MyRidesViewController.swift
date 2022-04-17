@@ -50,6 +50,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 switch response{
                 case .success(let responseArray):
                     print("User Success on ViewController")
+                    self.hideIndicator()
                     self.passData.append(contentsOf: responseArray)
                     print(self.passData.count)
                     
@@ -63,7 +64,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     }
                     
                     self.persons = self.db.read()
-                    self.strTripType = "Upcoming"
+                    self.strTripType = "Past" //"Upcoming"
                     self.tripsTableView.reloadData()
                     print("Count:",self.persons.count)
 //                    print("Data:", self.persons[0].id)
@@ -71,6 +72,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     print("User Success on ViewController")
                     
                 case .failure(let err) :
+                    self.hideIndicator()
                     print(err.localizedDescription)
                     print("User Fail on ViewController")
                 }
@@ -92,8 +94,8 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         print("upcomingButtonPressed")
         
         strTripType = "Upcoming"
-        tripsTableView.reloadData()
-        
+       // tripsTableView.reloadData()
+        customErrorPopup("No Upcoming Trip found.")
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
         pastButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
         
@@ -110,7 +112,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
 extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(strTripType == "Upcoming"){
-            return tripsArray.count
+            return 0 //tripsArray.count
         }else{
             return persons.count
         }
@@ -130,7 +132,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.sourceLable.text = persons[indexPath.row].startLocationCity
             cell.destinationLable.text = persons[indexPath.row].endlocationCity
             cell.tripTypelable.text = persons[indexPath.row].serviceType
-            cell.fareAmount.text = String(persons[indexPath.row].estimatedPrice)
+            cell.fareAmount.text = "Rs. \(String(persons[indexPath.row].estimatedPrice))"
             cell.tripStatusLable.text = persons[indexPath.row].status
             let startTime = persons[indexPath.row].startTime
             print("Table Start Time : ", startTime)
