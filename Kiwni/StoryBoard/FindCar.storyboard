@@ -1627,63 +1627,58 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="j1i-rD-ib2">
-                                                <rect key="frame" x="10" y="28" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="0Hu-Cz-w9m"/>
-                                                    <constraint firstAttribute="width" constant="25" id="SjB-hX-fl8"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-L3-oDg">
-                                                <rect key="frame" x="142.5" y="28" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="DZx-pi-NmY"/>
-                                                    <constraint firstAttribute="width" constant="25" id="LOP-aK-bSf"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybG-xN-vCp">
-                                                <rect key="frame" x="40" y="33" width="92.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IM-sO-QLZ">
-                                                <rect key="frame" x="172.5" y="33" width="54.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="estimated_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HP0-nX-fW6">
-                                                <rect key="frame" x="237" y="28" width="25" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="TLe-kN-iso"/>
-                                                    <constraint firstAttribute="height" constant="25" id="uS3-9M-gJh"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6b-BK-AX5">
-                                                <rect key="frame" x="267" y="33" width="83" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-yZ-9wl">
+                                                <rect key="frame" x="7.5" y="28" width="340" height="25"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="j1i-rD-ib2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="0Hu-Cz-w9m"/>
+                                                            <constraint firstAttribute="width" constant="25" id="SjB-hX-fl8"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybG-xN-vCp">
+                                                        <rect key="frame" x="32" y="0.0" width="92.5" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-L3-oDg">
+                                                        <rect key="frame" x="131.5" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="DZx-pi-NmY"/>
+                                                            <constraint firstAttribute="width" constant="25" id="LOP-aK-bSf"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IM-sO-QLZ">
+                                                        <rect key="frame" x="163.5" y="0.0" width="54.5" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="estimated_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HP0-nX-fW6">
+                                                        <rect key="frame" x="225" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="TLe-kN-iso"/>
+                                                            <constraint firstAttribute="height" constant="25" id="uS3-9M-gJh"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6b-BK-AX5">
+                                                        <rect key="frame" x="257" y="0.0" width="83" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="ybG-xN-vCp" firstAttribute="leading" secondItem="j1i-rD-ib2" secondAttribute="trailing" constant="5" id="0Mz-ca-T4p"/>
                                             <constraint firstItem="cTg-bd-Z71" firstAttribute="top" secondItem="Itk-b2-R3H" secondAttribute="top" constant="2" id="1Kc-xh-jep"/>
                                             <constraint firstAttribute="height" constant="53" id="38d-Rv-jTZ"/>
-                                            <constraint firstItem="HP0-nX-fW6" firstAttribute="leading" secondItem="1IM-sO-QLZ" secondAttribute="trailing" constant="10" id="9la-wC-Yks"/>
-                                            <constraint firstItem="ci6-L3-oDg" firstAttribute="top" secondItem="j1i-rD-ib2" secondAttribute="top" id="BkI-vp-Yrk"/>
-                                            <constraint firstItem="j1i-rD-ib2" firstAttribute="leading" secondItem="Itk-b2-R3H" secondAttribute="leading" constant="10" id="C5X-cg-d0o"/>
-                                            <constraint firstItem="J6b-BK-AX5" firstAttribute="top" secondItem="ybG-xN-vCp" secondAttribute="top" id="TbH-QM-wni"/>
                                             <constraint firstItem="cTg-bd-Z71" firstAttribute="centerX" secondItem="Itk-b2-R3H" secondAttribute="centerX" id="UAW-xU-Zwf"/>
-                                            <constraint firstItem="j1i-rD-ib2" firstAttribute="top" secondItem="cTg-bd-Z71" secondAttribute="bottom" constant="8" symbolic="YES" id="WGx-1Q-PtZ"/>
-                                            <constraint firstItem="1IM-sO-QLZ" firstAttribute="top" secondItem="ybG-xN-vCp" secondAttribute="top" id="amP-ur-j9u"/>
-                                            <constraint firstItem="HP0-nX-fW6" firstAttribute="top" secondItem="j1i-rD-ib2" secondAttribute="top" id="fHU-po-cPO"/>
-                                            <constraint firstItem="ci6-L3-oDg" firstAttribute="leading" secondItem="ybG-xN-vCp" secondAttribute="trailing" constant="10" id="gK0-bo-Hyb"/>
-                                            <constraint firstItem="1IM-sO-QLZ" firstAttribute="leading" secondItem="ci6-L3-oDg" secondAttribute="trailing" constant="5" id="izt-qC-Lnr"/>
-                                            <constraint firstItem="ybG-xN-vCp" firstAttribute="top" secondItem="cTg-bd-Z71" secondAttribute="bottom" constant="13" id="juZ-mT-Djd"/>
-                                            <constraint firstItem="J6b-BK-AX5" firstAttribute="leading" secondItem="HP0-nX-fW6" secondAttribute="trailing" constant="5" id="x49-CE-t1w"/>
+                                            <constraint firstItem="Bx6-yZ-9wl" firstAttribute="top" secondItem="cTg-bd-Z71" secondAttribute="bottom" constant="8" id="krD-Dv-fc8"/>
+                                            <constraint firstItem="Bx6-yZ-9wl" firstAttribute="centerX" secondItem="Itk-b2-R3H" secondAttribute="centerX" id="mFu-S0-hvz"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0L-5r-gaC">

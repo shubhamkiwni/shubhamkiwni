@@ -89,8 +89,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        carTypeLabel.text = carTypeString ?? ""
-        estimatedKmLabel.text = "Est.Km - \((UserDefaults.standard.string(forKey: "distance")) ?? "")km "
+        carTypeLabel.text = carTypeString
+        estimatedKmLabel.text = "Est.Km - \(forTrailingZero(temp: estimatedKM) )km "
 
         pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
         dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
@@ -287,14 +287,14 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
 //          print("imageString : \(imageString)")
             
             let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
-            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            let data = try? Data(contentsOf: url!) 
             cell.carImage.image = UIImage(data: data!)
             
             
             if estimatedPriceArr.count == 1 {
-                cell.priceLabel.text = "₹ \(firstprice)"
+                cell.priceLabel.text = "₹ \(forTrailingZero(temp: round(estimatedPriceArr.first ?? 0)))"
             } else {
-                cell.priceLabel.text = "₹ \(firstprice) - \(lastPrice)"
+                cell.priceLabel.text = "₹ \(forTrailingZero(temp: round(estimatedPriceArr.first ?? 0))) - \(forTrailingZero(temp: round(estimatedPriceArr.last ?? 0)))"
             }
             
             UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
@@ -335,8 +335,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             }
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
             
-            let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
-            seconCell.fareLabel.text = "₹ \(priceString)"
+//            let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
+            seconCell.fareLabel.text = "\(forTrailingZero(temp: round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0)))/-"
             seconCell.delegate1 = self
             return seconCell
         }
@@ -402,6 +402,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
             next.selectedCarValue = carsArray[indexPath.section].selectionData[indexPath.row - 1]
             next.strClasstype = carsArray[indexPath.section].className ?? ""
+            next.carImagePath = carsArray[indexPath.section].imagePath ?? ""
             navigationController?.pushViewController(next, animated: true)
         }
     }

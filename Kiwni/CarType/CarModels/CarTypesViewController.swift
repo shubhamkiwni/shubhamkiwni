@@ -99,7 +99,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         print(estimatedKM)
 //        print("dictForScheduleDates:",dictForScheduleDates)
-        estKMLabel.text = "Est.km -\(estimatedKM)km"
+        estKMLabel.text = "Est.km -\(forTrailingZero(temp: round(estimatedKM)))km"
 
         pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
         dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
@@ -254,9 +254,13 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.availabelStatus.text = "Availabel \(modelClassInfoList.count)"
         cell.seaterLabel.text = "\(selectedVehicles[indexPath.row].vehicle?.capacity ?? 0) + 1 Seater"
         cell.carTypeImage.image = UIImage(named: keyArray[indexPath.row])
-        cell.priceLabel.text = "₹ \(estimatedPriceList.first ?? 0) - \(estimatedPriceList.last ?? 0)"
+//        cell.priceLabel.text = "₹ \(estimatedPriceList.first ?? 0) - \(estimatedPriceList.last ?? 0)"
+        cell.priceLabel.text = "₹ \(forTrailingZero(temp: estimatedPriceList.first ?? 0)) - \(forTrailingZero(temp: estimatedPriceList.last ?? 0))"
         return cell
     }
+    
+    
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 143
@@ -296,6 +300,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         VC.carTypeString = keyArray[indexPath.row]
         VC.carsArray = modelClassInfoList
         VC.vehicleDetailsList = vehicleDetailsList
+        VC.estimatedKM = round(estimatedKM)
         navigationController?.pushViewController(VC, animated: true)
         
     }

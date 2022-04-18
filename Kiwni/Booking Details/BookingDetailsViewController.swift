@@ -43,7 +43,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     @IBOutlet weak var kiniComfirtView: UIView!
     @IBOutlet weak var callButton: UIButton!
     var reservationTime : String! = ""
-    
+    var carImagePath: String = ""
     let dateFormatter = DateFormatter()
 
     
@@ -68,6 +68,11 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("carImagePath:", carImagePath)
+        let url = URL(string: "https://kiwni.com/car_images/\(carImagePath)")
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch        
+        bookingDetilsXIBView.carImage.image = UIImage(data: data!)
+        
         print("selectedCarValue:", selectedCarValue)
         bookingDetilsView.addSubview(bookingDetilsXIBView)
         safetyComView.addSubview(safetyComXIBView)
@@ -76,24 +81,24 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.isHidden = true
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
-        confXIB.rideFareAmountLabel.text = "₹ \(String(round(selectedCarValue.estimatedPrice ?? 0)))"
+        confXIB.rideFareAmountLabel.text = "₹ \(String(forTrailingZero(temp: round(selectedCarValue.estimatedPrice ?? 0))))"
         confXIB.applyCoupenAmountLabel.text = "0"
         
         strGST = ((round(selectedCarValue.estimatedPrice ?? 0) * 0.05))
         print("strGST:", strGST)
-        confXIB.gstAmountLabel.text = "₹ \(String(round(strGST ?? 0)))"
+        confXIB.gstAmountLabel.text = "₹ \(String(forTrailingZero(temp: round(strGST ?? 0))))"
         
         strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
         print("strTotalFare:", strTotalFare)
-        confXIB.totalAmountALble.text = "₹ \(String(strTotalFare ?? 0))"
+        confXIB.totalAmountALble.text = "₹ \(String(forTrailingZero(temp: round(strTotalFare ?? 0))))"
         
         strThirtyPercentFare = (round(round(strTotalFare ?? 0) * 0.3))
-        confXIB.pay30AmountLabel.text = "₹ \(String(strThirtyPercentFare ?? 0))"
+        confXIB.pay30AmountLabel.text = "₹ \(String(forTrailingZero(temp: round((strThirtyPercentFare ?? 0)))))"
         
         strFiftyPercentFare = (round(round(strTotalFare ?? 0) * 0.5))
-        confXIB.pay50AmountLabel.text = "₹ \(String(strFiftyPercentFare ?? 0))"
+        confXIB.pay50AmountLabel.text = "₹ \(String(forTrailingZero(temp: round((strFiftyPercentFare ?? 0)))))"
         
-        confXIB.pay100AmountLabel.text = "₹ \(String(strTotalFare ?? 0))"
+        confXIB.pay100AmountLabel.text = "₹ \(String(forTrailingZero(temp: round((strTotalFare ?? 0)))))"
         
         dateFormatter.locale = Locale(identifier: "IST")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

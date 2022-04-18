@@ -45,7 +45,7 @@ extension UIViewController {
         print(errorLable.frame.origin.x, errorLable.frame.origin.y)
         
         errorLable.text = "Error!"
-        errorLable.frame = CGRect.init(x: errorCustomView.frame.origin.x + 60, y: errorCustomView.frame.origin.y + 10, width: 200, height: 30)
+        errorLable.frame = CGRect.init(x: errorCustomView.frame.origin.x + 60, y: errorCustomView.frame.origin.y + 100, width: 200, height: 30)
         errorLable.textColor = .black
         errorLable.font = errorString.font.withSize(16)
         errorLable.textAlignment = . center
