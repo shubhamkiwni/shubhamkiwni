@@ -1360,13 +1360,115 @@
                     <view key="view" contentMode="scaleToFill" id="0k5-6P-WFj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hAa-k3-4pY">
+                                <rect key="frame" x="15" y="15" width="345" height="637"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="154" id="0pt-1e-MOK" customClass="ReviewTableViewCell" customModule="Kiwni" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="345" height="154"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0pt-1e-MOK" id="QVu-ds-VoU">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="154"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Icon" translatesAutoresizingMaskIntoConstraints="NO" id="a3s-UG-6I3">
+                                                    <rect key="frame" x="15" y="15" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="2LM-L4-EC0"/>
+                                                        <constraint firstAttribute="width" constant="25" id="KDb-j1-W7E"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kavya Gupta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW6-oL-KMw">
+                                                    <rect key="frame" x="50" y="19" width="96.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q6a-Z2-iy5">
+                                                    <rect key="frame" x="50" y="44.5" width="79" height="15"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star1" translatesAutoresizingMaskIntoConstraints="NO" id="mYE-qH-xr4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="1YB-no-JnN"/>
+                                                                <constraint firstAttribute="width" constant="15" id="Edy-Sd-j4Z"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star1" translatesAutoresizingMaskIntoConstraints="NO" id="QMd-WH-0C2">
+                                                            <rect key="frame" x="16" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Pcd-UH-18D"/>
+                                                                <constraint firstAttribute="width" constant="15" id="R7Q-L1-aaL"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star1" translatesAutoresizingMaskIntoConstraints="NO" id="asE-26-3Cx">
+                                                            <rect key="frame" x="32" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Exi-sG-R72"/>
+                                                                <constraint firstAttribute="width" constant="15" id="sqD-bL-NzN"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star1" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-11-4PD">
+                                                            <rect key="frame" x="48" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="AdL-FI-CmO"/>
+                                                                <constraint firstAttribute="height" constant="15" id="MNB-Ik-XkD"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star1" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-ev-gbc">
+                                                            <rect key="frame" x="64" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="2tI-gg-P1h"/>
+                                                                <constraint firstAttribute="height" constant="15" id="fm4-5H-at4"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRB-y1-bXS">
+                                                    <rect key="frame" x="10" y="69.5" width="325" height="62.5"/>
+                                                    <string key="text">I have booked cab one way from Mumbai to Pune It was great and very much comfortable journey Driver also very helpful.Cab proper clean and they are using all COVID protocols.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="QRB-y1-bXS" secondAttribute="trailing" constant="10" id="5Ei-8H-nSv"/>
+                                                <constraint firstItem="Q6a-Z2-iy5" firstAttribute="top" secondItem="rW6-oL-KMw" secondAttribute="bottom" constant="5" id="Avc-mH-ef2"/>
+                                                <constraint firstItem="a3s-UG-6I3" firstAttribute="leading" secondItem="QVu-ds-VoU" secondAttribute="leading" constant="15" id="Jm6-Xk-Nvx"/>
+                                                <constraint firstItem="rW6-oL-KMw" firstAttribute="leading" secondItem="a3s-UG-6I3" secondAttribute="trailing" constant="10" id="OXf-4F-u49"/>
+                                                <constraint firstItem="a3s-UG-6I3" firstAttribute="top" secondItem="QVu-ds-VoU" secondAttribute="top" constant="15" id="Xie-3N-Z8W"/>
+                                                <constraint firstItem="QRB-y1-bXS" firstAttribute="top" secondItem="Q6a-Z2-iy5" secondAttribute="bottom" constant="10" id="ZqN-eo-6Qn"/>
+                                                <constraint firstItem="QRB-y1-bXS" firstAttribute="leading" secondItem="QVu-ds-VoU" secondAttribute="leading" constant="10" id="fOR-1h-6c1"/>
+                                                <constraint firstItem="Q6a-Z2-iy5" firstAttribute="leading" secondItem="rW6-oL-KMw" secondAttribute="leading" id="ryk-MS-HIK"/>
+                                                <constraint firstItem="rW6-oL-KMw" firstAttribute="top" secondItem="QVu-ds-VoU" secondAttribute="top" constant="19" id="x43-rZ-D2Y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Q4y-o2-jPt" id="R9f-vI-QAM"/>
+                                    <outlet property="delegate" destination="Q4y-o2-jPt" id="clT-dA-aa3"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cJp-Jf-H1s"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="cJp-Jf-H1s" firstAttribute="trailing" secondItem="hAa-k3-4pY" secondAttribute="trailing" constant="15" id="1gj-E7-uHW"/>
+                            <constraint firstItem="cJp-Jf-H1s" firstAttribute="bottom" secondItem="hAa-k3-4pY" secondAttribute="bottom" constant="15" id="ELx-2f-ViG"/>
+                            <constraint firstItem="hAa-k3-4pY" firstAttribute="leading" secondItem="cJp-Jf-H1s" secondAttribute="leading" constant="15" id="jVP-Iq-e0A"/>
+                            <constraint firstItem="hAa-k3-4pY" firstAttribute="top" secondItem="cJp-Jf-H1s" secondAttribute="top" constant="15" id="jpQ-GI-2WT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="reviewTableView" destination="hAa-k3-4pY" id="OSK-Ts-a7N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR5-Xc-XYV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4630" y="-806"/>
+            <point key="canvasLocation" x="4629.6000000000004" y="-806.44677661169419"/>
         </scene>
         <!--Booking Details View Controller-->
         <scene sceneID="Tqg-jz-viI">
@@ -1857,11 +1959,11 @@
                                         <rect key="frame" x="5" y="0.0" width="365" height="364"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carCell" rowHeight="109" id="EcL-Ri-ua0" customClass="CarsTableViewCell" customModule="Kiwni" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="365" height="109"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carCell" rowHeight="112" id="EcL-Ri-ua0" customClass="CarsTableViewCell" customModule="Kiwni" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.5" width="365" height="112"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EcL-Ri-ua0" id="hrR-f9-wSH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="109"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-8Q-LxV">
@@ -1902,7 +2004,7 @@
                                                                     <rect key="frame" x="138.5" y="38" width="78" height="5"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="bl1-z0-4QA" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0LR-5W-DHL" secondAttribute="trailing" constant="15" id="3pM-QQ-Cc2"/>
                                                                 <constraint firstItem="bl1-z0-4QA" firstAttribute="top" secondItem="dwz-8Q-LxV" secondAttribute="top" constant="30" id="86R-dY-4WZ"/>
@@ -1939,7 +2041,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carModelCell" rowHeight="76" id="74W-9N-JHG" customClass="CarModelsTableViewCell" customModule="Kiwni" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="153.5" width="365" height="76"/>
+                                                <rect key="frame" x="0.0" y="156.5" width="365" height="76"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="74W-9N-JHG" id="prg-HL-7qL">
                                                     <rect key="frame" x="0.0" y="0.0" width="365" height="76"/>
@@ -2035,11 +2137,11 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-Eb-5ed">
-                                                                    <rect key="frame" x="226.5" y="49" width="41" height="10"/>
+                                                                    <rect key="frame" x="224" y="49" width="46" height="10"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="10" id="9r0-U6-nRS"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Review">
                                                                         <color key="titleColor" systemColor="linkColor"/>
@@ -2199,6 +2301,7 @@
         <image name="Calender" width="24" height="24"/>
         <image name="Clock" width="24" height="24"/>
         <image name="Mobile icon" width="25" height="22"/>
+        <image name="Profile Icon" width="34" height="37"/>
         <image name="Star1" width="13" height="11"/>
         <image name="TEMPO TRAVELLER" width="94" height="42"/>
         <image name="TimerClock" width="15" height="15"/>

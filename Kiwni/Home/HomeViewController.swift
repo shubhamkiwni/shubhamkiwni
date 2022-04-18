@@ -570,7 +570,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             strDate = myDropDateString
             print("Drop Date String : \(strDate!) ")
-            if( myPickerDateString != myDropDateString){
+//            if( myPickerDateString != myDropDateString){
                
                 let strDateTime = "\(strDate!) \("23:59")"
                 print("drop strDateTime : ", strDateTime)
@@ -582,11 +582,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.journeyendTime = formatter.string(from: dd!)
                 //print(dd!)
                print("Drop Date Time : ", self.journeyendTime)
-            }else{
-                //setTimeToPicker()
-    //            print("Select drop date and time")
-                customErrorPopup("Select drop date and time")
-            }
+//            }else{
+//                //setTimeToPicker()
+//    //            print("Select drop date and time")
+//                customErrorPopup("Select drop date and time")
+//            }
         }
         print("dateStr",dateStr)
         
@@ -759,7 +759,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if dropTextField.text == "" {
             print("Please Select a drop location")
             customErrorPopup("Please select drop location")
-        } else {
+        }
+//        else if(pickUpDatePickerButton.titleLabel?.text == returnByDatePickerButton.titleLabel?.text){
+//           // calculateEndTime(startTime: self.journeystartTime! as NSString)
+//        }
+        
+        else {
             print("View Cabs Button Pressed")
             
             let newdateformatter = DateFormatter()
@@ -804,9 +809,39 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             else if(strDirection == "two-way"){
                 self.distanceValue = 2 * (self.distanceValue)
+                if(myPickUpDateString == myDropDateString){
+                           // calculateEndTime(startTime: self.journeystartTime! as NSString)
+                    print("MAtch")
+                    let formatter = DateFormatter()
+                    
+                    formatter.dateFormat = "E, MMM d"
+                    let dateStr = formatter.string(from: newDatePicker.date)
+                    returnByDatePickerButton.setTitle(dateStr, for: .normal)
+                    strDate = dateStr
+                    print("myReturnDateString:", strDate)
+                    timeFormatter.dateFormat = "yyyy-MM-dd"
+                    myDropDateString = timeFormatter.string(from: newDatePicker.date)
+                    print("myDropDateString : ",myDropDateString ?? "")
+                    
+                    strDate = myDropDateString
+                    print("Drop Date String : \(strDate!) ")
+                   
+                       
+                        let strDateTime = "\(strDate!) \("23:59")"
+                        print("drop strDateTime : ", strDateTime)
+                        let newformatter = DateFormatter()
+                    newformatter.dateFormat = "yyyy-MM-dd HH:mm"
+                        let dd = newformatter.date(from: strDateTime)
+                        print(dd ?? (Any).self)
+                    newformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                        self.journeyendTime = newformatter.string(from: dd!)
+                        //print(dd!)
+                       print("Drop Date Time : ", self.journeyendTime)
+             
+                
                 print("Distance Value for two way : ", self.distanceValue)
             }
-            
+            }
             /*if(strDirection == "ONE-WAY" || strButtonTitle == "AIRPORT PICKUP" || strDirection == "AIRPORT DROP" || strDirection == "CURRENT BOOKING" || strDirection == "SCHEDULE BOOKING"){
                 calculateEndTime(startTime: self.startTime! as NSString)
             }
@@ -901,6 +936,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+
     
     func pickupGetCurrentLocation() {
         print("Current Location Button Clicked")

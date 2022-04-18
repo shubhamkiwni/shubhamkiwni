@@ -10,6 +10,7 @@ struct ModelClassInfo : Hashable {
    
     var modelName : String? = ""
     var className : String? = ""
+    var imagePath  : String? = ""
     var opened: Bool = false
     var estimatedPrice : Double = 0
     var selectionData: [carDetails] = []

@@ -35,9 +35,22 @@ class BusinessDetaisViewController: UIViewController {
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         
-        
-        callBack?(companyNameTextField.text ?? "",companyEmailsTextField.text ?? "",phoneNoTextField.text ?? "")
-        
-        navigationController?.popViewController(animated: true)
+        if(companyNameTextField.text?.isAlphabets == false){
+            customErrorPopup("Please enter only text")
+        }else  if(companyEmailsTextField.text?.isEmail == false){
+            customErrorPopup("Please enter valid email id")
+        }
+        else if(phoneNoTextField.text?.isPhoneNumber == false){
+            customErrorPopup("Please enter valid mobile number")
+        }
+         else if companyNameTextField.text == "" || companyEmailsTextField.text == "" || phoneNoTextField.text == "" {
+            customErrorPopup("Please fill all the details")
+        }
+        else {
+
+            callBack?(companyNameTextField.text ?? "",companyEmailsTextField.text ?? "",phoneNoTextField.text ?? "")
+            navigationController?.popViewController(animated: true)
+        }
+
     }
 }

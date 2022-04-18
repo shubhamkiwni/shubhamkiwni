@@ -70,7 +70,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
     var carModelArray: [VehicleDetails] = []
-    
+    var imageurlString : String? = ""
     
     var carsArray: [ModelClassInfo] = []
     var vehicleSortedArray : [VehicleDetails] = []
@@ -89,7 +89,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        carTypeLabel.text = carTypeString ?? ""
         estimatedKmLabel.text = "Est.Km - \((UserDefaults.standard.string(forKey: "distance")) ?? "")km "
 
         pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
@@ -281,7 +281,21 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
  
             cell.carTypeLabel.text = carsArray[indexPath.section].className
             cell.carNameLabel.text = carsArray[indexPath.section].modelName
-            cell.priceLabel.text = "₹ \(firstprice) - \(lastPrice)"
+            
+            let imageString : String
+            imageString = carsArray[indexPath.section].imagePath ?? ""
+//          print("imageString : \(imageString)")
+            
+            let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.carImage.image = UIImage(data: data!)
+            
+            
+            if estimatedPriceArr.count == 1 {
+                cell.priceLabel.text = "₹ \(firstprice)"
+            } else {
+                cell.priceLabel.text = "₹ \(firstprice) - \(lastPrice)"
+            }
             
             UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
             UserDefaults.standard.setValue(cell.carNameLabel.text, forKey: "modelName")
@@ -323,15 +337,16 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
             let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
             seconCell.fareLabel.text = "₹ \(priceString)"
-            
+            seconCell.delegate1 = self
             return seconCell
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == selectedIndex {
-            return 105
+        
+        if indexPath.row == 0 {
+            return 110
         } else {
             return 100
         }

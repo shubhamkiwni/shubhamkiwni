@@ -97,6 +97,8 @@
 		7AF91F2427C60B0A0023B399 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF91F2327C60B0A0023B399 /* ThankYouViewController.swift */; };
 		7AF91F2627C61FAA0023B399 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF91F2527C61FAA0023B399 /* PaymentViewController.swift */; };
 		7AF91F2827C6361D0023B399 /* BusinessDetaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF91F2727C6361D0023B399 /* BusinessDetaisViewController.swift */; };
+		7AFA73D9280D236400680B9C /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFA73D8280D236400680B9C /* ReviewTableViewCell.swift */; };
+		7AFA73DB280D48E800680B9C /* String Validation Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFA73DA280D48E800680B9C /* String Validation Extension.swift */; };
 		8412703927D87EC200FD92F0 /* UpdateAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703827D87EC200FD92F0 /* UpdateAlertDetailViewController.swift */; };
 		8412703B27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703A27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift */; };
 		8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703C27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift */; };
@@ -249,6 +251,8 @@
 		7AF91F2327C60B0A0023B399 /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
 		7AF91F2527C61FAA0023B399 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		7AF91F2727C6361D0023B399 /* BusinessDetaisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetaisViewController.swift; sourceTree = "<group>"; };
+		7AFA73D8280D236400680B9C /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		7AFA73DA280D48E800680B9C /* String Validation Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Validation Extension.swift"; sourceTree = "<group>"; };
 		7EBD3D49317A89891E441581 /* Pods-Kiwni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiwni.debug.xcconfig"; path = "Target Support Files/Pods-Kiwni/Pods-Kiwni.debug.xcconfig"; sourceTree = "<group>"; };
 		8412703827D87EC200FD92F0 /* UpdateAlertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertDetailViewController.swift; sourceTree = "<group>"; };
 		8412703A27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPersonTableViewCell.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 		7A170E8C27CF89D900B0BE66 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7AFA73DA280D48E800680B9C /* String Validation Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				7AE5A34327C4AF3000C1E5D4 /* BrandCollectionViewCell.swift */,
 				7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */,
 				7A745F1228056388008B4621 /* ReviewViewController.swift */,
+				7AFA73D8280D236400680B9C /* ReviewTableViewCell.swift */,
 			);
 			path = CarTypeXIB;
 			sourceTree = "<group>";
@@ -1070,6 +1076,7 @@
 				84FE635927BBCFA10026289D /* Identifiers.swift in Sources */,
 				84DD33A027C39A9C007E3260 /* Toast.swift in Sources */,
 				7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */,
+				7AFA73D9280D236400680B9C /* ReviewTableViewCell.swift in Sources */,
 				7A170E9027CF89E900B0BE66 /* DateFormatter.swift in Sources */,
 				8412703927D87EC200FD92F0 /* UpdateAlertDetailViewController.swift in Sources */,
 				846C8D6C28043A79003D4FFA /* ModelClassInfo.swift in Sources */,
@@ -1081,6 +1088,7 @@
 				7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */,
 				7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */,
 				7A2DA05127BA662100490E5B /* KiwniComfirtCollectionViewCell.swift in Sources */,
+				7AFA73DB280D48E800680B9C /* String Validation Extension.swift in Sources */,
 				7A170E8027CF667000B0BE66 /* Json4Swift_Base.swift in Sources */,
 				7A170E8627CF669200B0BE66 /* DBHelper.swift in Sources */,
 				7A5FCD0A27ACF2A5004F9DC3 /* CustomPopupView.swift in Sources */,

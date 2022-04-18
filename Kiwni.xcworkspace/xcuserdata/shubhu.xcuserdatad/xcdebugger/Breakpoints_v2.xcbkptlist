@@ -7,109 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE"
+            uuid = "74CF5D2D-BCBE-467A-AE09-72A426330100"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kiwni/Booking Details/BookingDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "pressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "220B75E1-21C1-4EE8-9E72-E7708CB92179"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kiwni/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "HomeViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - 75dd3b943dc06192"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.journeystartTime.getter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "103">
-               </Location>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - 9e294b74627011a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.journeystartTime.setter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - 35023450e5db85d7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.journeystartTime.modify : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - cd7a03beac23580a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.journeystartTime.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - e21c00c7f2aed002"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Kiwni.HomeViewController"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "2892">
-               </Location>
-               <Location
-                  uuid = "EE8E6F21-3D20-4309-81FC-B46655F3D1AE - f1c063265ef5ac46"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Kiwni.HomeViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Kiwni.HomeViewController&gt;"
-                  moduleName = "Kiwni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shubhu/Documents/Kiwni%20Project/Kiwni/Kiwni/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "2840">
-               </Location>
-            </Locations>
+            startingLineNumber = "807"
+            endingLineNumber = "807"
+            landmarkName = "viewCabsButtonClicked(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

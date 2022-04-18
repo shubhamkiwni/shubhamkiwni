@@ -35,6 +35,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     var rateId: Int = 0
     var strGST: Double? = 0
     var strTotalFare: Double? = 0
+    var strThirtyPercentFare: Double? = 0
+    var strFiftyPercentFare: Double? = 0
     var resultVar = ""
     @IBOutlet weak var bookingDetilsView: UIView!
     @IBOutlet weak var safetyComView: UIView!
@@ -74,16 +76,24 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.isHidden = true
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
-        confXIB.rideFareAmountLabel.text = "Rs.\(String(round(selectedCarValue.estimatedPrice ?? 0)))" 
+        confXIB.rideFareAmountLabel.text = "₹ \(String(round(selectedCarValue.estimatedPrice ?? 0)))"
         confXIB.applyCoupenAmountLabel.text = "0"
         
         strGST = ((round(selectedCarValue.estimatedPrice ?? 0) * 0.05))
         print("strGST:", strGST)
-        confXIB.gstAmountLabel.text = "Rs.\(String(round(strGST ?? 0)))"
+        confXIB.gstAmountLabel.text = "₹ \(String(round(strGST ?? 0)))"
         
         strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
         print("strTotalFare:", strTotalFare)
-        confXIB.totalAmountALble.text = "Rs.\(String(strTotalFare ?? 0))"
+        confXIB.totalAmountALble.text = "₹ \(String(strTotalFare ?? 0))"
+        
+        strThirtyPercentFare = (round(round(strTotalFare ?? 0) * 0.3))
+        confXIB.pay30AmountLabel.text = "₹ \(String(strThirtyPercentFare ?? 0))"
+        
+        strFiftyPercentFare = (round(round(strTotalFare ?? 0) * 0.5))
+        confXIB.pay50AmountLabel.text = "₹ \(String(strFiftyPercentFare ?? 0))"
+        
+        confXIB.pay100AmountLabel.text = "₹ \(String(strTotalFare ?? 0))"
         
         dateFormatter.locale = Locale(identifier: "IST")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -219,7 +229,12 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
             
             
-            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb)
+            let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
+            let notificationType : String = UserDefaults.standard.string(forKey: "notificationType") ?? ""
+            
+            
+            
+            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "")
             print("resevation Model :\(reservationModelData)")
             
             self.showIndicator(withTitle: "Loading", and: "Please Wait")

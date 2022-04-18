@@ -30,7 +30,9 @@ class CarsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         applyShadow(cornerRadius: 8)
-        
+        carsDetailsView.layer.cornerRadius = 5.0
+        carsDetailsView.layer.borderWidth = 1.0
+        carsDetailsView.layer.borderColor = UIColor.lightGray.cgColor
 //        carModelsView.addSubview(CarModelsXIB)
 //        CarModelsXIB.delegate2 = self
     }

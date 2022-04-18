@@ -35,9 +35,9 @@ extension UIViewController {
         print(errorCustomView.frame.origin.x, errorCustomView.frame.origin.y)
         
         errorString.text = errorMessage
-        errorString.frame = CGRect.init(x: 0, y: 0, width: 200, height: 30)
+        errorString.frame = CGRect.init(x: 0, y: 0, width: 500, height: 50)
         errorString.textColor = .black
-        errorString.font = errorString.font.withSize(15)
+        errorString.font = errorString.font.withSize(12)
         
         errorString.center = self.view.center
         errorString.textAlignment = . center

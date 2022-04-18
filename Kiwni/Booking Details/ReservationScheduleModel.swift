@@ -22,6 +22,16 @@ struct ReservationScheduleModel: Codable {
     let vehicleID: Int
     let estimatedPrice : Double
     let vehicleNo : String
+    let notificationType : String
+    let tripType : String
+    let companyName : String
+    let companyEmail  : String
+    let companyPhone : String
+//    "notificationType": "SMS", //Email/SMS/WhatsApp
+//    "tripType": "Personal", //Personal/Business
+//    "companyName": "",
+//    "companyEmail": "",
+//    "companyEmail": ""
 
     enum CodingKeys: String, CodingKey {
         case channel, createdTime, createdUser, customerEmail
@@ -35,6 +45,11 @@ struct ReservationScheduleModel: Codable {
         case serviceType, status, updatedTime, updatedUser
         case vehicleID = "vehicleId"
         case estimatedPrice
+        case notificationType = "notificationType"
+        case tripType = "tripType"
+        case companyName = "companyName"
+        case companyEmail = "companyEmail"
+        case companyPhone = "companyPhone"
     }
 }
 

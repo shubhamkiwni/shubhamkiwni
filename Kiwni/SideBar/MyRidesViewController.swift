@@ -21,7 +21,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     }
     
     var indexForCell = Int()
-    var tripsArray = ["SHubham", "Pratik", "Swami"]
+    var tripsArray = [String]()
     var pastTripsArray = ["Shivani", "Preran", "Jinisha"]
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var myRideLable: UILabel!
@@ -40,6 +40,11 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
+        
+        if tripsArray.isEmpty == true {
+            tripsTableView.isHidden = true
+            customErrorPopup("No Upcoming Trip found.")
+        }
         
         self.tripsTableView.register(UpcomingTableViewCell.nib(), forCellReuseIdentifier: UpcomingTableViewCell.identifier)
         self.tripsTableView.register(PastTableViewCell.nib(), forCellReuseIdentifier: PastTableViewCell.identifier)
@@ -64,7 +69,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     }
                     
                     self.persons = self.db.read()
-                    self.strTripType = "Past" //"Upcoming"
+                    self.strTripType = "Upcoming"
                     self.tripsTableView.reloadData()
                     print("Count:",self.persons.count)
 //                    print("Data:", self.persons[0].id)
@@ -78,9 +83,10 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 }
             }
         } else {
-            self.persons = self.db.read()
-            print("Count:",self.persons.count)
+//            self.persons = self.db.read()
+//            print("Count:",self.persons.count)
 //            print("Data:", self.persons[0].id)
+            customErrorPopup("No Internet Connection Found")
         }
         
     }
@@ -94,7 +100,8 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         print("upcomingButtonPressed")
         
         strTripType = "Upcoming"
-       // tripsTableView.reloadData()
+        tripsTableView.isHidden = true
+        tripsTableView.reloadData()
         customErrorPopup("No Upcoming Trip found.")
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
         pastButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
@@ -103,6 +110,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     @IBAction func pastButtonPressed(_ sender: UIButton) {
         print("pastButtonPressed")
         strTripType = "Past"
+        tripsTableView.isHidden = false
         tripsTableView.reloadData()
         pastButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
         upcomingButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
@@ -112,7 +120,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
 extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(strTripType == "Upcoming"){
-            return 0 //tripsArray.count
+            return tripsArray.count
         }else{
             return persons.count
         }
