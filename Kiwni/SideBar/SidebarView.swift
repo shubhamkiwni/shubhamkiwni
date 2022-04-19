@@ -18,7 +18,7 @@ enum Row: String {
     case myRides
     case payment
     case offers
-    case safty
+    case safety
     case faqs
     case feedback
     case shareApp
@@ -33,7 +33,7 @@ enum Row: String {
         case 1: self = .myRides
         case 2: self = .payment
         case 3: self = .offers
-        case 4: self = .safty
+        case 4: self = .safety
         case 5: self = .faqs
         case 6: self = .feedback
         case 7: self = .shareApp
@@ -58,7 +58,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.clipsToBounds=true
         let name = UserDefaults.standard.string(forKey: "displayName") ?? ""
                 
-        titleArr = ["\(name)", "My Rides", "Payment", "Offers", "Safty", "FAQs", "Feedback", "Share App", "Refer & Earn", "Support", "About"]
+        titleArr = ["\(name)", "My Rides", "Payment", "Offers", "Safety", "FAQs", "Feedback", "Share App", "Refer & Earn", "Support", "About"]
 //        imageArray = ["11","11","11","11","11","11","11","11","11","11", "11"]
         setupViews()
         
