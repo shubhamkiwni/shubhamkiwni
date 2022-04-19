@@ -856,84 +856,92 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             if(self.distanceValue != nil){
                 
-                let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.journeystartTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
-                print("getAllProjectionAvailable: ",getAllProjectionAvailable)
-                UserDefaults.standard.setValue(self.journeystartTime, forKey: "journeyTime")
-                UserDefaults.standard.setValue(self.journeyendTime, forKey: "journeyEndTime")
-                UserDefaults.standard.setValue(pickupcityName, forKey: "fromLocation")
-                UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
-                UserDefaults.standard.setValue("outstation", forKey: "serviceType")
-                UserDefaults.standard.setValue(strDirection, forKey: "direction")
-                
-                if (NetworkMonitor.share.isConnected == false){
-                        self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-                            return
-                }
+                if(pickupcityName == destinationcityName){
+                    customErrorPopup("Select Another City")
+                }else if(destinationcityName == "" || ((destinationcityName?.isEmpty) == nil)){
+                    customErrorPopup("Please select proper address.")
+                }else{
+                    let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.journeystartTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                    print("getAllProjectionAvailable: ",getAllProjectionAvailable)
+                    UserDefaults.standard.setValue(self.journeystartTime, forKey: "journeyTime")
+                    UserDefaults.standard.setValue(self.journeyendTime, forKey: "journeyEndTime")
+                    UserDefaults.standard.setValue(pickupcityName, forKey: "fromLocation")
+                    UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
+                    UserDefaults.standard.setValue("outstation", forKey: "serviceType")
+                    UserDefaults.standard.setValue(strDirection, forKey: "direction")
                     
-                self.showIndicator(withTitle: "Loading", and: "Please Wait")
-                    
-                APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
-                    
-                    switch result {
-                    case .success(let dictscheduleDates):
+                    if (NetworkMonitor.share.isConnected == false){
+                            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+                                return
+                    }
                         
-//                       print("Dict Schedule Dates",dictscheduleDates)
-                        self.hideIndicator()
+                    self.showIndicator(withTitle: "Loading", and: "Please Wait")
                         
-                        if(dictscheduleDates.isEmpty){
-                            print("No Data Found")
-                            self.view.makeToast(ErrorMessage.list.nodatafound)
-                        }
-                        else{ 
-                            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                    APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
+                        
+                        switch result {
+                        case .success(let dictscheduleDates):
                             
-                            carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
-                            carTypeVc.pickedDropCoordinate = self.destinationCoordinate
-                            carTypeVc.estimatedKM = self.distanceValue
-                            carTypeVc.pickUpCityName = self.pickupcityName ?? ""
-                            carTypeVc.dropCityName = self.destinationcityName ?? ""
-                            carTypeVc.pickUpOnDate = self.myPickerDateString ?? "" //self.pickUpDatePickerButton.titleLabel?.text ?? ""
-                            carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
-                            carTypeVc.pickUpOnTime = self.strStartTime //self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
-                            carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
-                           
-                            if self.selectedTripType == "" {
-                                self.selectedTripType = "Outstation"
-//                                self.selectedTripTypeMode = "ROUND TRIP"
-                                carTypeVc.tripType = self.selectedTripType
-                                carTypeVc.tripTypeMode = self.selectedTripTypeMode
-                            } else {
-                                carTypeVc.tripType = self.selectedTripType
-                                carTypeVc.tripTypeMode = self.selectedTripTypeMode
+    //                       print("Dict Schedule Dates",dictscheduleDates)
+                            self.hideIndicator()
+                            
+                            if(dictscheduleDates.isEmpty){
+                                print("No Data Found")
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
                             }
-                            self.navigationController?.pushViewController(carTypeVc, animated: true)
-                        
+                            else{
+                                let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                                
+                                carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
+                                carTypeVc.pickedDropCoordinate = self.destinationCoordinate
+                                carTypeVc.estimatedKM = self.distanceValue
+                                carTypeVc.pickUpCityName = self.pickupcityName ?? ""
+                                carTypeVc.dropCityName = self.destinationcityName ?? ""
+                                carTypeVc.pickUpOnDate = self.myPickerDateString ?? "" //self.pickUpDatePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.pickUpOnTime = self.strStartTime //self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
+                               
+                                if self.selectedTripType == "" {
+                                    self.selectedTripType = "Outstation"
+    //                                self.selectedTripTypeMode = "ROUND TRIP"
+                                    carTypeVc.tripType = self.selectedTripType
+                                    carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                                } else {
+                                    carTypeVc.tripType = self.selectedTripType
+                                    carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                                }
+                                self.navigationController?.pushViewController(carTypeVc, animated: true)
+                            
+                            }
+                        case .failure(let error):
+                            
+                            self.hideIndicator()
+                            print(error)
+                            
+                            switch error {
+                            case .baseError(.notfound):
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            case .baseError(.internalservererror):
+                                self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                            case .baseError(.badRequest):
+                                self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                            case .baseError(.unauthorized):
+                                self.view.makeToast(ErrorMessage.list.sessionexpired)
+                            case .baseError(.forbidden):
+                                self.view.makeToast(ErrorMessage.list.pleasewait)
+                            
+                            default:
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            }
+                          
+    //                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                           
                         }
-                    case .failure(let error):
-                        
-                        self.hideIndicator()
-                        print(error)
-                        
-                        switch error {
-                        case .baseError(.notfound):
-                            self.view.makeToast(ErrorMessage.list.nodatafound)
-                        case .baseError(.internalservererror):
-                            self.view.makeToast(ErrorMessage.list.somethingwentwrong)
-                        case .baseError(.badRequest):
-                            self.view.makeToast(ErrorMessage.list.somethingwentwrong)
-                        case .baseError(.unauthorized):
-                            self.view.makeToast(ErrorMessage.list.sessionexpired)
-                        case .baseError(.forbidden):
-                            self.view.makeToast(ErrorMessage.list.pleasewait)
-                        
-                        default:
-                            self.view.makeToast(ErrorMessage.list.nodatafound)
-                        }
-                      
-//                                self.view.makeToast(ErrorMessage.list.nodatafound)
-                       
                     }
                 }
+                
+               
            }
             else{
                 self.view.makeToast(ErrorMessage.list.pleasewait)
