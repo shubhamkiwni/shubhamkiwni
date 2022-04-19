@@ -8,7 +8,7 @@
 import UIKit
 
 class BusinessDetaisViewController: UIViewController {
-
+    
     @IBOutlet weak var businessDetailsView: UIView!
     @IBOutlet weak var businessDetailsLabel: UILabel!
     @IBOutlet weak var detailsView: UIView!
@@ -32,25 +32,23 @@ class BusinessDetaisViewController: UIViewController {
         businessDetailsView.layer.borderWidth = 1.0
         businessDetailsView.layer.borderColor = UIColor.lightGray.cgColor
     }
-
+    
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         
-        if(companyNameTextField.text?.isAlphabets == false){
-            customErrorPopup("Please enter only text")
-        }else  if(companyEmailsTextField.text?.isEmail == false){
+        if(companyEmailsTextField.text?.isEmail == false){
             customErrorPopup("Please enter valid email id")
         }
         else if(phoneNoTextField.text?.isPhoneNumber == false){
             customErrorPopup("Please enter valid mobile number")
         }
-         else if companyNameTextField.text == "" || companyEmailsTextField.text == "" || phoneNoTextField.text == "" {
+        else if companyNameTextField.text == "" || companyEmailsTextField.text == "" || phoneNoTextField.text == "" {
             customErrorPopup("Please fill all the details")
         }
         else {
-
+            
             callBack?(companyNameTextField.text ?? "",companyEmailsTextField.text ?? "",phoneNoTextField.text ?? "")
             navigationController?.popViewController(animated: true)
         }
-
+        
     }
 }

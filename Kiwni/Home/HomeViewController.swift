@@ -210,7 +210,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(self.driverSchedulePopup)
+        self.view .addSubview(self.mainView)
+        self.mainView.addSubview(self.driverSchedulePopup)
         self.driverSchedulePopup.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
@@ -343,10 +344,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
         if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
-//            self.driverSchedulePopup.isHidden = true
+         self.driverSchedulePopup.isHidden = true
         }
         else{
-//            self.driverSchedulePopup.isHidden = false
+            self.driverSchedulePopup.isHidden = false
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
             print("Driver Details array : ", self.driverdetailsArray)
            
@@ -808,7 +809,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 calculateEndTime(startTime: self.journeystartTime! as NSString)
             }
             else if(strDirection == "two-way"){
-                self.distanceValue = 2 * (self.distanceValue)
+                if(self.distanceValue != nil){
+                    self.distanceValue = 2 * (self.distanceValue)
+                    
+                }
                 if(myPickUpDateString == myDropDateString){
                            // calculateEndTime(startTime: self.journeystartTime! as NSString)
                     print("MAtch")
@@ -1471,7 +1475,7 @@ extension HomeViewController: SidebarViewDelegate {
             let ovc = storyboard?.instantiateViewController(withIdentifier: "OffersViewController") as! OffersViewController
             navigationController?.pushViewController(ovc, animated: true)
         case .safty:
-            print("Safty")
+            print("Safety")
             let ovc = storyboard?.instantiateViewController(withIdentifier: "SafetyViewController") as! SafetyViewController
             navigationController?.pushViewController(ovc, animated: true)
         case .faqs:
