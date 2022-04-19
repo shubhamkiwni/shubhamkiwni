@@ -1482,7 +1482,7 @@ extension HomeViewController: SidebarViewDelegate {
             print("Offers")
             let ovc = storyboard?.instantiateViewController(withIdentifier: "OffersViewController") as! OffersViewController
             navigationController?.pushViewController(ovc, animated: true)
-        case .safty:
+        case .safety:
             print("Safety")
             let ovc = storyboard?.instantiateViewController(withIdentifier: "SafetyViewController") as! SafetyViewController
             navigationController?.pushViewController(ovc, animated: true)
