@@ -83,6 +83,7 @@
 		7AD28FDB27A7C624004E232D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD28FDA27A7C624004E232D /* LoginViewController.swift */; };
 		7AD28FDD27A7C631004E232D /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD28FDC27A7C631004E232D /* OTPViewController.swift */; };
 		7ADC6D77280DC85500EFB4ED /* Functions Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC6D76280DC85500EFB4ED /* Functions Extension.swift */; };
+		7AE26260280EC9B400C7AF9A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE2625F280EC9B400C7AF9A /* MapViewController.swift */; };
 		7AE5A33C27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A33B27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift */; };
 		7AE5A33E27C4ADD800C1E5D4 /* HoursPackage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A33D27C4ADD800C1E5D4 /* HoursPackage2.swift */; };
 		7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */; };
@@ -238,6 +239,7 @@
 		7AD28FDA27A7C624004E232D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7AD28FDC27A7C631004E232D /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		7ADC6D76280DC85500EFB4ED /* Functions Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Functions Extension.swift"; sourceTree = "<group>"; };
+		7AE2625F280EC9B400C7AF9A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7AE5A33B27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursPackegeCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AE5A33D27C4ADD800C1E5D4 /* HoursPackage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursPackage2.swift; sourceTree = "<group>"; };
 		7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 				7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */,
 				7A745F1228056388008B4621 /* ReviewViewController.swift */,
 				7AFA73D8280D236400680B9C /* ReviewTableViewCell.swift */,
+				7AE2625F280EC9B400C7AF9A /* MapViewController.swift */,
 			);
 			path = CarTypeXIB;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 				7A35B40D2799292E00E0CFAE /* SceneDelegate.swift in Sources */,
 				7A41AE3E27ABF8B30067BD3C /* FeedbackViewController.swift in Sources */,
 				7AF91F2827C6361D0023B399 /* BusinessDetaisViewController.swift in Sources */,
+				7AE26260280EC9B400C7AF9A /* MapViewController.swift in Sources */,
 				7AAF1DFF27C906B100B262D4 /* DropLocationOnSearchView.swift in Sources */,
 				7AD28FDB27A7C624004E232D /* LoginViewController.swift in Sources */,
 				7A2DA04227BA597E00490E5B /* BookingAddressXIB.swift in Sources */,

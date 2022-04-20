@@ -44,7 +44,7 @@
                                         <constraint firstAttribute="width" constant="25" id="JXJ-E8-uh0"/>
                                         <constraint firstAttribute="height" constant="25" id="S9h-0e-CUk"/>
                                     </constraints>
-                                    <state key="normal" image="Check box"/>
+                                    <state key="normal" image="SquareCheck"/>
                                     <connections>
                                         <action selector="emailButtonPresed:" destination="iN0-l3-epB" eventType="touchUpInside" id="LCs-Te-9EY"/>
                                     </connections>
@@ -57,7 +57,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-di-71X">
                                     <rect key="frame" x="97" y="10" width="25" height="24"/>
-                                    <state key="normal" image="unCheck box"/>
+                                    <state key="normal" image="SquareCheck"/>
                                     <connections>
                                         <action selector="phoneButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="6QC-ZL-3da"/>
                                     </connections>
@@ -70,7 +70,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dl4-0h-w9l">
                                     <rect key="frame" x="185.5" y="10" width="25" height="24"/>
-                                    <state key="normal" image="unCheck box"/>
+                                    <state key="normal" image="SquareCheck"/>
                                     <connections>
                                         <action selector="whatsAppButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="glf-8B-bcl"/>
                                     </connections>
@@ -585,9 +585,8 @@
     </objects>
     <resources>
         <image name="Check" width="24" height="24"/>
-        <image name="Check box" width="20" height="19"/>
+        <image name="SquareCheck" width="20" height="19"/>
         <image name="Uncheck" width="24" height="24"/>
-        <image name="unCheck box" width="20" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

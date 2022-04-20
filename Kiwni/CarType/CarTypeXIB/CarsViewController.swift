@@ -152,6 +152,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     @IBAction func mapButtonPressed(_ sender: UIButton) {
+        let mvc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        navigationController?.pushViewController(mvc, animated: true)
     }
     
     @IBAction func callButtonAction(_ sender: UIButton) {

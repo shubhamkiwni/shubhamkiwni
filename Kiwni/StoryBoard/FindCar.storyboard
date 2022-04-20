@@ -960,6 +960,65 @@
             </objects>
             <point key="canvasLocation" x="8903" y="-716"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="AvL-rd-zbt">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="T3e-Sl-3QU" customClass="MapViewController" customModule="Kiwni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="awl-90-pBo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lpZ-DH-A9T" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxb-dI-8AU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hs-Jj-TSe">
+                                        <rect key="frame" x="10" y="10" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="1lu-U8-ZNv"/>
+                                            <constraint firstAttribute="height" constant="25" id="iLA-Xq-MJz"/>
+                                        </constraints>
+                                        <state key="normal" image="BackButton"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="T3e-Sl-3QU" eventType="touchUpInside" id="918-gr-saE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6Hs-Jj-TSe" firstAttribute="top" secondItem="Mxb-dI-8AU" secondAttribute="top" constant="10" id="01G-k4-56V"/>
+                                    <constraint firstItem="6Hs-Jj-TSe" firstAttribute="leading" secondItem="Mxb-dI-8AU" secondAttribute="leading" constant="10" id="A0t-bI-jRq"/>
+                                    <constraint firstAttribute="height" constant="50" id="T3A-lO-lt3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8XM-tR-3d9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mxb-dI-8AU" firstAttribute="top" secondItem="awl-90-pBo" secondAttribute="top" id="1AJ-2Z-xaA"/>
+                            <constraint firstItem="lpZ-DH-A9T" firstAttribute="leading" secondItem="8XM-tR-3d9" secondAttribute="leading" id="H7s-gn-mG1"/>
+                            <constraint firstItem="8XM-tR-3d9" firstAttribute="bottom" secondItem="lpZ-DH-A9T" secondAttribute="bottom" id="OVR-5H-IOA"/>
+                            <constraint firstItem="8XM-tR-3d9" firstAttribute="trailing" secondItem="lpZ-DH-A9T" secondAttribute="trailing" id="Unf-9q-QN5"/>
+                            <constraint firstAttribute="trailing" secondItem="Mxb-dI-8AU" secondAttribute="trailing" id="fhA-Ml-OQ5"/>
+                            <constraint firstItem="Mxb-dI-8AU" firstAttribute="leading" secondItem="awl-90-pBo" secondAttribute="leading" id="iRu-KQ-rXo"/>
+                            <constraint firstItem="lpZ-DH-A9T" firstAttribute="top" secondItem="Mxb-dI-8AU" secondAttribute="bottom" constant="5" id="rv5-Rm-ijF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="6Hs-Jj-TSe" id="aSa-6K-BUK"/>
+                        <outlet property="mapView" destination="lpZ-DH-A9T" id="xiW-Pm-UJx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CnP-gn-Adu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9664.7999999999993" y="-716.49175412293857"/>
+        </scene>
         <!--Filter View Controller-->
         <scene sceneID="tWF-JD-oTJ">
             <objects>

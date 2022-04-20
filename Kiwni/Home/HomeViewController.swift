@@ -70,6 +70,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var userCurrentlocation: CLLocationCoordinate2D!
     var usercurrentLocationAddress : String? = ""
     
+    var selectedPickUpDate = Date()
+    var selectedReturnDate = Date()
+    
     var isconfirmLocation : Bool = false
     
     var responseArr : NSArray!
@@ -80,9 +83,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let defaultLocation = CLLocationCoordinate2D(latitude:19.7515 , longitude: 75.7139) // Maharashtra Coordinates
     var googleMapKey = "AIzaSyDnaIPR6Tp0sgrhj-fcXLivvaILrOdQMhs"
     
-    
     var dictForScheduleDates: NSDictionary! = nil
-
+    
     
     @IBOutlet weak var driverSchedulePopup : UIView!
     
@@ -196,6 +198,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     let newDatePicker: UIDatePicker = UIDatePicker()
     var datePickerTag = String()
+    let cancelDatePickerButton = UIButton()
+    let confirmDatePickerButton = UIButton()
     
     var estimatedDurationInTraffic: Int = 0
     var selectedTripType: String = ""
@@ -239,7 +243,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             Date().description(with: .current)
         }
         print(currentTime)
-    
+        
         let formatter = DateFormatter()
         newDatePicker.layer.cornerRadius = 10.0
         formatter.dateFormat = "hh:mm a"
@@ -250,7 +254,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let dateStr = formatter.string(from: Date())
         currentDateString = dateStr
         print("strDate", currentDateString ?? "")
-
+        
         pickUpDatePickerButton.setTitle(dateStr, for: .normal)
         returnByDatePickerButton.setTitle(dateStr, for: .normal)
         myPickerDateString = dateStr
@@ -258,6 +262,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         // Add an event to call onDidChangeDate function when value is changed.
         newDatePicker.addTarget(self, action: #selector(datePickerAction), for: .valueChanged)
+        cancelDatePickerButton.addTarget(self, action: #selector(cancelDatePickerButtonAction), for: .touchUpInside)
+        confirmDatePickerButton.addTarget(self, action: #selector(confirmDatePickerButtonAction), for: .touchUpInside)
         
         // Add DataPicker to the view
         self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.dismissBlurView(gesture:))))
@@ -270,21 +276,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dateTimePickupView.layer.borderWidth = 1.0
         dateTimePickupView.layer.borderColor = UIColor.lightGray.cgColor
         
-    
+        
         self.mapView.delegate = self
         self.mapView.clear()
-    
-    
+        
+        
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.latitude,
                                               longitude: defaultLocation.longitude,
                                               zoom: 8)
         self.mapView.camera = camera
         self.mapView.mapType = .normal
-
+        
         setTimeToPicker()
         
         formatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
         self.journeystartTime = formatter.string(from: newdate)
+        selectedPickUpDate = newdate
+        selectedReturnDate = newdate
         print("self.startTime:", self.journeystartTime ?? "")
         
         tripTypeCollectionView.allowsMultipleSelection = false
@@ -344,14 +352,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
         if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
-         self.driverSchedulePopup.isHidden = true
+            self.driverSchedulePopup.isHidden = true
         }
         else{
             self.driverSchedulePopup.isHidden = false
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
             print("Driver Details array : ", self.driverdetailsArray)
-           
-           let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
+            
+            let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
             let substring:String = drivernameString.components(separatedBy: " ")[0]
             drivernameLabel.text = substring
             
@@ -360,7 +368,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print("OTP after decoding: ", decodedString)
             driverOTPLabel.text = "OTP:\(decodedString)"
             
-           // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
+            // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
             let startTime = self.driverdetailsArray[0].startTime ?? ""
             
             if let myDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
@@ -383,18 +391,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             } else {
                 print("add another format")
             }
-        
+            
             
             let imageString : String
             imageString = self.driverdetailsArray[0].driverImageUrl ?? ""
             print("imageString : \(imageString)")
             
             imageurlString  = "\(imageString)"
-           print("UrlString : \(imageurlString)")
-           //cell.carImageView.image = UIImage(contentsOfFile: urlString)
-//           if let url = URL(string:imageurlString){
-//               driverImageView.load(url: url)
-//             }
+            print("UrlString : \(imageurlString)")
+            //cell.carImageView.image = UIImage(contentsOfFile: urlString)
+            //           if let url = URL(string:imageurlString){
+            //               driverImageView.load(url: url)
+            //             }
             
             drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
             drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
@@ -412,23 +420,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @objc func dismissBlurView(gesture: UITapGestureRecognizer){
-        blurEffectView.removeFromSuperview()
-        newDatePicker.removeFromSuperview()
+        //        blurEffectView.removeFromSuperview()
+        //        newDatePicker.removeFromSuperview()
+        //        cancelDatePickerButton.removeFromSuperview()
+        //        confirmDatePickerButton.removeFromSuperview()
     }
     
     
     
     @IBAction func pickUpDatePickerButtonPressed(_ sender: UIButton) {
-//        newDatePicker.date = Date()
+        //        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
-//        timeFormatter.dateFormat = "yyyy-MM-dd"
-//        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
-//        print("myPickUpDateString : ",myPickUpDateString ?? "")
+        //        timeFormatter.dateFormat = "yyyy-MM-dd"
+        //        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
+        //        print("myPickUpDateString : ",myPickUpDateString ?? "")
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {
-//        newDatePicker.date = Date()
+        //        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "2"
         
@@ -451,10 +461,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func calculateEndTime(startTime: NSString){
         print("StartTime : \(self.journeystartTime)")
         print("duration_in_traffic text value is--->",self.durationInTrafficWithText as NSString)
-//        "2021-12-30T14:28:00.000Z"
+        //        "2021-12-30T14:28:00.000Z"
         let str : String = self.durationInTrafficWithText as String
         let strArr = str.components(separatedBy: " ")
-
+        
         var arr: [Int] = []
         for item in strArr {
             let part = item.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
@@ -466,13 +476,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         }
         print(arr)
-
+        
         var day: Int
         var hur: Int
         var min: Int
-
+        
         let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "IST")
+        //        formatter.locale = Locale(identifier: "IST")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         
         if let date = formatter.date(from: startTime as String) {
@@ -522,7 +532,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                 let after_add_time = formatter.string(from: addminutes)
                 print("after add time-->",after_add_time as Any)
-
+                
                 let inputString = after_add_time
                 self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
                 print("endTime : \(String(describing: self.journeyendTime))")
@@ -533,14 +543,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func datePickerAction() {
         
         print("newDatePicker:",newDatePicker.date)
+        selectedPickUpDate = newDatePicker.date
         let formatter = DateFormatter()
         
         formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: newDatePicker.date)
-    
+        
         if datePickerTag == "1" {
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
-             
+            
             strDate = dateStr
             print("strDate ", strDate)
             myPickerDateString = strDate
@@ -562,6 +573,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
         } else if datePickerTag == "2" {
+            selectedReturnDate = newDatePicker.date
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
             strDate = dateStr
             print("myReturnDateString:", strDate)
@@ -571,27 +583,45 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             strDate = myDropDateString
             print("Drop Date String : \(strDate!) ")
-//            if( myPickerDateString != myDropDateString){
-               
-                let strDateTime = "\(strDate!) \("23:59")"
-                print("drop strDateTime : ", strDateTime)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                let dd = formatter.date(from: strDateTime)
-                print(dd ?? (Any).self)
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                self.journeyendTime = formatter.string(from: dd!)
-                //print(dd!)
-               print("Drop Date Time : ", self.journeyendTime)
-//            }else{
-//                //setTimeToPicker()
-//    //            print("Select drop date and time")
-//                customErrorPopup("Select drop date and time")
-//            }
+            //            if( myPickerDateString != myDropDateString){
+            
+            let strDateTime = "\(strDate!) \("23:59")"
+            print("drop strDateTime : ", strDateTime)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dd = formatter.date(from: strDateTime)
+            print(dd ?? (Any).self)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            self.journeyendTime = formatter.string(from: dd!)
+//            selectedReturnDate = dd ?? Date()
+            //print(dd!)
+            print("Drop Date Time : ", self.journeyendTime)
+            //            }else{
+            //                //setTimeToPicker()
+            //    //            print("Select drop date and time")
+            //                customErrorPopup("Select drop date and time")
+            //            }
         }
         print("dateStr",dateStr)
+    }
+    
+    @objc func cancelDatePickerButtonAction() {
         
-       
+        print("cancelDatePickerButtonAction")
+        blurEffectView.removeFromSuperview()
+        newDatePicker.removeFromSuperview()
+        cancelDatePickerButton.removeFromSuperview()
+        confirmDatePickerButton.removeFromSuperview()
+        
+    }
+    
+    @objc func confirmDatePickerButtonAction() {
+        
+        print("confirmDatePickerButtonAction")
+        blurEffectView.removeFromSuperview()
+        newDatePicker.removeFromSuperview()
+        cancelDatePickerButton.removeFromSuperview()
+        confirmDatePickerButton.removeFromSuperview()
         
     }
     
@@ -655,21 +685,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func callButtonAction(_ sender: UIButton) {
         if let phoneCallURL = URL(string: "telprompt://8308628266") {
-
-                let application:UIApplication = UIApplication.shared
-                if (application.canOpenURL(phoneCallURL)) {
-                    if #available(iOS 10.0, *) {
-                        application.open(phoneCallURL, options: [:], completionHandler: nil)
-                    } else {
-                        // Fallback on earlier versions
-                         application.openURL(phoneCallURL as URL)
-
-                    }
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                    application.openURL(phoneCallURL as URL)
+                    
                 }
             }
+        }
     }
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
-       
+        
         clearMap()
         if rentalTag == 0 {
             if returnByDatePickerButton.isHidden == true {
@@ -760,16 +790,28 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if dropTextField.text == "" {
             print("Please Select a drop location")
             customErrorPopup("Please select drop location")
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY EEE, MMM dd"
+            let pdate = formatter.date(from: pickUpDatePickerButton.titleLabel?.text ?? "")
+            print("pdate:", pdate)
+            
+            print(pickUpDatePickerButton.titleLabel?.text)
+            print(returnByDatePickerButton.titleLabel?.text)
+        } else if selectedPickUpDate > selectedReturnDate {
+            print("selectedPickUpDate, selectedReturnDate:",selectedPickUpDate, selectedReturnDate)
+            print("Select another date")
+            customErrorPopup("Select another date")
         }
-//        else if(pickUpDatePickerButton.titleLabel?.text == returnByDatePickerButton.titleLabel?.text){
-//           // calculateEndTime(startTime: self.journeystartTime! as NSString)
-//        }
+        //        else if(pickUpDatePickerButton.titleLabel?.text == returnByDatePickerButton.titleLabel?.text){
+        //           // calculateEndTime(startTime: self.journeystartTime! as NSString)
+        //        }
         
         else {
             print("View Cabs Button Pressed")
             
             let newdateformatter = DateFormatter()
-//            newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
+            //            newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
             
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
@@ -783,6 +825,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("newdatein view cab: ", newdate)
                 self.journeystartTime = newdateformatter.string(from: newdate)
                 print("self.startTime on confirm button clicked in view cab:", self.journeystartTime ?? "")
+//                selectedPickUpDate = newdate
+                
             } else {
                 print("confirm Button startTime : ", strStartTime)
                 let newDateString = String(self.myPickerDateString! + " " + strStartTime)
@@ -795,7 +839,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let currentDate = NSDate()
                 let newFormatter = DateFormatter()
                 newFormatter.dateFormat = "YYYY"
-
+                
                 let YearString = newFormatter.string(from: currentDate as Date)
                 let newselectedDateString = String(YearString + " " + newDateString)
                 let selecteddate = selecteddateformatter.date(from: newselectedDateString)
@@ -803,6 +847,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
                 self.journeystartTime = newdateformatter.string(from: selecteddate!)
                 print("self.startTime on confirm button clicked:", self.journeystartTime ?? "")
+                
             }
             
             if(strDirection == "one-way"){
@@ -814,7 +859,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                 }
                 if(myPickUpDateString == myDropDateString){
-                           // calculateEndTime(startTime: self.journeystartTime! as NSString)
+                    // calculateEndTime(startTime: self.journeystartTime! as NSString)
                     print("MAtch")
                     let formatter = DateFormatter()
                     
@@ -829,30 +874,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     strDate = myDropDateString
                     print("Drop Date String : \(strDate!) ")
-                   
-                       
-                        let strDateTime = "\(strDate!) \("23:59")"
-                        print("drop strDateTime : ", strDateTime)
-                        let newformatter = DateFormatter()
+                    
+                    
+                    let strDateTime = "\(strDate!) \("23:59")"
+                    print("drop strDateTime : ", strDateTime)
+                    let newformatter = DateFormatter()
                     newformatter.dateFormat = "yyyy-MM-dd HH:mm"
-                        let dd = newformatter.date(from: strDateTime)
-                        print(dd ?? (Any).self)
+                    let dd = newformatter.date(from: strDateTime)
+                    print(dd ?? (Any).self)
                     newformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                        self.journeyendTime = newformatter.string(from: dd!)
-                        //print(dd!)
-                       print("Drop Date Time : ", self.journeyendTime)
-             
-                
-                print("Distance Value for two way : ", self.distanceValue)
-            }
+                    self.journeyendTime = newformatter.string(from: dd!)
+//                    selectedReturnDate = dd ?? Date()
+                    //print(dd!)
+                    print("Drop Date Time : ", self.journeyendTime)
+                    
+                    
+                    print("Distance Value for two way : ", self.distanceValue)
+                }
             }
             /*if(strDirection == "ONE-WAY" || strButtonTitle == "AIRPORT PICKUP" || strDirection == "AIRPORT DROP" || strDirection == "CURRENT BOOKING" || strDirection == "SCHEDULE BOOKING"){
-                calculateEndTime(startTime: self.startTime! as NSString)
-            }
-            else if(strButtonTitle == "ROUND TRIP"){
-                self.distanceValue = 2 * (self.distanceValue)
-                print("Distance Value for two way : ", self.distanceValue)
-            }*/
+             calculateEndTime(startTime: self.startTime! as NSString)
+             }
+             else if(strButtonTitle == "ROUND TRIP"){
+             self.distanceValue = 2 * (self.distanceValue)
+             print("Distance Value for two way : ", self.distanceValue)
+             }*/
             
             if(self.distanceValue != nil){
                 
@@ -860,7 +906,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     customErrorPopup("Select Another City")
                 }else if(destinationcityName == "" || ((destinationcityName?.isEmpty) == nil)){
                     customErrorPopup("Please select proper address.")
-                }else{
+                } else {
+                    
                     let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.journeystartTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
                     print("getAllProjectionAvailable: ",getAllProjectionAvailable)
                     UserDefaults.standard.setValue(self.journeystartTime, forKey: "journeyTime")
@@ -871,18 +918,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     UserDefaults.standard.setValue(strDirection, forKey: "direction")
                     
                     if (NetworkMonitor.share.isConnected == false){
-                            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-                                return
+                        self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+                        return
                     }
-                        
+                    
                     self.showIndicator(withTitle: "Loading", and: "Please Wait")
-                        
+                    
                     APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
                         
                         switch result {
                         case .success(let dictscheduleDates):
                             
-    //                       print("Dict Schedule Dates",dictscheduleDates)
+                            //                       print("Dict Schedule Dates",dictscheduleDates)
                             self.hideIndicator()
                             
                             if(dictscheduleDates.isEmpty){
@@ -901,10 +948,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
                                 carTypeVc.pickUpOnTime = self.strStartTime //self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
                                 carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
-                               
+                                
                                 if self.selectedTripType == "" {
                                     self.selectedTripType = "Outstation"
-    //                                self.selectedTripTypeMode = "ROUND TRIP"
+                                    //                                self.selectedTripTypeMode = "ROUND TRIP"
                                     carTypeVc.tripType = self.selectedTripType
                                     carTypeVc.tripTypeMode = self.selectedTripTypeMode
                                 } else {
@@ -912,7 +959,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                     carTypeVc.tripTypeMode = self.selectedTripTypeMode
                                 }
                                 self.navigationController?.pushViewController(carTypeVc, animated: true)
-                            
+                                
                             }
                         case .failure(let error):
                             
@@ -930,25 +977,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 self.view.makeToast(ErrorMessage.list.sessionexpired)
                             case .baseError(.forbidden):
                                 self.view.makeToast(ErrorMessage.list.pleasewait)
-                            
+                                
                             default:
                                 self.view.makeToast(ErrorMessage.list.nodatafound)
                             }
-                          
-    //                                self.view.makeToast(ErrorMessage.list.nodatafound)
-                           
+                            
+                            //                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            
                         }
                     }
                 }
-                
-               
-           }
+            }
             else{
                 self.view.makeToast(ErrorMessage.list.pleasewait)
             }
         }
     }
-
+    
     
     func pickupGetCurrentLocation() {
         print("Current Location Button Clicked")
@@ -1041,7 +1086,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
             cell.tripTypeLable.text = dataArray[indexPath.row]
-           
+            
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
                 cell.backgroundColor = .systemGray5
@@ -1107,7 +1152,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Airport"
-//                selectedTripTypeMode = "Airport Pickup"
+                //                selectedTripTypeMode = "Airport Pickup"
                 strDirection = "AIRPORT PICKUP"
                 selectedTripTypeMode = "AIRPORT PICKUP"
                 strServiceType = "Airport"
@@ -1135,7 +1180,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Rental"
-//                selectedTripTypeMode = "CURRENT BOOKING"
+                //                selectedTripTypeMode = "CURRENT BOOKING"
                 
                 strDirection = "CURRENT BOOKING"
                 selectedTripTypeMode = "CURRENT BOOKING"
