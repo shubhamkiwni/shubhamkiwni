@@ -214,6 +214,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view1.addSubview(sideMenuButton)
         self.view .addSubview(self.mainView)
         self.mainView.addSubview(self.driverSchedulePopup)
         self.driverSchedulePopup.addSubview(doneButton)

@@ -42,7 +42,29 @@ class APIManager {
     let refershtokenheader : HTTPHeaders = [.contentType("application/json")]
     func callinggFindTripByUserID(completion: @escaping (Result<[Json4Swift_Base], Error>) -> Void) {
         
-        AF.request(userRequestURL).response { response in
+        AF.request(pastTripRequestURL).response { response in
+            print("User Success")
+            debugPrint(response)
+            DispatchQueue.main.async {
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let userResponse = try JSONDecoder().decode([Json4Swift_Base].self, from: data!)
+//                        print(userResponse)
+                        completion(.success(userResponse))
+                    } catch let err{
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func callinggInProgressTripRequest(completion: @escaping (Result<[Json4Swift_Base], Error>) -> Void) {
+        
+        AF.request(upcomingTripRequestURL).response { response in
             print("User Success")
             debugPrint(response)
             DispatchQueue.main.async {
