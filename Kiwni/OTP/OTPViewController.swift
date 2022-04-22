@@ -157,7 +157,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     
