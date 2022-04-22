@@ -1623,6 +1623,11 @@ extension HomeViewController: CLLocationManagerDelegate
                     self.usercurrentLocationAddress = lines.joined(separator: "\n")
                     self.pickUpTextField.text = self.usercurrentLocationAddress
                     self.userCurrentlocation = locValue
+                    let sourceLat = NSNumber(value:self.userCurrentlocation.latitude)
+                    let sourceLon = NSNumber(value:self.userCurrentlocation.longitude)
+                    let userSourceLocation : NSMutableDictionary
+                    userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
+                    UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
                 }
             }
         }
@@ -1646,10 +1651,6 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
             print("Place Fomated Add : ", place)
             self.selectedToDestination = place
             sourceCoordinate = place.coordinate
-           
-            UserDefaults.standard.setValue(place.coordinate.latitude, forKey:"sourceLatitude")
-            UserDefaults.standard.setValue(place.coordinate.longitude, forKey:"sourceLongitude")
-           
             print("sourceCoordinate",sourceCoordinate as Any)
             pickupName = place.name
             UserDefaults.standard.setValue(place.formattedAddress, forKey:"SourceAddress")
@@ -1693,13 +1694,10 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
             let sourceLat = NSNumber(value:sourceCoordinate.latitude)
             let sourceLon = NSNumber(value:sourceCoordinate.longitude)
             let userSourceLocation : NSMutableDictionary
-            userSourceLocation = ["sourceLat": sourceLat, "sourceLon": sourceLon]
-            //UserDefaults.standard.set(["lat": sourceLat, "lon": sourceLon], forKey:"SourceCoordinate")
+            userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
             UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
             UserDefaults.standard.setValue(self.pickupcityName, forKey: "PickupCityName")
             self.btnConfirmLocation.isHidden = false
-            
-            
         }
         else if strTxtFieldType == "FromDestination"
         {
@@ -1710,7 +1708,6 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
             //            self.selectedFromDestination = place
             destinationCoordinate = place.coordinate
             destionationName = place.name
-            
             let arrays : NSArray = place.addressComponents! as NSArray
             for i in 0..<arrays.count {
                 
@@ -1732,9 +1729,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                     print ("localoty name : \(dics.name)")
                     print("locality shortname : \(dics.shortName)")
                 }
-                
             }
-            
             destinationMarker = GMSMarker()
             let markerImage = UIImage(named: "DropPoint")!.withRenderingMode(.alwaysTemplate)
             //creating a marker view
@@ -1758,7 +1753,11 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                 //  self.mapView.animate(toLocation: self.destinationCoordinate)
                 self.strTxtFieldType = "FromDestination"
             }
-            
+            let sourceLat = NSNumber(value:destinationCoordinate.latitude)
+            let sourceLon = NSNumber(value:destinationCoordinate.longitude)
+            let userDestinationLocation : NSMutableDictionary
+            userDestinationLocation = ["DestinationLatitude": sourceLat, "DestinationLongitude": sourceLon]
+            UserDefaults.standard.setValue(userDestinationLocation, forKey:"DestinationCoordinate")
             UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
             self.btnConfirmLocation.isHidden = false
             

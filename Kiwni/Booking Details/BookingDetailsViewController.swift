@@ -238,20 +238,22 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
 //            let notificationType : String = UserDefaults.standard.string(forKey: "notificationType") ?? ""
             let notificationType : String = "Email,SMS,WhatsApp"
             
-            let sourceLatitude: String = UserDefaults.standard.string(forKey: "sourceLatitude") ?? ""
-            let sourceLongitude: String = UserDefaults.standard.string(forKey: "sourceLongitude") ?? ""
+            let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
+            let userSourceLatitude  = SourceCoordinate["SourceLatitude"]
+            let userSourceLongitude  = SourceCoordinate["SourceLongitude"]
             
-            print(sourceLatitude, sourceLongitude)
+            print(userSourceLatitude,userSourceLongitude)
+
+            let DestinationCoordinate = UserDefaults.standard.object(forKey:"DestinationCoordinate" ) as! [String : NSNumber]
+            let userDestinationLatitude  = DestinationCoordinate["DestinationLatitude"]
+            let userDestinationLongitude  = DestinationCoordinate["DestinationLongitude"] 
+            print(userDestinationLatitude,userDestinationLongitude)
             
-            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "", fromLocationCoordinates: locationCoordinate(latitude: 18.553612763009458, longitude: 73.9442559962483), toLocationCoordinates: locationCoordinate(latitude: 20.89437133056075, longitude: 74.78377050370109))
+            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "", fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double))
             print("resevation Model :\(reservationModelData)")
             
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
-            
-            //        if (NetworkMonitor.share.isConnected == false){
-            //            self.showToast(string: "Please Check your internet connection")
-            //            return
-            //        }
+        
             
             APIManager.shareInstance.createReservationForVehicleSchedule(getReservationModel: reservationModelData, completionHandler: { result in
                 switch result {
