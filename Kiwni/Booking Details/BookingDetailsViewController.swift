@@ -75,10 +75,12 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
         print("selectedCarValue:", selectedCarValue)
         bookingDetilsView.addSubview(bookingDetilsXIBView)
-        safetyComView.addSubview(safetyComXIBView)
-        kiniComfirtView.addSubview(kiwniComfirtXIBView)
+//        safetyComView.addSubview(safetyComXIBView)
+//        kiniComfirtView.addSubview(kiwniComfirtXIBView)
         safetyComView.addSubview(confXIB)
-        confXIB.isHidden = true
+        kiniComfirtView.isHidden = true
+//        confXIB.isHidden = true
+        
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
         confXIB.rideFareAmountLabel.text = "₹ \(String(forTrailingZero(temp: round(selectedCarValue.estimatedPrice ?? 0))))"
@@ -99,6 +101,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.pay50AmountLabel.text = "₹ \(String(forTrailingZero(temp: round((strFiftyPercentFare ?? 0)))))"
         
         confXIB.pay100AmountLabel.text = "₹ \(String(forTrailingZero(temp: round((strTotalFare ?? 0)))))"
+        
+        confXIB.applyCoupenAmountLabel.text = "₹ 0"
         
         dateFormatter.locale = Locale(identifier: "IST")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -174,7 +178,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         footerView.frame = CGRect(x: 0, y: 10, width: self.tableView.frame.width, height: 100)
         
         button.frame = CGRect(x: 80, y: 10, width: self.tableView.frame.width - 150, height: 40)
-        button.setTitle("PROCEED TO PAY", for: .normal)
+//        button.setTitle("PROCEED TO PAY", for: .normal)
+        button.setTitle("CONFIRM BOOKING", for: .normal)
         button.setTitleColor( .white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 10.0
@@ -189,13 +194,13 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     @objc func pressed() {
         print("PROCEED TO PAY")
         
-        if safetyComXIBView.isHidden == false {
-            confXIB.isHidden = false
-            safetyComXIBView.isHidden = true
-            kiniComfirtView.isHidden = true
-            kiwniComfirtXIBView.isHidden = true
-            button.setTitle("CONFIRM BOOKING", for: .normal)
-        } else {
+//        if safetyComXIBView.isHidden == false {
+//            confXIB.isHidden = false
+//            safetyComXIBView.isHidden = true
+//            kiniComfirtView.isHidden = true
+//            kiwniComfirtXIBView.isHidden = true
+//            button.setTitle("CONFIRM BOOKING", for: .normal)
+//        } else {
             
             let driverID = self.selectedCarValue.driverID ?? 0
             let driverLicense : String = ""
@@ -325,6 +330,6 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
                 }
             })
             
-        }
+//        }
     }
 }

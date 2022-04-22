@@ -141,8 +141,8 @@ class confirmBooking: UIView {
     }
     
     @IBAction func personalButtonPressed(_ sender: UIButton) {
-        businessButton.setImage(UIImage(named: "Uncheck"), for: .normal)
-        personalButton.setImage(UIImage(named: "Check"), for: .normal)
+        businessButton.setImage(UIImage(named: "uncheck circle"), for: .normal)
+        personalButton.setImage(UIImage(named: "check circle"), for: .normal)
         businessDetailsView.isHidden = true
         tripTypeString = "Personal"
         UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
@@ -150,8 +150,8 @@ class confirmBooking: UIView {
     }
     @IBAction func businessButtonPressed(_ sender: UIButton) {
         
-        businessButton.setImage(UIImage(named: "Check"), for: .normal)
-        personalButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+        businessButton.setImage(UIImage(named: "check circle"), for: .normal)
+        personalButton.setImage(UIImage(named: "uncheck circle"), for: .normal)
         businessDetailsView.isHidden = false
         tripTypeString = "Business"
         UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")

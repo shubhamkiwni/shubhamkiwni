@@ -267,7 +267,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.showIndicator(withTitle: "Loading", and: "Please Wait")
             
         print("Vehicle type: ",keyArray[indexPath.row])
         let selectedVehicles =  vehicleDetailsList.filter { vehicleDetails in
@@ -276,7 +276,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         var modelClassInfoSet :Set<ModelClassInfo> = []
-        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        
         for selectedVehicle in selectedVehicles {
             let modelClassInfo = ModelClassInfo(modelName: selectedVehicle.model, className: selectedVehicle.classType, imagePath: selectedVehicle.imagePath, selectionData: [])
             
@@ -290,12 +290,12 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         for list in modelClassInfoSet {
             modelClassInfoList.append(list)
         }
-        self.hideIndicator()
+        
         print("selectedVehicles Array : ", modelClassInfoList)
         print("selectedVehicles array count:", modelClassInfoList.count)
      
         
-        
+        self.hideIndicator()
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
         VC.carTypeString = keyArray[indexPath.row]
         VC.carsArray = modelClassInfoList
