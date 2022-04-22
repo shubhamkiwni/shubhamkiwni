@@ -27,11 +27,8 @@ struct ReservationScheduleModel: Codable {
     let companyName : String
     let companyEmail  : String
     let companyPhone : String
-//    "notificationType": "SMS", //Email/SMS/WhatsApp
-//    "tripType": "Personal", //Personal/Business
-//    "companyName": "",
-//    "companyEmail": "",
-//    "companyEmail": ""
+    let fromLocationCoordinates: locationCoordinate
+    let toLocationCoordinates: locationCoordinate
 
     enum CodingKeys: String, CodingKey {
         case channel, createdTime, createdUser, customerEmail
@@ -50,6 +47,8 @@ struct ReservationScheduleModel: Codable {
         case companyName = "companyName"
         case companyEmail = "companyEmail"
         case companyPhone = "companyPhone"
+        case fromLocationCoordinates = "fromLocationCoordinates"
+        case toLocationCoordinates = "toLocationCoordinates"
     }
 }
 
@@ -67,3 +66,17 @@ struct Ride: Codable {
     let toLocation, updatedTime, updatedUser: String
 }
 
+//struct fromLocationLatLong: Codable {
+//    var latitude: Double? = 0
+//    var longitude: Double? = 0
+//}
+//
+//struct toLocationLatLong: Codable {
+//    var tolatitude: Double? = 0
+//    var tolongitude: Double? = 0
+//}
+
+struct locationCoordinate: Codable {
+    var latitude: Double? = 0
+    var longitude: Double? = 0
+}
