@@ -544,13 +544,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func datePickerAction() {
         
         print("newDatePicker:",newDatePicker.date)
-        selectedPickUpDate = newDatePicker.date
+      
         let formatter = DateFormatter()
         
         formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: newDatePicker.date)
         
         if datePickerTag == "1" {
+            selectedPickUpDate = newDatePicker.date
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
             
             strDate = dateStr
@@ -575,11 +576,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else if datePickerTag == "2" {
             selectedReturnDate = newDatePicker.date
+            //let dateStr = formatter.string(from: selectedReturnDate)
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
             strDate = dateStr
             print("myReturnDateString:", strDate)
             timeFormatter.dateFormat = "yyyy-MM-dd"
-            myDropDateString = timeFormatter.string(from: newDatePicker.date)
+            myDropDateString = timeFormatter.string(from: selectedReturnDate)
             print("myDropDateString : ",myDropDateString ?? "")
             
             strDate = myDropDateString
@@ -597,11 +599,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //            selectedReturnDate = dd ?? Date()
             //print(dd!)
             print("Drop Date Time : ", self.journeyendTime)
-            //            }else{
-            //                //setTimeToPicker()
-            //    //            print("Select drop date and time")
-            //                customErrorPopup("Select drop date and time")
-            //            }
         }
         print("dateStr",dateStr)
     }
@@ -791,29 +788,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if dropTextField.text == "" {
             print("Please Select a drop location")
             customErrorPopup("Please select drop location")
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "YYYY EEE, MMM dd"
-            let pdate = formatter.date(from: pickUpDatePickerButton.titleLabel?.text ?? "")
-            print("pdate:", pdate)
-            
-            print(pickUpDatePickerButton.titleLabel?.text)
-            print(returnByDatePickerButton.titleLabel?.text)
-        } else if selectedPickUpDate > selectedReturnDate {
-            print("selectedPickUpDate, selectedReturnDate:",selectedPickUpDate, selectedReturnDate)
-            print("Select another date")
-            customErrorPopup("Select another date")
         }
-        //        else if(pickUpDatePickerButton.titleLabel?.text == returnByDatePickerButton.titleLabel?.text){
-        //           // calculateEndTime(startTime: self.journeystartTime! as NSString)
-        //        }
-        
+        else if (selectedPickUpDate > selectedReturnDate) {
+            print("selectedPickUpDate, selectedReturnDate:",selectedPickUpDate, selectedReturnDate)
+            print("Please select return date correctly.")
+            customErrorPopup("Please select pickup and return date correctly.")
+        }
         else {
             print("View Cabs Button Pressed")
             
             let newdateformatter = DateFormatter()
-            //            newdateformatter.dateFormat = "EEE, MMM d hh:mm a"
-            
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
                 print("confirm Button startTime : ", strStartTime)
@@ -826,7 +810,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("newdatein view cab: ", newdate)
                 self.journeystartTime = newdateformatter.string(from: newdate)
                 print("self.startTime on confirm button clicked in view cab:", self.journeystartTime ?? "")
-//                selectedPickUpDate = newdate
                 
             } else {
                 print("confirm Button startTime : ", strStartTime)
@@ -893,14 +876,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     print("Distance Value for two way : ", self.distanceValue)
                 }
             }
-            /*if(strDirection == "ONE-WAY" || strButtonTitle == "AIRPORT PICKUP" || strDirection == "AIRPORT DROP" || strDirection == "CURRENT BOOKING" || strDirection == "SCHEDULE BOOKING"){
-             calculateEndTime(startTime: self.startTime! as NSString)
-             }
-             else if(strButtonTitle == "ROUND TRIP"){
-             self.distanceValue = 2 * (self.distanceValue)
-             print("Distance Value for two way : ", self.distanceValue)
-             }*/
-            
+           
             if(self.distanceValue != nil){
                 
                 if(pickupcityName == destinationcityName){
