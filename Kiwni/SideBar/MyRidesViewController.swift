@@ -182,7 +182,13 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.driverNameLabel.text = seperatedName
                 cell.mobileNumberLabel.text = upcomingTripArray[indexPath.row].driver?.mobile
                 cell.vehicalNumberLabel.text = upcomingTripArray[indexPath.row].vehcileNo
-                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
+                
+                let dataDecoded:NSData = NSData(base64Encoded:  self.upcomingTripArray[indexPath.row].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
+                let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
+                print("OTP after decoding: ", decodedString)
+                cell.otpValue.text = "OTP:\(decodedString)"
+                
+//                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
                 cell.bookingDetailsView.isHidden = true
                 cell.notificationView.isHidden = true
             } else {
