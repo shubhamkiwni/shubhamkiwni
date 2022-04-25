@@ -1587,7 +1587,19 @@ extension HomeViewController: CLLocationManagerDelegate
         sourceCoordinate = locValue
         print("sourceCoordinate in Location Manager: ",sourceCoordinate!)
         
+        
+        
         self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        
+        if (NetworkMonitor.share.isConnected == false){
+          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+            self.hideIndicator()
+            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
+            return
+        }
+    
+       
+    
         
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(sourceCoordinate) { response, error in

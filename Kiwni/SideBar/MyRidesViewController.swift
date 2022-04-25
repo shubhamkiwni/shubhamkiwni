@@ -31,8 +31,9 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     @IBOutlet weak var pastButton: UIButton!
     @IBOutlet weak var tripsTableView: UITableView!
     
-    var passData = [Json4Swift_Base]()
-    var inProgressTripArray = [Json4Swift_Base]()
+    var pastTripArray = [Json4Swift_Base]()
+    var sortedPastTripArray = [Json4Swift_Base]()
+    var upcomingTripArray = [Json4Swift_Base]()
     var db:DBHelper = DBHelper()
     var persons:[Person] = []
     
@@ -55,8 +56,8 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
             case .success(let inProgressResponse):
                 self.hideIndicator()
                 print("In progress responseArray:", inProgressResponse)
-                self.inProgressTripArray.append(contentsOf: inProgressResponse)
-                print("count:",self.inProgressTripArray.count)
+                self.upcomingTripArray.append(contentsOf: inProgressResponse)
+                print("count:",self.upcomingTripArray.count)
                 self.tripsTableView.reloadData()
             case .failure(let err) :
                 self.hideIndicator()
@@ -74,14 +75,28 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 case .success(let responseArray):
                     print("User Success on ViewController")
                     
-                    self.passData.append(contentsOf: responseArray)
-                    print(self.passData.count)
+                    self.pastTripArray.append(contentsOf: responseArray)
+                    print(self.pastTripArray.count)
                     
-                    for i in self.passData {
+                    for i in self.pastTripArray {
+                         if i.status != "In-Progress"{
+                             
+                             self.sortedPastTripArray.append(i)
+                             print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
+                         } else {
+                             print("other trips are In-progress")
+                         }
+                     }
+                    
+                    print("Sorted Past Trip",self.sortedPastTripArray)
+                    print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
+                    
+                    
+                    for i in self.sortedPastTripArray {
                         self.db.deleteByID(id: Int(Double(i.id ?? 00)))
                     }
                     
-                    for i in self.passData {
+                    for i in self.sortedPastTripArray {
                         
                         self.db.insert(id: Double(i.id ?? 00), startLocationCity: i.startLocationCity ?? "", endlocationCity: i.endlocationCity ?? "", startTime: i.startTime ?? "", endTime: i.endTime ?? "", status: i.status ?? "", estimatedPrice: i.estimatedPrice ?? 00, serviceType: i.serviceType ?? "")
                     }
@@ -89,7 +104,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     self.persons = self.db.read()
                     self.strTripType = "Upcoming"
                     self.tripsTableView.reloadData()
-                    print("Count:",self.persons.count)
+                    print("persons Count:",self.persons.count)
 //                    print("Data:", self.persons[0].id)
                     
                     print("User Success on ViewController")
@@ -117,7 +132,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     @IBAction func upcomingButtonPressed(_ sender: UIButton) {
         print("upcomingButtonPressed")
         
-        if inProgressTripArray.isEmpty {
+        if upcomingTripArray.isEmpty {
             tripsTableView.isHidden = true
             customErrorPopup("No upcoming Trip found.")
             
@@ -131,7 +146,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         
     }
     @IBAction func pastButtonPressed(_ sender: UIButton) {
-        if passData.isEmpty {
+        if sortedPastTripArray.isEmpty {
             tripsTableView.isHidden = true
             customErrorPopup("No past Trip found.")
             
@@ -148,9 +163,9 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
 extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(strTripType == "Upcoming"){
-            return inProgressTripArray.count
+            return upcomingTripArray.count
         }else{
-            return persons.count
+            return sortedPastTripArray.count
         }
     }
     
@@ -159,15 +174,15 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
         if(strTripType == "Upcoming") {
             let cell:UpcomingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell") as! UpcomingTableViewCell
             
-            if inProgressTripArray[indexPath.row].driver?.name != "" {
+            if upcomingTripArray[indexPath.row].driver?.name != "" {
                 print("Driver details availabel")
-                let fullString: String = inProgressTripArray[indexPath.row].driver?.name ?? ""
+                let fullString: String = upcomingTripArray[indexPath.row].driver?.name ?? ""
                 let fullSeperatedArr = fullString.components(separatedBy: " ")
                 let seperatedName: String = fullSeperatedArr[0]
                 cell.driverNameLabel.text = seperatedName
-                cell.mobileNumberLabel.text = inProgressTripArray[indexPath.row].driver?.mobile
-                cell.vehicalNumberLabel.text = inProgressTripArray[indexPath.row].vehcileNo
-                cell.otpValue.text = inProgressTripArray[indexPath.row].otp
+                cell.mobileNumberLabel.text = upcomingTripArray[indexPath.row].driver?.mobile
+                cell.vehicalNumberLabel.text = upcomingTripArray[indexPath.row].vehcileNo
+                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
                 cell.bookingDetailsView.isHidden = true
                 cell.notificationView.isHidden = true
             } else {
@@ -176,10 +191,10 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.carDetailsView.isHidden = true
             }
             
-            cell.sourceLabel.text = inProgressTripArray[indexPath.row].startLocationCity
-            cell.destinationLabel.text = inProgressTripArray[indexPath.row].endlocationCity
+            cell.sourceLabel.text = upcomingTripArray[indexPath.row].startLocationCity
+            cell.destinationLabel.text = upcomingTripArray[indexPath.row].endlocationCity
             
-            let fullString: String = inProgressTripArray[indexPath.row].serviceType ?? ""
+            let fullString: String = upcomingTripArray[indexPath.row].serviceType ?? ""
             let fullSeperatedArr = fullString.components(separatedBy: "-")
             let seperatedTripType: String = fullSeperatedArr[0]
             let seperatedTripType2: String = fullSeperatedArr[1]
@@ -188,7 +203,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             print("Seperated Strings",seperatedTripType, seperatedTripType2, seperatedServiceType, seperatedCarType)
             cell.serviceTypeValue.text = seperatedServiceType
             
-            let upcomingTripTime = inProgressTripArray[indexPath.row].startTime
+            let upcomingTripTime = upcomingTripArray[indexPath.row].startTime
             if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: upcomingTripTime) {
                 print("upComingDate: ", dropDate)
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -213,12 +228,12 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell:PastTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
-            cell.sourceLable.text = persons[indexPath.row].startLocationCity
-            cell.destinationLable.text = persons[indexPath.row].endlocationCity
-            cell.tripTypelable.text = persons[indexPath.row].serviceType
+            cell.sourceLable.text = sortedPastTripArray[indexPath.row].startLocationCity
+            cell.destinationLable.text = sortedPastTripArray[indexPath.row].endlocationCity
+            cell.tripTypelable.text = sortedPastTripArray[indexPath.row].serviceType
             cell.fareAmount.text = "Rs. \(String(persons[indexPath.row].estimatedPrice))"
-            cell.tripStatusLable.text = persons[indexPath.row].status
-            let startTime = persons[indexPath.row].startTime
+            cell.tripStatusLable.text = sortedPastTripArray[indexPath.row].status
+            let startTime = sortedPastTripArray[indexPath.row].startTime
             print("Table Start Time : ", startTime)
             
             if let pickUpDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
@@ -241,7 +256,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 
             }
             
-            let endTime = persons[indexPath.row].endTime
+            let endTime = sortedPastTripArray[indexPath.row].endTime
             print("Table Start Time : ", startTime)
             
             if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: endTime) {
@@ -272,7 +287,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cell:UpcomingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell") as! UpcomingTableViewCell
         if(strTripType == "Upcoming") {
-            if inProgressTripArray[indexPath.row].driver?.name == "" {
+            if upcomingTripArray[indexPath.row].driver?.name == "" {
                 return 275
             } else {
                 return 305
