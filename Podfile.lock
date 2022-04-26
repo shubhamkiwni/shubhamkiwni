@@ -104,6 +104,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - ReachabilitySwift (5.0.0)
   - Socket.IO-Client-Swift (15.2.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - GooglePlaces (= 5.1.0)
   - IQKeyboardManagerSwift (= 6.3.0)
   - MBProgressHUD (~> 1.2.0)
+  - ReachabilitySwift
   - Socket.IO-Client-Swift (~> 15.2.0)
 
 SPEC REPOS:
@@ -139,6 +141,7 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - PromisesObjC
+    - ReachabilitySwift
     - Socket.IO-Client-Swift
     - Starscream
 
@@ -161,9 +164,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: efdd36c2b08038d920465b238b72c2a32ae9473e
+PODFILE CHECKSUM: 74868e41adb89cf47fb3fdd855e21814d44248c7
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

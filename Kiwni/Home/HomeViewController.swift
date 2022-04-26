@@ -10,6 +10,7 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 import DropDown
+import Reachability
 
 var tabletagArray = [0]
 var dateTag: Int = 0
@@ -211,6 +212,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var imageurlString : String! = ""
     var selectedService : String! = ""
     
+    let reachability = try! Reachability()
+    var customView = UIView()
+    
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -346,9 +350,48 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         strDirection = "two-way"
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
+        
+        self.customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
+        self.customView.backgroundColor = UIColor.red     //give color to the view
+        self.customView.center = self.view.center
+        self.customView.isHidden = true
+         self.view.addSubview(self.customView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+               
+//                customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
+//                customView.backgroundColor = UIColor.green     //give color to the view
+//                customView.center = self.view.center
+//                self.view.addSubview(customView)
+                
+                self.customView.isHidden = true
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                
+               
+                self.customView.isHidden = false
+                
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    
+
         SocketIOManager.sharedInstance.establishConnection()
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
@@ -413,6 +456,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         }
         
+    }
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func doneButonClicked(_ sender: UIButton) {
@@ -1591,12 +1637,12 @@ extension HomeViewController: CLLocationManagerDelegate
         
         self.showIndicator(withTitle: "Loading", and: "Please Wait")
         
-        if (NetworkMonitor.share.isConnected == false){
-          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-            self.hideIndicator()
-            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
-            return
-        }
+//        if (NetworkMonitor.share.isConnected == false){
+//          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+//            self.hideIndicator()
+//            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
+//            return
+//        }
     
 
         let geocoder = GMSGeocoder()
