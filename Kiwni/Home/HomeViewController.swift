@@ -1598,9 +1598,7 @@ extension HomeViewController: CLLocationManagerDelegate
             return
         }
     
-       
-    
-        
+
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(sourceCoordinate) { response, error in
             if let location = response?.firstResult() {
