@@ -362,19 +362,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 } else {
                     print("Reachable via Cellular")
                 }
-               
-//                customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
-//                customView.backgroundColor = UIColor.green     //give color to the view
-//                customView.center = self.view.center
-//                self.view.addSubview(customView)
                 self.noInternetErrorPopupHide()
                 
             }
             self.reachability.whenUnreachable = { _ in
                 print("Not reachable")
-                
-               
-                
                 self.noInternetErrorPopupShow("No Internet Connection")
                 
             }

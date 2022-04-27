@@ -564,17 +564,12 @@ extension CarTypesViewController {
                         self.selectedPickUpAddress = lines.joined(separator: "\n")
                         //                        self.pickUpTextField.text = self.selectedPickUpAddress
                         UserDefaults.standard.setValue(self.selectedPickUpAddress, forKey:"SourceAddress")
-                        //                        self.pickupcityName = response?.firstResult()?.locality
-                        //                        UserDefaults.standard.setValue(self.pickupcityName, forKey:"PickupCityName")
-                        //                            print("sourceTextfield text:  ",self.pickupTextField.text , self.selectedAddress)
                         
                     }else if(fieldtype == "FromDestination"){
                         self.selectedDropAddress = lines.joined(separator: "\n")
                         //                        self.dropTextField.text = self.selectedDropAddress
                         print(self.selectedDropAddress)
                         UserDefaults.standard.setValue(self.selectedDropAddress, forKey:"DestinationAddress")
-                        //                        self.destinationcityName = response?.firstResult()?.locality
-                        //                        UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
                     }
                 }
             }
