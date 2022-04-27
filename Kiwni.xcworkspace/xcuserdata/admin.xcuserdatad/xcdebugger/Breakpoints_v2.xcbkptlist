@@ -14,8 +14,8 @@
             filePath = "Kiwni/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
             landmarkName = "confirmLocationButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>

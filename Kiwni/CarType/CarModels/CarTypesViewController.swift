@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import GoogleMaps
 import GooglePlaces
+import Reachability
 
 class CarTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GMSMapViewDelegate {
     
@@ -85,6 +86,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
+    let reachability = try! Reachability()
 //    var finalArray : [ScheduleDate] = []
 //    var selectedArray : [ScheduleDate] = []
     
@@ -158,7 +160,35 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         carTypeTableView.reloadData()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func viewDetailsButtonPressed(_ sender: UIButton) {
@@ -180,15 +210,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        
-//        let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-//        navigationController?.pushViewController(homeVc, animated: true)
-        
         navigationController?.popViewController(animated: true)
-        
-//        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-//        navigationController?.popToViewController(hvc, animated: true)
-//        rentalTag = 0
     }
     
     @IBAction func callButtonAction(_ sender: UIButton) {
@@ -267,7 +289,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+       
             
         print("Vehicle type: ",keyArray[indexPath.row])
         let selectedVehicles =  vehicleDetailsList.filter { vehicleDetails in
@@ -294,20 +316,23 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         print("selectedVehicles Array : ", modelClassInfoList)
         print("selectedVehicles array count:", modelClassInfoList.count)
      
+        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        DispatchQueue.main.async {
+            self.hideIndicator()
+            let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
+            VC.carTypeString = self.keyArray[indexPath.row]
+            VC.carsArray = modelClassInfoList
+            VC.vehicleDetailsList = self.vehicleDetailsList
+            VC.estimatedKM = round(self.estimatedKM)
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
         
-        self.hideIndicator()
-        let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "CarsViewController") as! CarsViewController
-        VC.carTypeString = keyArray[indexPath.row]
-        VC.carsArray = modelClassInfoList
-        VC.vehicleDetailsList = vehicleDetailsList
-        VC.estimatedKM = round(estimatedKM)
-        navigationController?.pushViewController(VC, animated: true)
+        
+        
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -456,12 +481,7 @@ extension CarTypesViewController {
     }
     
     func durationDistance(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
-        
-        if (NetworkMonitor.share.isConnected == false){
-            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-            return
-        }
-        
+            
         var urlString : String = "https://maps.googleapis.com/maps/api/distancematrix/json?departure_time=now&destinations=\(destination.latitude),\(destination.longitude)&origins=\(origin.latitude),\(origin.longitude)&key=\(googleMapKey)"
         
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!

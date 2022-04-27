@@ -350,12 +350,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         strDirection = "two-way"
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
-        
-//        customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-//        self.customView.backgroundColor = UIColor.red     //give color to the view
-//        self.customView.center = self.view.center
-//        self.customView.isHidden = true
-//         self.view.addSubview(self.customView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -458,6 +452,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
     }
+    
     deinit{
         reachability.stopNotifier()
     }
@@ -941,10 +936,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     UserDefaults.standard.setValue("outstation", forKey: "serviceType")
                     UserDefaults.standard.setValue(strDirection, forKey: "direction")
                     
-                    if (NetworkMonitor.share.isConnected == false){
-                        self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-                        return
-                    }
+                    
                     
                     self.showIndicator(withTitle: "Loading", and: "Please Wait")
                     
@@ -1407,10 +1399,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func durationDistance(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         
-        if (NetworkMonitor.share.isConnected == false){
-            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-            return
-        }
+     
         
         var urlString : String = "https://maps.googleapis.com/maps/api/distancematrix/json?departure_time=now&destinations=\(destination.latitude),\(destination.longitude)&origins=\(origin.latitude),\(origin.longitude)&key=\(googleMapKey)"
         
@@ -1537,7 +1526,7 @@ extension HomeViewController: SidebarViewDelegate {
         }
         switch row {
         case .editProfile:
-            let epvc = storyboard?.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
+            let epvc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
             navigationController?.pushViewController(epvc, animated: true)
         case .myRides:
             print("MyRidesViewController")

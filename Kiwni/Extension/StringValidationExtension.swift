@@ -1,5 +1,5 @@
 //
-//  String Validation Extension.swift
+//  StringValidationExtension.swift
 //  Kiwni
 //
 //  Created by Shubham Shinde on 18/04/22.

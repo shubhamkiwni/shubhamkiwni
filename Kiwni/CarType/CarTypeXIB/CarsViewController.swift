@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 struct cellData {
     var opened = Bool()
@@ -86,6 +87,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     var pickUpOnTime: String = ""
     var tripType: String = ""
     var tripTypeMode: String = ""
+    let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,8 +101,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         dateLabel.text = UserDefaults.standard.string(forKey: "pickupDate") ?? ""
         timeLabel.text = UserDefaults.standard.string(forKey: "pickupTime") ?? ""
         tripTypeLabel.text = UserDefaults.standard.string(forKey: "tripType") ?? ""
-//        UserDefaults.standard.setValue(tripTypeLabel.text, forKey: "tripType")
-//        print(pickedSourceCoordinate as Any, pickedDropCoordinate as Any)
         print(pickUpCityName, dropCityName)
         print(pickUpOnDate, returnByDate)
         print(pickUpOnTime)
@@ -121,24 +121,46 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         if rentalTag != 2 {
             packageView.isHidden = true
         }
-        //        let screenWidth = screenRect.size.width
-        //let screenHeight = screenRect.size.height
+        
         tableBaseView.layer.cornerRadius = 20.0
         carsTableView.layer.cornerRadius = 20.0
-        //  carsTableView.layer.masksToBounds = true
         tableBaseView.layer.shadowColor = UIColor.black.cgColor
         tableBaseView.layer.shadowOpacity = 0.2
         tableBaseView.layer.shadowOffset = CGSize.zero
         tableBaseView.layer.shadowRadius = 5
-        
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        //        let hvc = navigationController?.viewControllers[1] as! CarTypesViewController
-        //        navigationController?.popToViewController(hvc, animated: true)
-        navigationController?.popViewController(animated: true)
+       navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sortButtonPressed(_ sender: UIButton) {
@@ -230,6 +252,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         if indexPath.row == 0 {
             let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
             
+        
             selectedIndex = indexPath.section
             
             if(carsArray.isEmpty == false){
@@ -288,11 +311,13 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             imageString = carsArray[indexPath.section].imagePath ?? ""
 //          print("imageString : \(imageString)")
             
-            let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
-            let data = try? Data(contentsOf: url!) 
-            cell.carImage.image = UIImage(data: data!)
+            DispatchQueue.main.async {
+                let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
+                let data = try? Data(contentsOf: url!)
+                cell.carImage.image = UIImage(data: data!)
+            }
             
-            
+        
             if estimatedPriceArr.count == 1 {
                 cell.priceLabel.text = "₹ \(forTrailingZero(temp: round(estimatedPriceArr.first ?? 0)))"
             } else {
@@ -384,10 +409,14 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
                 
             }
             print("finalArray[selectedIndex]",carsArray[selectedIndex])
-            
             carsArray[indexPath.section].opened = true
             let sections = IndexSet.init(integer: indexPath.section)
-            carsTableView.reloadSections(sections, with: .none)
+            
+            self.showIndicator(withTitle: "Loading", and: "Please Wait")
+            DispatchQueue.main.async {
+                self.hideIndicator()
+                self.carsTableView.reloadSections(sections, with: .none)
+            }
         }
     }
     

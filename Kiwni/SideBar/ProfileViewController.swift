@@ -1,5 +1,5 @@
 //
-//  EditProfileVC.swift
+//  ProfileViewController.swift
 //  mySidebar2
 //
 //  Created by Muskan on 10/12/17.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Reachability
 
-class EditProfileVC: UIViewController {
+class ProfileViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var editProfileImageButton: UIButton!
@@ -30,6 +31,7 @@ class EditProfileVC: UIViewController {
     @IBOutlet weak var mobileNumberEditButton: UIButton!
     @IBOutlet weak var emailEditButton: UIButton!
     @IBOutlet weak var emergencyNumberEditButton: UIButton!
+    let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,35 @@ class EditProfileVC: UIViewController {
         self.userMailLabel.text = UserDefaults.standard.string(forKey: "email")
         self.userMobileNumberLabel.text = UserDefaults.standard.string(forKey: "phoneNumber")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -80,8 +111,7 @@ class EditProfileVC: UIViewController {
         
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginViewController")
-//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
-        navigationController?.pushViewController(loginNavController, animated: true)
+       navigationController?.pushViewController(loginNavController, animated: true)
 
     }
     

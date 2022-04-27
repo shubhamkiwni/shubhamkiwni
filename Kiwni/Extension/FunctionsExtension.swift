@@ -1,5 +1,5 @@
 //
-//  Functions Extension.swift
+//  FunctionsExtension.swift
 //  Kiwni
 //
 //  Created by Shubham Shinde on 18/04/22.

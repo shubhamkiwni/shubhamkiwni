@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class OTPViewController: UIViewController, UITextFieldDelegate {
 
@@ -24,6 +25,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var userMobileNumber : String? = ""
     var otp  = [String]()
     var userEnterdOtp : String = ""
+    let reachability = try! Reachability()
     
     private lazy var textFieldsArray = [self.otpText1,self.otpText2,self.otpText3,self.otpText4,self.otpText5,self.otpText6]
 
@@ -96,6 +98,35 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         otpText5.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         otpText6.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     private func initialLoads(){
@@ -227,11 +258,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         } else if userEnterdOtp.count < 6 {
             customErrorPopup("Please correct otp")
         } else {
-            if (NetworkMonitor.share.isConnected == false){
-                self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-                return
-            }
-
+           
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
             AuthManager.shared.verifyCode(smsCode: checkOtp){ success in
                     guard success else {
@@ -244,23 +271,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 print("Code Matches")
             }
         }
-        
-        
-        
-//        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-      /*  UserDefaults.standard.setValue(true, forKey: "status")
-        if userEnterdOtp == "" {
-            print("Please enter otp")
-            customErrorPopup("Please enter otp")
-        } else if userEnterdOtp.count < 6 {
-            customErrorPopup("Please correct otp")
-        } else {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeVc = mainStoryboard.instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-            navigationController?.pushViewController(homeVc, animated: true)*/
         }
-       
-            
-
 }
     

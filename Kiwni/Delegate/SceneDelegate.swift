@@ -12,6 +12,7 @@ import FirebaseAuth
 import GooglePlaces
 import GoogleMaps
 import Network
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -36,12 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window?.rootViewController = intialVC
         
-        NetworkMonitor.share.startMonitoring()
         IQKeyboardManager.shared.enable = true
         GMSServices .provideAPIKey("AIzaSyDWKeGELULicORJQXa1AvVtfLNPifnj7BQ")
         GMSPlacesClient.provideAPIKey("AIzaSyDnaIPR6Tp0sgrhj-fcXLivvaILrOdQMhs")
         FirebaseApp.configure()
-        NetworkMonitor.share.startMonitoring()
+        
     }
 
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {

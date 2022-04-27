@@ -46,8 +46,5 @@ struct ErrorMessage {
     let pleasewait = "Your session has been expired"
     let nodatafound = "No data found"
     let selectbaselocation = "Please select pickup location as PUNE"
-    let internalserver = "Server Error"
-
-//    let enterdata = "Please enter data"
-    
+    let internalserver = "Server Error"  
 }

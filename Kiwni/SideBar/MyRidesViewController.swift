@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegate {
     
@@ -39,17 +40,14 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     
     var strTripType :  String = ""
     let formatter = DateFormatter()
+    let reachability = try! Reachability()
     override func viewDidLoad() {
         super.viewDidLoad()
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
         
-        
-        
         self.tripsTableView.register(UpcomingTableViewCell.nib(), forCellReuseIdentifier: UpcomingTableViewCell.identifier)
         self.tripsTableView.register(PastTableViewCell.nib(), forCellReuseIdentifier: PastTableViewCell.identifier)
-        
-        
-        
+    
         APIManager.shareInstance.callinggInProgressTripRequest() { response in
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
             switch response{
@@ -65,12 +63,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 print("User Fail on ViewController")
             }
         }
-       
-        
-        
-        if NetworkMonitor.share.isConnected == true {
             APIManager.shareInstance.callinggFindTripByUserID() { response in
-                
                 switch response{
                 case .success(let responseArray):
                     print("User Success on ViewController")
@@ -115,13 +108,37 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                     print("User Fail on ViewController")
                 }
             }
-        } else {
-//            self.persons = self.db.read()
-//            print("Count:",self.persons.count)
-//            print("Data:", self.persons[0].id)
-            customErrorPopup("No Internet Connection Found")
-        }
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

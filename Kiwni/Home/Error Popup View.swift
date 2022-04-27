@@ -16,7 +16,7 @@ private var viewBackground : UIView?
 let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
 let imageName = "Wifi Icon"
 let image = UIImage(named: imageName)
-let imageView = UIImageView(image: image!)
+let noInternetImageView = UIImageView(image: image!)
 
 extension UIViewController {
     
@@ -81,13 +81,13 @@ extension UIViewController {
         self.view.addSubview(errorCustomView)
         
         
-        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        imageView.center = self.view.center
-        view.addSubview(imageView)
-        print(imageView.frame.origin.x, imageView.frame.origin.y)
+        noInternetImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        noInternetImageView.center = self.view.center
+        view.addSubview(noInternetImageView)
+        print(noInternetImageView.frame.origin.x, noInternetImageView.frame.origin.y)
         
         errorString.text = errorMessage
-        errorString.frame = CGRect.init(x: imageView.frame.origin.x - 60, y: imageView.frame.origin.y + 60, width: 200, height: 30)
+        errorString.frame = CGRect.init(x: noInternetImageView.frame.origin.x - 60, y: noInternetImageView.frame.origin.y + 60, width: 200, height: 30)
         errorString.textColor = .black
         errorString.font = errorString.font.withSize(18)
 //        errorString.center = self.view.center
@@ -99,7 +99,8 @@ extension UIViewController {
     
     func noInternetErrorPopupHide() {
         errorCustomView.removeFromSuperview()
-        errorString.removeFromSuperview()        
+        errorString.removeFromSuperview()
+        noInternetImageView.removeFromSuperview()
     }
 }
 

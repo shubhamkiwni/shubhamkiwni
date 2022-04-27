@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Reachability
 
 class BookingDetailsViewController: UITableViewController, openPopUp {
     
     var companyNameString: String? = ""
     var companyEmailString: String? = ""
     var companyMobileNoString: String? = ""
+    let reachability = try! Reachability()
     
     func openPopUp() {
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BusinessDetaisViewController") as! BusinessDetaisViewController
@@ -23,7 +25,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
             self.confXIB.companyNameValueLabel.text = self.companyNameString
             self.confXIB.companyEmailValueLabel.text = self.companyEmailString
             self.confXIB.companyPhoneValueLabel.text = self.companyMobileNoString
-                    }
+        }
         navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -45,7 +47,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     var reservationTime : String! = ""
     var carImagePath: String = ""
     let dateFormatter = DateFormatter()
-
+    
     
     var bookingArray = [""]
     
@@ -70,16 +72,16 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         super.viewDidLoad()
         print("carImagePath:", carImagePath)
         let url = URL(string: "https://kiwni.com/car_images/\(carImagePath)")
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch        
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         bookingDetilsXIBView.carImage.image = UIImage(data: data!)
         
         print("selectedCarValue:", selectedCarValue)
         bookingDetilsView.addSubview(bookingDetilsXIBView)
-//        safetyComView.addSubview(safetyComXIBView)
-//        kiniComfirtView.addSubview(kiwniComfirtXIBView)
+        //        safetyComView.addSubview(safetyComXIBView)
+        //        kiniComfirtView.addSubview(kiwniComfirtXIBView)
         safetyComView.addSubview(confXIB)
         kiniComfirtView.isHidden = true
-//        confXIB.isHidden = true
+        //        confXIB.isHidden = true
         
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
@@ -110,11 +112,11 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         self.reservationTime = inputstring.replacingOccurrences(of: "+0530", with: "Z")
         print("reservationTime:\(self.reservationTime!))")
         
-//        let strServiceType = "one-way-outstation-ultra-luxury"
+        //        let strServiceType = "one-way-outstation-ultra-luxury"
         
         let strServiceType : String = UserDefaults.standard.string(forKey:"serviceType") ?? ""
         let strdirection :String  =  UserDefaults.standard.string(forKey:"direction") ?? ""
-       
+        
         let rateStr : String = "\(strdirection)-\(strServiceType)-\(strClasstype.lowercased())"
         print("Rate Str : ", rateStr)
         
@@ -136,6 +138,35 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
+    }
     
     @IBAction func backButton(_ sender: UIButton) {
         if safetyComXIBView.isHidden == true {
@@ -178,7 +209,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         footerView.frame = CGRect(x: 0, y: 10, width: self.tableView.frame.width, height: 100)
         
         button.frame = CGRect(x: 80, y: 10, width: self.tableView.frame.width - 150, height: 40)
-//        button.setTitle("PROCEED TO PAY", for: .normal)
+        //        button.setTitle("PROCEED TO PAY", for: .normal)
         button.setTitle("CONFIRM BOOKING", for: .normal)
         button.setTitleColor( .white, for: .normal)
         button.backgroundColor = .black
@@ -193,143 +224,137 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     
     @objc func pressed() {
         print("PROCEED TO PAY")
+    
+        let driverID = self.selectedCarValue.driverID ?? 0
+        let driverLicense : String = ""
+        let driverName : String = self.selectedCarValue.driverName ?? ""
+        let driverPhone : String = self.selectedCarValue.driverPhone ?? ""
+        let providerId :String = self.selectedCarValue.providerID ?? ""
         
-//        if safetyComXIBView.isHidden == false {
-//            confXIB.isHidden = false
-//            safetyComXIBView.isHidden = true
-//            kiniComfirtView.isHidden = true
-//            kiwniComfirtXIBView.isHidden = true
-//            button.setTitle("CONFIRM BOOKING", for: .normal)
-//        } else {
-            
-            let driverID = self.selectedCarValue.driverID ?? 0
-            let driverLicense : String = ""
-            let driverName : String = self.selectedCarValue.driverName ?? ""
-            let driverPhone : String = self.selectedCarValue.driverPhone ?? ""
-            //        var providerId : Int = 0
-            //        providerId = (self.vehicleSchedule.vehicle?.provider?.id) ?? 0
-            let providerId :String = self.selectedCarValue.providerID ?? ""
-            
-            let createdUser: String = UserDefaults.standard.string(forKey: "displayName") ?? ""
-            let customerEmail : String = UserDefaults.standard.string(forKey: "email") ?? ""
-            let customerId : String = UserDefaults.standard.string(forKey: "partyId") ?? ""
-            let customerName : String = UserDefaults.standard.string(forKey: "displayName") ?? ""
-            let customerPhone :  String = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
-            
-            var provideridint : Int = 0
-            provideridint = Int(providerId) ?? 0
-            print("Provider id : \(provideridint)")
-            
-            let estimatedPrice : Double
-            estimatedPrice = round(selectedCarValue.estimatedPrice ?? 0)
-            
-            print("Estimated price:\(estimatedPrice)")
-            
-            let providerName : String = (self.selectedCarValue.providername) ?? ""
-            let scheduleID : String = String((self.selectedCarValue.scheduleID ?? 0))
-            let vehicleID : Int = (self.selectedCarValue.vehicalID)!
-            let vehicleNumb : String = self.selectedCarValue.vehicleNumb ?? ""
-            
-            //   let createdTime :  String = String(UserDefaults.standard.string(forKey: "partyId")!)
-            //   let createdUser : String = String(UserDefaults.standard.string(forKey: "partyId")!)
-            let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
-            let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""
-            let toLocation: String = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
-            let journeyEndTime : String = UserDefaults.standard.string(forKey: "journeyEndTime") ?? ""
-            let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
-            
-            
-            let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
-//            let notificationType : String = UserDefaults.standard.string(forKey: "notificationType") ?? ""
-            let notificationType : String = "Email,SMS,WhatsApp"
-            
-            let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
-            let userSourceLatitude  = SourceCoordinate["SourceLatitude"]
-            let userSourceLongitude  = SourceCoordinate["SourceLongitude"]
-            
-            print(userSourceLatitude,userSourceLongitude)
-
-            let DestinationCoordinate = UserDefaults.standard.object(forKey:"DestinationCoordinate" ) as! [String : NSNumber]
-            let userDestinationLatitude  = DestinationCoordinate["DestinationLatitude"]
-            let userDestinationLongitude  = DestinationCoordinate["DestinationLongitude"] 
-            print(userDestinationLatitude,userDestinationLongitude)
-            
-            let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "", fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double))
-            print("resevation Model :\(reservationModelData)")
-            
-            self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        let createdUser: String = UserDefaults.standard.string(forKey: "displayName") ?? ""
+        let customerEmail : String = UserDefaults.standard.string(forKey: "email") ?? ""
+        let customerId : String = UserDefaults.standard.string(forKey: "partyId") ?? ""
+        let customerName : String = UserDefaults.standard.string(forKey: "displayName") ?? ""
+        let customerPhone :  String = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
         
-            
-            APIManager.shareInstance.createReservationForVehicleSchedule(getReservationModel: reservationModelData, completionHandler: { result in
-                switch result {
-                case .success(let reservationResponse):
-                    
+        var provideridint : Int = 0
+        provideridint = Int(providerId) ?? 0
+        print("Provider id : \(provideridint)")
+        
+        let estimatedPrice : Double
+        estimatedPrice = round(selectedCarValue.estimatedPrice ?? 0)
+        
+        print("Estimated price:\(estimatedPrice)")
+        
+        let providerName : String = (self.selectedCarValue.providername) ?? ""
+        let scheduleID : String = String((self.selectedCarValue.scheduleID ?? 0))
+        let vehicleID : Int = (self.selectedCarValue.vehicalID)!
+        let vehicleNumb : String = self.selectedCarValue.vehicleNumb ?? ""
+        
+        //   let createdTime :  String = String(UserDefaults.standard.string(forKey: "partyId")!)
+        //   let createdUser : String = String(UserDefaults.standard.string(forKey: "partyId")!)
+        let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
+        let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""
+        let toLocation: String = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
+        let journeyEndTime : String = UserDefaults.standard.string(forKey: "journeyEndTime") ?? ""
+        let journeyTime : String = UserDefaults.standard.string(forKey: "journeyTime") ?? ""
+        
+        
+        let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
+        //            let notificationType : String = UserDefaults.standard.string(forKey: "notificationType") ?? ""
+        let notificationType : String = "Email,SMS,WhatsApp"
+        
+        let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
+        let userSourceLatitude  = SourceCoordinate["SourceLatitude"]
+        let userSourceLongitude  = SourceCoordinate["SourceLongitude"]
+        
+        print(userSourceLatitude,userSourceLongitude)
+        
+        let DestinationCoordinate = UserDefaults.standard.object(forKey:"DestinationCoordinate" ) as! [String : NSNumber]
+        let userDestinationLatitude  = DestinationCoordinate["DestinationLatitude"]
+        let userDestinationLongitude  = DestinationCoordinate["DestinationLongitude"]
+        print(userDestinationLatitude,userDestinationLongitude)
+        
+        let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: rateId)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 1), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "", fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double))
+        print("resevation Model :\(reservationModelData)")
+        
+        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        
+        
+        APIManager.shareInstance.createReservationForVehicleSchedule(getReservationModel: reservationModelData, completionHandler: { result in
+            switch result {
+            case .success(let reservationResponse):
+                
+                self.hideIndicator()
+                
+                print("ReservationResponse : \(reservationResponse)")
+                print("Payment Button Pressed")
+                
+                let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "paymentStoryboard") as! PaymentModeViewController
+                self.navigationController?.pushViewController(VC, animated: true)
+                
+            case .failure(let error):
+                //                    self.view.makeToast(ErrorMessage.list.sessionexpired)
+                //                    self.view.makeToast(ErrorMessage.list.pleasewait)
+                
+                self.showIndicator(withTitle: "Loading", and: "Please wait your request is processing.")
+                
+                print(error)
+                
+                let refresh_token = UserDefaults.standard.string(forKey: "refreshToken")
+                print("Refreshtoken for requestPayload: \(refresh_token ?? "0")")
+                
+                let requestpayload = FirebaseRequestPayload(grant_type:"refresh_token", refresh_token: refresh_token ?? "0" )
+                
+                print("RequestPayload : ", requestpayload)
+                
+                APIManager.shareInstance.getRefreshToken(requestpayloadModel: requestpayload, completionHandler: { result in
                     self.hideIndicator()
+                    print("Refresh Token result :\(result)")
                     
-                    print("ReservationResponse : \(reservationResponse)")
-                    print("Payment Button Pressed")
-                    
-                    let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "paymentStoryboard") as! PaymentModeViewController
-                    self.navigationController?.pushViewController(VC, animated: true)
-                    
-                case .failure(let error):
-                    //                    self.view.makeToast(ErrorMessage.list.sessionexpired)
-                    //                    self.view.makeToast(ErrorMessage.list.pleasewait)
-                    
-                    self.showIndicator(withTitle: "Loading", and: "Please wait your request is processing.")
-                    
-                    print(error)
-                    
-                    let refresh_token = UserDefaults.standard.string(forKey: "refreshToken")
-                    print("Refreshtoken for requestPayload: \(refresh_token ?? "0")")
-                    
-                    let requestpayload = FirebaseRequestPayload(grant_type:"refresh_token", refresh_token: refresh_token ?? "0" )
-                    
-                    print("RequestPayload : ", requestpayload)
-                    
-                    APIManager.shareInstance.getRefreshToken(requestpayloadModel: requestpayload, completionHandler: { result in
-                        self.hideIndicator()
-                        print("Refresh Token result :\(result)")
+                    switch result {
+                    case .success(let reservationResponse):
                         
-                        switch result {
-                        case .success(let reservationResponse):
-                            
-                            let revisedtoken = reservationResponse.id_token
-                            
-                            //                            UserDefaults.standard.set("", forKey: "idToken")
-                            
-                            UserDefaults.standard.removeObject(forKey: "idToken")
-                            UserDefaults.standard.setValue(revisedtoken, forKey: "idToken")
-                            
-                            APIManager.shareInstance.createReservationForVehicleSchedule(getReservationModel: reservationModelData, completionHandler: { result in
-                                switch result {
-                                case .success(let reservationResponse):
-                                    
-                                    print("ReservationResponse : \(reservationResponse)")
-                                    print("Payment Button Pressed")
-                                    
+                        let revisedtoken = reservationResponse.id_token
+                        
+                        //                            UserDefaults.standard.set("", forKey: "idToken")
+                        
+                        UserDefaults.standard.removeObject(forKey: "idToken")
+                        UserDefaults.standard.setValue(revisedtoken, forKey: "idToken")
+                        
+                        APIManager.shareInstance.createReservationForVehicleSchedule(getReservationModel: reservationModelData, completionHandler: { result in
+                            switch result {
+                            case .success(let reservationResponse):
+                                
+                                print("ReservationResponse : \(reservationResponse)")
+                                print("Payment Button Pressed")
+                                
+                                DispatchQueue.main.async {
                                     let VC = UIStoryboard(name: "Payment", bundle: nil).instantiateViewController(withIdentifier: "paymentStoryboard") as! PaymentModeViewController
                                     self.navigationController?.pushViewController(VC, animated: true)
                                     
-                                case .failure(let error):
-                                    
-                                    self.view.makeToast(ErrorMessage.list.internalserver)
-                                    print("Error from failure", error)
-                                    
                                 }
-                                self.hideIndicator()
-                            })
-                        case .failure(_):
-                            
-                            break
-                            
-                        }
+                                
+                                
+                            case .failure(let error):
+                                
+                                self.view.makeToast(ErrorMessage.list.internalserver)
+                                print("Error from failure", error)
+                                
+                            }
+                            self.hideIndicator()
+                        })
+                    case .failure(_):
                         
-                    })
+                        break
+                        
+                    }
                     
-                }
-            })
-            
-//        }
+                })
+                
+            }
+        })
+        
+        //        }
     }
 }
