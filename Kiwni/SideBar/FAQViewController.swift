@@ -10,6 +10,7 @@ import UIKit
 class FAQViewController: UIViewController {
 
     @IBOutlet weak var faqView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var faqLabel: UILabel!
     
     override func viewDidLoad() {
@@ -19,7 +20,6 @@ class FAQViewController: UIViewController {
     
 
     @IBAction func backButton(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-        navigationController?.popToViewController(hvc, animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

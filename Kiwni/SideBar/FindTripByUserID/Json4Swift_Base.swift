@@ -27,10 +27,10 @@ struct Json4Swift_Base : Codable {
 	let status : String?
 	let rating : String?
 	let createdAt : String?
-	let createdByparty : CreatedByparty?
-	let provider : Provider?
-	let driver : Driver?
-	let passenger : Passenger?
+	let createdByparty : MyRideCreatedByparty?
+	let provider : MyRideProvider?
+	let driver : MyRideDriver?
+	let passenger : MyRidePassenger?
 	let reservationStatus : String?
 	let bookingChannel : String?
 	let serviceType : String?
@@ -90,10 +90,10 @@ struct Json4Swift_Base : Codable {
 		status = try values.decodeIfPresent(String.self, forKey: .status)
 		rating = try values.decodeIfPresent(String.self, forKey: .rating)
 		createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
-		createdByparty = try values.decodeIfPresent(CreatedByparty.self, forKey: .createdByparty)
-		provider = try values.decodeIfPresent(Provider.self, forKey: .provider)
-		driver = try values.decodeIfPresent(Driver.self, forKey: .driver)
-		passenger = try values.decodeIfPresent(Passenger.self, forKey: .passenger)
+		createdByparty = try values.decodeIfPresent(MyRideCreatedByparty.self, forKey: .createdByparty)
+		provider = try values.decodeIfPresent(MyRideProvider.self, forKey: .provider)
+		driver = try values.decodeIfPresent(MyRideDriver.self, forKey: .driver)
+		passenger = try values.decodeIfPresent(MyRidePassenger.self, forKey: .passenger)
 		reservationStatus = try values.decodeIfPresent(String.self, forKey: .reservationStatus)
 		bookingChannel = try values.decodeIfPresent(String.self, forKey: .bookingChannel)
 		serviceType = try values.decodeIfPresent(String.self, forKey: .serviceType)

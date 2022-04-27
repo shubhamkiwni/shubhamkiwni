@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYs-Tc-bMB">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="135"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Droppoint" translatesAutoresizingMaskIntoConstraints="NO" id="YEs-Kn-flg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pickuppoint" translatesAutoresizingMaskIntoConstraints="NO" id="YEs-Kn-flg">
                                         <rect key="frame" x="10" y="15" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="BZB-Pd-klE"/>
@@ -37,7 +37,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pickuppoint" translatesAutoresizingMaskIntoConstraints="NO" id="2eN-fV-Z7S">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DropPoint" translatesAutoresizingMaskIntoConstraints="NO" id="2eN-fV-Z7S">
                                         <rect key="frame" x="10" y="45" width="20" height="20"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-pF-ej5">
@@ -330,9 +330,9 @@
         <image name="Calender" width="24" height="24"/>
         <image name="Clock" width="24" height="24"/>
         <image name="DriverProfile" width="160" height="160"/>
-        <image name="Droppoint" width="15.5" height="15.5"/>
+        <image name="DropPoint" width="28" height="28"/>
         <image name="Mobileicon" width="19" height="18"/>
-        <image name="Pickuppoint" width="15.5" height="15.5"/>
+        <image name="Pickuppoint" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

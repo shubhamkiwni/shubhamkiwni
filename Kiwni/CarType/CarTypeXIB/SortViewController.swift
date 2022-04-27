@@ -50,8 +50,10 @@ class SortViewController: UIViewController {
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[4] as! CarsViewController
-        navigationController?.popToViewController(hvc, animated: true)
+//        let hvc = navigationController?.viewControllers[4] as! CarsViewController
+//        navigationController?.popToViewController(hvc, animated: true)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func latestButtonPressed(_ sender: UIButton) {

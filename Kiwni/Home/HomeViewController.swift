@@ -10,13 +10,14 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 import DropDown
+import Reachability
 
 var tabletagArray = [0]
 var dateTag: Int = 0
 var rentalTag: Int = 0
 var timeTag: Int = 0
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GMSMapViewDelegate, dropOnlocateSearchdelegate, UITextFieldDelegate, pickupOnlocateSearchdelegate  {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GMSMapViewDelegate, dropOnlocateSearchdelegate, UITextFieldDelegate, pickupOnlocateSearchdelegate,getReservationDetails {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tripTypeCollectionView: UICollectionView!
@@ -60,12 +61,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var destionationName : String? = ""
     var pickupDateAndTime : String? = ""
     var dropDateAndTime : String? = ""
-    var startTime : String? = ""
-    var endTime : String? = ""
+    var strSelectedTime : String? = ""
+    var journeystartTime : String? = ""
+    var journeyendTime : String? = ""
     var journeyDate : String? = ""
-    var strDirection : String = ""
+    var strDirection : String? = ""
+    var strServiceType: String? = ""
+    var strButtonTitle : String? = ""
     var userCurrentlocation: CLLocationCoordinate2D!
     var usercurrentLocationAddress : String? = ""
+    
+    var selectedPickUpDate = Date()
+    var selectedReturnDate = Date()
     
     var isconfirmLocation : Bool = false
     
@@ -76,6 +83,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var approximateLocationZoomLevel: Float = 10.0
     let defaultLocation = CLLocationCoordinate2D(latitude:19.7515 , longitude: 75.7139) // Maharashtra Coordinates
     var googleMapKey = "AIzaSyDnaIPR6Tp0sgrhj-fcXLivvaILrOdQMhs"
+    
+    var dictForScheduleDates: NSDictionary! = nil
+    
+    
+    @IBOutlet weak var driverSchedulePopup : UIView!
+    
+    @IBOutlet weak var krnNumLabel: UILabel!
+    @IBOutlet weak var onewaytripLabel: UILabel!
+    @IBOutlet weak var driverImageView: UIImageView!
+    @IBOutlet weak var estimatedFareValueLabel: UILabel!
+    @IBOutlet weak var estimateFareLabel : UILabel!
+    @IBOutlet weak var rideScheduleLabel: UILabel!
+    @IBOutlet weak var scheduledateLabel: UILabel!
+    @IBOutlet weak var drivercontactLabel : UILabel!
+    @IBOutlet weak var seperatorLabel : UILabel!
+    @IBOutlet weak var drivervehiclevalueLabel : UILabel!
+    @IBOutlet weak var drivernameLabel : UILabel!
+    @IBOutlet weak var driverOTPLabel : UILabel!
+    @IBOutlet weak var doneButton : UIButton!
+    
     
     private struct MapPath : Decodable{
         var routes : [Route]?
@@ -120,8 +147,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var kmArray = ["20km", "40km", "60km", "80km", "100km", "120km"]
     
     var dateArray: [String] = []
-    var currentDateString : String?
-    var myPickerDateString : String?
+    var currentDateString : String? = ""
+    var myPickerDateString : String? = ""
     
     var currentTimeString : String?
     var myPickerTimeString : String?
@@ -154,19 +181,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var returnByLable: UILabel!
     @IBOutlet weak var dateTimePickupView: UIView!
     
-//    @IBOutlet weak var pickUpOnDatePickerView: UIView!
-//    @IBOutlet weak var pickUpOnDatePickerImageView: UIImageView!
-//    @IBOutlet weak var pickUpOnDatePicker: UIDatePicker!
     
     @IBOutlet weak var pickUpDatePickerButton: UIButton!
     @IBOutlet weak var returnByDatePickerButton: UIButton!
     
     
     @IBOutlet weak var pickUpOnTimePickerButton: UIButton!
-    
-//    @IBOutlet weak var returnByDatePicker: UIDatePicker!
-//    @IBOutlet weak var returnByDatePickerView: UIView!
-//    @IBOutlet weak var returnByDatePickerImageView: UIImageView!
+    @IBOutlet weak var callButton: UIButton!
     
     @IBOutlet weak var rentalSelectaPackageLable: UILabel!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
@@ -178,18 +199,40 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     let newDatePicker: UIDatePicker = UIDatePicker()
     var datePickerTag = String()
+    let cancelDatePickerButton = UIButton()
+    let confirmDatePickerButton = UIButton()
     
     var estimatedDurationInTraffic: Int = 0
     var selectedTripType: String = ""
     var selectedTripTypeMode: String = ""
     
+    var myPickUpDateString : String? = ""
+    var myDropDateString : String? = ""
+    var driverdetailsArray : [SocketReservationResponse] = []
+    var imageurlString : String! = ""
+    var selectedService : String! = ""
+    
+    let reachability = try! Reachability()
+    var customView = UIView()
+    
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view1.addSubview(sideMenuButton)
+        self.view .addSubview(self.mainView)
+        self.mainView.addSubview(self.driverSchedulePopup)
+        self.driverSchedulePopup.addSubview(doneButton)
+        
+        SocketIOManager.sharedInstance.establishConnection()
+        self.driverSchedulePopup.isHidden = true
+        
+        pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        pickUpDatePickerButton.titleLabel!.minimumScaleFactor = 0.5
+        
+        newDatePicker.minimumDate = Date()
         pickUpDatePickerButton.titleLabel?.font =  UIFont(name: "", size: 14)
         
-        pickUpTextField.setIcon(UIImage(named: "PickPoint")!)
+        pickUpTextField.setIcon(UIImage(named: "Pickuppoint")!)
         dropTextField.setIcon(UIImage(named: "DropPoint")!)
         
         self.mapView.bringSubviewToFront(locatePinImage)
@@ -212,24 +255,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let timeStr = formatter.string(from: Date())
         print(timeStr)
         
-        formatter.dateFormat = "E, MMM d, yyyy"
+        formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: Date())
+        currentDateString = dateStr
+        print("strDate", currentDateString ?? "")
         
         pickUpDatePickerButton.setTitle(dateStr, for: .normal)
         returnByDatePickerButton.setTitle(dateStr, for: .normal)
-        print("dateStr",dateStr)
-        
+        myPickerDateString = dateStr
+        currentDateString = dateStr
         
         // Add an event to call onDidChangeDate function when value is changed.
-        newDatePicker.addTarget(self, action: #selector(action), for: .valueChanged)
+        newDatePicker.addTarget(self, action: #selector(datePickerAction), for: .valueChanged)
+        cancelDatePickerButton.addTarget(self, action: #selector(cancelDatePickerButtonAction), for: .touchUpInside)
+        confirmDatePickerButton.addTarget(self, action: #selector(confirmDatePickerButtonAction), for: .touchUpInside)
         
         // Add DataPicker to the view
         self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.dismissBlurView(gesture:))))
         
         pickUpOnTimePickerButton.setTitle(timeStr, for: .normal)
-//        pickUpOnTimeLable.text = timeStr
-//        pickUpOnDatePicker.tintColor = .black
-//        returnByDatePicker.tintColor = .black
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         selectPackageView.isHidden = true
@@ -237,8 +281,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dateTimePickupView.layer.borderWidth = 1.0
         dateTimePickupView.layer.borderColor = UIColor.lightGray.cgColor
         
+        
         self.mapView.delegate = self
         self.mapView.clear()
+        
         
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.latitude,
                                               longitude: defaultLocation.longitude,
@@ -247,6 +293,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.mapType = .normal
         
         setTimeToPicker()
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+        self.journeystartTime = formatter.string(from: newdate)
+        selectedPickUpDate = newdate
+        selectedReturnDate = newdate
+        print("self.startTime:", self.journeystartTime ?? "")
         
         tripTypeCollectionView.allowsMultipleSelection = false
         let firstIndexPath = NSIndexPath(item: 0, section: 0)
@@ -281,70 +333,353 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-
+        
         self.mapView.settings.compassButton = true
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.isUserInteractionEnabled = false
-
+        
         self.locatePinImage.isHidden = true
-       
+        
         
         pickUpTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
         dropTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
         placesClient = GMSPlacesClient.shared()
         self.nearbyPlaces()
+        
+        strDirection = "two-way"
+        selectedTripTypeMode = "ROUND TRIP"
+        strServiceType = "Outstation"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+               
+//                customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
+//                customView.backgroundColor = UIColor.green     //give color to the view
+//                customView.center = self.view.center
+//                self.view.addSubview(customView)
+                self.noInternetErrorPopupHide()
+                
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                
+               
+                
+                self.noInternetErrorPopupShow("No Internet Connection")
+                
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    
+
+        SocketIOManager.sharedInstance.establishConnection()
+        print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
+        
+        if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
+            self.driverSchedulePopup.isHidden = true
+        }
+        else{
+            self.driverSchedulePopup.isHidden = false
+            self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
+            print("Driver Details array : ", self.driverdetailsArray)
+            
+            let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
+            let substring:String = drivernameString.components(separatedBy: " ")[0]
+            drivernameLabel.text = substring
+            
+            let dataDecoded:NSData = NSData(base64Encoded:  self.driverdetailsArray[0].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
+            let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
+            print("OTP after decoding: ", decodedString)
+            driverOTPLabel.text = "OTP:\(decodedString)"
+            
+            // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
+            let startTime = self.driverdetailsArray[0].startTime ?? ""
+            
+            if let myDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
+            {
+                print("myDate: ", myDate)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                formatter.timeZone = TimeZone(identifier: "UTC")
+                let myString = formatter.string(from: myDate)
+                let yourDate: Date? = formatter.date(from: myString)
+                formatter.dateFormat = "yyyy-MM-dd"
+                let dateStr = formatter.string(from: yourDate!)
+                print("dateStr : ", dateStr)
+                
+                formatter.dateFormat = "hh:mm a"
+                let timeStr = formatter.string(from: yourDate!)
+                print("timeStr : ", timeStr)
+                scheduledateLabel.text = "\(dateStr), \(timeStr)"
+                print("Str time from popup : ","\(dateStr), \(timeStr)" )
+            } else {
+                print("add another format")
+            }
+            
+            
+            let imageString : String
+            imageString = self.driverdetailsArray[0].driverImageUrl ?? ""
+            print("imageString : \(imageString)")
+            
+            imageurlString  = "\(imageString)"
+            print("UrlString : \(imageurlString)")
+            //cell.carImageView.image = UIImage(contentsOfFile: urlString)
+            //           if let url = URL(string:imageurlString){
+            //               driverImageView.load(url: url)
+            //             }
+            
+            drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
+            drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
+            estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
+            onewaytripLabel.text = "\(driverdetailsArray[0].serviceType ?? "")" + "To" +  "\(driverdetailsArray[0].endlocationCity ?? "")"
+            krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
+            
+        }
+        
+    }
+    
+    deinit{
+        reachability.stopNotifier()
+    }
+    
+    @IBAction func doneButonClicked(_ sender: UIButton) {
+        print("Done Butoon Pressed")
+        self.driverSchedulePopup.isHidden = true
     }
     
     @objc func dismissBlurView(gesture: UITapGestureRecognizer){
-        blurEffectView.removeFromSuperview()
-        newDatePicker.removeFromSuperview()
-        }
+        //        blurEffectView.removeFromSuperview()
+        //        newDatePicker.removeFromSuperview()
+        //        cancelDatePickerButton.removeFromSuperview()
+        //        confirmDatePickerButton.removeFromSuperview()
+    }
     
     
     
     @IBAction func pickUpDatePickerButtonPressed(_ sender: UIButton) {
-        
+        //        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
+        //        timeFormatter.dateFormat = "yyyy-MM-dd"
+        //        myPickUpDateString = timeFormatter.string(from: newDatePicker.date)
+        //        print("myPickUpDateString : ",myPickUpDateString ?? "")
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {
-        
+        //        newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "2"
+        
     }
     
-    @objc func action() {
-        print(newDatePicker.date)
+    @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
+        dropDown.dataSource = self.arrSlots
+        dropDown.anchorView = sender
+        dropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        dropDown.show() //7
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+            guard let _ = self else { return }
+            //            self!.pickUpOnTimeLable.text = item //9
+            self!.pickUpOnTimePickerButton.setTitle(item, for: .normal)
+            self?.strStartTime = item
+            print("strStartTime : ", self?.strStartTime)
+        }
+    }
+    //MARK:- Calculate End Time
+    func calculateEndTime(startTime: NSString){
+        print("StartTime : \(self.journeystartTime)")
+        print("duration_in_traffic text value is--->",self.durationInTrafficWithText as NSString)
+        //        "2021-12-30T14:28:00.000Z"
+        let str : String = self.durationInTrafficWithText as String
+        let strArr = str.components(separatedBy: " ")
+        
+        var arr: [Int] = []
+        for item in strArr {
+            let part = item.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            
+            if let intVal = Int(part) {
+                print("this is a number -> \(intVal)")
+                arr.append(intVal)
+            }
+            
+        }
+        print(arr)
+        
+        var day: Int
+        var hur: Int
+        var min: Int
+        
+        let formatter = DateFormatter()
+        //        formatter.locale = Locale(identifier: "IST")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        
+        if let date = formatter.date(from: startTime as String) {
+            
+            formatter.dateFormat = "hh:mm a"
+            let timeStr = formatter.string(from: date)
+            print(timeStr)
+            formatter.dateFormat = "yyyy-MM-dd"
+            let dateStr = formatter.string(from: date)
+            print(dateStr)
+            
+            if arr.count == 3
+            {
+                print(arr)
+                day = arr[0]*86400
+                hur = arr[1]*3600
+                min = arr[2]*60
+                let addminutes = date.addingTimeInterval(TimeInterval(day+hur+min))
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                
+                let after_add_time = formatter.string(from: addminutes)
+                print("after add time-->",after_add_time as Any)
+                let inputString = after_add_time
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
+                
+            } else if arr.count == 2
+            {
+                print(arr)
+                hur = arr[0]*3600
+                min = arr[1]*60
+                let addminutes = date.addingTimeInterval(TimeInterval(hur+min))
+                
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                let after_add_time  = formatter.string(from: addminutes)
+                print("after add time-->",after_add_time as Any)
+                let inputString = after_add_time
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
+                
+            } else if arr.count == 1
+            {
+                print(arr)
+                min = arr[0]*60
+                let addminutes = date.addingTimeInterval(TimeInterval(min))
+                
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                let after_add_time = formatter.string(from: addminutes)
+                print("after add time-->",after_add_time as Any)
+                
+                let inputString = after_add_time
+                self.journeyendTime = inputString.replacingOccurrences(of: "+0530", with: "Z")
+                print("endTime : \(String(describing: self.journeyendTime))")
+            }
+        }
+    }
+    
+    @objc func datePickerAction() {
+        
+        print("newDatePicker:",newDatePicker.date)
+      
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "E, MMM d, yyyy"
+        formatter.dateFormat = "E, MMM d"
         let dateStr = formatter.string(from: newDatePicker.date)
+        
         if datePickerTag == "1" {
+            selectedPickUpDate = newDatePicker.date
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
+            
+            strDate = dateStr
+            print("strDate ", strDate)
+            myPickerDateString = strDate
+            print("myPickerDateString: ", myPickerDateString)
+            if(currentDateString != myPickerDateString){
+                self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
+                print("Set Successfully")
+                
+                let currentTime = "12:00 AM"
+                print("Current time after button click ", currentTime)
+                
+                self.arrSlots = getTimeIntervals(fromTime: currentTime)
+                print("After 12 AM Array data : ", self.arrSlots)
+                
+                strStartTime = ""
+            }
+            else{
+                setTimeToPicker()
+            }
+            
         } else if datePickerTag == "2" {
+            selectedReturnDate = newDatePicker.date
+            //let dateStr = formatter.string(from: selectedReturnDate)
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
+            strDate = dateStr
+            print("myReturnDateString:", strDate)
+            timeFormatter.dateFormat = "yyyy-MM-dd"
+            myDropDateString = timeFormatter.string(from: selectedReturnDate)
+            print("myDropDateString : ",myDropDateString ?? "")
+            
+            strDate = myDropDateString
+            print("Drop Date String : \(strDate!) ")
+            //            if( myPickerDateString != myDropDateString){
+            
+            let strDateTime = "\(strDate!) \("23:59")"
+            print("drop strDateTime : ", strDateTime)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dd = formatter.date(from: strDateTime)
+            print(dd ?? (Any).self)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            self.journeyendTime = formatter.string(from: dd!)
+//            selectedReturnDate = dd ?? Date()
+            //print(dd!)
+            print("Drop Date Time : ", self.journeyendTime)
         }
         print("dateStr",dateStr)
+    }
+    
+    @objc func cancelDatePickerButtonAction() {
+        
+        print("cancelDatePickerButtonAction")
+        blurEffectView.removeFromSuperview()
+        newDatePicker.removeFromSuperview()
+        cancelDatePickerButton.removeFromSuperview()
+        confirmDatePickerButton.removeFromSuperview()
+        
+    }
+    
+    @objc func confirmDatePickerButtonAction() {
+        
+        print("confirmDatePickerButtonAction")
+        blurEffectView.removeFromSuperview()
+        newDatePicker.removeFromSuperview()
+        cancelDatePickerButton.removeFromSuperview()
+        confirmDatePickerButton.removeFromSuperview()
         
     }
     
     func nearbyPlaces() {
-           placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-               if let error = error {
-                   print("Pick Place error: \(error.localizedDescription)")
-                   return
-               }
-
-               if let placeLikelihoodList = placeLikelihoodList {
+        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placeLikelihoodList = placeLikelihoodList {
                 self.likeHoodList = placeLikelihoodList
                 print("self.likeHoodList:",self.likeHoodList as Any)
-//                   tableView.reloadData()
-               }
-           })
-       }
-
+                //                   tableView.reloadData()
+            }
+        })
+    }
+    
     
     
     //MARK:- TEXTFIELD DELEGATE for Pickup And Drop Textfield
@@ -388,7 +723,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return false
     }
     
+    @IBAction func callButtonAction(_ sender: UIButton) {
+        if let phoneCallURL = URL(string: "telprompt://8308628266") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                    application.openURL(phoneCallURL as URL)
+                    
+                }
+            }
+        }
+    }
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
+        
         clearMap()
         if rentalTag == 0 {
             if returnByDatePickerButton.isHidden == true {
@@ -413,9 +764,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.isUserInteractionEnabled = false
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         selectedTripTypeMode = roundTripButton.titleLabel?.text ?? ""
+        strDirection = "two-way"
         
     }
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
+        newDatePicker.date = Date()
         clearMap()
         if returnByDatePickerButton.isHidden == false {
             returnByDatePickerButton.isHidden = true
@@ -429,10 +782,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         self.mapView.isUserInteractionEnabled = false
         selectedTripTypeMode = oneWayButton.titleLabel?.text ?? ""
+        print("selectedTripTypeMode:", selectedTripTypeMode)
+        strDirection = "one-way"
     }
     
     //MARK:- Confirm location Button Tapped
     @IBAction func confirmLocationButtonClicked(_ sender: UIButton) {
+        
         
         self.isconfirmLocation = true
         print("Confirm Location button clicked")
@@ -462,6 +818,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func viewCabsButtonClicked(_ sender: UIButton) {
+        
+        print("strDirection: ",strDirection)
+        print("selectedTripTypeMode: ",selectedTripTypeMode)
+        print("strServiceType: ",strServiceType)
+        
         if pickUpTextField.text == "" {
             print("Please Select a Pickup location")
             customErrorPopup("Please select pickup location")
@@ -469,32 +830,186 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if dropTextField.text == "" {
             print("Please Select a drop location")
             customErrorPopup("Please select drop location")
-        } else {
+        }
+        else if (selectedPickUpDate > selectedReturnDate) {
+            print("selectedPickUpDate, selectedReturnDate:",selectedPickUpDate, selectedReturnDate)
+            print("Please select return date correctly.")
+            customErrorPopup("Please select pickup and return date correctly.")
+        }
+        else {
             print("View Cabs Button Pressed")
             
-            let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
-            
-            carTypeVc.pickedSourceCoordinate = sourceCoordinate
-            carTypeVc.pickedDropCoordinate = destinationCoordinate
-            carTypeVc.estimatedKM = estimatedDurationInTraffic
-            carTypeVc.pickUpCityName = pickupcityName ?? ""
-            carTypeVc.dropCityName = destinationcityName ?? ""
-            carTypeVc.pickUpOnDate = pickUpDatePickerButton.titleLabel?.text ?? ""
-            carTypeVc.returnByDate = returnByDatePickerButton.titleLabel?.text ?? ""
-            carTypeVc.pickUpOnTime = pickUpOnTimePickerButton.titleLabel?.text ?? ""
-            if selectedTripType == "" {
-                selectedTripType = "Outstation"
-                selectedTripTypeMode = "ROUND TRIP"
-                carTypeVc.tripType = selectedTripType
-                carTypeVc.tripTypeMode = selectedTripTypeMode
+            let newdateformatter = DateFormatter()
+            if strStartTime == "" {
+                strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
+                print("confirm Button startTime : ", strStartTime)
+                
+                
+                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
+                print("newDateString in view cab: ", newDateString)
+                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+                
+                print("newdatein view cab: ", newdate)
+                self.journeystartTime = newdateformatter.string(from: newdate)
+                print("self.startTime on confirm button clicked in view cab:", self.journeystartTime ?? "")
+                
             } else {
-                carTypeVc.tripType = selectedTripType
-                carTypeVc.tripTypeMode = selectedTripTypeMode
+                print("confirm Button startTime : ", strStartTime)
+                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
+                print("newDateString: ", newDateString)
+                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+                
+                let selecteddateformatter = DateFormatter()
+                selecteddateformatter.dateFormat = "YYYY EEE, MMM dd hh:mm a"
+                
+                let currentDate = NSDate()
+                let newFormatter = DateFormatter()
+                newFormatter.dateFormat = "YYYY"
+                
+                let YearString = newFormatter.string(from: currentDate as Date)
+                let newselectedDateString = String(YearString + " " + newDateString)
+                let selecteddate = selecteddateformatter.date(from: newselectedDateString)
+                print("Date after adding year:", selecteddate)
+                
+                self.journeystartTime = newdateformatter.string(from: selecteddate!)
+                print("self.startTime on confirm button clicked:", self.journeystartTime ?? "")
+                
             }
-            navigationController?.pushViewController(carTypeVc, animated: true)
+            
+            if(strDirection == "one-way"){
+                calculateEndTime(startTime: self.journeystartTime! as NSString)
+            }
+            else if(strDirection == "two-way"){
+                if(self.distanceValue != nil){
+                    self.distanceValue = 2 * (self.distanceValue)
+                    
+                }
+                if(myPickUpDateString == myDropDateString){
+                    // calculateEndTime(startTime: self.journeystartTime! as NSString)
+                    print("MAtch")
+                    let formatter = DateFormatter()
+                    
+                    formatter.dateFormat = "E, MMM d"
+                    let dateStr = formatter.string(from: newDatePicker.date)
+                    returnByDatePickerButton.setTitle(dateStr, for: .normal)
+                    strDate = dateStr
+                    print("myReturnDateString:", strDate)
+                    timeFormatter.dateFormat = "yyyy-MM-dd"
+                    myDropDateString = timeFormatter.string(from: newDatePicker.date)
+                    print("myDropDateString : ",myDropDateString ?? "")
+                    
+                    strDate = myDropDateString
+                    print("Drop Date String : \(strDate!) ")
+                    
+                    
+                    let strDateTime = "\(strDate!) \("23:59")"
+                    print("drop strDateTime : ", strDateTime)
+                    let newformatter = DateFormatter()
+                    newformatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    let dd = newformatter.date(from: strDateTime)
+                    print(dd ?? (Any).self)
+                    newformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                    self.journeyendTime = newformatter.string(from: dd!)
+//                    selectedReturnDate = dd ?? Date()
+                    //print(dd!)
+                    print("Drop Date Time : ", self.journeyendTime)
+                    
+                    
+                    print("Distance Value for two way : ", self.distanceValue)
+                }
+            }
+           
+            if(self.distanceValue != nil){
+                
+                if(pickupcityName == destinationcityName){
+                    customErrorPopup("Select Another City")
+                }else if(destinationcityName == "" || ((destinationcityName?.isEmpty) == nil)){
+                    customErrorPopup("Please select proper address.")
+                } else {
+                    
+                    let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.journeystartTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ,matchExactTime: true)
+                    print("getAllProjectionAvailable: ",getAllProjectionAvailable)
+                    UserDefaults.standard.setValue(self.journeystartTime, forKey: "journeyTime")
+                    UserDefaults.standard.setValue(self.journeyendTime, forKey: "journeyEndTime")
+                    UserDefaults.standard.setValue(pickupcityName, forKey: "fromLocation")
+                    UserDefaults.standard.setValue(self.distanceValue, forKey: "distance")
+                    UserDefaults.standard.setValue("outstation", forKey: "serviceType")
+                    UserDefaults.standard.setValue(strDirection, forKey: "direction")
+                    
+                    
+                    
+                    self.showIndicator(withTitle: "Loading", and: "Please Wait")
+                    
+                    APIManager.shareInstance.getAllProjectionAvailableSchedules(getAllProjectionData: getAllProjectionAvailable) { result in
+                        
+                        switch result {
+                        case .success(let dictscheduleDates):
+                            
+                            //                       print("Dict Schedule Dates",dictscheduleDates)
+                            self.hideIndicator()
+                            
+                            if(dictscheduleDates.isEmpty){
+                                print("No Data Found")
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            }
+                            else{
+                                let carTypeVc = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "GoToFindCarStoryboard") as! CarTypesViewController
+                                
+                                carTypeVc.pickedSourceCoordinate = self.sourceCoordinate
+                                carTypeVc.pickedDropCoordinate = self.destinationCoordinate
+                                carTypeVc.estimatedKM = self.distanceValue
+                                carTypeVc.pickUpCityName = self.pickupcityName ?? ""
+                                carTypeVc.dropCityName = self.destinationcityName ?? ""
+                                carTypeVc.pickUpOnDate = self.myPickerDateString ?? "" //self.pickUpDatePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.returnByDate = self.returnByDatePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.pickUpOnTime = self.strStartTime //self.pickUpOnTimePickerButton.titleLabel?.text ?? ""
+                                carTypeVc.dictForScheduleDates = dictscheduleDates as NSDictionary
+                                
+                                if self.selectedTripType == "" {
+                                    self.selectedTripType = "Outstation"
+                                    //                                self.selectedTripTypeMode = "ROUND TRIP"
+                                    carTypeVc.tripType = self.selectedTripType
+                                    carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                                } else {
+                                    carTypeVc.tripType = self.selectedTripType
+                                    carTypeVc.tripTypeMode = self.selectedTripTypeMode
+                                }
+                                self.navigationController?.pushViewController(carTypeVc, animated: true)
+                                
+                            }
+                        case .failure(let error):
+                            
+                            self.hideIndicator()
+                            print(error)
+                            
+                            switch error {
+                            case .baseError(.notfound):
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            case .baseError(.internalservererror):
+                                self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                            case .baseError(.badRequest):
+                                self.view.makeToast(ErrorMessage.list.somethingwentwrong)
+                            case .baseError(.unauthorized):
+                                self.view.makeToast(ErrorMessage.list.sessionexpired)
+                            case .baseError(.forbidden):
+                                self.view.makeToast(ErrorMessage.list.pleasewait)
+                                
+                            default:
+                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            }
+                            
+                            //                                self.view.makeToast(ErrorMessage.list.nodatafound)
+                            
+                        }
+                    }
+                }
+            }
+            else{
+                self.view.makeToast(ErrorMessage.list.pleasewait)
+            }
         }
-        
     }
+    
     
     func pickupGetCurrentLocation() {
         print("Current Location Button Clicked")
@@ -565,10 +1080,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         oneWayButton.backgroundColor = .white
         
         setTimeToPicker()
+        strStartTime = ""
         
     }
     
-   
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -589,7 +1105,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
-                cell.backgroundColor = .lightGray
+                cell.backgroundColor = .systemGray5
             }
             return cell
         } else {
@@ -609,12 +1125,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-            cell?.backgroundColor = .lightGray
+            cell?.backgroundColor = .systemGray5
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false
             if indexPath.row == 0 {
                 rentalTag = 0
-                
+                strServiceType = "Outstation"
+                print("Selected Service Type : ", strServiceType ?? "")
                 selectPackageView.isHidden = true
                 if returnByDatePickerButton.isHidden == true {
                     returnByDatePickerButton.isHidden = false
@@ -622,67 +1139,84 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
                 roundTripButton.setTitle("ROUND TRIP", for: .normal)
                 oneWayButton.setTitle("ONE WAY", for: .normal)
+                
                 clearMap()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
                 selectedTripType = "Outstation"
                 print("Outstation:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 1 {
                 
                 rentalTag = 1
-                
+                strServiceType = "Airport"
+                print("Selected Service Type : ", strServiceType ?? "")
                 roundTripButton.setTitle("AIRPORT PICKUP", for: .normal)
                 oneWayButton.setTitle("AIRPORT DROP", for: .normal)
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
-//                returnByDatePicker.isHidden = true
-//                returnByDatePickerImageView.isHidden = true
+                //                returnByDatePicker.isHidden = true
+                //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = true
                 clearMap()
-//                pickUpOnDatePicker.date = Date()
-//                returnByDatePicker.date = Date()
+                //                pickUpOnDatePicker.date = Date()
+                //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Airport"
-                selectedTripTypeMode = "Airport Pickup"
-                print("Airport:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                //                selectedTripTypeMode = "Airport Pickup"
+                strDirection = "AIRPORT PICKUP"
+                selectedTripTypeMode = "AIRPORT PICKUP"
+                strServiceType = "Airport"
                 
+                print("Airport:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 2 {
                 
                 rentalTag = 2
+                strServiceType = "Rental"
+                print("Selected Service Type : ", strServiceType ?? "")
                 roundTripButton.setTitle("CURRENT BOOKING", for: .normal)
                 oneWayButton.setTitle("SCHEDULE BOOKING", for: .normal)
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
-//                returnByDatePicker.isHidden = true
-//                returnByDatePickerImageView.isHidden = true
+                //                returnByDatePicker.isHidden = true
+                //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = false
                 clearMap()
-//                pickUpOnDatePicker.date = Date()
-//                returnByDatePicker.date = Date()
+                //                pickUpOnDatePicker.date = Date()
+                //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress)
                 selectedTripType = "Rental"
+                //                selectedTripTypeMode = "CURRENT BOOKING"
+                
+                strDirection = "CURRENT BOOKING"
                 selectedTripTypeMode = "CURRENT BOOKING"
+                strServiceType = "Rental"
                 print("Rental:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
+                returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             }
             print("Select click")
         } else {
             let hoursCell = hoursPackegeCollectionView.cellForItem(at: indexPath) as! RentalHoursPackageCollectionViewCell
             hoursCell.layer.borderColor = UIColor.black.cgColor
-    }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == tripTypeCollectionView {
-        let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-        cell?.backgroundColor = .clear
-        print("Deselect click")
+            let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
+            cell?.backgroundColor = .clear
+            print("Deselect click")
         } else {
             let hoursCell = hoursPackegeCollectionView.cellForItem(at: indexPath) as! RentalHoursPackageCollectionViewCell
             hoursCell.layer.borderColor = UIColor.lightGray.cgColor
@@ -783,22 +1317,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    @IBAction func pickupTimeButtonPressed(_ sender: UIButton) {
-        //        if timeTableView.isHidden == false {
-        //            timeTableView.isHidden = true
-        //        } else {
-        //            timeTableView.isHidden = false
-        //        }
-        dropDown.dataSource = arrSlots
-        dropDown.anchorView = sender
-        dropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
-        dropDown.show() //7
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
-            guard let _ = self else { return }
-//            self!.pickUpOnTimeLable.text = item //9
-            self!.pickUpOnTimePickerButton.setTitle(item, for: .normal)
-        }
-    }
+    
     
     //MARK:- DRAW POLYLINE
     func drawpolyLine(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){
@@ -876,15 +1395,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
         }
-        
     }
     
     func durationDistance(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         
-        if (NetworkMonitor.share.isConnected == false){
-            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-            return
-        }
+     
         
         var urlString : String = "https://maps.googleapis.com/maps/api/distancematrix/json?departure_time=now&destinations=\(destination.latitude),\(destination.longitude)&origins=\(origin.latitude),\(origin.longitude)&key=\(googleMapKey)"
         
@@ -904,11 +1419,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     // print("json data is--->",jsondata)
                     self.get_dest = jsondata.object(forKey: "destination_addresses")as! NSArray
-//                    var get_dest1 : String = ""
-//                    get_dest1 = self.get_dest.object(at: 0) as! String
+                    //                    var get_dest1 : String = ""
+                    //                    get_dest1 = self.get_dest.object(at: 0) as! String
                     // print("destination is--->",get_dest1)
                     self.org_add = jsondata.object(forKey: "origin_addresses")as! NSArray
-//                    let get_org : String = self.org_add.object(at: 0)as! String
+                    //                    let get_org : String = self.org_add.object(at: 0)as! String
                     // print("original address is--->",get_org)
                     self.row_arr = jsondata.object(forKey: "rows")as! NSArray
                     //print("Rows Array is--->",self.row_arr)
@@ -942,7 +1457,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     
                     //                                self.distanceInKm = (inputString! as AnyObject).replacingOccurrences(of: "hours", with: "") as NSString
                     //
-//                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
+                    //                    self.durationInTraffic  = Double(self.dur_dic_traffic.object(forKey: "value")as! Int)/3600.0
                     //                                print("duration_in_traffic value is--->",self.durationInTraffic as Any)
                     //
                     //                                print("duration_in_traffic value is--->",self.dur_dic_traffic.object(forKey: "value")as! Int)
@@ -957,47 +1472,47 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-
-
-
-//        if(sourceCoordinate == nil || destinationCoordinate == nil){
-
-                let lat = position.target.latitude
-                let lng = position.target.longitude
-
-                debugPrint(lat,lng)
-
-                let userLocation: CLLocationCoordinate2D!
-                userLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-
-                guard let locValue: CLLocationCoordinate2D = userLocation else { return }
-                print("locations = \(locValue.latitude) \(locValue.longitude)")
-                let geocoder = GMSGeocoder()
-                geocoder.reverseGeocodeCoordinate(userLocation) { response, error in
-                    if let location = response?.firstResult() {
-                        let lines = location.lines! as [String]
-//                        self.selectedAddress = lines.joined(separator: "\n")
-                        if(self.isconfirmLocation == false){
-                            if(self.strTxtFieldType == "ToDestination")
-                             {
-                                self.selectedPickUpAddress = lines.joined(separator: "\n")
-                                self.sourceCoordinate = userLocation
-                                self.pickUpTextField.text = self.selectedPickUpAddress
-                             }
-                            else if self.strTxtFieldType == "FromDestination" {
-                                self.selectedDropAddress = lines.joined(separator: "\n")
-                                self.destinationCoordinate = userLocation
-                                self.dropTextField.text = self.selectedDropAddress
-                                print(self.selectedDropAddress)
-                             }
-                        }
+        
+        
+        
+        //        if(sourceCoordinate == nil || destinationCoordinate == nil){
+        
+        let lat = position.target.latitude
+        let lng = position.target.longitude
+        
+        debugPrint(lat,lng)
+        
+        let userLocation: CLLocationCoordinate2D!
+        userLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        
+        guard let locValue: CLLocationCoordinate2D = userLocation else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(userLocation) { response, error in
+            if let location = response?.firstResult() {
+                let lines = location.lines! as [String]
+                //                        self.selectedAddress = lines.joined(separator: "\n")
+                if(self.isconfirmLocation == false){
+                    if(self.strTxtFieldType == "ToDestination")
+                    {
+                        self.selectedPickUpAddress = lines.joined(separator: "\n")
+                        self.sourceCoordinate = userLocation
+                        self.pickUpTextField.text = self.selectedPickUpAddress
                     }
-                    
+                    else if self.strTxtFieldType == "FromDestination" {
+                        self.selectedDropAddress = lines.joined(separator: "\n")
+                        self.destinationCoordinate = userLocation
+                        self.dropTextField.text = self.selectedDropAddress
+                        print(self.selectedDropAddress)
+                    }
                 }
-//        }
-//       else{
-//                print("Coordinates are there")
-//        }
+            }
+            
+        }
+        //        }
+        //       else{
+        //                print("Coordinates are there")
+        //        }
     }
     
 }
@@ -1011,8 +1526,8 @@ extension HomeViewController: SidebarViewDelegate {
         }
         switch row {
         case .editProfile:
-            let vc=EditProfileVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            let epvc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            navigationController?.pushViewController(epvc, animated: true)
         case .myRides:
             print("MyRidesViewController")
             let mrvc = storyboard?.instantiateViewController(withIdentifier: "MyRidesViewController") as! MyRidesViewController
@@ -1025,8 +1540,8 @@ extension HomeViewController: SidebarViewDelegate {
             print("Offers")
             let ovc = storyboard?.instantiateViewController(withIdentifier: "OffersViewController") as! OffersViewController
             navigationController?.pushViewController(ovc, animated: true)
-        case .safty:
-            print("Safty")
+        case .safety:
+            print("Safety")
             let ovc = storyboard?.instantiateViewController(withIdentifier: "SafetyViewController") as! SafetyViewController
             navigationController?.pushViewController(ovc, animated: true)
         case .faqs:
@@ -1093,7 +1608,7 @@ extension HomeViewController: CLLocationManagerDelegate
         let location: CLLocation = locations.last!
         print("Current Location: \(location)")
         
-       
+        
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -1108,8 +1623,18 @@ extension HomeViewController: CLLocationManagerDelegate
         sourceCoordinate = locValue
         print("sourceCoordinate in Location Manager: ",sourceCoordinate!)
         
+        
+        
         self.showIndicator(withTitle: "Loading", and: "Please Wait")
         
+//        if (NetworkMonitor.share.isConnected == false){
+//          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+//            self.hideIndicator()
+//            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
+//            return
+//        }
+    
+
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(sourceCoordinate) { response, error in
             if let location = response?.firstResult() {
@@ -1144,6 +1669,11 @@ extension HomeViewController: CLLocationManagerDelegate
                     self.usercurrentLocationAddress = lines.joined(separator: "\n")
                     self.pickUpTextField.text = self.usercurrentLocationAddress
                     self.userCurrentlocation = locValue
+                    let sourceLat = NSNumber(value:self.userCurrentlocation.latitude)
+                    let sourceLon = NSNumber(value:self.userCurrentlocation.longitude)
+                    let userSourceLocation : NSMutableDictionary
+                    userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
+                    UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
                 }
             }
         }
@@ -1210,13 +1740,10 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
             let sourceLat = NSNumber(value:sourceCoordinate.latitude)
             let sourceLon = NSNumber(value:sourceCoordinate.longitude)
             let userSourceLocation : NSMutableDictionary
-            userSourceLocation = ["sourceLat": sourceLat, "sourceLon": sourceLon]
-            //UserDefaults.standard.set(["lat": sourceLat, "lon": sourceLon], forKey:"SourceCoordinate")
+            userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
             UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
             UserDefaults.standard.setValue(self.pickupcityName, forKey: "PickupCityName")
             self.btnConfirmLocation.isHidden = false
-            
-            
         }
         else if strTxtFieldType == "FromDestination"
         {
@@ -1227,7 +1754,6 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
             //            self.selectedFromDestination = place
             destinationCoordinate = place.coordinate
             destionationName = place.name
-            
             let arrays : NSArray = place.addressComponents! as NSArray
             for i in 0..<arrays.count {
                 
@@ -1249,9 +1775,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                     print ("localoty name : \(dics.name)")
                     print("locality shortname : \(dics.shortName)")
                 }
-                
             }
-            
             destinationMarker = GMSMarker()
             let markerImage = UIImage(named: "DropPoint")!.withRenderingMode(.alwaysTemplate)
             //creating a marker view
@@ -1275,7 +1799,11 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                 //  self.mapView.animate(toLocation: self.destinationCoordinate)
                 self.strTxtFieldType = "FromDestination"
             }
-            
+            let sourceLat = NSNumber(value:destinationCoordinate.latitude)
+            let sourceLon = NSNumber(value:destinationCoordinate.longitude)
+            let userDestinationLocation : NSMutableDictionary
+            userDestinationLocation = ["DestinationLatitude": sourceLat, "DestinationLongitude": sourceLon]
+            UserDefaults.standard.setValue(userDestinationLocation, forKey:"DestinationCoordinate")
             UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
             self.btnConfirmLocation.isHidden = false
             
@@ -1311,6 +1839,10 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
         }
         
         //self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getReservationDataArray(info: NSArray) {
+        print("Array Info: ", info)
     }
 }
 extension UITextField {

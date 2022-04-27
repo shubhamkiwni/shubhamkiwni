@@ -15,7 +15,6 @@ class AboutViewController: UIViewController {
     }
 
     @IBAction func backButtonAction(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-        navigationController?.popToViewController(hvc, animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

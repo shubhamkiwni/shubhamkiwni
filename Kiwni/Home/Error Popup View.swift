@@ -14,7 +14,9 @@ var closeButton = UIButton()
 var errorLable = UILabel()
 private var viewBackground : UIView?
 let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
-
+let imageName = "Wifi Icon"
+let image = UIImage(named: imageName)
+let noInternetImageView = UIImageView(image: image!)
 
 extension UIViewController {
     
@@ -35,9 +37,9 @@ extension UIViewController {
         print(errorCustomView.frame.origin.x, errorCustomView.frame.origin.y)
         
         errorString.text = errorMessage
-        errorString.frame = CGRect.init(x: 0, y: 0, width: 200, height: 30)
+        errorString.frame = CGRect.init(x: 0, y: 0, width: 500, height: 50)
         errorString.textColor = .black
-        errorString.font = errorString.font.withSize(15)
+        errorString.font = errorString.font.withSize(12)
         
         errorString.center = self.view.center
         errorString.textAlignment = . center
@@ -45,7 +47,7 @@ extension UIViewController {
         print(errorLable.frame.origin.x, errorLable.frame.origin.y)
         
         errorLable.text = "Error!"
-        errorLable.frame = CGRect.init(x: errorCustomView.frame.origin.x + 60, y: errorCustomView.frame.origin.y + 10, width: 200, height: 30)
+        errorLable.frame = CGRect.init(x: errorCustomView.frame.origin.x + 60, y: errorCustomView.frame.origin.y + 40, width: 200, height: 30)
         errorLable.textColor = .black
         errorLable.font = errorString.font.withSize(16)
         errorLable.textAlignment = . center
@@ -70,9 +72,36 @@ extension UIViewController {
         closeButton.removeFromSuperview()
         blurEffectView.removeFromSuperview()
     }
+}
+
+extension UIViewController {
+    func noInternetErrorPopupShow(_ errorMessage: String) {
+        errorCustomView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        errorCustomView.backgroundColor = .white
+        self.view.addSubview(errorCustomView)
+        
+        
+        noInternetImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        noInternetImageView.center = self.view.center
+        view.addSubview(noInternetImageView)
+        print(noInternetImageView.frame.origin.x, noInternetImageView.frame.origin.y)
+        
+        errorString.text = errorMessage
+        errorString.frame = CGRect.init(x: noInternetImageView.frame.origin.x - 60, y: noInternetImageView.frame.origin.y + 60, width: 200, height: 30)
+        errorString.textColor = .black
+        errorString.font = errorString.font.withSize(18)
+//        errorString.center = self.view.center
+        errorString.textAlignment = . center
+        self.view.addSubview(errorString)
+        print(errorString.frame.origin.x, errorString.frame.origin.y)
+        
+    }
     
-    
-    
+    func noInternetErrorPopupHide() {
+        errorCustomView.removeFromSuperview()
+        errorString.removeFromSuperview()
+        noInternetImageView.removeFromSuperview()
+    }
 }
 
 extension UIView {

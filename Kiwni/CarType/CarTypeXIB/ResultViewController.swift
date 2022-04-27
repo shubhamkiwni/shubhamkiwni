@@ -8,6 +8,14 @@
 import UIKit
 
 class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PaymentDelegate3, PaymentDelegate {
+    func usernameClicked(_ cell: CarModelsTableViewCell) {
+        print("success")
+    }
+    
+    func review() {
+        print("success")
+    }
+    
     func payment(getName: String) {
         let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
         navigationController?.pushViewController(next, animated: true)

@@ -17,6 +17,8 @@ struct DateFormattingHelper {
             return dateTime
         }else if let dateTime = DateFormatter.yyyyMMdd_T_HHmmss_SSSZ.date(from: strDateTime ?? "") {
             return dateTime
+        }else if let dateTime = DateFormatter.yyyyMMdd_T_HHmmss_SSS_SSSZ.date(from: strDateTime ?? "") {
+            return dateTime
         }
         return nil
     }

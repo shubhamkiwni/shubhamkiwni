@@ -7,7 +7,12 @@
 
 import Foundation
 
-
-let userRequestURL = "https://api.dev.kiwni.com/trip/api/trips/user/274/"
-let driverRequestURL = "https://api.dev.kiwni.com/trip/api/trips/driver/548/"
+let firebaseApiKey =  "AIzaSyB2Bq0FqEZDyE60RMmekjp8CBxFRJ0VDvc"
+let baseUrl = "https://api.dev.kiwni.com/"
+let pastTripRequestURL = "https://api.dev.kiwni.com/trip/api/trips/user/\(partyId ?? "")/"
+let upcomingTripRequestURL = "https://api.dev.kiwni.com/trip/api/trips/user/\(partyId ?? "")/In-Progress"
+//let driverRequestURL = "https://api.dev.kiwni.com/trip/api/trips/driver/548/"
 let vehicalURL = "https://api.dev.kiwni.com/projection/api/schedules/"
+let projectionScheduleDateUrl = "https://api.dev.kiwni.com/projection/api/schedules/map/"
+let createReservtionUrl = "\(baseUrl)reservation/api/reservations/"
+let refreshTokenUrl = "https://securetoken.googleapis.com/v1/token?key=\(firebaseApiKey)"

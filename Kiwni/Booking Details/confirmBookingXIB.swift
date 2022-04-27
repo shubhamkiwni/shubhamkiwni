@@ -17,6 +17,8 @@ class confirmBooking: UIView {
     var emailTag: Int = 0
     var phoneTag: Int = 0
     var whatsAppTag: Int = 0
+    var notificationTypeString : String? = ""
+    var tripTypeString : String? = ""
     
     @IBOutlet var payAdvanceCollection: [UIButton]!
     @IBOutlet var personalCollection: [UIButton]!
@@ -88,6 +90,10 @@ class confirmBooking: UIView {
     
     static let share = confirmBooking()
     override func awakeFromNib() {
+        tripTypeString = "Personal"
+        notificationTypeString = "Email"
+        UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
+        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
         
         if companyName.isEmpty == false {
             businessDetailsView.isHidden = false
@@ -105,6 +111,14 @@ class confirmBooking: UIView {
         CollectionViewDesignclass.viewDesign(bookingDetailsView, cornerRadius: 10.0, color: UIColor.lightGray.cgColor, borderWidth: 1.0, maskCorner: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         CollectionViewDesignclass.viewDesign(rideFareView, cornerRadius: 0.0, color: UIColor.lightGray.cgColor, borderWidth: 1.0, maskCorner: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         CollectionViewDesignclass.viewDesign(businessDetailsView, cornerRadius: 10.0, color: UIColor.lightGray.cgColor, borderWidth: 1, maskCorner: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        
+        companyNameValueLabel.text = UserDefaults.standard.string(forKey: "companyName")
+        companyEmailValueLabel.text = UserDefaults.standard.string(forKey: "companyEmail")
+        companyPhoneValueLabel.text = UserDefaults.standard.string(forKey: "companyPhoneNo")
+        print(companyNameValueLabel.text, companyEmailValueLabel.text, companyPhoneValueLabel.text)
+        
+        
+        
     }
     
     @IBAction func apply(_ sender: UIButton) {
@@ -127,15 +141,22 @@ class confirmBooking: UIView {
     }
     
     @IBAction func personalButtonPressed(_ sender: UIButton) {
-        businessButton.setImage(UIImage(named: "Uncheck"), for: .normal)
-        personalButton.setImage(UIImage(named: "Check"), for: .normal)
-        
+        businessButton.setImage(UIImage(named: "uncheck circle"), for: .normal)
+        personalButton.setImage(UIImage(named: "check circle"), for: .normal)
+        businessDetailsView.isHidden = true
+        tripTypeString = "Personal"
+        UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
 
     }
     @IBAction func businessButtonPressed(_ sender: UIButton) {
-        businessButton.setImage(UIImage(named: "Check"), for: .normal)
-        personalButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+        
+        businessButton.setImage(UIImage(named: "check circle"), for: .normal)
+        personalButton.setImage(UIImage(named: "uncheck circle"), for: .normal)
+        businessDetailsView.isHidden = false
+        tripTypeString = "Business"
+        UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
         delegate?.openPopUp()
+        
     }
 //    @IBAction func personalButtonPressed(_ sender: UIButton) {
 //        for button in personalCollection {
@@ -150,32 +171,56 @@ class confirmBooking: UIView {
     
     @IBAction func emailButtonPresed(_ sender: UIButton) {
         if emailTag == 0 {
-            emailRadioButton.setImage(UIImage(named: "Check"), for: .normal)
+            emailRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
             emailTag = 1
+            notificationTypeString = "Email"
+            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
         } else {
-            emailRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+            emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
             emailTag = 0
         }
+        
+//        emailRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+//        phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        notificationTypeString = "Email"
+//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
+        
     }
     
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
         if phoneTag == 0 {
-            phoneRadioButton.setImage(UIImage(named: "Check"), for: .normal)
+            phoneRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
             phoneTag = 1
+            notificationTypeString = "SMS"
+            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
         } else {
-            phoneRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+            phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
             phoneTag = 0
         }
+        
+//        emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        phoneRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+//        whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        notificationTypeString = "SMS"
+//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
     }
     
     @IBAction func whatsAppButtonPressed(_ sender: UIButton) {
         if whatsAppTag == 0 {
-            whatsAppRadioButton.setImage(UIImage(named: "Check"), for: .normal)
+            whatsAppRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
             whatsAppTag = 1
+            notificationTypeString = "WhatsApp"
+            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
         } else {
-            whatsAppRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+            whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
             whatsAppTag = 0
         }
+//        emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
+//        whatsAppRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+//        notificationTypeString = "WhatsApp"
+//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
     }
     
 }

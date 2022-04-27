@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 struct cellData {
     var opened = Bool()
@@ -18,9 +19,20 @@ struct cellData {
 
 class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
     func payment(getName: String) {
-        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
-        navigationController?.pushViewController(next, animated: true)
+        print("Click")
     }
+    
+    func review() {
+        let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+        present(reviewVC, animated: true, completion: nil)
+    }
+    
+    
+//    func payment(getName: String) {
+//
+//        let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+//        navigationController?.pushViewController(next, animated: true)
+//    }
     
     
     
@@ -49,15 +61,52 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var rentalPackageRuleLabel: UILabel!
     @IBOutlet weak var viewDetailsButton: UIButton!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
+    @IBOutlet weak var callButton: UIButton!
     
-    var tableViewData = [cellData]()
+    @IBOutlet weak var estimatedKmLabel: UILabel!
     
+    var tableViewData = [VehicleDetails]()
+//    var tableViewData = [cellData]()
+    var carTypeString = ""
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["25km", "40km", "60km", "80km", "100km", "120km"]
+    var carModelArray: [VehicleDetails] = []
+    var imageurlString : String? = ""
+    
+    var carsArray: [ModelClassInfo] = []
+    var vehicleSortedArray : [VehicleDetails] = []
+    var vehicleDetailsList : [VehicleDetails] = []
+    var selectedIndex : NSInteger! = nil
+    var clickedPath: IndexPath? = nil
+    
+    var estimatedKM : Double = 0
+    var pickUpCityName: String = ""
+    var dropCityName: String = ""
+    var pickUpOnDate: String = ""
+    var returnByDate: String = ""
+    var pickUpOnTime: String = ""
+    var tripType: String = ""
+    var tripTypeMode: String = ""
+    let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        carsTableView.sectionHeaderHeight = 5.0
+        carTypeLabel.text = carTypeString
+        estimatedKmLabel.text = "Est.Km - \(forTrailingZero(temp: estimatedKM) )km "
+
+        pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
+        dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
+        
+        tripLabel.text = "\(pickUpCityName) To \(dropCityName)"
+        dateLabel.text = UserDefaults.standard.string(forKey: "pickupDate") ?? ""
+        timeLabel.text = UserDefaults.standard.string(forKey: "pickupTime") ?? ""
+        tripTypeLabel.text = UserDefaults.standard.string(forKey: "tripType") ?? ""
+        print(pickUpCityName, dropCityName)
+        print(pickUpOnDate, returnByDate)
+        print(pickUpOnTime)
+        print(tripType)
+        
+
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         detailsView.layer.cornerRadius = 8.0
@@ -69,46 +118,80 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         packageDetailsView.layer.borderColor = UIColor.lightGray.cgColor
         
         
+        if rentalTag != 2 {
+            packageView.isHidden = true
+        }
         
-        tableViewData = [cellData(opened: false, carType: "Premium", carName: "Mahindra", avaiLabel: "AvaiLabel: 4", amount: "2000", selectionData: ["2012", "2013", "2014", "2015", "2012", "2013", "2014", "2015"]),
-                         cellData(opened: false, carType: "Luxury", carName: "Tata", avaiLabel: "AvaiLabel: 3", amount: "3000", selectionData: ["2011", "2012", "2013"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"]),
-                         cellData(opened: false, carType: "Ultra-Luxury", carName: "BMW", avaiLabel: "AvaiLabel: 2", amount: "10000", selectionData: ["2020", "2021"])]
-        
-                if rentalTag != 2 {
-                    packageView.isHidden = true
-                }
-        //        let screenWidth = screenRect.size.width
-        //let screenHeight = screenRect.size.height
         tableBaseView.layer.cornerRadius = 20.0
         carsTableView.layer.cornerRadius = 20.0
-      //  carsTableView.layer.masksToBounds = true
         tableBaseView.layer.shadowColor = UIColor.black.cgColor
         tableBaseView.layer.shadowOpacity = 0.2
         tableBaseView.layer.shadowOffset = CGSize.zero
         tableBaseView.layer.shadowRadius = 5
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    
+    deinit{
+        reachability.stopNotifier()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        let hvc = navigationController?.viewControllers[1] as! CarTypesViewController
-        navigationController?.popToViewController(hvc, animated: true)
+       navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         let svc = storyboard?.instantiateViewController(withIdentifier: "SortViewController") as! SortViewController
         navigationController?.pushViewController(svc, animated: true)
     }
-
+    
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         let fvc = storyboard?.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         navigationController?.pushViewController(fvc, animated: true)
     }
-
+    
     @IBAction func mapButtonPressed(_ sender: UIButton) {
+        let mvc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        navigationController?.pushViewController(mvc, animated: true)
+    }
+    
+    @IBAction func callButtonAction(_ sender: UIButton) {
+        if let phoneCallURL = URL(string: "telprompt://8308628266") {
+
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    if #available(iOS 10.0, *) {
+                        application.open(phoneCallURL, options: [:], completionHandler: nil)
+                    } else {
+                        // Fallback on earlier versions
+                         application.openURL(phoneCallURL as URL)
+
+                    }
+                }
+            }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,9 +224,9 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-            return CGSize(width: 100, height: 42)
-        }
+        
+        return CGSize(width: 100, height: 42)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
@@ -152,67 +235,220 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         return 20
     }
     
-        func numberOfSections(in tableView: UITableView) -> Int {
-            tableViewData.count
-        }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        carsArray.count
+    }
     
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if tableViewData[section].opened == true {
-                return tableViewData[section].selectionData.count + 1
-            } else {
-                return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if carsArray[section].opened == true {
+            return carsArray[section].selectionData.count + 1
+        } else {
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
+            
+        
+            selectedIndex = indexPath.section
+            
+            if(carsArray.isEmpty == false){
+                let selectedModelInfo = carsArray[selectedIndex]
+                vehicleSortedArray.removeAll()
+                vehicleSortedArray = vehicleDetailsList.filter({ vehicleDetails in
+                    vehicleDetails.model == selectedModelInfo.modelName &&
+                    vehicleDetails.classType == selectedModelInfo.className
+                })
             }
-        }
-    
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-            if indexPath.row == 0 {
-                let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
-    
-//                            cell.carTypeLabel.text = tableViewData[indexPath.section].carType
-//                            cell.carNameLabel.text = tableViewData[indexPath.section].carName
-//                            cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
+            else{
+                print("Out of range")
+            }
+            print("After selecting vehicle key value",vehicleSortedArray)
+            print("After selecting vehicle key value.count",vehicleSortedArray.count)
+            
+            var estimatedPriceArr : [Double] = []
+            estimatedPriceArr.removeAll()
+            for pricevalue in vehicleSortedArray{
+                estimatedPriceArr.append(pricevalue.price)
+            }
+            estimatedPriceArr.sort()
+            print("estimatedPriceArr: ",estimatedPriceArr)
+            print("estimatedPriceArr.count: ",estimatedPriceArr.count)
+            
+            
+            let firstprice = String(round(estimatedPriceArr.first ?? 0))
+            let lastPrice = String(round(estimatedPriceArr.last ?? 0))
+          
+            carsArray[selectedIndex].selectionData = []
+            
+            for i in 0 ..< vehicleSortedArray.count
+            {
                 
-                            cell.layer.cornerRadius = 10.0
-                            cell.carsDetailsView.layer.cornerRadius = 10.0
-                            cell.carsDetailsView.layer.masksToBounds = false
-                            cell.carsDetailsView.layer.shadowColor = UIColor.black.cgColor
-                            cell.carsDetailsView.layer.shadowOpacity = 0.5
-                            cell.carsDetailsView.layer.shadowOffset = CGSize(width: -1, height: 1)
-                            cell.carsDetailsView.layer.shadowRadius = 1
-    
-                return cell
-            } else {
-                let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
-                seconCell.delegate1 = self
-                //seconCell.bookButton.layer.cornerRadius = 5
-                //seconCell.layer.borderColor = UIColor.black.cgColor
-                //seconCell.layer.borderWidth = 0.5
-                //seconCell.layer.cornerRadius = 5.0
-                return seconCell
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear,
+                                                                         providername: vehicleSortedArray[i].vehicle?.provider?.name,
+                                                                         providerID: vehicleSortedArray[i].vehicle?.provider?.id, vehicalID: vehicleSortedArray[i].vehicleId, vehicleNumb: vehicleSortedArray[i].vehicle?.regNo,
+                                                                         driverID: 0,
+                                                                         driverLicense: "",
+                                                                         driverName: "",
+                                                                         driverPhone: "",
+                                                                         scheduleID: vehicleSortedArray[i].vehicle?.id,
+                                                                         distance: "",
+                                                                         fromLocation: "",
+                                                                         toLocation: "",
+                                                                         journeyEndTime: "",
+                                                                         journeyTime: "",
+                                                                         estimatedPrice: vehicleSortedArray[i].price, rate: vehicleSortedArray[i].vehicle?.rates ?? []))
             }
-    
-        }
-    
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.row == 0 {
-                return 133
+            print("finalArray[selectedIndex]",carsArray[selectedIndex])
+ 
+            cell.carTypeLabel.text = carsArray[indexPath.section].className
+            cell.carNameLabel.text = carsArray[indexPath.section].modelName
+            
+            let imageString : String
+            imageString = carsArray[indexPath.section].imagePath ?? ""
+//          print("imageString : \(imageString)")
+            
+            DispatchQueue.main.async {
+                let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
+                let data = try? Data(contentsOf: url!)
+                cell.carImage.image = UIImage(data: data!)
+            }
+            
+        
+            if estimatedPriceArr.count == 1 {
+                cell.priceLabel.text = "₹ \(forTrailingZero(temp: round(estimatedPriceArr.first ?? 0)))"
             } else {
-                return 96
+                cell.priceLabel.text = "₹ \(forTrailingZero(temp: round(estimatedPriceArr.first ?? 0))) - \(forTrailingZero(temp: round(estimatedPriceArr.last ?? 0)))"
+            }
+            
+            UserDefaults.standard.setValue(cell.carTypeLabel.text, forKey: "classType")
+            UserDefaults.standard.setValue(cell.carNameLabel.text, forKey: "modelName")
+            
+            print("Count Value:",carsArray[indexPath.section].selectionData.count)
+            cell.avaiLabelStatus.text = "Availabel \(vehicleSortedArray.count)"
+            return cell
+        } else {
+            let seconCell = self.carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
+            seconCell.delegate1 = self
+            seconCell.star1.setTitle("", for: .normal)
+            seconCell.star2.setTitle("", for: .normal)
+            seconCell.star3.setTitle("", for: .normal)
+            seconCell.star4.setTitle("", for: .normal)
+            seconCell.star5.setTitle("", for: .normal)
+            
+       if let myDate = DateFormattingHelper.strToDateTime(strDateTime: carsArray[indexPath.section].selectionData[indexPath.row - 1].regyear)
+            {
+                print("myDate: ", myDate)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                formatter.timeZone = TimeZone(identifier: "UTC")
+                let myString = formatter.string(from: myDate)
+                let yourDate: Date? = formatter.date(from: myString)
+                formatter.dateFormat = "yyyy"
+                let dateStr = formatter.string(from: yourDate!)
+                print("dateStr : ", dateStr)
+                
+                formatter.dateFormat = "hh:mm a"
+                let timeStr = formatter.string(from: yourDate!)
+                print("timeStr : ", timeStr)
+                seconCell.carModelRegisterYearLabel.text = dateStr
+//                scheduledateLabel.text = "\(dateStr), \(timeStr)"
+                print("Str time from popup : ","\(dateStr), \(timeStr)" )
+            } else {
+                print("add another format")
+            }
+            seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
+            
+//            let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
+            seconCell.fareLabel.text = "\(forTrailingZero(temp: round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0)))/-"
+            seconCell.delegate1 = self
+            return seconCell
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.row == 0 {
+            return 110
+        } else {
+            return 100
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if carsArray[indexPath.section].opened == true {
+            carsArray[indexPath.section].opened = false
+            let sections = IndexSet.init(integer: indexPath.section)
+            carsTableView.reloadSections(sections, with: .none)
+        } else {
+            selectedIndex = indexPath.section
+            
+            if(carsArray.isEmpty == false){
+                let selectedModelInfo = carsArray[selectedIndex]
+                vehicleSortedArray.removeAll()
+                vehicleSortedArray = vehicleDetailsList.filter({ vehicleDetails in
+                    vehicleDetails.model == selectedModelInfo.modelName &&
+                    vehicleDetails.classType == selectedModelInfo.className
+                })
+            }
+            else{
+                print("Out of range")
+            }
+            print("After selecting vehicle key value",vehicleSortedArray)
+            print("After selecting vehicle key value.count",vehicleSortedArray.count)
+          
+            carsArray[selectedIndex].selectionData = []
+            
+            for i in 0 ..< vehicleSortedArray.count
+            {
+                carsArray[selectedIndex].selectionData.append(carDetails(regyear: vehicleSortedArray[i].vehicle?.regYear, providername: vehicleSortedArray[i].vehicle?.provider?.name, rate:vehicleSortedArray[i].vehicle?.rates ?? []))
+                
+            }
+            print("finalArray[selectedIndex]",carsArray[selectedIndex])
+            carsArray[indexPath.section].opened = true
+            let sections = IndexSet.init(integer: indexPath.section)
+            
+            self.showIndicator(withTitle: "Loading", and: "Please Wait")
+            DispatchQueue.main.async {
+                self.hideIndicator()
+                self.carsTableView.reloadSections(sections, with: .none)
             }
         }
+    }
     
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            if tableViewData[indexPath.section].opened == true {
-                tableViewData[indexPath.section].opened = false
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            } else {
-                tableViewData[indexPath.section].opened = true
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-    
+    func usernameClicked(_ cell: CarModelsTableViewCell) {
+        if let indexPath = self.carsTableView.indexPath(for: cell) {
+            clickedPath = indexPath
+            print(clickedPath)
+            if let indexPath = clickedPath {
+                print(indexPath)
+                print("cell selected data: ",carsArray[indexPath.section].selectionData[indexPath.row - 1])
+                print(carsArray[indexPath.section])
+                
             }
+            let next = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BookingDetailsViewController") as! BookingDetailsViewController
+            next.selectedCarValue = carsArray[indexPath.section].selectionData[indexPath.row - 1]
+            next.strClasstype = carsArray[indexPath.section].className ?? ""
+            next.carImagePath = carsArray[indexPath.section].imagePath ?? ""
+            navigationController?.pushViewController(next, animated: true)
         }
+    }
 }
 
+extension UIView{
+    func applyShadow(cornerRadius : CGFloat){
+        
+        layer.cornerRadius = 10.0
+        layer.masksToBounds = false
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 0.30
+        layer.shadowColor = UIColor.gray.cgColor
+//        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        
+    }
+}

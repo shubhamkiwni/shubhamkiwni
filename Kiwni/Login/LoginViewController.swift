@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -14,8 +15,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mobileNumTextField: UITextField!
     @IBOutlet weak var byContinuingLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
-    
+    @IBOutlet weak var welconToKiwniLabel: UILabel!
+    var myMutableString = NSMutableAttributedString()
+    var myString:NSString = "Welcome to KIWNI"
+    let reachability = try! Reachability()
+
     override func viewDidLoad() {
+        myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSAttributedString.Key.font:UIFont(name: "Zapf Dingbats", size: 24.0)!])
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: NSRange(location:11,length:5))
+           // set label Attribute
+           welconToKiwniLabel.attributedText = myMutableString
         super.viewDidLoad()
         
         mobileNumTextField.delegate = self
@@ -40,6 +49,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         mobileNumTextField.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        DispatchQueue.main.async {
+            self.reachability.whenReachable = { reachability in
+                if reachability.connection == .wifi {
+                    print(" Reachable via wifir")
+                } else {
+                    print("Reachable via Cellular")
+                }
+                self.noInternetErrorPopupHide()
+            }
+            self.reachability.whenUnreachable = { _ in
+                print("Not reachable")
+                self.noInternetErrorPopupShow("No Internet Connection")            
+            }
+
+            do {
+                try self.reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
+        }
+    }
+    deinit{
+        reachability.stopNotifier()
+    }
+    
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
         if  text?.count == 10 {
@@ -47,46 +84,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         print("Mobile Num: ", mobileNumTextField.text ?? "")
         
-      
+        
     }
     
-    @IBAction func confirmButtonPressed(_ sender: UIButton) {
-//        let otpVC = storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
-//        navigationController?.pushViewController(otpVC, animated: true)
-//
-//        guard  let phonenumber = mobileNumTextField.text else {return}
-//        let number = "+91\(phonenumber)"
-//        print("number : ", number)
-//        if (NetworkMonitor.share.isConnected == false){
-//
-//            self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-//            return
-//        }
-//        self.showIndicator(withTitle: "Loading", and: "Please Wait")
-//
-//            AuthManager.shared.startAuth(phoneNumber: number){[weak self] success in
-//
-//                    self?.hideIndicator()
-//
-//                    guard success
-//
-//                    else  {
-//
-//                        self?.view.makeToast(ErrorMessage.list.numberBlock)
-//                        self?.mobileNumTextField.text = ""
-//                        print("Numb block")
-//                        return
-//
-//                    }
-////                    self?.hideIndicator()
-//                    print("Got verification code")
-              
-               
+    @IBAction func confirmButtonPressed(_ sender: UIButton) {       
+        guard  let phonenumber = mobileNumTextField.text else {return}
+        if phonenumber == "" {
+            customErrorPopup("Please enter mobile")
+        } else if  phonenumber.count < 10 || phonenumber.count > 10 {
+            customErrorPopup("Please enter 10 digit number")
+        } else {
+            let number = "+91\(phonenumber)"
+            print("number : ", number)
+           
+            self.showIndicator(withTitle: "Loading", and: "Please Wait")
+            
+            AuthManager.shared.startAuth(phoneNumber: number){[weak self] success in
                 
-                let otpVC = UIStoryboard(name: "User", bundle:nil).instantiateViewController(withIdentifier: Storyboard.Ids.OTPViewController) as! OTPViewController
-        self.navigationController?.pushViewController(otpVC, animated: true)
-                 
-//            }
+                self?.hideIndicator()
+                
+                guard success
+                        
+                else  {
+                    
+                    self?.view.makeToast(ErrorMessage.list.numberBlock)
+                    self?.mobileNumTextField.text = ""
+                    print("Numb block")
+                    return
+                    
+                }
+                print("Got verification code")
+                let mainStoryboard = UIStoryboard(name: "User", bundle: nil)
+                let otpVc = mainStoryboard.instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
+                otpVc.userMobileNumber = number
+                self?.navigationController?.pushViewController(otpVc, animated: true)
+                
+            }
+        }
     }
     
     

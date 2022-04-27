@@ -9,6 +9,8 @@ import UIKit
 
 protocol PaymentDelegate  {
     func payment(getName: String)
+    func review()
+    func usernameClicked(_ cell: CarModelsTableViewCell)
 }
 
 
@@ -30,10 +32,16 @@ class CarModelsTableViewCell: UITableViewCell {
     @IBOutlet weak var bookButton: UIButton!
     @IBOutlet weak var carModelsView: UIView!
     @IBOutlet weak var availabelStatusLabel: UILabel!
+    @IBOutlet weak var vehicalProviderLabel: UILabel!
+    @IBOutlet weak var vehicalProviderNoLabel: UILabel!
+    @IBOutlet weak var reviewButton: UIButton!
     
     var name = "Shubham"
     override func awakeFromNib() {
         super.awakeFromNib()
+        applyShadow(cornerRadius: 8)
+        bookButton.layer.cornerRadius = 5.0
+        
 //        carModelsView.layer.masksToBounds = false
 //        carModelsView.layer.shadowColor = UIColor.black.cgColor
 //        carModelsView.layer.shadowOpacity = 0.5
@@ -43,12 +51,19 @@ class CarModelsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     @IBAction func nextView(_ sender: UIButton) {
         print("Book Button Pressed")
-        delegate1?.payment(getName: name)
+        
+        delegate1?.usernameClicked(self)
+//        delegate1?.payment(getName: name)
     }
+    
+    @IBAction func reviewButtonClick(_ sender: UIButton) {
+        delegate1?.review()
+    }
+    
 }

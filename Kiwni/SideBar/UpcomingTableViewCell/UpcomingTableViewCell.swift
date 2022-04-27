@@ -64,7 +64,7 @@ class UpcomingTableViewCell: UITableViewCell {
         design(tripStackView)
         buttonDesign(button: cancelButton)
         
-        notificationView.isHidden = true
+//        notificationView.isHidden = true
         
 //        borderLabel.layer.borderWidth = 2.0
 //        borderLabel.layer.borderColor = UIColor.lightGray.cgColor
