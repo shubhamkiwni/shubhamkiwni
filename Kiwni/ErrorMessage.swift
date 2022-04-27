@@ -47,5 +47,4 @@ struct ErrorMessage {
     let nodatafound = "No data found"
     let selectbaselocation = "Please select pickup location as PUNE"
     let internalserver = "Server Error"
-    let letmecheck = "Password"
 }
