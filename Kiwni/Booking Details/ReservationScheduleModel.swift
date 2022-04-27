@@ -27,8 +27,7 @@ struct ReservationScheduleModel: Codable {
     let companyName : String
     let companyEmail  : String
     let companyPhone : String
-    let fromLocationCoordinates: locationCoordinate
-    let toLocationCoordinates: locationCoordinate
+    
 
     enum CodingKeys: String, CodingKey {
         case channel, createdTime, createdUser, customerEmail
@@ -47,8 +46,6 @@ struct ReservationScheduleModel: Codable {
         case companyName = "companyName"
         case companyEmail = "companyEmail"
         case companyPhone = "companyPhone"
-        case fromLocationCoordinates = "fromLocationCoordinates"
-        case toLocationCoordinates = "toLocationCoordinates"
     }
 }
 
@@ -64,6 +61,8 @@ struct Ride: Codable {
     let rates: [Channel]
     let status: Channel
     let toLocation, updatedTime, updatedUser: String
+    let fromLocationCoordinates: locationCoordinate
+    let toLocationCoordinates: locationCoordinate
 }
 
 //struct fromLocationLatLong: Codable {

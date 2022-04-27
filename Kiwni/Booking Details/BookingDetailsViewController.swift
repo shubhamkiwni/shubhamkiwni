@@ -8,12 +8,20 @@
 import UIKit
 import Reachability
 
+
+struct ServiceType{
+    var servicetypeName: String? = ""
+    var servicetypeId : Int? = 0
+}
+
 class BookingDetailsViewController: UITableViewController, openPopUp {
     
     var companyNameString: String? = ""
     var companyEmailString: String? = ""
     var companyMobileNoString: String? = ""
     let reachability = try! Reachability()
+    
+    
     
     func openPopUp() {
         let VC = UIStoryboard(name: "FindCar", bundle: nil).instantiateViewController(withIdentifier: "BusinessDetaisViewController") as! BusinessDetaisViewController
@@ -34,7 +42,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     }
     var selectedCarValue = carDetails()
     var strClasstype: String = ""
-    var rateId: Int = 0
+    var serviceTypeId: Int = 0
     var strGST: Double? = 0
     var strTotalFare: Double? = 0
     var strThirtyPercentFare: Double? = 0
@@ -67,6 +75,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     
     
     var bookedVehicleDetails : [VehicleDetails] = []
+    var serviceTypeArray =  [ServiceType]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +87,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
         print("selectedCarValue:", selectedCarValue)
         bookingDetilsView.addSubview(bookingDetilsXIBView)
-        //        safetyComView.addSubview(safetyComXIBView)
-        //        kiniComfirtView.addSubview(kiwniComfirtXIBView)
         safetyComView.addSubview(confXIB)
         kiniComfirtView.isHidden = true
-        //        confXIB.isHidden = true
         
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         confXIB.delegate = self
@@ -112,24 +119,29 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         self.reservationTime = inputstring.replacingOccurrences(of: "+0530", with: "Z")
         print("reservationTime:\(self.reservationTime!))")
         
-        //        let strServiceType = "one-way-outstation-ultra-luxury"
-        
         let strServiceType : String = UserDefaults.standard.string(forKey:"serviceType") ?? ""
         let strdirection :String  =  UserDefaults.standard.string(forKey:"direction") ?? ""
         
         let rateStr : String = "\(strdirection)-\(strServiceType)-\(strClasstype.lowercased())"
         print("Rate Str : ", rateStr)
         
+        serviceTypeArray = [ServiceType(servicetypeName: "one-way-outstation-premium", servicetypeId: 1),
+                            ServiceType(servicetypeName: "one-way-outstation-luxury", servicetypeId: 2),
+                            ServiceType(servicetypeName: "one-way-outstation-ultra-luxury", servicetypeId: 3),
+                            ServiceType(servicetypeName: "two-way-outstation-premium", servicetypeId: 4),
+                            ServiceType(servicetypeName: "two-way-outstation-luxury", servicetypeId: 5),
+                            ServiceType(servicetypeName: "two-way-outstation-ultra-luxury", servicetypeId: 6)]
+        
         var rateValueArray = selectedCarValue.rate
         print(rateValueArray.count, rateValueArray)
         
-        for i in  0 ..< rateValueArray.count{
-            if(rateStr == rateValueArray[i].serviceType){
+        for i in  0 ..< serviceTypeArray.count{
+            if(rateStr == serviceTypeArray[i].servicetypeName){
                 print("Match found")
-                print(rateValueArray[i].serviceType)
-                print(rateValueArray[i].id)
-                rateId = rateValueArray[i].id
-                print(rateId)
+                print(serviceTypeArray[i].servicetypeName)
+                print(serviceTypeArray[i].servicetypeId)
+                serviceTypeId = serviceTypeArray[i].servicetypeId ?? 0
+                print(serviceTypeId)
                 
             }else{
                 print("No Match found")
@@ -251,8 +263,6 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         let vehicleID : Int = (self.selectedCarValue.vehicalID)!
         let vehicleNumb : String = self.selectedCarValue.vehicleNumb ?? ""
         
-        //   let createdTime :  String = String(UserDefaults.standard.string(forKey: "partyId")!)
-        //   let createdUser : String = String(UserDefaults.standard.string(forKey: "partyId")!)
         let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
         let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""
         let toLocation: String = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
@@ -261,7 +271,6 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
         
         let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
-        //            let notificationType : String = UserDefaults.standard.string(forKey: "notificationType") ?? ""
         let notificationType : String = "Email,SMS,WhatsApp"
         
         let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
@@ -275,7 +284,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         let userDestinationLongitude  = DestinationCoordinate["DestinationLongitude"]
         print(userDestinationLatitude,userDestinationLongitude)
         
-        let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: 1)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: ""), scheduleID: Int(scheduleID)!, serviceType: Channel(id: 4), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "", fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double))
+        let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: 1)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: "",fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double)), scheduleID: Int(scheduleID)!, serviceType: Channel(id: serviceTypeId), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "")
         print("resevation Model :\(reservationModelData)")
         
         self.showIndicator(withTitle: "Loading", and: "Please Wait")

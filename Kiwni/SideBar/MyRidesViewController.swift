@@ -23,7 +23,6 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     
     var indexForCell = Int()
     var tripsArray = [String]()
-    var pastTripsArray = ["Shivani", "Preran", "Jinisha"]
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var myRideLable: UILabel!
     @IBOutlet weak var myRideView: UIView!
@@ -32,9 +31,9 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     @IBOutlet weak var pastButton: UIButton!
     @IBOutlet weak var tripsTableView: UITableView!
     
-    var pastTripArray = [Json4Swift_Base]()
-    var sortedPastTripArray = [Json4Swift_Base]()
-    var upcomingTripArray = [Json4Swift_Base]()
+    var pastTripArray = [MyRideResponseModel]()
+    var sortedPastTripArray = [MyRideResponseModel]()
+    var upcomingTripArray = [MyRideResponseModel]()
     var db:DBHelper = DBHelper()
     var persons:[Person] = []
     

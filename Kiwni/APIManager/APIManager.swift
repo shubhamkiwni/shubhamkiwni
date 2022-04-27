@@ -39,7 +39,7 @@ class APIManager {
     static let shareInstance = APIManager()
     let tokenheaders : HTTPHeaders   = [.authorization("Bearer \( token ?? "")")]  //[.authorization("Bearer \(token)")] //
     let refershtokenheader : HTTPHeaders = [.contentType("application/json")]
-    func callinggFindTripByUserID(completion: @escaping (Result<[Json4Swift_Base], Error>) -> Void) {
+    func callinggFindTripByUserID(completion: @escaping (Result<[MyRideResponseModel], Error>) -> Void) {
         
         AF.request(pastTripRequestURL).response { response in
             print("User Success")
@@ -48,7 +48,7 @@ class APIManager {
                 switch response.result {
                 case .success(let data):
                     do {
-                        let userResponse = try JSONDecoder().decode([Json4Swift_Base].self, from: data!)
+                        let userResponse = try JSONDecoder().decode([MyRideResponseModel].self, from: data!)
 //                        print(userResponse)
                         completion(.success(userResponse))
                     } catch let err{
@@ -61,7 +61,7 @@ class APIManager {
         }
     }
     
-    func callinggInProgressTripRequest(completion: @escaping (Result<[Json4Swift_Base], Error>) -> Void) {
+    func callinggInProgressTripRequest(completion: @escaping (Result<[MyRideResponseModel], Error>) -> Void) {
         
         AF.request(upcomingTripRequestURL).response { response in
             print("User Success")
@@ -70,7 +70,7 @@ class APIManager {
                 switch response.result {
                 case .success(let data):
                     do {
-                        let userResponse = try JSONDecoder().decode([Json4Swift_Base].self, from: data!)
+                        let userResponse = try JSONDecoder().decode([MyRideResponseModel].self, from: data!)
 //                        print(userResponse)
                         completion(.success(userResponse))
                     } catch let err{

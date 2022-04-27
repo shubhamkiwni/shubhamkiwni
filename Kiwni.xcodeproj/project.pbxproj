@@ -15,13 +15,13 @@
 		7A170E7227CF4AA500B0BE66 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7027CF4AA500B0BE66 /* RulesTableViewCell.swift */; };
 		7A170E7327CF4AA500B0BE66 /* RulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A170E7127CF4AA500B0BE66 /* RulesTableViewCell.xib */; };
 		7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */; };
-		7A170E8027CF667000B0BE66 /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */; };
+		7A170E8027CF667000B0BE66 /* MyRideResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7B27CF667000B0BE66 /* MyRideResponseModel.swift */; };
 		7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */; };
 		7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7D27CF667000B0BE66 /* Passenger.swift */; };
 		7A170E8327CF667000B0BE66 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E7E27CF667000B0BE66 /* Driver.swift */; };
 		7A170E8627CF669200B0BE66 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8427CF669200B0BE66 /* DBHelper.swift */; };
 		7A170E8A27CF66B000B0BE66 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8827CF66B000B0BE66 /* API.swift */; };
-		7A170E8B27CF66B000B0BE66 /* APIManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8927CF66B000B0BE66 /* APIManeger.swift */; };
+		7A170E8B27CF66B000B0BE66 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8927CF66B000B0BE66 /* APIManager.swift */; };
 		7A170E8F27CF89E900B0BE66 /* DateFormattingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8D27CF89E900B0BE66 /* DateFormattingHelper.swift */; };
 		7A170E9027CF89E900B0BE66 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E8E27CF89E900B0BE66 /* DateFormatter.swift */; };
 		7A2DA04227BA597E00490E5B /* BookingAddressXIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DA04027BA597D00490E5B /* BookingAddressXIB.swift */; };
@@ -162,13 +162,13 @@
 		7A170E7027CF4AA500B0BE66 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
 		7A170E7127CF4AA500B0BE66 /* RulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesTableViewCell.xib; sourceTree = "<group>"; };
 		7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedByparty.swift; sourceTree = "<group>"; };
-		7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json4Swift_Base.swift; sourceTree = "<group>"; };
+		7A170E7B27CF667000B0BE66 /* MyRideResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRideResponseModel.swift; sourceTree = "<group>"; };
 		7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRideProvider.swift; sourceTree = "<group>"; };
 		7A170E7D27CF667000B0BE66 /* Passenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
 		7A170E7E27CF667000B0BE66 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		7A170E8427CF669200B0BE66 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		7A170E8827CF66B000B0BE66 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		7A170E8927CF66B000B0BE66 /* APIManeger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManeger.swift; sourceTree = "<group>"; };
+		7A170E8927CF66B000B0BE66 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7A170E8D27CF89E900B0BE66 /* DateFormattingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormattingHelper.swift; sourceTree = "<group>"; };
 		7A170E8E27CF89E900B0BE66 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		7A2DA04027BA597D00490E5B /* BookingAddressXIB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingAddressXIB.swift; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				7A170E7A27CF667000B0BE66 /* CreatedByparty.swift */,
-				7A170E7B27CF667000B0BE66 /* Json4Swift_Base.swift */,
+				7A170E7B27CF667000B0BE66 /* MyRideResponseModel.swift */,
 				7A170E7C27CF667000B0BE66 /* MyRideProvider.swift */,
 				7A170E7D27CF667000B0BE66 /* Passenger.swift */,
 				7A170E7E27CF667000B0BE66 /* Driver.swift */,
@@ -648,7 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				7A170E8827CF66B000B0BE66 /* API.swift */,
-				7A170E8927CF66B000B0BE66 /* APIManeger.swift */,
+				7A170E8927CF66B000B0BE66 /* APIManager.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -1061,7 +1061,7 @@
 				7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */,
 				7A2DA05127BA662100490E5B /* KiwniComfirtCollectionViewCell.swift in Sources */,
 				7AFA73DB280D48E800680B9C /* StringValidationExtension.swift in Sources */,
-				7A170E8027CF667000B0BE66 /* Json4Swift_Base.swift in Sources */,
+				7A170E8027CF667000B0BE66 /* MyRideResponseModel.swift in Sources */,
 				7A170E8627CF669200B0BE66 /* DBHelper.swift in Sources */,
 				7A5FCD0A27ACF2A5004F9DC3 /* CustomPopupView.swift in Sources */,
 				7A170E8327CF667000B0BE66 /* Driver.swift in Sources */,
@@ -1081,7 +1081,7 @@
 				7A41AE3227ABA7B00067BD3C /* FAQViewController.swift in Sources */,
 				7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */,
 				7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */,
-				7A170E8B27CF66B000B0BE66 /* APIManeger.swift in Sources */,
+				7A170E8B27CF66B000B0BE66 /* APIManager.swift in Sources */,
 				7AD28FDD27A7C631004E232D /* OTPViewController.swift in Sources */,
 				7A41AE3C27ABED580067BD3C /* ReferandEarnViewController.swift in Sources */,
 				7A686F4127AA7D6A00DFF9A3 /* PastTableViewCell.swift in Sources */,
