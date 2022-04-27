@@ -2105,31 +2105,31 @@
                                                             <rect key="frame" x="1" y="5" width="363" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trimurti Travel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZZ-L1-Ypf">
-                                                                    <rect key="frame" x="5" y="10" width="87" height="16"/>
+                                                                    <rect key="frame" x="5" y="10" width="87.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRI5068" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIJ-vA-fyc">
-                                                                    <rect key="frame" x="27.5" y="33" width="42" height="12"/>
+                                                                    <rect key="frame" x="28" y="33" width="41.5" height="12"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <color key="textColor" systemColor="linkColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxV-63-nHa">
-                                                                    <rect key="frame" x="102" y="10" width="91.5" height="16"/>
+                                                                    <rect key="frame" x="102.5" y="10" width="91" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF0-sd-cV2">
-                                                                    <rect key="frame" x="203.5" y="10" width="87" height="16"/>
+                                                                    <rect key="frame" x="203.5" y="10" width="87.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1850/-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64G-bP-Hv6">
-                                                                    <rect key="frame" x="310.5" y="10" width="38" height="16"/>
+                                                                    <rect key="frame" x="308" y="10" width="43.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -2236,7 +2236,7 @@
                                                                 <constraint firstItem="l8T-sf-Z3k" firstAttribute="leading" secondItem="xIJ-vA-fyc" secondAttribute="trailing" constant="66.5" id="9Ox-7R-ue3"/>
                                                                 <constraint firstItem="aro-LY-Rpd" firstAttribute="centerX" secondItem="64G-bP-Hv6" secondAttribute="centerX" id="Aks-Tf-nTZ"/>
                                                                 <constraint firstItem="c8f-PP-40G" firstAttribute="top" secondItem="aro-LY-Rpd" secondAttribute="bottom" constant="5" id="BkT-sV-7BL"/>
-                                                                <constraint firstItem="64G-bP-Hv6" firstAttribute="leading" secondItem="wF0-sd-cV2" secondAttribute="trailing" constant="20" id="G1y-D1-FF2"/>
+                                                                <constraint firstItem="64G-bP-Hv6" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wF0-sd-cV2" secondAttribute="trailing" constant="20" id="G1y-D1-FF2"/>
                                                                 <constraint firstItem="aro-LY-Rpd" firstAttribute="top" secondItem="64G-bP-Hv6" secondAttribute="bottom" constant="5" id="Gel-gO-Jdc"/>
                                                                 <constraint firstItem="R4a-lX-DPQ" firstAttribute="top" secondItem="wF0-sd-cV2" secondAttribute="bottom" constant="5" id="H70-SQ-gGP"/>
                                                                 <constraint firstItem="TZZ-L1-Ypf" firstAttribute="top" secondItem="MIR-fH-1C1" secondAttribute="top" constant="10" id="IbI-nh-p0b"/>

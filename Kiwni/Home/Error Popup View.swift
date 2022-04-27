@@ -14,7 +14,9 @@ var closeButton = UIButton()
 var errorLable = UILabel()
 private var viewBackground : UIView?
 let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
-
+let imageName = "Wifi Icon"
+let image = UIImage(named: imageName)
+let imageView = UIImageView(image: image!)
 
 extension UIViewController {
     
@@ -70,9 +72,35 @@ extension UIViewController {
         closeButton.removeFromSuperview()
         blurEffectView.removeFromSuperview()
     }
+}
+
+extension UIViewController {
+    func noInternetErrorPopupShow(_ errorMessage: String) {
+        errorCustomView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        errorCustomView.backgroundColor = .white
+        self.view.addSubview(errorCustomView)
+        
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        imageView.center = self.view.center
+        view.addSubview(imageView)
+        print(imageView.frame.origin.x, imageView.frame.origin.y)
+        
+        errorString.text = errorMessage
+        errorString.frame = CGRect.init(x: imageView.frame.origin.x - 60, y: imageView.frame.origin.y + 60, width: 200, height: 30)
+        errorString.textColor = .black
+        errorString.font = errorString.font.withSize(18)
+//        errorString.center = self.view.center
+        errorString.textAlignment = . center
+        self.view.addSubview(errorString)
+        print(errorString.frame.origin.x, errorString.frame.origin.y)
+        
+    }
     
-    
-    
+    func noInternetErrorPopupHide() {
+        errorCustomView.removeFromSuperview()
+        errorString.removeFromSuperview()        
+    }
 }
 
 extension UIView {

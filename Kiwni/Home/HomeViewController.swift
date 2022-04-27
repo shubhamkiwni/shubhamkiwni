@@ -351,11 +351,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
         
-        self.customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
-        self.customView.backgroundColor = UIColor.red     //give color to the view
-        self.customView.center = self.view.center
-        self.customView.isHidden = true
-         self.view.addSubview(self.customView)
+//        customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+//        self.customView.backgroundColor = UIColor.red     //give color to the view
+//        self.customView.center = self.view.center
+//        self.customView.isHidden = true
+//         self.view.addSubview(self.customView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -373,14 +373,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //                customView.backgroundColor = UIColor.green     //give color to the view
 //                customView.center = self.view.center
 //                self.view.addSubview(customView)
+                self.noInternetErrorPopupHide()
                 
-                self.customView.isHidden = true
             }
             self.reachability.whenUnreachable = { _ in
                 print("Not reachable")
                 
                
-                self.customView.isHidden = false
+                
+                self.noInternetErrorPopupShow("No Internet Connection")
                 
             }
 
