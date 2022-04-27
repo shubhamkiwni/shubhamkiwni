@@ -368,6 +368,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.reachability.whenUnreachable = { _ in
                 print("Not reachable")
                 self.noInternetErrorPopupShow("No Internet Connection")
+                
             }
 
             do {
@@ -376,6 +377,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 print("Unable to start notifier")
             }
         }
+    
+
         SocketIOManager.sharedInstance.establishConnection()
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
