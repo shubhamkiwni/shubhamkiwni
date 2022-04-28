@@ -16,6 +16,7 @@ target 'Kiwni' do
   pod 'DropDown'
   pod 'Socket.IO-Client-Swift', '~> 15.2.0'
   pod 'ReachabilitySwift'
+  pod ‘MaterialComponents/TextFields’
   target 'KiwniTests' do
     inherit! :search_paths
     # Pods for testing

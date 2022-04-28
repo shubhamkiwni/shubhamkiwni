@@ -98,11 +98,11 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellLbl.font=UIFont.systemFont(ofSize: 17)
             cellLbl.textColor=UIColor.black
             
-            let cellLbl2 = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-(-5), width: 200, height: 20))
+            let cellLbl2 = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-(-15), width: 200, height: 20))
             print(cell.frame.height/2+50)
             cell.addSubview(cellLbl2)
             cellLbl2.text = UserDefaults.standard.string(forKey: "phoneNumber")
-            cellLbl2.font=UIFont.systemFont(ofSize: 12)
+            cellLbl2.font=UIFont.systemFont(ofSize: 15)
             cellLbl2.textColor=UIColor.black
         } else {
             

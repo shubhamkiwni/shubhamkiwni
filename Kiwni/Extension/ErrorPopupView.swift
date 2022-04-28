@@ -1,5 +1,5 @@
 //
-//  Error Popup View.swift
+//  ErrorPopupView.swift
 //  Kiwni
 //
 //  Created by Shubham Shinde on 28/02/22.
@@ -13,7 +13,7 @@ var errorString = UILabel()
 var closeButton = UIButton()
 var errorLable = UILabel()
 private var viewBackground : UIView?
-let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
+let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.light))
 let imageName = "Wifi Icon"
 let image = UIImage(named: imageName)
 let noInternetImageView = UIImageView(image: image!)
@@ -102,6 +102,16 @@ extension UIViewController {
         errorString.removeFromSuperview()
         noInternetImageView.removeFromSuperview()
     }
+    
+    func dropShadow(_ button: UIButton){
+        button.layer.masksToBounds = false
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowOffset = CGSize(width: -1, height: 1)
+        button.layer.shadowRadius = 2.0
+        button.layer.cornerRadius = 10
+    }
+    
 }
 
 extension UIView {
@@ -132,4 +142,5 @@ extension UIView {
         border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
         self.layer.addSublayer(border)
     }
+    
 }

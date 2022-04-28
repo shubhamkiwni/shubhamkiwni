@@ -220,10 +220,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         self.view1.addSubview(sideMenuButton)
         self.view .addSubview(self.mainView)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mainView.addSubview(blurEffectView)
         self.mainView.addSubview(self.driverSchedulePopup)
         self.driverSchedulePopup.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
+        self.blurEffectView.isHidden = true
         self.driverSchedulePopup.isHidden = true
         
         pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -386,7 +390,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.driverSchedulePopup.isHidden = true
         }
         else{
-            self.driverSchedulePopup.isHidden = false
+            self.blurEffectView.isHidden = false
+            self.driverSchedulePopup.isHidden = false            
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
             print("Driver Details array : ", self.driverdetailsArray)
             
@@ -460,6 +465,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func doneButonClicked(_ sender: UIButton) {
         print("Done Butoon Pressed")
+        self.blurEffectView.isHidden = true
         self.driverSchedulePopup.isHidden = true
     }
     

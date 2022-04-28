@@ -40,6 +40,8 @@
 		7A35B4172799293400E0CFAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A35B4152799293400E0CFAE /* LaunchScreen.storyboard */; };
 		7A35B4222799293500E0CFAE /* Kiwni_User_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35B4212799293500E0CFAE /* Kiwni_User_AppTests.swift */; };
 		7A35B42D2799293500E0CFAE /* Kiwni_User_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35B42C2799293500E0CFAE /* Kiwni_User_AppUITests.swift */; };
+		7A407C22281A5F55000F55A3 /* LoginTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407C21281A5F55000F55A3 /* LoginTypeViewController.swift */; };
+		7A407C24281A76FC000F55A3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407C23281A76FC000F55A3 /* SignUpViewController.swift */; };
 		7A41AE3227ABA7B00067BD3C /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41AE3127ABA7B00067BD3C /* FAQViewController.swift */; };
 		7A41AE3427ABAF9C0067BD3C /* DesignExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41AE3327ABAF9C0067BD3C /* DesignExtension.swift */; };
 		7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41AE3527ABE2AB0067BD3C /* OffersViewController.swift */; };
@@ -76,7 +78,7 @@
 		7AAF1E0827C9152200B262D4 /* PickupLocationOnSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */; };
 		7AAF265127C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */; };
 		7AAF265327C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */; };
-		7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC64B3327CCBE1300B82341 /* Error Popup View.swift */; };
+		7AC64B3427CCBE1300B82341 /* ErrorPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */; };
 		7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D4279EB99800B8239F /* SidebarView.swift */; };
 		7ACF79D7279EBA0900B8239F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D6279EBA0900B8239F /* ProfileViewController.swift */; };
 		7ACF79DB279EC08D00B8239F /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79DA279EC08D00B8239F /* MyRidesViewController.swift */; };
@@ -193,6 +195,8 @@
 		7A35B4282799293500E0CFAE /* KiwniUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwniUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A35B42C2799293500E0CFAE /* Kiwni_User_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kiwni_User_AppUITests.swift; sourceTree = "<group>"; };
 		7A35B42E2799293500E0CFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A407C21281A5F55000F55A3 /* LoginTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTypeViewController.swift; sourceTree = "<group>"; };
+		7A407C23281A76FC000F55A3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7A41AE3127ABA7B00067BD3C /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		7A41AE3327ABAF9C0067BD3C /* DesignExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignExtension.swift; sourceTree = "<group>"; };
 		7A41AE3527ABE2AB0067BD3C /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +233,7 @@
 		7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationOnSearchView.xib; sourceTree = "<group>"; };
 		7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentalHoursPackageCollectionViewCell.xib; sourceTree = "<group>"; };
 		7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalHoursPackageCollectionViewCell.swift; sourceTree = "<group>"; };
-		7AC64B3327CCBE1300B82341 /* Error Popup View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Popup View.swift"; sourceTree = "<group>"; };
+		7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopupView.swift; sourceTree = "<group>"; };
 		7ACF79D4279EB99800B8239F /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		7ACF79D6279EBA0900B8239F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7ACF79DA279EC08D00B8239F /* MyRidesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRidesViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 			children = (
 				7AFA73DA280D48E800680B9C /* StringValidationExtension.swift */,
 				7ADC6D76280DC85500EFB4ED /* FunctionsExtension.swift */,
+				7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -482,7 +487,6 @@
 				7A128DD127B3D84E00F8554C /* HomeCollectionViewCell.swift */,
 				7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */,
 				7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */,
-				7AC64B3327CCBE1300B82341 /* Error Popup View.swift */,
 				7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */,
 			);
 			path = Home;
@@ -513,6 +517,8 @@
 			isa = PBXGroup;
 			children = (
 				7AD28FDA27A7C624004E232D /* LoginViewController.swift */,
+				7A407C21281A5F55000F55A3 /* LoginTypeViewController.swift */,
+				7A407C23281A76FC000F55A3 /* SignUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1036,6 +1042,7 @@
 				7AF91F1D27C605BD0023B399 /* confirmBookingXIB.swift in Sources */,
 				7A686F4827AAB2E900DFF9A3 /* SupportViewController.swift in Sources */,
 				7A41AE3927ABE68A0067BD3C /* OffersTableViewCell.swift in Sources */,
+				7A407C22281A5F55000F55A3 /* LoginTypeViewController.swift in Sources */,
 				845137A328094DB300DFE0B0 /* SocketIOManager.swift in Sources */,
 				8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */,
 				7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				84398FB627BD07A8008C8782 /* ErrorMessage.swift in Sources */,
 				7AE5A34527C4AF3000C1E5D4 /* BrandCollectionViewCell.swift in Sources */,
 				84FE635927BBCFA10026289D /* Identifiers.swift in Sources */,
+				7A407C24281A76FC000F55A3 /* SignUpViewController.swift in Sources */,
 				84DD33A027C39A9C007E3260 /* Toast.swift in Sources */,
 				7A170E8227CF667000B0BE66 /* Passenger.swift in Sources */,
 				7AFA73D9280D236400680B9C /* ReviewTableViewCell.swift in Sources */,
@@ -1080,7 +1088,7 @@
 				7ADC6D77280DC85500EFB4ED /* FunctionsExtension.swift in Sources */,
 				7A41AE3227ABA7B00067BD3C /* FAQViewController.swift in Sources */,
 				7A170E7F27CF667000B0BE66 /* CreatedByparty.swift in Sources */,
-				7AC64B3427CCBE1300B82341 /* Error Popup View.swift in Sources */,
+				7AC64B3427CCBE1300B82341 /* ErrorPopupView.swift in Sources */,
 				7A170E8B27CF66B000B0BE66 /* APIManager.swift in Sources */,
 				7AD28FDD27A7C631004E232D /* OTPViewController.swift in Sources */,
 				7A41AE3C27ABED580067BD3C /* ReferandEarnViewController.swift in Sources */,

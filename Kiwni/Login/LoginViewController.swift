@@ -15,16 +15,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mobileNumTextField: UITextField!
     @IBOutlet weak var byContinuingLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
-    @IBOutlet weak var welconToKiwniLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    
     var myMutableString = NSMutableAttributedString()
-    var myString:NSString = "Welcome to KIWNI"
     let reachability = try! Reachability()
 
-    override func viewDidLoad() {
-        myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSAttributedString.Key.font:UIFont(name: "Zapf Dingbats", size: 24.0)!])
-        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: NSRange(location:11,length:5))
-           // set label Attribute
-           welconToKiwniLabel.attributedText = myMutableString
+    override func viewDidLoad() {        
         super.viewDidLoad()
         
         mobileNumTextField.delegate = self
@@ -76,6 +72,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     deinit{
         reachability.stopNotifier()
     }
+    
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+//        navigationController?.popViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        let signUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginTypeViewController") as! LoginTypeViewController
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
     
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
