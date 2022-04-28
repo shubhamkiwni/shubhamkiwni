@@ -259,4 +259,9 @@ extension String {
     func padLeft(upTo length: Int, using element: Element = " ") -> SubSequence {
         return repeatElement(element, count: Swift.max(0, length - self.count)) + suffix(Swift.max(self.count, self.count - length))
     }
+    
+    
+    var firstUppercased: String { return prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { return prefix(1).capitalized + dropFirst() }
+  
 }

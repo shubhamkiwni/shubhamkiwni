@@ -311,11 +311,10 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             imageString = carsArray[indexPath.section].imagePath ?? ""
 //          print("imageString : \(imageString)")
             
-            DispatchQueue.main.async {
-                let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
-                let data = try? Data(contentsOf: url!)
-                cell.carImage.image = UIImage(data: data!)
-            }
+           
+            let url = URL(string: "https://kiwni.com/car_images/\(imageString)")
+            let data = try? Data(contentsOf: url!)
+            cell.carImage.image = UIImage(data: data!)
             
         
             if estimatedPriceArr.count == 1 {

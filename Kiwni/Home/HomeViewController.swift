@@ -397,7 +397,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let dataDecoded:NSData = NSData(base64Encoded:  self.driverdetailsArray[0].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
             let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
             print("OTP after decoding: ", decodedString)
-            driverOTPLabel.text = "OTP:\(decodedString)"
+            driverOTPLabel.text = "OTP: \(decodedString)"
             
             // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
             let startTime = self.driverdetailsArray[0].startTime ?? ""
@@ -435,10 +435,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //               driverImageView.load(url: url)
             //             }
             
+            let tripDirectionString : String
+            tripDirectionString = self.driverdetailsArray[0].serviceType ?? ""
+            print("tripDirectionString: ", tripDirectionString)
+            
+            let fullSeperatedArr = tripDirectionString.components(separatedBy: "-")
+            let seperatedTripType: String = fullSeperatedArr[0]
+            let seperatedTripType2: String = fullSeperatedArr[1]
+          
+            
             drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
             drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
-            onewaytripLabel.text = "\(driverdetailsArray[0].serviceType ?? "")" + "To" +  "\(driverdetailsArray[0].endlocationCity ?? "")"
+            onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
             krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
             
         }
