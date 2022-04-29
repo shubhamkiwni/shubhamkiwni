@@ -1291,7 +1291,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func sideMenuButtonPressed(_ sender: UIButton) {
-        print("Click")
+    
         blackScreen.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 300, height: self.sidebarView.frame.height)
