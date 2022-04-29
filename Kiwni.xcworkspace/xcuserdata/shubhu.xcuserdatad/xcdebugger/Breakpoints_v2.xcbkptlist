@@ -14,8 +14,8 @@
             filePath = "Kiwni/Booking Details/BookingDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "pressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8AD1DF08-7059-47D0-9405-ACBF8658BDFF"
+            uuid = "75673A41-7AA5-4C17-8117-525EB74AB7AA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Kiwni/Home/HomeViewController.swift"
+            filePath = "Kiwni/Booking Details/BookingDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "926"
-            endingLineNumber = "926"
-            landmarkName = "viewCabsButtonClicked(_:)"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "pressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

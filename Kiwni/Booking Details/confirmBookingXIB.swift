@@ -14,14 +14,10 @@ protocol openPopUp {
 
 class confirmBooking: UIView {
     var delegate: openPopUp?
-    var emailTag: Int = 0
-    var phoneTag: Int = 0
-    var whatsAppTag: Int = 0
     var notificationTypeString : String? = ""
     var tripTypeString : String? = ""
     
     @IBOutlet var payAdvanceCollection: [UIButton]!
-    @IBOutlet var personalCollection: [UIButton]!
     @IBOutlet weak var businessDetailsView: UIView!
     
     let nibName = "confirmBookingXIB"
@@ -115,7 +111,7 @@ class confirmBooking: UIView {
         companyNameValueLabel.text = UserDefaults.standard.string(forKey: "companyName")
         companyEmailValueLabel.text = UserDefaults.standard.string(forKey: "companyEmail")
         companyPhoneValueLabel.text = UserDefaults.standard.string(forKey: "companyPhoneNo")
-        print(companyNameValueLabel.text, companyEmailValueLabel.text, companyPhoneValueLabel.text)
+        print(companyNameValueLabel.text ?? "", companyEmailValueLabel.text ?? "", companyPhoneValueLabel.text ?? "")
         
         
         
@@ -158,69 +154,39 @@ class confirmBooking: UIView {
         delegate?.openPopUp()
         
     }
-//    @IBAction func personalButtonPressed(_ sender: UIButton) {
-//        for button in personalCollection {
-//            if button.tag == sender.tag {
-//                button.setImage(UIImage(named: "Check"), for: .normal)
-////                buttonTag = sender.tag
-//            } else {
-//                button.setImage(UIImage(named: "Uncheck"), for: .normal)
-//            }
-//        }
-//    }
+    
+    var notificationType = [String]()
     
     @IBAction func emailButtonPresed(_ sender: UIButton) {
-        if emailTag == 0 {
+        if emailRadioButton.tag == 0 {
             emailRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            emailTag = 1
-            notificationTypeString = "Email"
-            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
-        } else {
+            emailRadioButton.tag = 1
+        } else if emailRadioButton.tag == 1 {
             emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            emailTag = 0
+            emailRadioButton.tag = 0
         }
-        
-//        emailRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-//        phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        notificationTypeString = "Email"
-//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
-        
     }
     
     @IBAction func phoneButtonPressed(_ sender: UIButton) {
-        if phoneTag == 0 {
+        if phoneRadioButton.tag == 0 {
             phoneRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            phoneTag = 1
+            phoneRadioButton.tag = 1
             notificationTypeString = "SMS"
-            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
-        } else {
+        } else if phoneRadioButton.tag == 1 {
             phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            phoneTag = 0
+            phoneRadioButton.tag = 0
         }
-        
-//        emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        phoneRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-//        whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        notificationTypeString = "SMS"
-//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
     }
     
     @IBAction func whatsAppButtonPressed(_ sender: UIButton) {
-        if whatsAppTag == 0 {
+        if whatsAppRadioButton.tag == 0 {
             whatsAppRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            whatsAppTag = 1
+            whatsAppRadioButton.tag = 1
             notificationTypeString = "WhatsApp"
-            UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
-        } else {
+        } else if whatsAppRadioButton.tag == 1 {
             whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            whatsAppTag = 0
+            whatsAppRadioButton.tag = 0
         }
-//        emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-//        whatsAppRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-//        notificationTypeString = "WhatsApp"
-//        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
     }
     
 }

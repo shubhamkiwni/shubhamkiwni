@@ -237,6 +237,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     @objc func pressed() {
         print("PROCEED TO PAY")
     
+        
         let driverID = self.selectedCarValue.driverID ?? 0
         let driverLicense : String = ""
         let driverName : String = self.selectedCarValue.driverName ?? ""
@@ -271,7 +272,45 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
         
         let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
-        let notificationType : String = "Email,SMS,WhatsApp"
+        var notificationType : String = ""
+        
+        if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 1 {
+            notificationType = "Email,SMS,Whatsapp"
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+           
+        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 0 {
+            notificationType = "Email,SMS"
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+          
+        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 0 {
+            notificationType = "Email"
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+            
+        } else if confXIB.emailRadioButton.tag == 0 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 0 {
+            notificationType = ""
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+            
+        } else if confXIB.emailRadioButton.tag == 0 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 1 {
+            notificationType = "SMS,Whatsapp"
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+           
+        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 1 {
+            notificationType = "Email,Whatsapp"
+            print(confXIB.emailRadioButton.tag)
+            print(confXIB.phoneRadioButton.tag)
+            print(confXIB.whatsAppRadioButton.tag)
+            
+        }
         
         let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
         let userSourceLatitude  = SourceCoordinate["SourceLatitude"]
