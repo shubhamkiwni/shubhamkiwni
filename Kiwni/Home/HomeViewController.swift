@@ -362,7 +362,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
                 if reachability.connection == .wifi {
@@ -378,15 +378,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.noInternetErrorPopupShow("No Internet Connection")
                 
             }
-
+            
             do {
                 try self.reachability.startNotifier()
             } catch {
                 print("Unable to start notifier")
             }
         }
-    
-
+        
+        
         SocketIOManager.sharedInstance.establishConnection()
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
@@ -395,32 +395,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         else{
             self.blurEffectofDriverPopUpView.isHidden = false
-            self.driverSchedulePopup.isHidden = false            
+            self.driverSchedulePopup.isHidden = false
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
-            print("Driver Details array : ", self.driverdetailsArray)
-            
             let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
             let substring:String = drivernameString.components(separatedBy: " ")[0]
             drivernameLabel.text = substring
             
             let dataDecoded:NSData = NSData(base64Encoded:  self.driverdetailsArray[0].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
             let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
-            print("OTP after decoding: ", decodedString)
             driverOTPLabel.text = "OTP: \(decodedString)"
-            
-            // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
-            let startTime = self.driverdetailsArray[0].startTime ?? ""
-            let endTime = self.driverdetailsArray[0].endTime ?? ""
-            
-            dateConversion(dateValue: startTime)
-            dateConversion(dateValue: endTime)
-            
-            print("tripStatTime:", startTime)
-            print("tripEndTime:", endTime)
-            
-        
-        
-            
             
             let imageString : String
             imageString = self.driverdetailsArray[0].driverImageUrl ?? ""
@@ -428,47 +411,59 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             imageurlString  = "\(imageString)"
             print("UrlString : \(imageurlString)")
-            //cell.carImageView.image = UIImage(contentsOfFile: urlString)
-            //           if let url = URL(string:imageurlString){
-            //               driverImageView.load(url: url)
-            //             }
+            //            if(imageurlString.isEmpty == false){
+            //                if let url = URL(string:imageurlString){
+            //                    driverImageView.load(url: url)
+            //                }
+            //            }
+            if(imageurlString.isEmpty == false){
+                let url = URL(string:imageurlString)
+                let data = try? Data(contentsOf: url!)
+                driverImageView.image = UIImage(data: data!)
+            }
+            
+            
+            
+            let startTime = self.driverdetailsArray[0].startTime ?? ""
+            let endTime = self.driverdetailsArray[0].endTime ?? ""
+            
+            let startTimeResult =  dateConversion(dateValue: startTime)
+            let endTimeResult =  dateConversion(dateValue: endTime)
             
             let tripDirectionString : String
             tripDirectionString = self.driverdetailsArray[0].serviceType ?? ""
-            print("tripDirectionString: ", tripDirectionString)
-            
-            if tripDirectionString == "one-way" {
-                scheduledateLabel.text = driverPopUpStartDate + "," + driverPopUpStartTime
-            } else if tripDirectionString == "two-way" {
-                scheduledateLabel.text = driverPopUpStartDate 
-            }
-            
             let fullSeperatedArr = tripDirectionString.components(separatedBy: "-")
             let seperatedTripType: String = fullSeperatedArr[0]
             let seperatedTripType2: String = fullSeperatedArr[1]
-          
+            
+            let directionStr = seperatedTripType+"-"+seperatedTripType2
+            
+            if directionStr == "one-way" {
+                scheduledateLabel.text = startTimeResult.0 + "," + startTimeResult.1
+            } else if directionStr == "two-way" {
+                scheduledateLabel.text = startTimeResult.0 + "," + startTimeResult.1 + "-" + endTimeResult.0
+            }
+            
             if(self.driverdetailsArray[0].driver?.name == ""){
                 drivervehiclevalueLabel.text = ""
                 drivercontactLabel.text = ""
-               
+                
             }else{
                 drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
                 drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
-               
             }
-            
-           
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
             onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
             krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
-            
             dropShadow(doneButton)
-            
         }
-        
     }
     
-    func dateConversion(dateValue: String) -> String {
+    deinit{
+        reachability.stopNotifier()
+    }
+    
+    func dateConversion(dateValue: String) -> (String, String) {
         if let myDate = DateFormattingHelper.strToDateTime(strDateTime: dateValue)
         {
             print("myDate: ", myDate)
@@ -478,22 +473,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let myString = formatter.string(from: myDate)
             let yourDate: Date? = formatter.date(from: myString)
             formatter.dateFormat = "yyyy-MM-dd"
-            driverPopUpStartDate = formatter.string(from: yourDate!)
-            print("dateStr : ", driverPopUpStartDate)
+            let dateStr = formatter.string(from: yourDate!)
+            print("dateStr : ", dateStr)
             
             formatter.dateFormat = "hh:mm a"
-            driverPopUpStartTime = formatter.string(from: yourDate!)
-            print("timeStr : ", driverPopUpStartTime)
-            print("Str time from popup : ","\(driverPopUpStartDate), \(driverPopUpStartTime)" )
+            let timeStr = formatter.string(from: yourDate!)
+            print("timeStr : ", timeStr)
+            print("Str time from popup : ","\(dateStr), \(timeStr)" )
+            return (dateStr,timeStr)
         } else {
             print("add another format")
+            return ("", "")
         }
-        return driverPopUpStartDate
+        
     }
     
-    deinit{
-        reachability.stopNotifier()
-    }
+    
     
     @IBAction func doneButonClicked(_ sender: UIButton) {
         print("Done Butoon Pressed")
@@ -625,7 +620,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func datePickerAction() {
         
         print("newDatePicker:",newDatePicker.date)
-      
+        
         let formatter = DateFormatter()
         
         formatter.dateFormat = "E, MMM d"
@@ -677,7 +672,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print(dd ?? (Any).self)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             self.journeyendTime = formatter.string(from: dd!)
-//            selectedReturnDate = dd ?? Date()
+            //            selectedReturnDate = dd ?? Date()
             //print(dd!)
             print("Drop Date Time : ", self.journeyendTime)
         }
@@ -949,7 +944,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     print(dd ?? (Any).self)
                     newformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
                     self.journeyendTime = newformatter.string(from: dd!)
-//                    selectedReturnDate = dd ?? Date()
+                    //                    selectedReturnDate = dd ?? Date()
                     //print(dd!)
                     print("Drop Date Time : ", self.journeyendTime)
                     
@@ -957,7 +952,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     print("Distance Value for two way : ", self.distanceValue)
                 }
             }
-           
+            
             if(self.distanceValue != nil){
                 
                 if(pickupcityName == destinationcityName){
@@ -1438,7 +1433,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func durationDistance(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         
-     
+        
         
         var urlString : String = "https://maps.googleapis.com/maps/api/distancematrix/json?departure_time=now&destinations=\(destination.latitude),\(destination.longitude)&origins=\(origin.latitude),\(origin.longitude)&key=\(googleMapKey)"
         
@@ -1666,14 +1661,14 @@ extension HomeViewController: CLLocationManagerDelegate
         
         self.showIndicator(withTitle: "Loading", and: "Please Wait")
         
-//        if (NetworkMonitor.share.isConnected == false){
-//          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
-//            self.hideIndicator()
-//            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
-//            return
-//        }
-    
-
+        //        if (NetworkMonitor.share.isConnected == false){
+        //          //  self.view.makeToast(ErrorMessage.list.checkyourinternetconnectivity)
+        //            self.hideIndicator()
+        //            customErrorPopup(ErrorMessage.list.checkyourinternetconnectivity)
+        //            return
+        //        }
+        
+        
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(sourceCoordinate) { response, error in
             if let location = response?.firstResult() {
@@ -1871,10 +1866,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = self.userCurrentlocation
             }
-            //                   else if (self.pickupTextField.text?.isEmpty == false){
-            //                    self.strTxtFieldType = "ToDestination"
-            //                    self.pickupTextField.text = "Previously selected value"
-            //                   }
+           
         }
         
         //self.dismiss(animated: true, completion: nil)
