@@ -59,7 +59,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         let name = UserDefaults.standard.string(forKey: "displayName") ?? ""
                 
         titleArr = ["\(name)", "My Rides", "Payment", "Offers", "Safety", "FAQs", "Feedback", "Share App", "Refer & Earn", "Support", "About"]
-//        imageArray = ["11","11","11","11","11","11","11","11","11","11", "11"]
+
         setupViews()
         
         myTableView.delegate=self

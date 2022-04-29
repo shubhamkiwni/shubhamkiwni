@@ -324,7 +324,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         print(userDestinationLatitude,userDestinationLongitude)
         
         let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: 1)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: "",fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double)), scheduleID: Int(scheduleID)!, serviceType: Channel(id: serviceTypeId), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "")
-        print("resevation Model :\(reservationModelData)")
+        print("reservation Model :\(reservationModelData)")
         
         self.showIndicator(withTitle: "Loading", and: "Please Wait")
         

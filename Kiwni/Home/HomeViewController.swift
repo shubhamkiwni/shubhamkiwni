@@ -141,9 +141,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- SideBar
     var sidebarView: SidebarView!
     var blackScreen: UIView!
-    //    @IBOutlet weak var datePicker: UIView!
-    
-    //    @IBOutlet weak var datePickerView: UIView!
+   
     
     var dataArray = ["Outstation", "Airport", "Rental"]
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
@@ -229,12 +227,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
        
         self.view .addSubview(self.mainView)
 //        self.mainView .addSubview(self.baseStackView)
-//        self.baseStackView .addSubview(self.view1)
-        self.view1.addSubview(sideMenuButton)
+        self.view1.addSubview(self.sideMenuButton)
+//        self.view1.addSubview(sideMenuButton)
         sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
         sidebarView.delegate = self
         sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled=true
+        self.view.isUserInteractionEnabled = true
         self.navigationController?.view.addSubview(sidebarView)
         
         blackScreen = UIView(frame: self.view.bounds)
@@ -1293,7 +1291,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func sideMenuButtonPressed(_ sender: UIButton) {
-        blackScreen.isHidden=false
+        print("Click")
+        blackScreen.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 300, height: self.sidebarView.frame.height)
         }) { (complete) in
