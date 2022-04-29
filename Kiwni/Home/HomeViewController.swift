@@ -448,12 +448,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let seperatedTripType: String = fullSeperatedArr[0]
             let seperatedTripType2: String = fullSeperatedArr[1]
           
+            if(self.driverdetailsArray[0].driver?.name == ""){
+                drivervehiclevalueLabel.text = ""
+                drivercontactLabel.text = ""
+               
+            }else{
+                drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
+                drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
+               
+            }
             
-            drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
-            drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
+           
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
             onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
             krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
+            
+            dropShadow(doneButton)
             
         }
         
@@ -479,7 +489,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func pickUpDatePickerButtonPressed(_ sender: UIButton) {
-        //        newDatePicker.date = Date()
+        //newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "1"
         //        timeFormatter.dateFormat = "yyyy-MM-dd"
@@ -488,7 +498,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func returnByDatePickerButtonPressed(_ sender: UIButton) {
-        //        newDatePicker.date = Date()
+        //newDatePicker.date = Date()
         datePickerFunction()
         datePickerTag = "2"
         
@@ -838,7 +848,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print("Please Select a drop location")
             customErrorPopup("Please select drop location")
         }
-        else if (selectedPickUpDate > selectedReturnDate) {
+        else if ((selectedPickUpDate > selectedReturnDate) && (strDirection == "two-way")) {
             print("selectedPickUpDate, selectedReturnDate:",selectedPickUpDate, selectedReturnDate)
             print("Please select return date correctly.")
             customErrorPopup("Please select pickup and return date correctly.")

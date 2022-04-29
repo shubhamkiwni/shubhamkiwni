@@ -106,18 +106,32 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
         dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""
         
+        let strDirection  = UserDefaults.standard.string(forKey: "direction") ?? ""
+   
+        if(strDirection == "one-way"){
+            dateLabel.text = pickUpOnDate
+        }else{
+            dateLabel.text = pickUpOnDate + "-" + returnByDate
+        }
+        
+        
         tripVenueLabel.text = "\(pickUpCityName) To \(dropCityName)"
-        dateLabel.text = pickUpOnDate
+        
         timeLabel.text = pickUpOnTime
         tripTypeLabel.text = "\(tripType) (\(tripTypeMode))"
         UserDefaults.standard.setValue(tripTypeLabel.text, forKey: "tripType")
         UserDefaults.standard.setValue(dateLabel.text, forKey: "pickupDate")
         UserDefaults.standard.setValue(timeLabel.text, forKey: "pickupTime")
+        
+       
+   
+        
         print(pickedSourceCoordinate as Any, pickedDropCoordinate as Any)
         print(pickUpCityName, dropCityName)
         print(pickUpOnDate, returnByDate)
         print(pickUpOnTime)
         print(tripType)
+        print("Return By Date:",returnByDate)
         
         self.hoursPackegeCollectionView.register(UINib(nibName: "RentalHoursPackageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         if rentalTag != 2 {
