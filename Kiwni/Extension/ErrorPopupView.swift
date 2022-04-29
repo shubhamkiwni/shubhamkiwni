@@ -13,7 +13,7 @@ var errorString = UILabel()
 var closeButton = UIButton()
 var errorLable = UILabel()
 private var viewBackground : UIView?
-let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.light))
+let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
 let imageName = "Wifi Icon"
 let image = UIImage(named: imageName)
 let noInternetImageView = UIImageView(image: image!)

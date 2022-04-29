@@ -85,6 +85,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var googleMapKey = "AIzaSyDnaIPR6Tp0sgrhj-fcXLivvaILrOdQMhs"
     
     var dictForScheduleDates: NSDictionary! = nil
+    var driverPopUpStartDate: String = ""
+    var driverPopUpStartTime: String = ""
+    var driverPopUpEndDate: String = ""
     
     
     @IBOutlet weak var driverSchedulePopup : UIView!
@@ -197,6 +200,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var baseStackView: UIStackView!
     
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
+    let blurEffectofDriverPopUpView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     let newDatePicker: UIDatePicker = UIDatePicker()
     var datePickerTag = String()
     let cancelDatePickerButton = UIButton()
@@ -220,14 +224,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         self.view1.addSubview(sideMenuButton)
         self.view .addSubview(self.mainView)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mainView.addSubview(blurEffectView)
+        blurEffectofDriverPopUpView.frame = self.view.bounds
+        blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mainView.addSubview(blurEffectofDriverPopUpView)
         self.mainView.addSubview(self.driverSchedulePopup)
         self.driverSchedulePopup.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
-        self.blurEffectView.isHidden = true
+        self.blurEffectofDriverPopUpView.isHidden = true
         self.driverSchedulePopup.isHidden = true
         
         pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -390,7 +394,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.driverSchedulePopup.isHidden = true
         }
         else{
-            self.blurEffectView.isHidden = false
+            self.blurEffectofDriverPopUpView.isHidden = false
             self.driverSchedulePopup.isHidden = false            
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
             print("Driver Details array : ", self.driverdetailsArray)
@@ -406,27 +410,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             // "startTime": "2021-12-13T06:54:45.106Z", "2022-01-31T13:30:00Z"
             let startTime = self.driverdetailsArray[0].startTime ?? ""
+            let endTime = self.driverdetailsArray[0].endTime ?? ""
             
-            if let myDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
-            {
-                print("myDate: ", myDate)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                formatter.timeZone = TimeZone(identifier: "UTC")
-                let myString = formatter.string(from: myDate)
-                let yourDate: Date? = formatter.date(from: myString)
-                formatter.dateFormat = "yyyy-MM-dd"
-                let dateStr = formatter.string(from: yourDate!)
-                print("dateStr : ", dateStr)
-                
-                formatter.dateFormat = "hh:mm a"
-                let timeStr = formatter.string(from: yourDate!)
-                print("timeStr : ", timeStr)
-                scheduledateLabel.text = "\(dateStr), \(timeStr)"
-                print("Str time from popup : ","\(dateStr), \(timeStr)" )
-            } else {
-                print("add another format")
-            }
+            dateConversion(dateValue: startTime)
+            dateConversion(dateValue: endTime)
+            
+            print("tripStatTime:", startTime)
+            print("tripEndTime:", endTime)
+            
+        
+        
             
             
             let imageString : String
@@ -443,6 +436,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let tripDirectionString : String
             tripDirectionString = self.driverdetailsArray[0].serviceType ?? ""
             print("tripDirectionString: ", tripDirectionString)
+            
+            if tripDirectionString == "one-way" {
+                scheduledateLabel.text = driverPopUpStartDate + "," + driverPopUpStartTime
+            } else if tripDirectionString == "two-way" {
+                scheduledateLabel.text = driverPopUpStartDate 
+            }
             
             let fullSeperatedArr = tripDirectionString.components(separatedBy: "-")
             let seperatedTripType: String = fullSeperatedArr[0]
@@ -469,13 +468,36 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
+    func dateConversion(dateValue: String) -> String {
+        if let myDate = DateFormattingHelper.strToDateTime(strDateTime: dateValue)
+        {
+            print("myDate: ", myDate)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+            formatter.timeZone = TimeZone(identifier: "UTC")
+            let myString = formatter.string(from: myDate)
+            let yourDate: Date? = formatter.date(from: myString)
+            formatter.dateFormat = "yyyy-MM-dd"
+            driverPopUpStartDate = formatter.string(from: yourDate!)
+            print("dateStr : ", driverPopUpStartDate)
+            
+            formatter.dateFormat = "hh:mm a"
+            driverPopUpStartTime = formatter.string(from: yourDate!)
+            print("timeStr : ", driverPopUpStartTime)
+            print("Str time from popup : ","\(driverPopUpStartDate), \(driverPopUpStartTime)" )
+        } else {
+            print("add another format")
+        }
+        return driverPopUpStartDate
+    }
+    
     deinit{
         reachability.stopNotifier()
     }
     
     @IBAction func doneButonClicked(_ sender: UIButton) {
         print("Done Butoon Pressed")
-        self.blurEffectView.isHidden = true
+        self.blurEffectofDriverPopUpView.isHidden = true
         self.driverSchedulePopup.isHidden = true
     }
     
