@@ -14,9 +14,7 @@ let RESERVATION1 = "reservation_success"
 let DRIVERDATAUPDATED = "driver_data_updated"
 
 
-protocol getReservationDetails{
-    func getReservationDataArray(info : NSArray)
-}
+
 
 class SocketIOManager: NSObject {
 
@@ -25,7 +23,6 @@ class SocketIOManager: NSObject {
     private var manager: SocketManager?
     private var socket: SocketIOClient?
     
-    var delegate : getReservationDetails!
     var reservationArray : [SocketReservationResponse] = []
     
     override init() {
