@@ -222,8 +222,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view1.addSubview(sideMenuButton)
+        
+        
+        //Main View->baseStackView->View1->sidebar button
+        
+       
         self.view .addSubview(self.mainView)
+//        self.mainView .addSubview(self.baseStackView)
+//        self.baseStackView .addSubview(self.view1)
+        self.view1.addSubview(sideMenuButton)
+        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+        sidebarView.delegate = self
+        sidebarView.layer.zPosition=100
+        self.view.isUserInteractionEnabled=true
+        self.navigationController?.view.addSubview(sidebarView)
+        
+        blackScreen = UIView(frame: self.view.bounds)
+        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
+        blackScreen.isHidden=true
+        self.navigationController?.view.addSubview(blackScreen)
+        blackScreen.layer.zPosition=99
+        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
+        blackScreen.addGestureRecognizer(tapGestRecognizer)
+        
+        
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mainView.addSubview(blurEffectofDriverPopUpView)
@@ -313,20 +335,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         tripTypeCollectionView.selectItem(at: firstIndexPath as IndexPath, animated: false, scrollPosition: [])
         
         
-        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate = self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled=true
-        self.navigationController?.view.addSubview(sidebarView)
-        
-        blackScreen = UIView(frame: self.view.bounds)
-        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
-        blackScreen.isHidden=true
-        self.navigationController?.view.addSubview(blackScreen)
-        blackScreen.layer.zPosition=99
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
-        
+       
         navigationController?.isNavigationBarHidden = true
         
         design(mapView)
