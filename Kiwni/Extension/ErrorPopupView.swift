@@ -112,7 +112,7 @@ extension UIViewController {
         button.layer.cornerRadius = 10
     }
     
-    func uiViewDesign(_ view: UIView){
+    func uiViewDesign(_ view: UIStackView){
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.5

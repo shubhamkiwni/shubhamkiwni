@@ -28,6 +28,7 @@ class ThankYouViewController: UIViewController {
         
         if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
 //            self.driverSchedulePopup.isHidden = true
+            krnLabel.text = "KRN Number : - "
         }
         else{
 //            self.driverSchedulePopup.isHidden = false
@@ -35,6 +36,7 @@ class ThankYouViewController: UIViewController {
             print("Driver Details array : ", self.driverdetailsArray)
             krnLabel.text = "KRN Number :\(String(self.driverdetailsArray[0].reservationId ?? 0))"
         }
+        bookingNoLabel.text  = "Booking Number : - "
            
           
 

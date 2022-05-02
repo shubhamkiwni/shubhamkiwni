@@ -526,10 +526,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIs-l8-z18">
-                                                        <rect key="frame" x="27.5" y="120" width="300" height="25"/>
+                                                        <rect key="frame" x="27.5" y="118" width="300" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="Ais-QV-cJd"/>
+                                                            <constraint firstAttribute="height" constant="30" id="Ais-QV-cJd"/>
                                                             <constraint firstAttribute="width" constant="300" id="XAT-Pu-NMa"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
@@ -560,7 +560,7 @@
                                                     <constraint firstItem="S88-IR-QIQ" firstAttribute="top" secondItem="etD-fq-xcd" secondAttribute="bottom" constant="10" id="No3-De-cot"/>
                                                     <constraint firstItem="DkO-FZ-dW3" firstAttribute="top" secondItem="8Wr-Ez-kvE" secondAttribute="top" constant="1" id="TSl-f9-iVe"/>
                                                     <constraint firstItem="0PX-AT-QiL" firstAttribute="top" secondItem="8Wr-Ez-kvE" secondAttribute="top" constant="10" id="ahk-KN-zQC"/>
-                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="top" secondItem="PPf-da-1NG" secondAttribute="bottom" constant="10" id="b8U-Ky-xfm"/>
+                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="top" secondItem="PPf-da-1NG" secondAttribute="bottom" constant="8" id="b8U-Ky-xfm"/>
                                                     <constraint firstAttribute="trailing" secondItem="DkO-FZ-dW3" secondAttribute="trailing" id="daL-Um-6rz"/>
                                                     <constraint firstItem="PPf-da-1NG" firstAttribute="top" secondItem="S88-IR-QIQ" secondAttribute="bottom" constant="5" id="uGc-tQ-IBE"/>
                                                 </constraints>

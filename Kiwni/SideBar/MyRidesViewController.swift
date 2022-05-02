@@ -202,7 +202,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 let dataDecoded:NSData = NSData(base64Encoded:  self.upcomingTripArray[indexPath.row].otp ?? "", options: NSData.Base64DecodingOptions(rawValue: 0))!
                 let decodedString = String(data: dataDecoded as Data, encoding: .utf8)!
                 print("OTP after decoding: ", decodedString)
-                cell.otpValue.text = "OTP:\(decodedString)"
+                cell.otpValue.text = "\(decodedString)"
                 
 //                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
                 cell.bookingDetailsView.isHidden = true
@@ -211,6 +211,13 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.bookingDetailsView.isHidden = false
                 cell.notificationView.isHidden = false
                 cell.carDetailsView.isHidden = true
+                if upcomingTripArray[indexPath.row].reservationId == nil {
+                    cell.krnNoValue.text = "-"
+                    cell.bookingNoValue.text = "-"
+                } else {
+                    cell.krnNoValue.text = "\(upcomingTripArray[indexPath.row].reservationId ?? 0)"
+                    cell.bookingNoValue.text = "\(upcomingTripArray[indexPath.row].reservationId ?? 0)" 
+                }
             }
             
             cell.sourceLabel.text = upcomingTripArray[indexPath.row].startLocationCity
