@@ -112,6 +112,28 @@ extension UIViewController {
         button.layer.cornerRadius = 10
     }
     
+    func uiViewDesign(_ view: UIView){
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: -1, height: 1)
+        view.layer.shadowRadius = 2.0
+        view.layer.cornerRadius = 10
+    }
+    
+}
+
+extension UITextField {
+    func setUnderLine() {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.black.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
 }
 
 extension UIView {

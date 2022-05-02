@@ -72,7 +72,7 @@
                                 <rect key="frame" x="10" y="211" width="355" height="25"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KHQ-2s-qrD">
-                                        <rect key="frame" x="6" y="0.0" width="343" height="20"/>
+                                        <rect key="frame" x="5" y="0.0" width="345" height="20"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="cqJ-lp-fsb">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
@@ -80,33 +80,33 @@
                                                     <constraint firstAttribute="width" constant="25" id="BZA-nv-D5u"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKB-Iw-ftq">
-                                                <rect key="frame" x="27" y="0.0" width="105.5" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKB-Iw-ftq">
+                                                <rect key="frame" x="27" y="0.0" width="107.5" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="P6b-2z-ctj">
-                                                <rect key="frame" x="134.5" y="0.0" width="25" height="20"/>
+                                                <rect key="frame" x="136.5" y="0.0" width="25" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="rFk-Cb-hGr"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Na5-80-2SK">
-                                                <rect key="frame" x="161.5" y="0.0" width="62.5" height="20"/>
+                                                <rect key="frame" x="163.5" y="0.0" width="62.5" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimerClock" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-bh-z1j">
-                                                <rect key="frame" x="226" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="228" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="273-Yb-J93"/>
                                                     <constraint firstAttribute="width" constant="20" id="bLO-ee-lXb"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-j1-QMm">
-                                                <rect key="frame" x="248" y="0.0" width="95" height="20"/>
+                                                <rect key="frame" x="250" y="0.0" width="95" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -116,9 +116,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KHQ-2s-qrD" firstAttribute="centerX" secondItem="Rrg-e5-4mj" secondAttribute="centerX" id="1CH-4H-Fjd"/>
+                                    <constraint firstItem="KHQ-2s-qrD" firstAttribute="leading" secondItem="Rrg-e5-4mj" secondAttribute="leading" constant="5" id="34V-VU-uzn"/>
                                     <constraint firstItem="KHQ-2s-qrD" firstAttribute="top" secondItem="Rrg-e5-4mj" secondAttribute="top" id="K3u-Wb-VPZ"/>
                                     <constraint firstAttribute="height" constant="25" id="O1R-nt-Gjv"/>
+                                    <constraint firstAttribute="trailing" secondItem="KHQ-2s-qrD" secondAttribute="trailing" constant="5" id="pRf-QQ-D5T"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-iX-5Nc">
@@ -1686,8 +1687,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-yZ-9wl">
-                                                <rect key="frame" x="7.5" y="28" width="340" height="25"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bx6-yZ-9wl">
+                                                <rect key="frame" x="5" y="28" width="345" height="25"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="j1i-rD-ib2">
                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -1696,34 +1697,34 @@
                                                             <constraint firstAttribute="width" constant="25" id="SjB-hX-fl8"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybG-xN-vCp">
-                                                        <rect key="frame" x="32" y="0.0" width="92.5" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybG-xN-vCp">
+                                                        <rect key="frame" x="33" y="0.0" width="92.5" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-L3-oDg">
-                                                        <rect key="frame" x="131.5" y="0.0" width="25" height="25"/>
+                                                        <rect key="frame" x="133.5" y="0.0" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="DZx-pi-NmY"/>
                                                             <constraint firstAttribute="width" constant="25" id="LOP-aK-bSf"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IM-sO-QLZ">
-                                                        <rect key="frame" x="163.5" y="0.0" width="54.5" height="25"/>
+                                                        <rect key="frame" x="166.5" y="0.0" width="54.5" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="estimated_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HP0-nX-fW6">
-                                                        <rect key="frame" x="225" y="0.0" width="25" height="25"/>
+                                                        <rect key="frame" x="229" y="0.0" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="TLe-kN-iso"/>
                                                             <constraint firstAttribute="height" constant="25" id="uS3-9M-gJh"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6b-BK-AX5">
-                                                        <rect key="frame" x="257" y="0.0" width="83" height="25"/>
+                                                        <rect key="frame" x="262" y="0.0" width="83" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1735,9 +1736,10 @@
                                         <constraints>
                                             <constraint firstItem="cTg-bd-Z71" firstAttribute="top" secondItem="Itk-b2-R3H" secondAttribute="top" constant="2" id="1Kc-xh-jep"/>
                                             <constraint firstAttribute="height" constant="53" id="38d-Rv-jTZ"/>
+                                            <constraint firstItem="Bx6-yZ-9wl" firstAttribute="leading" secondItem="Itk-b2-R3H" secondAttribute="leading" constant="5" id="Alm-wp-l01"/>
                                             <constraint firstItem="cTg-bd-Z71" firstAttribute="centerX" secondItem="Itk-b2-R3H" secondAttribute="centerX" id="UAW-xU-Zwf"/>
                                             <constraint firstItem="Bx6-yZ-9wl" firstAttribute="top" secondItem="cTg-bd-Z71" secondAttribute="bottom" constant="8" id="krD-Dv-fc8"/>
-                                            <constraint firstItem="Bx6-yZ-9wl" firstAttribute="centerX" secondItem="Itk-b2-R3H" secondAttribute="centerX" id="mFu-S0-hvz"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bx6-yZ-9wl" secondAttribute="trailing" constant="5" id="wTA-l2-Op6"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0L-5r-gaC">

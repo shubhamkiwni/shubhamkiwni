@@ -34,6 +34,12 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         backButton.setTitle("", for: .normal)
         dropShadow(registerButton)
+        firstNameTextField.setUnderLine()
+        lastNameTextField.setUnderLine()
+        mobileNoTextField.setUnderLine()
+        emailTextField.setUnderLine()
+        passwordTextField.setUnderLine()
+        passwordTextField.setRightViewIcon(icon: UIImage(named: "password")!)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

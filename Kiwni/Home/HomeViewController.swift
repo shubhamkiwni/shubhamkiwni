@@ -61,7 +61,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var oneWayButton: UIButton!
     
     // MARK:- Socket Popup Outlet
-    @IBOutlet weak var driverSchedulePopup : UIView!
+    @IBOutlet weak var driverSchedulePopUpStackView: UIStackView!
+    @IBOutlet weak var rideScheduleView: UIView!
+    @IBOutlet weak var driverContactDetailsView: UIView!
+    @IBOutlet weak var tripDetailsView: UIView!
+//    @IBOutlet weak var driverSchedulePopup : UIView!
     @IBOutlet weak var krnNumLabel: UILabel!
     @IBOutlet weak var onewaytripLabel: UILabel!
     @IBOutlet weak var driverImageView: UIImageView!
@@ -75,6 +79,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var drivernameLabel : UILabel!
     @IBOutlet weak var driverOTPLabel : UILabel!
     @IBOutlet weak var doneButton : UIButton!
+    @IBOutlet weak var driverCallButton: UIButton!
     
     
     //MARK:- MapView
@@ -130,6 +135,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var driverPopUpStartDate: String? = ""
     var driverPopUpStartTime: String? = ""
     var driverPopUpEndDate: String? = ""
+    var driverContactNoValue: String? = ""
     private struct MapPath : Decodable{
         var routes : [Route]?
     }
@@ -242,12 +248,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mainView.addSubview(blurEffectofDriverPopUpView)
-        self.mainView.addSubview(self.driverSchedulePopup)
-        self.driverSchedulePopup.addSubview(doneButton)
+        uiViewDesign(driverSchedulePopUpStackView)
+        self.mainView.addSubview(self.driverSchedulePopUpStackView)
+//        self.driverSchedulePopUpStackView.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
         self.blurEffectofDriverPopUpView.isHidden = true
-        self.driverSchedulePopup.isHidden = true
+        self.driverSchedulePopUpStackView.isHidden = true
         
         pickUpDatePickerButton.titleLabel!.adjustsFontSizeToFitWidth = true
         pickUpDatePickerButton.titleLabel!.minimumScaleFactor = 0.5
@@ -390,11 +397,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
         
         if(SocketIOManager.sharedInstance.reservationArray .isEmpty){
-            self.driverSchedulePopup.isHidden = true
+            self.driverSchedulePopUpStackView.isHidden = true
         }
         else{
             self.blurEffectofDriverPopUpView.isHidden = false
-            self.driverSchedulePopup.isHidden = false
+            self.driverSchedulePopUpStackView.isHidden = false
             self.driverdetailsArray = SocketIOManager.sharedInstance.reservationArray
             let drivernameString : String = self.driverdetailsArray[0].driver?.name ?? ""
             let substring:String = drivernameString.components(separatedBy: " ")[0]
@@ -440,13 +447,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 scheduledateLabel.text = startTimeResult.0 + "," + startTimeResult.1 + "-" + endTimeResult.0
             }
             
+            driverCallButton.setTitle("", for: .normal)
+            
             if(self.driverdetailsArray[0].driver?.name == ""){
-                drivervehiclevalueLabel.text = ""
-                drivercontactLabel.text = ""
+//                drivervehiclevalueLabel.text = ""
+//                drivercontactLabel.text = ""
+                driverContactDetailsView.isHidden = true
                 
             }else{
+                driverContactDetailsView.isHidden = false
                 drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
                 drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
+                driverContactNoValue = self.driverdetailsArray[0].driver?.mobile ?? ""
             }
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
             onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
@@ -468,7 +480,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             formatter.timeZone = TimeZone(identifier: "UTC")
             let myString = formatter.string(from: myDate)
             let yourDate: Date? = formatter.date(from: myString)
-            formatter.dateFormat = "yyyy-MM-dd"
+            formatter.dateFormat = "E, MMM d"
             let dateStr = formatter.string(from: yourDate!)
             print("dateStr : ", dateStr)
             
@@ -486,7 +498,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func doneButonClicked(_ sender: UIButton) {
         print("Done Butoon Pressed")
         self.blurEffectofDriverPopUpView.isHidden = true
-        self.driverSchedulePopup.isHidden = true
+        self.driverSchedulePopUpStackView.isHidden = true
     }
     
     @objc func dismissBlurView(gesture: UITapGestureRecognizer){
@@ -747,6 +759,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+    
+    @IBAction func driverCallButtonAction(_ sender: UIButton) {
+        if let phoneCallURL = URL(string: "telprompt://\(driverContactNoValue ?? "")") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                    application.openURL(phoneCallURL as URL)
+                    
+                }
+            }
+        }
+    }
+    
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
         
         clearMap()
@@ -1743,7 +1772,22 @@ extension UITextField {
         rightView = iconContainerView
         rightViewMode = .always
     }
+    
+    func setRightViewIcon(icon: UIImage) {
+        let btnView = UIButton(frame: CGRect(x: 0, y: 0, width: ((self.frame.height) * 0.70), height: ((self.frame.height) * 0.70)))
+        btnView.setImage(icon, for: .normal)
+        btnView.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 3)
+        btnView.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        self.rightViewMode = .always
+        self.rightView = btnView
+    }
+    
+    @objc func buttonClicked() {
+        print("Eye button clicked")
+    }
 }
+
+
 class LocationDetect {
     static let shareInstance = LocationDetect()
     let acController = GMSAutocompleteViewController()
