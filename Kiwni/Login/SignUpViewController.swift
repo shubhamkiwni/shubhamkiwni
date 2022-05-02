@@ -39,8 +39,10 @@ class SignUpViewController: UIViewController {
         mobileNoTextField.setUnderLine()
         emailTextField.setUnderLine()
         passwordTextField.setUnderLine()
-        passwordTextField.setRightViewIcon(icon: UIImage(named: "password")!)
+        setRightViewIcon(icon: UIImage(named: "password")!, textfield: passwordTextField)
     }
+    
+    
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -70,4 +72,27 @@ class SignUpViewController: UIViewController {
     
     @IBAction func googleButtonPressed(_ sender: UIButton) {
     }
+    
+    func setRightViewIcon(icon: UIImage, textfield: UITextField) {
+        let btnView = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        btnView.setImage(icon, for: .normal)
+        btnView.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 1)
+        btnView.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        textfield.rightViewMode = .always
+        textfield.rightView = btnView
+    }
+    
+    @objc func buttonClicked(_ sender: UIButton) {
+        print("Eye button clicked")
+        secureTextConversion(passwordTextField)
+    }
+    
+    func secureTextConversion(_ textField: UITextField) {
+        if textField.isSecureTextEntry {
+            textField.isSecureTextEntry = false
+        } else {
+            textField.isSecureTextEntry = true
+        }
+    }
+    
 }

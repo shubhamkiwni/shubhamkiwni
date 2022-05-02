@@ -1763,6 +1763,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     }
     
 }
+
 extension UITextField {
     func setIcon(_ image: UIImage) {
         let iconView = UIImageView(frame: CGRect(x: 5, y: 5, width: 20, height: 20))
@@ -1773,18 +1774,7 @@ extension UITextField {
         rightViewMode = .always
     }
     
-    func setRightViewIcon(icon: UIImage) {
-        let btnView = UIButton(frame: CGRect(x: 0, y: 0, width: ((self.frame.height) * 0.70), height: ((self.frame.height) * 0.70)))
-        btnView.setImage(icon, for: .normal)
-        btnView.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 3)
-        btnView.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        self.rightViewMode = .always
-        self.rightView = btnView
-    }
-    
-    @objc func buttonClicked() {
-        print("Eye button clicked")
-    }
+   
 }
 
 

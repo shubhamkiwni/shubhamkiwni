@@ -248,12 +248,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-z1-hIs">
-                                <rect key="frame" x="60" y="341" width="255" height="21"/>
+                                <rect key="frame" x="60" y="341" width="255" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSC-5R-UOR">
-                                <rect key="frame" x="87.5" y="382" width="200" height="31"/>
+                                <rect key="frame" x="87.5" y="381" width="200" height="31"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VVH-2L-BAr"/>
@@ -267,7 +267,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="986-6c-afP">
-                                <rect key="frame" x="0.0" y="433" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="432" width="375" height="45"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uog-Jh-f01">
                                         <rect key="frame" x="0.0" y="21.5" width="157.5" height="2"/>
@@ -304,7 +304,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="UCc-cw-Jme">
-                                <rect key="frame" x="102.5" y="494.5" width="170" height="50"/>
+                                <rect key="frame" x="102.5" y="493.5" width="170" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9P-LZ-h7w">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
