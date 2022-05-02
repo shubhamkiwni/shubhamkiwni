@@ -101,7 +101,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         print(estimatedKM)
 //        print("dictForScheduleDates:",dictForScheduleDates)
-        estKMLabel.text = "Est.km -\(forTrailingZero(temp: round(estimatedKM)))km"
+        estKMLabel.text = "Est.km-\(forTrailingZero(temp: round(estimatedKM)))km"
 
         pickUpCityName = UserDefaults.standard.string(forKey: "PickupCityName") ?? ""
         dropCityName = UserDefaults.standard.string(forKey: "DestinationCityName") ?? ""

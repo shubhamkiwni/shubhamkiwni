@@ -450,19 +450,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             driverCallButton.setTitle("", for: .normal)
             
             if(self.driverdetailsArray[0].driver?.name == ""){
-//                drivervehiclevalueLabel.text = ""
-//                drivercontactLabel.text = ""
                 driverContactDetailsView.isHidden = true
-                
+                krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
             }else{
                 driverContactDetailsView.isHidden = false
                 drivervehiclevalueLabel.text = "Vehicle Details : \(self.driverdetailsArray[0].vehicleNo ?? "")"
                 drivercontactLabel.text = "Contact : \(self.driverdetailsArray[0].driver?.mobile ?? "")"
                 driverContactNoValue = self.driverdetailsArray[0].driver?.mobile ?? ""
+                krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0)."
             }
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
             onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
-            krnNumLabel.text = "Your KRN numb is \(self.driverdetailsArray[0].reservationId ?? 0). Your ride schedule and will send you driver details within few hours."
+         
             dropShadow(doneButton)
         }
     }

@@ -69,44 +69,47 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-e5-4mj">
-                                <rect key="frame" x="10" y="211" width="355" height="25"/>
+                                <rect key="frame" x="2" y="211" width="371" height="25"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KHQ-2s-qrD">
-                                        <rect key="frame" x="5" y="0.0" width="345" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHQ-2s-qrD">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="20"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="cqJ-lp-fsb">
-                                                <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="BZA-nv-D5u"/>
+                                                    <constraint firstAttribute="width" constant="20" id="BZA-nv-D5u"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKB-Iw-ftq">
-                                                <rect key="frame" x="27" y="0.0" width="107.5" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Fri, 24 Dec-Mon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKB-Iw-ftq">
+                                                <rect key="frame" x="20" y="0.0" width="152.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="152.5" id="Mo2-6N-VZ9"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="P6b-2z-ctj">
-                                                <rect key="frame" x="136.5" y="0.0" width="25" height="20"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="rFk-Cb-hGr"/>
+                                                    <constraint firstAttribute="width" constant="20" id="rFk-Cb-hGr"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Na5-80-2SK">
-                                                <rect key="frame" x="163.5" y="0.0" width="62.5" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="07:00 PM" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Na5-80-2SK">
+                                                <rect key="frame" x="192.5" y="0.0" width="62.5" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimerClock" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-bh-z1j">
-                                                <rect key="frame" x="228" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="255" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="273-Yb-J93"/>
                                                     <constraint firstAttribute="width" constant="20" id="bLO-ee-lXb"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-j1-QMm">
-                                                <rect key="frame" x="250" y="0.0" width="95" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Est. km 148km" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-j1-QMm">
+                                                <rect key="frame" x="275" y="0.0" width="95" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -116,10 +119,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KHQ-2s-qrD" firstAttribute="leading" secondItem="Rrg-e5-4mj" secondAttribute="leading" constant="5" id="34V-VU-uzn"/>
+                                    <constraint firstItem="KHQ-2s-qrD" firstAttribute="leading" secondItem="Rrg-e5-4mj" secondAttribute="leading" id="34V-VU-uzn"/>
                                     <constraint firstItem="KHQ-2s-qrD" firstAttribute="top" secondItem="Rrg-e5-4mj" secondAttribute="top" id="K3u-Wb-VPZ"/>
                                     <constraint firstAttribute="height" constant="25" id="O1R-nt-Gjv"/>
-                                    <constraint firstAttribute="trailing" secondItem="KHQ-2s-qrD" secondAttribute="trailing" constant="5" id="pRf-QQ-D5T"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="KHQ-2s-qrD" secondAttribute="trailing" constant="1" id="pRf-QQ-D5T"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-iX-5Nc">
@@ -366,8 +369,8 @@
                             <constraint firstAttribute="trailing" secondItem="Nw0-iX-5Nc" secondAttribute="trailing" constant="5" id="TXh-gM-EQW"/>
                             <constraint firstItem="FDo-S4-tV8" firstAttribute="leading" secondItem="TTx-u8-tcC" secondAttribute="leading" id="Xbe-f9-ztH"/>
                             <constraint firstItem="fLi-PA-6Gp" firstAttribute="top" secondItem="Dwc-cu-Bt9" secondAttribute="bottom" constant="5" id="ZRF-SG-sLr"/>
-                            <constraint firstItem="Rrg-e5-4mj" firstAttribute="leading" secondItem="sX8-LX-AUj" secondAttribute="leading" constant="10" id="awD-Cr-zMi"/>
-                            <constraint firstItem="sX8-LX-AUj" firstAttribute="trailing" secondItem="Rrg-e5-4mj" secondAttribute="trailing" constant="10" id="b1d-uv-Yfr"/>
+                            <constraint firstItem="Rrg-e5-4mj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sX8-LX-AUj" secondAttribute="leading" constant="2" id="awD-Cr-zMi"/>
+                            <constraint firstItem="sX8-LX-AUj" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rrg-e5-4mj" secondAttribute="trailing" constant="2" id="b1d-uv-Yfr"/>
                             <constraint firstItem="fLi-PA-6Gp" firstAttribute="centerX" secondItem="TTx-u8-tcC" secondAttribute="centerX" id="faT-tI-gAo"/>
                             <constraint firstItem="Nw0-iX-5Nc" firstAttribute="leading" secondItem="TTx-u8-tcC" secondAttribute="leading" constant="5" id="wcO-dU-WKQ"/>
                             <constraint firstAttribute="trailing" secondItem="Dwc-cu-Bt9" secondAttribute="trailing" id="x1D-8p-xfq"/>
