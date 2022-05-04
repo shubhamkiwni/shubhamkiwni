@@ -30,6 +30,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     
+    var btnView = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backButton.setTitle("", for: .normal)
@@ -39,7 +41,7 @@ class SignUpViewController: UIViewController {
         mobileNoTextField.setUnderLine()
         emailTextField.setUnderLine()
         passwordTextField.setUnderLine()
-        setRightViewIcon(icon: UIImage(named: "password")!, textfield: passwordTextField)
+        setRightViewIcon(icon: UIImage(named: "Close password")!, textfield: passwordTextField)
     }
     
     
@@ -74,7 +76,7 @@ class SignUpViewController: UIViewController {
     }
     
     func setRightViewIcon(icon: UIImage, textfield: UITextField) {
-        let btnView = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        btnView = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         btnView.setImage(icon, for: .normal)
         btnView.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 1)
         btnView.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
@@ -90,8 +92,10 @@ class SignUpViewController: UIViewController {
     func secureTextConversion(_ textField: UITextField) {
         if textField.isSecureTextEntry {
             textField.isSecureTextEntry = false
+            btnView.setImage(UIImage(named: "password"), for: .normal)
         } else {
             textField.isSecureTextEntry = true
+            btnView.setImage(UIImage(named: "Close password"), for: .normal)
         }
     }
     

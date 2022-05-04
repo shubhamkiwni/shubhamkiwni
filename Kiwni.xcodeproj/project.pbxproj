@@ -91,6 +91,7 @@
 		7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */; };
 		7AE5A34527C4AF3000C1E5D4 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A34327C4AF3000C1E5D4 /* BrandCollectionViewCell.swift */; };
 		7AE5A34627C4AF3000C1E5D4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */; };
+		7AEB31B12820FC7600CA8097 /* GoogleMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB31B02820FC7600CA8097 /* GoogleMapExtension.swift */; };
 		7AF91F0A27C601660023B399 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF91F0927C601660023B399 /* FilterViewController.swift */; };
 		7AF91F0F27C604710023B399 /* KiwniComfirtXIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF91F0B27C604700023B399 /* KiwniComfirtXIB.swift */; };
 		7AF91F1127C604710023B399 /* KiwniComfirtXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF91F0D27C604700023B399 /* KiwniComfirtXIB.xib */; };
@@ -246,6 +247,7 @@
 		7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		7AE5A34327C4AF3000C1E5D4 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		7AEB31B02820FC7600CA8097 /* GoogleMapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapExtension.swift; sourceTree = "<group>"; };
 		7AF91F0927C601660023B399 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		7AF91F0B27C604700023B399 /* KiwniComfirtXIB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiwniComfirtXIB.swift; sourceTree = "<group>"; };
 		7AF91F0D27C604700023B399 /* KiwniComfirtXIB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KiwniComfirtXIB.xib; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				7AAF1E0527C9152100B262D4 /* DropLocationOnSearchView.xib */,
 				7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */,
 				7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */,
+				7AEB31B02820FC7600CA8097 /* GoogleMapExtension.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 				7A82F51F27DB0F4F00EEAE96 /* DatePickerExtension.swift in Sources */,
 				7ACF79DB279EC08D00B8239F /* MyRidesViewController.swift in Sources */,
 				7A686F3A27AA56E900DFF9A3 /* HomeViewControllerExtention.swift in Sources */,
+				7AEB31B12820FC7600CA8097 /* GoogleMapExtension.swift in Sources */,
 				7AE5A34627C4AF3000C1E5D4 /* ResultViewController.swift in Sources */,
 				7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */,
 				7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */,

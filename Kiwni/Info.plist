@@ -77,11 +77,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    
-    <key>NSLocationWhenInUseUsageDescription</key>
-        <string>Show your location on the map</string>
-    
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Show your location on the map</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Use Camera</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save Photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Use Photo Library</string>
 </dict>
 </plist>

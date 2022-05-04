@@ -20,7 +20,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var otpText5: UITextField!
     @IBOutlet weak var otpText6: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var resendOTPLabel: UILabel!
+    @IBOutlet weak var reserndOTPButton: UIButton!
     
     var userMobileNumber : String? = ""
     var otp  = [String]()
@@ -190,6 +190,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     @IBAction func backButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
 
+    }
+    
+    @IBAction func resendOTPButtonPressed(_ sender: UIButton) {
+        print("OTP resend successfully")
     }
     
     

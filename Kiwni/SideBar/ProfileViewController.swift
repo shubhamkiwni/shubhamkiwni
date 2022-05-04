@@ -9,7 +9,7 @@
 import UIKit
 import Reachability
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var editProfileImageButton: UIButton!
@@ -32,9 +32,23 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailEditButton: UIButton!
     @IBOutlet weak var emergencyNumberEditButton: UIButton!
     let reachability = try! Reachability()
+    @IBOutlet weak var profileImageView: UIImageView!
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let setProfileImage = UserDefaults.standard.object(forKey: "profileImage") as? String
+        if setProfileImage == ""
+        {
+            profileImageView.image = UIImage(named: setProfileImage ?? "")
+        } else {
+//            profileImageView.image = UIImage(named: "Change Profile")
+            
+        }
+                
+        imagePicker.allowsEditing = true
+        imagePicker.toolbar.frame = CGRect(x: 0, y: 0, width: 110, height: 110)
+        profileImageView.layer.cornerRadius = 56.0
         profileView.layer.cornerRadius = 15.0
         profileView.layer.shadowColor = UIColor.black.cgColor
         profileView.layer.shadowOpacity = 0.5
@@ -117,7 +131,48 @@ class ProfileViewController: UIViewController {
     
     @IBAction func editProfileImageButtonPressed(_ sender: UIButton) {
         
+        imagePicker.delegate = self
+        
+        let alert = UIAlertController(title: "Profile Image", message: "Change Profile Image", preferredStyle: UIAlertController.Style.alert)
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Select From Camera", style: .default, handler: { (action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            else{
+                print("Camera Not available")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Select From Photo Library", style: .default, handler: { (action: UIAlertAction) in
+            self.imagePicker.sourceType = .photoLibrary
+
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
+//        profileImageView.image = setImage
+        let setImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        profileImageView.image = setImage
+        UserDefaults.standard.set(profileImageView.image?.accessibilityPath, forKey: "profileImage")
+        print("profileImageView:",profileImageView.image?.accessibilityPath ?? "")
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private func store(image: UIImage, forKey key: String, withStorageType storageType: UserDefaults) {
+        UserDefaults.standard.set(image.pngData(), forKey: key)
+    }
+    
     
     @IBAction func nameEditButtonPressed(_ sender: UIButton) {
         
