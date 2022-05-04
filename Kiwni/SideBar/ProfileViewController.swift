@@ -164,22 +164,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     private func store(image: UIImage, forKey key: String, withStorageType storageType: UserDefaults) {
-        
         if let pngRepresentation = image.pngData() {
-            
-            UserDefaults.standard.set(pngRepresentation, forKey: key)
-            
+        UserDefaults.standard.set(pngRepresentation, forKey: "profileImage")
         }
     }
     
     private func retrieveImage(forKey key: String, inStorageType storageType: UserDefaults) -> UIImage? {
 
         if let imageData = UserDefaults.standard.object(forKey: key) as? Data,
-            let image = UIImage(data: imageData) {
-            
-            print("successfully get image", image.accessibilityPath as Any)
+                   let image = UIImage(data: imageData) {
+            profileImageView.image = image
         }
-        return image
+                   return image
+               
     }
     
     @IBAction func nameEditButtonPressed(_ sender: UIButton) {
