@@ -216,28 +216,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
-        self.view1.addSubview(self.sideMenuButton)
-        
-        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate = self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled = true
-        self.navigationController?.view.addSubview(sidebarView)
+        self.mainView .addSubview(self.mapView)
+        self.mainView.addSubview(self.driverSchedulePopUpStackView)
         
         blackScreen = UIView(frame: self.view.bounds)
         blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
         blackScreen.isHidden=true
         self.navigationController?.view.addSubview(blackScreen)
         blackScreen.layer.zPosition=99
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
+       
         
         
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mainView.addSubview(blurEffectofDriverPopUpView)
         uiViewDesign(driverSchedulePopUpStackView)
-        self.mainView.addSubview(self.driverSchedulePopUpStackView)
+       
 //        self.driverSchedulePopUpStackView.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
@@ -356,6 +350,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
+        self.view1.addSubview(self.sideMenuButton)
+        
+        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+        sidebarView.delegate = self
+        sidebarView.layer.zPosition=100
+        self.view.isUserInteractionEnabled = true
+       
+        self.navigationController?.view.addSubview(sidebarView)
+        
+        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
+        blackScreen.addGestureRecognizer(tapGestRecognizer)
         
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in

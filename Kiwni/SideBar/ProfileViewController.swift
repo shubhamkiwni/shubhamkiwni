@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileImageView.image = retrieveImage(forKey: "profileImage", inStorageType: UserDefaults())
+        loadImage()
         
         imagePicker.allowsEditing = true
         imagePicker.toolbar.frame = CGRect(x: 0, y: 0, width: 110, height: 110)
@@ -154,29 +154,22 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //        let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
-        //        profileImageView.image = setImage
-        let setImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
         profileImageView.image = setImage
-        //        UserDefaults.standard.set(profileImageView.image?.accessibilityPath, forKey: "profileImage")
-        store(image: profileImageView.image!, forKey: "profileImage", withStorageType: UserDefaults())
+       
+        guard let data = profileImageView.image!.jpegData(compressionQuality: 0.5) else { return }
+        let encoded = try! PropertyListEncoder().encode(data)
+        UserDefaults.standard.set(encoded, forKey: "KEY")
         picker.dismiss(animated: true, completion: nil)
     }
     
-    private func store(image: UIImage, forKey key: String, withStorageType storageType: UserDefaults) {
-        if let pngRepresentation = image.pngData() {
-        UserDefaults.standard.set(pngRepresentation, forKey: "profileImage")
-        }
-    }
-    
-    private func retrieveImage(forKey key: String, inStorageType storageType: UserDefaults) -> UIImage? {
-
-        if let imageData = UserDefaults.standard.object(forKey: key) as? Data,
-                   let image = UIImage(data: imageData) {
-            profileImageView.image = image
-        }
-                   return image
-               
+    func loadImage() {
+         guard let data = UserDefaults.standard.data(forKey: "KEY") else { return }
+         let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
+         let storeimage = UIImage(data: decoded)
+        profileImageView.image = storeimage
+         
+        
     }
     
     @IBAction func nameEditButtonPressed(_ sender: UIButton) {

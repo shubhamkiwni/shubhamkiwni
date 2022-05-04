@@ -49,6 +49,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
 
     var titleArr = [String]()
     var imageArray = [UIImage]()
+    var storeimage =  UIImage()
     
     weak var delegate: SidebarViewDelegate?
 
@@ -60,7 +61,10 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
                 
         titleArr = ["\(name)", "My Rides", "Payment", "Offers", "Safety", "FAQs", "Feedback", "Share App", "Refer & Earn", "Support", "About"]
 
+       
+        
         setupViews()
+        
         
         myTableView.delegate=self
         myTableView.dataSource=self
@@ -71,6 +75,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         myTableView.bounces=false
         myTableView.showsVerticalScrollIndicator=false
         myTableView.backgroundColor = UIColor.clear
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +94,18 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
-            cellImg.image = UIImage(named: "Profile")
+            let data = UserDefaults.standard.data(forKey: "KEY")
+            if(data != nil){
+                let decoded = try! PropertyListDecoder().decode(Data.self, from: data!)
+                storeimage = UIImage(data: decoded)!
+            }
+            else{
+                
+            }
+            
+            DispatchQueue.main.async {
+                cellImg.image = self.storeimage
+            }
             cell.addSubview(cellImg)
             
             let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
@@ -105,6 +121,8 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellLbl2.font=UIFont.systemFont(ofSize: 15)
             cellLbl2.textColor=UIColor.black
         } else {
+            
+           
             
             let imgArray = ["","MyRide","Payment","Offers","Safety","faq","Feedback","Shareapp","Refer&Earn","Support","About"]
             
