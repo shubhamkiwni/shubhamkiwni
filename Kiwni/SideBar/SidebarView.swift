@@ -94,14 +94,19 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
-            let data = UserDefaults.standard.data(forKey: "KEY")
+            let data = UserDefaults.standard.data(forKey: "profileImage")
             if(data != nil){
                 let decoded = try! PropertyListDecoder().decode(Data.self, from: data!)
                 storeimage = UIImage(data: decoded)!
+                DispatchQueue.main.async {
+                    cellImg.image = self.storeimage
+                }
             }
             else{
-                
+                cellImg.image = UIImage(named: "Profile Icon")
             }
+            
+        
             
             DispatchQueue.main.async {
                 cellImg.image = self.storeimage

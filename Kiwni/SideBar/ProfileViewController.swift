@@ -40,9 +40,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         loadImage()
         
-        imagePicker.allowsEditing = true
-        imagePicker.toolbar.frame = CGRect(x: 0, y: 0, width: 110, height: 110)
-        profileImageView.layer.cornerRadius = 56.0
+        imagePicker.allowsEditing = true        
+        profileImageView.layer.cornerRadius = 50.0
         profileView.layer.cornerRadius = 15.0
         profileView.layer.shadowColor = UIColor.black.cgColor
         profileView.layer.shadowOpacity = 0.5
@@ -159,12 +158,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
        
         guard let data = profileImageView.image!.jpegData(compressionQuality: 0.5) else { return }
         let encoded = try! PropertyListEncoder().encode(data)
-        UserDefaults.standard.set(encoded, forKey: "KEY")
+        UserDefaults.standard.set(encoded, forKey: "profileImage")
         picker.dismiss(animated: true, completion: nil)
     }
     
     func loadImage() {
-         guard let data = UserDefaults.standard.data(forKey: "KEY") else { return }
+         guard let data = UserDefaults.standard.data(forKey: "profileImage") else { return }
          let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
          let storeimage = UIImage(data: decoded)
         profileImageView.image = storeimage
