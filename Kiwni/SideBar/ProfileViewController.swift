@@ -10,7 +10,7 @@ import UIKit
 import Reachability
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var editProfileImageButton: UIButton!
     @IBOutlet weak var profileView: UIView!
@@ -37,15 +37,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let setProfileImage = UserDefaults.standard.object(forKey: "profileImage") as? String
-        if setProfileImage == ""
-        {
-            profileImageView.image = UIImage(named: setProfileImage ?? "")
-        } else {
-//            profileImageView.image = UIImage(named: "Change Profile")
-            
-        }
-                
+        
+        profileImageView.image = retrieveImage(forKey: "profileImage", inStorageType: UserDefaults())
+        
         imagePicker.allowsEditing = true
         imagePicker.toolbar.frame = CGRect(x: 0, y: 0, width: 110, height: 110)
         profileImageView.layer.cornerRadius = 56.0
@@ -69,7 +63,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
                 if reachability.connection == .wifi {
@@ -83,7 +77,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 print("Not reachable")
                 self.noInternetErrorPopupShow("No Internet Connection")
             }
-
+            
             do {
                 try self.reachability.startNotifier()
             } catch {
@@ -105,7 +99,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         // after user has successfully logged out
         UserDefaults.standard.setValue(false, forKey: "status")
         
-       UserDefaults.standard.removeObject(forKey: "uid")
+        UserDefaults.standard.removeObject(forKey: "uid")
         UserDefaults.standard.removeObject(forKey: "displayName")
         UserDefaults.standard.removeObject(forKey: "email")
         UserDefaults.standard.removeObject(forKey: "phoneNumber")
@@ -119,14 +113,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         UserDefaults.standard.setValue(nil, forKey: "partyId")
         UserDefaults.standard.setValue(nil, forKey: "Roles")
         
-       
+        
         AuthManager.shared.logout()
         
         
         let storyboard = UIStoryboard(name: "User", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginViewController")
-       navigationController?.pushViewController(loginNavController, animated: true)
-
+        navigationController?.pushViewController(loginNavController, animated: true)
+        
     }
     
     @IBAction func editProfileImageButtonPressed(_ sender: UIButton) {
@@ -149,7 +143,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         alert.addAction(UIAlertAction(title: "Select From Photo Library", style: .default, handler: { (action: UIAlertAction) in
             self.imagePicker.sourceType = .photoLibrary
-
+            
             self.present(self.imagePicker, animated: true, completion: nil)
         }))
         
@@ -160,19 +154,33 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
-//        profileImageView.image = setImage
+        //        let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
+        //        profileImageView.image = setImage
         let setImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         profileImageView.image = setImage
-        UserDefaults.standard.set(profileImageView.image?.accessibilityPath, forKey: "profileImage")
-        print("profileImageView:",profileImageView.image?.accessibilityPath ?? "")
+        //        UserDefaults.standard.set(profileImageView.image?.accessibilityPath, forKey: "profileImage")
+        store(image: profileImageView.image!, forKey: "profileImage", withStorageType: UserDefaults())
         picker.dismiss(animated: true, completion: nil)
     }
     
     private func store(image: UIImage, forKey key: String, withStorageType storageType: UserDefaults) {
-        UserDefaults.standard.set(image.pngData(), forKey: key)
+        
+        if let pngRepresentation = image.pngData() {
+            
+            UserDefaults.standard.set(pngRepresentation, forKey: key)
+            
+        }
     }
     
+    private func retrieveImage(forKey key: String, inStorageType storageType: UserDefaults) -> UIImage? {
+
+        if let imageData = UserDefaults.standard.object(forKey: key) as? Data,
+            let image = UIImage(data: imageData) {
+            
+            print("successfully get image", image.accessibilityPath as Any)
+        }
+        return image
+    }
     
     @IBAction func nameEditButtonPressed(_ sender: UIButton) {
         
