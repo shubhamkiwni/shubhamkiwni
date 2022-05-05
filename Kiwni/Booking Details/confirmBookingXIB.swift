@@ -12,10 +12,21 @@ protocol openPopUp {
     func openPopUp()
 }
 
+enum checkunchcek {
+    case emailButton
+    case whatsAppButton
+    case phoneButton
+}
+
 class confirmBooking: UIView {
     var delegate: openPopUp?
-    var notificationTypeString : String? = ""
+//    var notificationTypeString : String? = ""
     var tripTypeString : String? = ""
+    var notificationTypeStr1: String? = ""
+    var notificationTypeStr2: String? = ""
+    var notificationTypeStr3: String? = ""
+    var valueArr: [String] = ["Email","WSP","SMS"]
+    var notificationString : String? = ""
     
     @IBOutlet var payAdvanceCollection: [UIButton]!
     @IBOutlet weak var businessDetailsView: UIView!
@@ -24,14 +35,9 @@ class confirmBooking: UIView {
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var sendingDetailsView: UIView!
     @IBOutlet weak var sendMeBookingLabel: UILabel!
-    @IBOutlet weak var emailRadioButton: UIButton!
-    @IBOutlet weak var phoneRadioButton: UIButton!
-    @IBOutlet weak var whatsAppRadioButton: UIButton!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var whatsAppLabel: UILabel!
- 
-    
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var whatsAppButton: UIButton!
     
     @IBOutlet weak var sendMeBookingConfirmationLabel: UILabel!
     @IBOutlet weak var offerCodeTextField: UITextField!
@@ -87,9 +93,15 @@ class confirmBooking: UIView {
     static let share = confirmBooking()
     override func awakeFromNib() {
         tripTypeString = "Personal"
-        notificationTypeString = "Email"
-        UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
-        UserDefaults.standard.set(notificationTypeString, forKey: "notificationType")
+        emailButton.isSelected = true
+        whatsAppButton.isSelected = true
+        phoneButton.isSelected =  true
+        emailButton.setBackgroundColor(.clear, for: .selected)
+        whatsAppButton.setBackgroundColor(.clear, for: .selected)
+        phoneButton.setBackgroundColor(.clear, for: .selected)
+        notificationString = "Email,WSP,SMS"
+        print("In Did Load notification String: ", notificationString ?? "")
+        print("valueArr: ", valueArr)
         
         if companyName.isEmpty == false {
             businessDetailsView.isHidden = false
@@ -157,36 +169,85 @@ class confirmBooking: UIView {
     
     var notificationType = [String]()
     
-    @IBAction func emailButtonPresed(_ sender: UIButton) {
-        if emailRadioButton.tag == 0 {
-            emailRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            emailRadioButton.tag = 1
-        } else if emailRadioButton.tag == 1 {
-            emailRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            emailRadioButton.tag = 0
+    @IBAction func notificationTypeButtonPressed(_ sender: UIButton){
+        print("Button pressed")
+        print(valueArr)
+        
+        switch sender {
+        case emailButton:
+            print("Email Button Pressed.")
+            if(emailButton.isSelected == true){
+                emailButton.isSelected = false
+                emailButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+                            
+                if let index = valueArr.firstIndex(of: "Email") {
+                    valueArr.remove(at: index)
+                } else {
+                    print("not found")
+                }
+                print("valueArr: ",valueArr)
+            }else{
+                emailButton.isSelected = true
+                emailButton.setImage(UIImage(named: "Check"), for: .normal)
+                notificationTypeStr1 = "Email"
+                valueArr.append(notificationTypeStr1 ?? "")
+            }
+            
+        case whatsAppButton:
+            print("WSP Button Pressed.")
+//            wspButton.isSelected = false
+            if(whatsAppButton.isSelected == true){
+                whatsAppButton.isSelected = false
+                whatsAppButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+  
+                if let index = valueArr.firstIndex(of: "WSP") {
+                    valueArr.remove(at: index)
+                } else {
+                    print("not found")
+                }
+                print("valueArr: ",valueArr)
+            }else{
+                whatsAppButton.isSelected = true
+                whatsAppButton.setImage(UIImage(named: "Check"), for: .normal)
+                notificationTypeStr2 = "WSP"
+                valueArr.append(notificationTypeStr2 ?? "")
+            }
+        case phoneButton:
+            print("SMS Button Pressed.")
+            if(phoneButton.isSelected == true){
+                phoneButton.isSelected = false
+                phoneButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+
+                if let index = valueArr.firstIndex(of: "SMS") {
+                    valueArr.remove(at: index)
+                } else {
+                    print("not found")
+                }
+            }else{
+                phoneButton.isSelected = true
+                phoneButton.setImage(UIImage(named: "Check"), for: .normal)
+                notificationTypeStr3 = "SMS"
+                valueArr.append(notificationTypeStr3 ?? "")
+            }
+        default:
+            print("No Case Found.")
         }
+        notificationString = valueArr.joined(separator: ",")
+        print("notificationString: ", notificationString ?? "")
     }
     
-    @IBAction func phoneButtonPressed(_ sender: UIButton) {
-        if phoneRadioButton.tag == 0 {
-            phoneRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            phoneRadioButton.tag = 1
-            notificationTypeString = "SMS"
-        } else if phoneRadioButton.tag == 1 {
-            phoneRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            phoneRadioButton.tag = 0
-        }
-    }
-    
-    @IBAction func whatsAppButtonPressed(_ sender: UIButton) {
-        if whatsAppRadioButton.tag == 0 {
-            whatsAppRadioButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
-            whatsAppRadioButton.tag = 1
-            notificationTypeString = "WhatsApp"
-        } else if whatsAppRadioButton.tag == 1 {
-            whatsAppRadioButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
-            whatsAppRadioButton.tag = 0
-        }
-    }
-    
+}
+
+
+extension UIButton {
+
+  func setBackgroundColor(_ color: UIColor, for forState: UIControl.State) {
+    UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+    UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+    UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+    let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    self.setBackgroundImage(colorImage, for: forState)
+  }
+
 }

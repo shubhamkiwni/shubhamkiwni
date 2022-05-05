@@ -279,8 +279,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             print("estimatedPriceArr.count: ",estimatedPriceArr.count)
             
             
-            let firstprice = String(round(estimatedPriceArr.first ?? 0))
-            let lastPrice = String(round(estimatedPriceArr.last ?? 0))
+//            let firstprice = String(round(estimatedPriceArr.first ?? 0))
+//            let lastPrice = String(round(estimatedPriceArr.last ?? 0))
           
             carsArray[selectedIndex].selectionData = []
             
@@ -422,7 +422,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func usernameClicked(_ cell: CarModelsTableViewCell) {
         if let indexPath = self.carsTableView.indexPath(for: cell) {
             clickedPath = indexPath
-            print(clickedPath)
+            print(clickedPath ?? "")
             if let indexPath = clickedPath {
                 print(indexPath)
                 print("cell selected data: ",carsArray[indexPath.section].selectionData[indexPath.row - 1])

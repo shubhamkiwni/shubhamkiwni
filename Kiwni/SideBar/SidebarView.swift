@@ -89,7 +89,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             cell.backgroundColor = .systemGray2
             let cellImg: UIImageView!
-            cellImg = UIImageView(frame: CGRect(x: 15, y: 25, width: 80, height: 80))
+            cellImg = UIImageView(frame: CGRect(x: 15, y: 30, width: 80, height: 80))
             cellImg.layer.cornerRadius = 40
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill

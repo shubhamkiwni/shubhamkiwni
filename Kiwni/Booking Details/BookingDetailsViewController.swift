@@ -96,11 +96,11 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         confXIB.applyCoupenAmountLabel.text = "0"
         
         strGST = ((round(selectedCarValue.estimatedPrice ?? 0) * 0.05))
-        print("strGST:", strGST)
+        print("strGST:", strGST ?? "")
         confXIB.gstAmountLabel.text = "₹ \(String(forTrailingZero(temp: round(strGST ?? 0))))"
         
         strTotalFare = (round(selectedCarValue.estimatedPrice ?? 0) + round(strGST!) )
-        print("strTotalFare:", strTotalFare)
+        print("strTotalFare:", strTotalFare ?? "")
         confXIB.totalAmountALble.text = "₹ \(String(forTrailingZero(temp: round(strTotalFare ?? 0))))"
         
         strThirtyPercentFare = (round(round(strTotalFare ?? 0) * 0.3))
@@ -132,14 +132,14 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
                             ServiceType(servicetypeName: "two-way-outstation-luxury", servicetypeId: 5),
                             ServiceType(servicetypeName: "two-way-outstation-ultra-luxury", servicetypeId: 6)]
         
-        var rateValueArray = selectedCarValue.rate
+        let rateValueArray = selectedCarValue.rate
         print(rateValueArray.count, rateValueArray)
         
         for i in  0 ..< serviceTypeArray.count{
             if(rateStr == serviceTypeArray[i].servicetypeName){
                 print("Match found")
-                print(serviceTypeArray[i].servicetypeName)
-                print(serviceTypeArray[i].servicetypeId)
+                print(serviceTypeArray[i].servicetypeName ?? "")
+                print(serviceTypeArray[i].servicetypeId ?? "")
                 serviceTypeId = serviceTypeArray[i].servicetypeId ?? 0
                 print(serviceTypeId)
                 
@@ -274,54 +274,18 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         let tripType : String = UserDefaults.standard.string(forKey: "selecttripType") ?? ""
         var notificationType : String = ""
         
-        if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 1 {
-            notificationType = "Email,SMS,Whatsapp"
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-           
-        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 0 {
-            notificationType = "Email,SMS"
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-          
-        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 0 {
-            notificationType = "Email"
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-            
-        } else if confXIB.emailRadioButton.tag == 0 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 0 {
-            notificationType = ""
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-            
-        } else if confXIB.emailRadioButton.tag == 0 && confXIB.phoneRadioButton.tag == 1 && confXIB.whatsAppRadioButton.tag == 1 {
-            notificationType = "SMS,Whatsapp"
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-           
-        } else if confXIB.emailRadioButton.tag == 1 && confXIB.phoneRadioButton.tag == 0 && confXIB.whatsAppRadioButton.tag == 1 {
-            notificationType = "Email,Whatsapp"
-            print(confXIB.emailRadioButton.tag)
-            print(confXIB.phoneRadioButton.tag)
-            print(confXIB.whatsAppRadioButton.tag)
-            
-        }
+        notificationType = confXIB.notificationString ?? ""
         
         let SourceCoordinate = UserDefaults.standard.object(forKey:"SourceCoordinate" ) as! [String : NSNumber]
         let userSourceLatitude  = SourceCoordinate["SourceLatitude"]
         let userSourceLongitude  = SourceCoordinate["SourceLongitude"]
         
-        print(userSourceLatitude,userSourceLongitude)
+        print(userSourceLatitude ?? "",userSourceLongitude ?? "")
         
         let DestinationCoordinate = UserDefaults.standard.object(forKey:"DestinationCoordinate" ) as! [String : NSNumber]
         let userDestinationLatitude  = DestinationCoordinate["DestinationLatitude"]
         let userDestinationLongitude  = DestinationCoordinate["DestinationLongitude"]
-        print(userDestinationLatitude,userDestinationLongitude)
+        print(userDestinationLatitude ?? "",userDestinationLongitude ?? "")
         
         let reservationModelData = ReservationScheduleModel(channel: Channel(id: 1), createdTime: "", createdUser: createdUser, customerEmail: customerEmail, customerID: Int(customerId) ?? 0, customerName: customerName, customerPhone: customerPhone, driverID: driverID  , driverLicense: driverLicense, driverName: driverName, driverPhone: driverPhone, providerID: provideridint, providerName: providerName, reservationTime: self.reservationTime, ride: Ride(createdTime: "", createdUser: createdUser, distance: distance, fromLocation: fromLocation, journeyEndTime: journeyEndTime, journeyTime: journeyTime, rates: [Channel(id: 1)], status: Channel(id: 2), toLocation: toLocation, updatedTime: "", updatedUser: "",fromLocationCoordinates: locationCoordinate(latitude: userSourceLatitude as? Double, longitude: userSourceLongitude as? Double), toLocationCoordinates: locationCoordinate(latitude: userDestinationLatitude as? Double, longitude: userDestinationLongitude as? Double)), scheduleID: Int(scheduleID)!, serviceType: Channel(id: serviceTypeId), status: Channel(id: 1), updatedTime: "", updatedUser: "", vehicleID: Int(exactly: vehicleID)!, estimatedPrice: strTotalFare ?? 0, vehicleNo: vehicleNumb , notificationType: notificationType, tripType: tripType, companyName: self.companyNameString ?? "", companyEmail: self.companyEmailString ?? "", companyPhone: self.companyMobileNoString ?? "")
         print("reservation Model :\(reservationModelData)")

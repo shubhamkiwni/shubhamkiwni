@@ -154,7 +154,7 @@ public extension UIView {
         showToast(toast, duration: duration, point: point, completion: completion)
     }
     
-    public func make(toast : String,duration: TimeInterval = ToastManager.shared.duration, completion : (()->Void)?=nil) {
+    func make(toast : String,duration: TimeInterval = ToastManager.shared.duration, completion : (()->Void)?=nil) {
         
         self.makeToast(toast)
         if completion != nil {

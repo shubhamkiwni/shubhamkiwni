@@ -82,7 +82,7 @@ class BookingAddressXIB: UIView {
         self.destinationLabel.text = UserDefaults.standard.string(forKey: "DestinationAddress")
         self.serviceTypeLabel.text = UserDefaults.standard.string(forKey: "tripType")
 //        self.dateLabel.text = UserDefaults.standard.string(forKey: "journeyTime")
-        var estKM = Double(UserDefaults.standard.string(forKey: "distance") ?? "")
+        let estKM = Double(UserDefaults.standard.string(forKey: "distance") ?? "")
         self.estKMValueLabel.text = "Est.Km -\(forTrailingZero(temp: round(estKM ?? 0)))km "
         self.carNameLabel.text = UserDefaults.standard.string(forKey: "modelName")
         self.carTypeLabel.text = UserDefaults.standard.string(forKey: "classType")

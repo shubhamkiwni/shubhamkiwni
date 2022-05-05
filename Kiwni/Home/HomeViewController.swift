@@ -537,9 +537,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
             
             strDate = dateStr
-            print("strDate ", strDate)
+            print("strDate ", strDate ?? "")
             myPickerDateString = strDate
-            print("myPickerDateString: ", myPickerDateString)
+            print("myPickerDateString: ", myPickerDateString ?? "")
             if(currentDateString != myPickerDateString){
                 self.pickUpOnTimePickerButton.setTitle("12:00 AM", for: .normal)
                 print("Set Successfully")
@@ -561,7 +561,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //let dateStr = formatter.string(from: selectedReturnDate)
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
             strDate = dateStr
-            print("myReturnDateString:", strDate)
+            print("myReturnDateString:", strDate ?? "")
             timeFormatter.dateFormat = "yyyy-MM-dd"
             myDropDateString = timeFormatter.string(from: selectedReturnDate)
             print("myDropDateString : ",myDropDateString ?? "")
@@ -576,7 +576,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print(dd ?? (Any).self)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             self.journeyendTime = formatter.string(from: dd!)
-            print("Drop Date Time : ", self.journeyendTime)
+            print("Drop Date Time : ", self.journeyendTime ?? "")
         }
         print("dateStr",dateStr)
     }
@@ -770,7 +770,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let newdateformatter = DateFormatter()
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
-                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
+//                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
                 self.journeystartTime = newdateformatter.string(from: newdate)
             } else {
@@ -801,7 +801,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     let dateStr = formatter.string(from: newDatePicker.date)
                     returnByDatePickerButton.setTitle(dateStr, for: .normal)
                     strDate = dateStr
-                    print("myReturnDateString:", strDate)
+                    print("myReturnDateString:", strDate ?? "")
                     timeFormatter.dateFormat = "yyyy-MM-dd"
                     myDropDateString = timeFormatter.string(from: newDatePicker.date)
                     print("myDropDateString : ",myDropDateString ?? "")
@@ -967,7 +967,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
                 selectedTripType = "Outstation"
-                print("Outstation:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                print("Outstation:", roundTripButton.titleLabel?.text ?? "", oneWayButton.titleLabel?.text ?? "")
                 pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
                 returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 1 {
@@ -988,14 +988,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
-                print("usercurrentLocationAddress:",usercurrentLocationAddress)
+                print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
                 selectedTripType = "Airport"
                 //                selectedTripTypeMode = "Airport Pickup"
                 strDirection = "AIRPORT PICKUP"
                 selectedTripTypeMode = "AIRPORT PICKUP"
                 strServiceType = "Airport"
                 
-                print("Airport:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                print("Airport:", roundTripButton.titleLabel?.text ?? "", oneWayButton.titleLabel?.text ?? "")
                 pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
                 returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 2 {
@@ -1016,14 +1016,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
-                print("usercurrentLocationAddress:",usercurrentLocationAddress)
+                print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
                 selectedTripType = "Rental"
                 //                selectedTripTypeMode = "CURRENT BOOKING"
                 
                 strDirection = "CURRENT BOOKING"
                 selectedTripTypeMode = "CURRENT BOOKING"
                 strServiceType = "Rental"
-                print("Rental:", roundTripButton.titleLabel?.text, oneWayButton.titleLabel?.text)
+                print("Rental:", roundTripButton.titleLabel?.text ?? "", oneWayButton.titleLabel?.text ?? "")
                 pickUpDatePickerButton.setTitle(currentDateString, for: .normal)
                 returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             }
@@ -1282,7 +1282,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
                 {
                     pickupcityName = dics.shortName
                     print ("localoty name : \(dics.name)")
-                    print("locality shortname : \(dics.shortName)")
+                    print("locality shortname : \(dics.shortName ?? "")")
                 }
             }
             sourceMarker = GMSMarker()

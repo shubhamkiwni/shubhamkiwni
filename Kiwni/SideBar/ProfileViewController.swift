@@ -15,20 +15,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var editProfileImageButton: UIButton!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var mobileNumberLabel: UILabel!
-    @IBOutlet weak var userMobileNumberLabel: UILabel!
+    @IBOutlet weak var userMobileNumberTextField: UITextField!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var userMailLabel: UILabel!
+    @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var emergencyContactLabel: UILabel!
-    @IBOutlet weak var emergencyContactNumberLabel: UILabel!
+    @IBOutlet weak var emergencyContactNumberTextField: UITextField!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
     @IBOutlet weak var line3: UIView!
     @IBOutlet weak var line4: UIView!
     @IBOutlet weak var nameEditButton: UIButton!
-    @IBOutlet weak var mobileNumberEditButton: UIButton!
     @IBOutlet weak var emailEditButton: UIButton!
     @IBOutlet weak var emergencyNumberEditButton: UIButton!
     let reachability = try! Reachability()
@@ -40,8 +39,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         loadImage()
         
-        imagePicker.allowsEditing = true        
-        profileImageView.layer.cornerRadius = 50.0
+        imagePicker.allowsEditing = true
+        profileImageView.layer.cornerRadius = 50
         profileView.layer.cornerRadius = 15.0
         profileView.layer.shadowColor = UIColor.black.cgColor
         profileView.layer.shadowOpacity = 0.5
@@ -50,13 +49,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         backButton.setTitle("", for: .normal)
         editProfileImageButton.setTitle("", for: .normal)
         nameEditButton.setTitle("", for: .normal)
-        mobileNumberEditButton.setTitle("", for: .normal)
         emailEditButton.setTitle("", for: .normal)
         emergencyNumberEditButton.setTitle("", for: .normal)
         
-        self.userNameLabel.text =  UserDefaults.standard.string(forKey: "displayName")
-        self.userMailLabel.text = UserDefaults.standard.string(forKey: "email")
-        self.userMobileNumberLabel.text = UserDefaults.standard.string(forKey: "phoneNumber")
+        self.userNameTextField.text =  UserDefaults.standard.string(forKey: "displayName")
+        self.userEmailTextField.text = UserDefaults.standard.string(forKey: "email")
+        self.userMobileNumberTextField.text = UserDefaults.standard.string(forKey: "phoneNumber")
         
     }
     
@@ -123,7 +121,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func editProfileImageButtonPressed(_ sender: UIButton) {
-        
+        print("Clicked edit profile button")
         imagePicker.delegate = self
         
         let alert = UIAlertController(title: "Profile Image", message: "Change Profile Image", preferredStyle: UIAlertController.Style.alert)
@@ -155,7 +153,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let setImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
         profileImageView.image = setImage
-       
+        
         guard let data = profileImageView.image!.jpegData(compressionQuality: 0.5) else { return }
         let encoded = try! PropertyListEncoder().encode(data)
         UserDefaults.standard.set(encoded, forKey: "profileImage")
@@ -163,27 +161,35 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func loadImage() {
-         guard let data = UserDefaults.standard.data(forKey: "profileImage") else { return }
-         let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
-         let storeimage = UIImage(data: decoded)
+        guard let data = UserDefaults.standard.data(forKey: "profileImage") else { return }
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
+        let storeimage = UIImage(data: decoded)
         profileImageView.image = storeimage
-         
+        
         
     }
     
     @IBAction func nameEditButtonPressed(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func mobileNumberEditButtonPressed(_ sender: UIButton) {
-        
+        userInteractionInTextField(userNameTextField)
     }
     
     @IBAction func emailEditButtonPressed(_ sender: UIButton) {
-        
+        userInteractionInTextField(userEmailTextField)
     }
     
     @IBAction func emergencyNumberEditButtonPressed(_ sender: UIButton) {
-        
+       userInteractionInTextField(emergencyContactNumberTextField)
     }
+    
+    func userInteractionInTextField(_ textField: UITextField) {
+        if textField.isUserInteractionEnabled == true {
+            textField.isUserInteractionEnabled = false
+            print("myTextField.text:",textField.text ?? "")
+            textField.resignFirstResponder()
+        } else {
+            textField.isUserInteractionEnabled = true
+            textField.becomeFirstResponder()
+        }
+    }
+    
 }

@@ -65,16 +65,6 @@ struct Ride: Codable {
     let toLocationCoordinates: locationCoordinate
 }
 
-//struct fromLocationLatLong: Codable {
-//    var latitude: Double? = 0
-//    var longitude: Double? = 0
-//}
-//
-//struct toLocationLatLong: Codable {
-//    var tolatitude: Double? = 0
-//    var tolongitude: Double? = 0
-//}
-
 struct locationCoordinate: Codable {
     var latitude: Double? = 0
     var longitude: Double? = 0

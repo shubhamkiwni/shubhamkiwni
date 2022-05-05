@@ -38,49 +38,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47f-aq-wej">
                             <rect key="frame" x="0.0" y="50" width="364" height="130"/>
                             <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-dr-oXq">
-                                    <rect key="frame" x="15" y="10" width="25" height="25"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="JXJ-E8-uh0"/>
-                                        <constraint firstAttribute="height" constant="25" id="S9h-0e-CUk"/>
-                                    </constraints>
-                                    <state key="normal" image="SquareCheck"/>
-                                    <connections>
-                                        <action selector="emailButtonPresed:" destination="iN0-l3-epB" eventType="touchUpInside" id="LCs-Te-9EY"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HW-P2-HYG">
-                                    <rect key="frame" x="45" y="12" width="37" height="18"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-di-71X">
-                                    <rect key="frame" x="97" y="10" width="25" height="24"/>
-                                    <state key="normal" image="SquareCheck"/>
-                                    <connections>
-                                        <action selector="phoneButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="6QC-ZL-3da"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xJ-th-nLA">
-                                    <rect key="frame" x="127" y="12" width="43.5" height="18"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dl4-0h-w9l">
-                                    <rect key="frame" x="185.5" y="10" width="25" height="24"/>
-                                    <state key="normal" image="SquareCheck"/>
-                                    <connections>
-                                        <action selector="whatsAppButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="glf-8B-bcl"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WhatsApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-DC-tnR">
-                                    <rect key="frame" x="215.5" y="12" width="71.5" height="18"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PERSONAL OR BUSINESS TRIP ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GND-e9-azs">
                                     <rect key="frame" x="30" y="45" width="225.5" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -117,40 +74,74 @@
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDJ-JV-Mvw">
+                                    <rect key="frame" x="15" y="5" width="80" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="gqS-Wd-8oF"/>
+                                        <constraint firstAttribute="height" constant="30" id="lQL-Ti-DwR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Email" image="SquareCheck">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="99J-Z7-cHp"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Z-BZ-5kB">
+                                    <rect key="frame" x="105" y="5" width="85" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="av6-tr-7EY"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Phone" image="SquareCheck">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="SwR-9E-r9A"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-en-eSp">
+                                    <rect key="frame" x="200" y="5" width="115" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="115" id="6l1-tT-1Pd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="WhatsApp" image="SquareCheck">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZPI-YL-QbV"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="9Uo-DC-tnR" firstAttribute="leading" secondItem="Dl4-0h-w9l" secondAttribute="trailing" constant="5" id="2Ol-Lo-dPM"/>
-                                <constraint firstItem="5eL-di-71X" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="10" id="2TI-Z1-l0f"/>
-                                <constraint firstItem="1nQ-dr-oXq" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="10" id="5WP-FB-F3z"/>
+                                <constraint firstItem="d9Z-BZ-5kB" firstAttribute="top" secondItem="FDJ-JV-Mvw" secondAttribute="top" id="1XX-jq-s0Y"/>
+                                <constraint firstItem="FDJ-JV-Mvw" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="5" id="4zB-qM-Rdo"/>
                                 <constraint firstItem="PSx-HH-Olu" firstAttribute="leading" secondItem="wSH-2C-JB5" secondAttribute="trailing" constant="5" id="635-wM-otz"/>
-                                <constraint firstItem="4HW-P2-HYG" firstAttribute="leading" secondItem="1nQ-dr-oXq" secondAttribute="trailing" constant="5" id="6je-e5-Y9y"/>
-                                <constraint firstItem="Dl4-0h-w9l" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="10" id="9xb-cW-HQL"/>
+                                <constraint firstItem="FDJ-JV-Mvw" firstAttribute="leading" secondItem="47f-aq-wej" secondAttribute="leading" constant="15" id="9py-vO-UAL"/>
                                 <constraint firstItem="GND-e9-azs" firstAttribute="leading" secondItem="47f-aq-wej" secondAttribute="leading" constant="30" id="Aji-zR-k5T"/>
-                                <constraint firstItem="Dl4-0h-w9l" firstAttribute="width" secondItem="1nQ-dr-oXq" secondAttribute="width" id="DHr-w2-2dZ"/>
                                 <constraint firstItem="ZFw-gr-7g7" firstAttribute="height" secondItem="wSH-2C-JB5" secondAttribute="height" multiplier="0.96" id="EF1-Ng-Hep"/>
                                 <constraint firstItem="uFL-2g-Juk" firstAttribute="top" secondItem="GND-e9-azs" secondAttribute="bottom" constant="17" id="GL9-9O-cVA"/>
-                                <constraint firstItem="Dl4-0h-w9l" firstAttribute="height" secondItem="1nQ-dr-oXq" secondAttribute="height" multiplier="0.96" id="GOi-cC-ZxP"/>
-                                <constraint firstItem="GND-e9-azs" firstAttribute="top" secondItem="1nQ-dr-oXq" secondAttribute="bottom" constant="10" id="HnO-76-zKl"/>
-                                <constraint firstItem="9Uo-DC-tnR" firstAttribute="leading" secondItem="Dl4-0h-w9l" secondAttribute="trailing" constant="5" id="IT0-fQ-gmP"/>
                                 <constraint firstItem="PSx-HH-Olu" firstAttribute="leading" secondItem="wSH-2C-JB5" secondAttribute="trailing" constant="5" id="Io9-74-F6j"/>
                                 <constraint firstItem="ZFw-gr-7g7" firstAttribute="leading" secondItem="PSx-HH-Olu" secondAttribute="trailing" constant="15" id="JSI-y8-cdC"/>
                                 <constraint firstAttribute="height" constant="130" id="LQF-JU-j1R"/>
-                                <constraint firstItem="6xJ-th-nLA" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="12" id="RTk-6I-53V"/>
+                                <constraint firstItem="nlV-en-eSp" firstAttribute="leading" secondItem="d9Z-BZ-5kB" secondAttribute="trailing" constant="10" id="Oee-yl-NIS"/>
+                                <constraint firstItem="d9Z-BZ-5kB" firstAttribute="leading" secondItem="FDJ-JV-Mvw" secondAttribute="trailing" constant="10" id="Soe-O9-N6c"/>
                                 <constraint firstItem="uFL-2g-Juk" firstAttribute="leading" secondItem="ZFw-gr-7g7" secondAttribute="trailing" constant="5" id="U68-ga-rYk"/>
-                                <constraint firstItem="Dl4-0h-w9l" firstAttribute="leading" secondItem="6xJ-th-nLA" secondAttribute="trailing" constant="15" id="Y1z-kb-oIT"/>
-                                <constraint firstItem="6xJ-th-nLA" firstAttribute="leading" secondItem="5eL-di-71X" secondAttribute="trailing" constant="5" id="YB9-H2-zkJ"/>
+                                <constraint firstItem="d9Z-BZ-5kB" firstAttribute="height" secondItem="FDJ-JV-Mvw" secondAttribute="height" id="WTh-qw-jhp"/>
+                                <constraint firstItem="GND-e9-azs" firstAttribute="top" secondItem="FDJ-JV-Mvw" secondAttribute="bottom" constant="10" id="aYE-8U-F9V"/>
                                 <constraint firstItem="ZFw-gr-7g7" firstAttribute="top" secondItem="GND-e9-azs" secondAttribute="bottom" constant="15" id="bCg-Ka-Rj9"/>
                                 <constraint firstItem="wSH-2C-JB5" firstAttribute="leading" secondItem="47f-aq-wej" secondAttribute="leading" constant="15" id="coC-Jo-smc"/>
-                                <constraint firstItem="1nQ-dr-oXq" firstAttribute="leading" secondItem="47f-aq-wej" secondAttribute="leading" constant="15" id="e8z-ne-VbL"/>
-                                <constraint firstItem="5eL-di-71X" firstAttribute="width" secondItem="1nQ-dr-oXq" secondAttribute="width" id="eg2-me-wGW"/>
                                 <constraint firstItem="uFL-2g-Juk" firstAttribute="leading" secondItem="ZFw-gr-7g7" secondAttribute="trailing" constant="5" id="epq-HK-wPv"/>
                                 <constraint firstItem="ZFw-gr-7g7" firstAttribute="width" secondItem="wSH-2C-JB5" secondAttribute="width" id="ffr-wr-2ts"/>
                                 <constraint firstItem="wSH-2C-JB5" firstAttribute="top" secondItem="GND-e9-azs" secondAttribute="bottom" constant="15" id="g2Y-ss-07K"/>
-                                <constraint firstItem="4HW-P2-HYG" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="12" id="jvD-kz-PLU"/>
-                                <constraint firstItem="5eL-di-71X" firstAttribute="leading" secondItem="4HW-P2-HYG" secondAttribute="trailing" constant="15" id="om0-RZ-hE8"/>
-                                <constraint firstItem="5eL-di-71X" firstAttribute="height" secondItem="1nQ-dr-oXq" secondAttribute="height" multiplier="0.96" id="p4l-yb-gHW"/>
-                                <constraint firstItem="9Uo-DC-tnR" firstAttribute="top" secondItem="47f-aq-wej" secondAttribute="top" constant="12" id="t1d-ie-9Kl"/>
+                                <constraint firstItem="nlV-en-eSp" firstAttribute="top" secondItem="d9Z-BZ-5kB" secondAttribute="top" id="jn2-7c-GV0"/>
+                                <constraint firstItem="nlV-en-eSp" firstAttribute="height" secondItem="d9Z-BZ-5kB" secondAttribute="height" multiplier="1.1" id="lbN-rC-TYR"/>
                                 <constraint firstItem="ZFw-gr-7g7" firstAttribute="leading" secondItem="PSx-HH-Olu" secondAttribute="trailing" constant="15" id="wqZ-AK-aMz"/>
                                 <constraint firstItem="PSx-HH-Olu" firstAttribute="top" secondItem="GND-e9-azs" secondAttribute="bottom" constant="17" id="yVw-fj-Uq9"/>
                             </constraints>
@@ -544,8 +535,7 @@
                 <outlet property="companyNameValueLabel" destination="1Z1-Au-VeH" id="QI7-tv-JTn"/>
                 <outlet property="companyPhoneLabel" destination="VSg-3P-h8w" id="X87-MR-YQJ"/>
                 <outlet property="companyPhoneValueLabel" destination="AjQ-I2-igg" id="rwz-eI-EjV"/>
-                <outlet property="emailLabel" destination="4HW-P2-HYG" id="BMz-qM-pOn"/>
-                <outlet property="emailRadioButton" destination="1nQ-dr-oXq" id="ZEl-ch-g54"/>
+                <outlet property="emailButton" destination="FDJ-JV-Mvw" id="LS5-ew-J24"/>
                 <outlet property="emailView" destination="47f-aq-wej" id="qAf-W5-blF"/>
                 <outlet property="extraFareKMAmountLabel" destination="2wF-D8-nAb" id="VOe-dv-ffh"/>
                 <outlet property="extraFareKMLabel" destination="Gkt-K1-HWO" id="0Je-dF-Hjl"/>
@@ -563,8 +553,7 @@
                 <outlet property="pay50Label" destination="Cyp-9H-aVB" id="S9m-VU-Pe5"/>
                 <outlet property="payInAdvanceView" destination="NLE-E9-SSS" id="WzD-fs-dLV"/>
                 <outlet property="personalButton" destination="wSH-2C-JB5" id="6Yq-Tb-XOy"/>
-                <outlet property="phoneLabel" destination="6xJ-th-nLA" id="CZy-pG-DgZ"/>
-                <outlet property="phoneRadioButton" destination="5eL-di-71X" id="cSo-Ge-ikV"/>
+                <outlet property="phoneButton" destination="d9Z-BZ-5kB" id="eba-1v-piJ"/>
                 <outlet property="rideFareAmountLabel" destination="aa7-W2-0y0" id="jRT-js-T9y"/>
                 <outlet property="rideFareLabel" destination="kJZ-8k-o6t" id="Egx-UE-Qi9"/>
                 <outlet property="rideFareView" destination="QnA-01-8cO" id="ney-h0-TVZ"/>
@@ -574,8 +563,7 @@
                 <outlet property="totalBaseFareAmountLabel" destination="CYF-8a-2DE" id="K4N-el-KDw"/>
                 <outlet property="totalBaseFareLabel" destination="65l-j3-1x8" id="mfV-eQ-aNU"/>
                 <outlet property="totalLabel" destination="0Zr-4N-zHQ" id="770-NC-Z2j"/>
-                <outlet property="whatsAppLabel" destination="9Uo-DC-tnR" id="hdZ-Pc-CM9"/>
-                <outlet property="whatsAppRadioButton" destination="Dl4-0h-w9l" id="Jf8-0w-bMY"/>
+                <outlet property="whatsAppButton" destination="nlV-en-eSp" id="nln-tm-GQ5"/>
                 <outletCollection property="payAdvanceCollection" destination="ELf-fp-ZUi" collectionClass="NSMutableArray" id="q34-gV-IoY"/>
                 <outletCollection property="payAdvanceCollection" destination="A9B-Fi-6Ts" collectionClass="NSMutableArray" id="t6g-Td-fYl"/>
                 <outletCollection property="payAdvanceCollection" destination="Pvt-AD-qR7" collectionClass="NSMutableArray" id="epM-z2-TGK"/>

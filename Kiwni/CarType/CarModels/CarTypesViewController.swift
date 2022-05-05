@@ -272,7 +272,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
         print("estimatedPriceList array count:", estimatedPriceList.count)
         estimatedPriceList.sort()
         print("estimatedPriceList sorted Array : ", estimatedPriceList)
-        print(estimatedPriceList.first, estimatedPriceList.last)
+        print(estimatedPriceList.first ?? "", estimatedPriceList.last ?? "")
        
         var modelClassInfoList : [ModelClassInfo] = []
         

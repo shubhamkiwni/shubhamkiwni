@@ -27,9 +27,7 @@ class PaymentModeViewController: UIViewController {
 
     }
     @IBAction func payButtonClicked(_ sender: UIButton) {
-        dismiss(animated: true) {
-//            let hvc = self.navigationController?.viewControllers[2] as! HomeViewController
-//            self.navigationController?.popToViewController(hvc, animated: true)
+        dismiss(animated: true) {            
             let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ThankYouViewController") as! ThankYouViewController
             self.navigationController?.pushViewController(VC, animated: true)
             

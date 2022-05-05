@@ -12,7 +12,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     
     
     func cancelRide() {
-        self.tripsArray.remove(at: indexForCell)
+        self.upcomingTripArray.remove(at: indexForCell)
         tripsTableView.reloadData()
     }
     
@@ -263,7 +263,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.fareAmount.text = "Rs. \(String(persons[indexPath.row].estimatedPrice))"
             cell.tripStatusLable.text = sortedPastTripArray[indexPath.row].status
             let startTime = sortedPastTripArray[indexPath.row].startTime
-            print("Table Start Time : ", startTime)
+            print("Table Start Time : ", startTime ?? "")
             
             if let pickUpDate = DateFormattingHelper.strToDateTime(strDateTime: startTime)
             {
@@ -286,7 +286,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let endTime = sortedPastTripArray[indexPath.row].endTime
-            print("Table Start Time : ", startTime)
+            print("Table Start Time : ", startTime ?? "")
             
             if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: endTime) {
                 print("myDate: ", dropDate)
@@ -314,7 +314,6 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell:UpcomingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTableViewCell") as! UpcomingTableViewCell
         if(strTripType == "Upcoming") {
             if upcomingTripArray[indexPath.row].driver?.name == "" {
                 return 275
