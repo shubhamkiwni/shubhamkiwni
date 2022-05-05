@@ -475,10 +475,9 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyu-ke-RKO">
-                                                        <rect key="frame" x="295" y="10" width="25" height="25"/>
+                                                        <rect key="frame" x="283" y="10" width="49" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="HYR-EX-xAf"/>
-                                                            <constraint firstAttribute="width" constant="25" id="UD2-Bl-esE"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="Mobile icon"/>
@@ -526,12 +525,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIs-l8-z18">
-                                                        <rect key="frame" x="27.5" y="118" width="300" height="30"/>
+                                                        <rect key="frame" x="30" y="117" width="295" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="Ais-QV-cJd"/>
-                                                            <constraint firstAttribute="width" constant="300" id="XAT-Pu-NMa"/>
-                                                        </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Done">
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -553,16 +548,21 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
-                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="centerX" secondItem="8Wr-Ez-kvE" secondAttribute="centerX" id="7aI-li-O28"/>
+                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="top" secondItem="PPf-da-1NG" secondAttribute="bottom" constant="7" id="2Fi-6O-VLU"/>
                                                     <constraint firstAttribute="height" constant="155" id="FYf-S6-ra3"/>
                                                     <constraint firstItem="DkO-FZ-dW3" firstAttribute="leading" secondItem="8Wr-Ez-kvE" secondAttribute="leading" id="IAX-fZ-f5i"/>
                                                     <constraint firstItem="etD-fq-xcd" firstAttribute="top" secondItem="0PX-AT-QiL" secondAttribute="bottom" constant="5" id="IfI-Ud-FGm"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="etD-fq-xcd" secondAttribute="trailing" constant="20" symbolic="YES" id="IhT-F8-HxY"/>
                                                     <constraint firstItem="S88-IR-QIQ" firstAttribute="top" secondItem="etD-fq-xcd" secondAttribute="bottom" constant="10" id="No3-De-cot"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TIs-l8-z18" secondAttribute="trailing" constant="30" id="RLL-sD-Eyz"/>
                                                     <constraint firstItem="DkO-FZ-dW3" firstAttribute="top" secondItem="8Wr-Ez-kvE" secondAttribute="top" constant="1" id="TSl-f9-iVe"/>
+                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="leading" secondItem="8Wr-Ez-kvE" secondAttribute="leading" constant="30" id="UQv-hx-A3F"/>
                                                     <constraint firstItem="0PX-AT-QiL" firstAttribute="top" secondItem="8Wr-Ez-kvE" secondAttribute="top" constant="10" id="ahk-KN-zQC"/>
-                                                    <constraint firstItem="TIs-l8-z18" firstAttribute="top" secondItem="PPf-da-1NG" secondAttribute="bottom" constant="8" id="b8U-Ky-xfm"/>
                                                     <constraint firstAttribute="trailing" secondItem="DkO-FZ-dW3" secondAttribute="trailing" id="daL-Um-6rz"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S88-IR-QIQ" secondAttribute="trailing" constant="20" symbolic="YES" id="nhZ-Jf-FdA"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PPf-da-1NG" secondAttribute="trailing" constant="20" symbolic="YES" id="que-aV-9BG"/>
                                                     <constraint firstItem="PPf-da-1NG" firstAttribute="top" secondItem="S88-IR-QIQ" secondAttribute="bottom" constant="5" id="uGc-tQ-IBE"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0PX-AT-QiL" secondAttribute="trailing" constant="20" symbolic="YES" id="v7j-My-CSu"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1701,14 +1701,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="gbW-8k-U4J" customClass="SupportTableViewCell" customModule="Kiwni" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gbW-8k-U4J" id="DeT-30-hgh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPr-eI-G1P">
-                                                    <rect key="frame" x="16" y="11" width="41.5" height="21.5"/>
+                                                    <rect key="frame" x="16" y="11" width="41.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2360,17 +2360,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n1-sV-985">
-                                        <rect key="frame" x="308" y="125" width="43" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="MnZ-VF-Dh3"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="Edit"/>
-                                        <connections>
-                                            <action selector="mobileNumberEditButtonPressed:" destination="cd4-HM-RSW" eventType="touchUpInside" id="fYv-af-bhb"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-yU-KPx">
                                         <rect key="frame" x="0.0" y="145.5" width="371" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2456,14 +2445,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VpQ-12-BFG" secondAttribute="trailing" constant="278.5" id="0Iu-Ht-YhH"/>
                                     <constraint firstItem="VXK-ia-BHF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GeS-qV-36Y" secondAttribute="leading" id="3Cr-1Q-YMf"/>
                                     <constraint firstItem="3lR-Qc-CO9" firstAttribute="leading" secondItem="GeS-qV-36Y" secondAttribute="leading" id="3jL-ko-C6R"/>
                                     <constraint firstItem="qSu-t6-4l0" firstAttribute="top" secondItem="ApN-rO-2Go" secondAttribute="bottom" constant="5" id="4wa-BD-dKR"/>
-                                    <constraint firstItem="0n1-sV-985" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VpQ-12-BFG" secondAttribute="trailing" constant="8" symbolic="YES" id="58e-kw-Hqq"/>
                                     <constraint firstItem="1Zw-DM-qJ0" firstAttribute="top" secondItem="p6t-3D-5Va" secondAttribute="bottom" constant="10" id="5oY-Qe-Cgu"/>
                                     <constraint firstItem="qSu-t6-4l0" firstAttribute="leading" secondItem="GeS-qV-36Y" secondAttribute="leading" id="860-HI-Osd"/>
                                     <constraint firstItem="R0x-k1-EDe" firstAttribute="top" secondItem="qSu-t6-4l0" secondAttribute="bottom" constant="2" id="9Zl-f0-jCq"/>
-                                    <constraint firstItem="0n1-sV-985" firstAttribute="top" secondItem="VpQ-12-BFG" secondAttribute="top" id="9bl-rS-xQX"/>
                                     <constraint firstItem="dt9-7c-KA6" firstAttribute="centerX" secondItem="Ksx-ia-lpz" secondAttribute="centerX" id="AgO-pC-Md2"/>
                                     <constraint firstItem="kbA-GT-uKP" firstAttribute="leading" secondItem="GeS-qV-36Y" secondAttribute="leading" id="AsS-w8-dSH"/>
                                     <constraint firstItem="VpQ-12-BFG" firstAttribute="leading" secondItem="GeS-qV-36Y" secondAttribute="leading" id="Av7-9R-oio"/>
@@ -2509,7 +2497,6 @@
                                     <constraint firstAttribute="trailing" secondItem="VXK-ia-BHF" secondAttribute="trailing" constant="257" id="tFh-tm-T0J"/>
                                     <constraint firstItem="dt9-7c-KA6" firstAttribute="top" secondItem="7VP-P9-5VJ" secondAttribute="top" id="tUd-gq-wSb"/>
                                     <constraint firstItem="bHF-QM-StU" firstAttribute="top" secondItem="3lR-Qc-CO9" secondAttribute="top" id="wNB-WJ-hsm"/>
-                                    <constraint firstItem="0n1-sV-985" firstAttribute="trailing" secondItem="pb8-pk-yah" secondAttribute="trailing" id="xu1-ec-GOx"/>
                                     <constraint firstItem="IMl-kW-KUE" firstAttribute="top" secondItem="GeS-qV-36Y" secondAttribute="bottom" constant="2" id="yGA-7W-EqB"/>
                                 </constraints>
                             </view>
@@ -2540,7 +2527,6 @@
                         <outlet property="line3" destination="ApN-rO-2Go" id="5s1-k9-8eY"/>
                         <outlet property="line4" destination="UFj-AG-Kiw" id="BOQ-Er-U2N"/>
                         <outlet property="logOutButton" destination="VXK-ia-BHF" id="6hc-dO-08y"/>
-                        <outlet property="mobileNumberEditButton" destination="0n1-sV-985" id="ixp-zj-lSm"/>
                         <outlet property="mobileNumberLabel" destination="1Zw-DM-qJ0" id="MFf-mA-Fob"/>
                         <outlet property="nameEditButton" destination="pb8-pk-yah" id="QNx-TA-zHH"/>
                         <outlet property="nameLabel" destination="GeS-qV-36Y" id="gbL-dZ-Jgs"/>
