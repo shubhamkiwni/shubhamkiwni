@@ -78,6 +78,9 @@
 		7AAF1E0827C9152200B262D4 /* PickupLocationOnSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */; };
 		7AAF265127C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */; };
 		7AAF265327C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */; };
+		7AC639F12828D4D100BC670D /* InCaseOfEmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC639F02828D4D100BC670D /* InCaseOfEmergencyViewController.swift */; };
+		7AC63A2F282926F500BC670D /* ResultCarsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC63A2E282926F500BC670D /* ResultCarsTableViewCell.swift */; };
+		7AC63A312829270900BC670D /* ResultCarModelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC63A302829270900BC670D /* ResultCarModelsTableViewCell.swift */; };
 		7AC64B3427CCBE1300B82341 /* ErrorPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */; };
 		7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D4279EB99800B8239F /* SidebarView.swift */; };
 		7ACF79D7279EBA0900B8239F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF79D6279EBA0900B8239F /* ProfileViewController.swift */; };
@@ -234,6 +237,9 @@
 		7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationOnSearchView.xib; sourceTree = "<group>"; };
 		7AAF264E27C3FC3700D43396 /* RentalHoursPackageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentalHoursPackageCollectionViewCell.xib; sourceTree = "<group>"; };
 		7AAF265027C3FC3800D43396 /* RentalHoursPackageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalHoursPackageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AC639F02828D4D100BC670D /* InCaseOfEmergencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InCaseOfEmergencyViewController.swift; sourceTree = "<group>"; };
+		7AC63A2E282926F500BC670D /* ResultCarsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCarsTableViewCell.swift; sourceTree = "<group>"; };
+		7AC63A302829270900BC670D /* ResultCarModelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCarModelsTableViewCell.swift; sourceTree = "<group>"; };
 		7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopupView.swift; sourceTree = "<group>"; };
 		7ACF79D4279EB99800B8239F /* SidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		7ACF79D6279EBA0900B8239F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -539,6 +545,7 @@
 				7A41AE3727ABE68A0067BD3C /* OffersTableViewCell.swift */,
 				7A41AE3827ABE68A0067BD3C /* OffersTableViewCell.xib */,
 				7A5FCD1227AD1845004F9DC3 /* SafetyViewController.swift */,
+				7AC639F02828D4D100BC670D /* InCaseOfEmergencyViewController.swift */,
 				7AF91F2527C61FAA0023B399 /* PaymentViewController.swift */,
 				7A41AE3127ABA7B00067BD3C /* FAQViewController.swift */,
 				7A41AE3D27ABF8B30067BD3C /* FeedbackViewController.swift */,
@@ -638,6 +645,8 @@
 				7AF91F0927C601660023B399 /* FilterViewController.swift */,
 				7AE5A34327C4AF3000C1E5D4 /* BrandCollectionViewCell.swift */,
 				7AE5A34427C4AF3000C1E5D4 /* ResultViewController.swift */,
+				7AC63A2E282926F500BC670D /* ResultCarsTableViewCell.swift */,
+				7AC63A302829270900BC670D /* ResultCarModelsTableViewCell.swift */,
 				7A745F1228056388008B4621 /* ReviewViewController.swift */,
 				7AFA73D8280D236400680B9C /* ReviewTableViewCell.swift */,
 				7AE2625F280EC9B400C7AF9A /* MapViewController.swift */,
@@ -1046,6 +1055,7 @@
 				7A686F4827AAB2E900DFF9A3 /* SupportViewController.swift in Sources */,
 				7A41AE3927ABE68A0067BD3C /* OffersTableViewCell.swift in Sources */,
 				7A407C22281A5F55000F55A3 /* LoginTypeViewController.swift in Sources */,
+				7AC639F12828D4D100BC670D /* InCaseOfEmergencyViewController.swift in Sources */,
 				845137A328094DB300DFE0B0 /* SocketIOManager.swift in Sources */,
 				8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */,
 				7AAF1DFD27C9036C00B262D4 /* PickupLocationOnSearchView.swift in Sources */,
@@ -1100,6 +1110,7 @@
 				7A2DA04F27BA662100490E5B /* SafetyCollectionViewCell.swift in Sources */,
 				8436804627C38DCF00FAC71C /* AuthManager.swift in Sources */,
 				7A81DB3227DF3E660046FF9F /* CarsViewController.swift in Sources */,
+				7AC63A312829270900BC670D /* ResultCarModelsTableViewCell.swift in Sources */,
 				7ACF79D7279EBA0900B8239F /* ProfileViewController.swift in Sources */,
 				7A35B40D2799292E00E0CFAE /* SceneDelegate.swift in Sources */,
 				7A41AE3E27ABF8B30067BD3C /* FeedbackViewController.swift in Sources */,
@@ -1111,6 +1122,7 @@
 				7A686F4627AAAE7C00DFF9A3 /* AboutViewController.swift in Sources */,
 				7AF91F0A27C601660023B399 /* FilterViewController.swift in Sources */,
 				7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */,
+				7AC63A2F282926F500BC670D /* ResultCarsTableViewCell.swift in Sources */,
 				7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */,
 				7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,

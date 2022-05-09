@@ -34,7 +34,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var sortingButton: UIButton!
-    @IBOutlet weak var carsTableView: UITableView!
+    @IBOutlet weak var carsTableView: UITableView!   
     var carsArray = ["", "", "", "", ""]
     
     var tableViewData = [cellData]()

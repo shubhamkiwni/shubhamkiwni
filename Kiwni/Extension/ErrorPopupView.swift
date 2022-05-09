@@ -121,6 +121,14 @@ extension UIViewController {
         view.layer.cornerRadius = 10
     }
     
+    func uiViewDesign2(_ view: UIView){
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: -1, height: 1)
+        view.layer.shadowRadius = 2.0
+    }
+    
 }
 
 extension UITextField {
