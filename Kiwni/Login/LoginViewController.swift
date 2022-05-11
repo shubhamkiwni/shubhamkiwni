@@ -43,6 +43,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         mobileNumTextField.layer.shadowRadius = 1
         
         mobileNumTextField.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+        
+        mobileNumTextField.font =  UIFont.fontStyle(14, .medium)
+        byContinuingLabel.font = UIFont.fontStyle(11, .medium)
+        termsConditionButton.titleLabel?.font = UIFont.fontStyle(10, .medium)
+        confirmButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

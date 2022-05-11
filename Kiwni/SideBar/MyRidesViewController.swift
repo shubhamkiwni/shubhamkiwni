@@ -108,7 +108,9 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 }
             }
         
-        
+        myRideLable.font = UIFont.fontStyle(18, .bold)
+        upcomingButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        pastButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
     }
     
     override func viewWillAppear(_ animated: Bool) {

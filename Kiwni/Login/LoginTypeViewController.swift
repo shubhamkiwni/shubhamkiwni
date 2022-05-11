@@ -20,6 +20,9 @@ class LoginTypeViewController: UIViewController {
         
         dropShadow(signInButton)
         dropShadow(signUpButton)
+        
+        signUpButton.titleLabel?.font =  UIFont.fontStyle(15, .light)
+        signInButton.titleLabel?.font =  UIFont.fontStyle(15, .light)
     }
 
     @IBAction func signUpButtonPressed(_ sender: UIButton) {

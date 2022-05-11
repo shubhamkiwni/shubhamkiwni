@@ -214,6 +214,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        roundTripButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        oneWayButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
+        pickUpTextField.font = UIFont.fontStyle(14, .medium)
+        dropTextField.font = UIFont.fontStyle(14, .medium)
+        
+        pickUpOnLable.font = .fontStyle(13, .medium)
+        returnByLable.font = .fontStyle(13, .medium)
+        
+        pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        returnByDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
+        rentalSelectaPackageLable.font = UIFont.fontStyle(15, .medium)
+        
+        btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
         self.mainView .addSubview(self.mapView)

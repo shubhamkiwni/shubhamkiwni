@@ -141,6 +141,20 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         }
        // self.view.dismissKeyBoardonTap()
        otpText1.becomeFirstResponder()
+        
+        otpText1.font =  UIFont.fontStyle(14, .medium)
+        otpText2.font =  UIFont.fontStyle(14, .medium)
+        otpText3.font =  UIFont.fontStyle(14, .medium)
+        otpText4.font =  UIFont.fontStyle(14, .medium)
+        otpText5.font =  UIFont.fontStyle(14, .medium)
+        otpText6.font =  UIFont.fontStyle(14, .medium)
+        
+        enterNumberLabel.font =  UIFont.fontStyle(17, .medium)
+        mobileNumberLabel.font =  UIFont.fontStyle(17, .medium)
+        
+        reserndOTPButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        loginButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
     }
     
     @objc func textFieldDidChange(textField: UITextField){

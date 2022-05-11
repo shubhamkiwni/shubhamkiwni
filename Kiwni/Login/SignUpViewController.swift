@@ -42,6 +42,24 @@ class SignUpViewController: UIViewController {
         emailTextField.setUnderLine()
         passwordTextField.setUnderLine()
         setRightViewIcon(icon: UIImage(named: "Close password")!, textfield: passwordTextField)
+        
+        signUpLabel.font =  UIFont.fontStyle(15, .bold)
+        firstNameLabel.font =  UIFont.fontStyle(14, .medium)
+        lastNameLabel.font =  UIFont.fontStyle(14, .medium)
+        mobileNoLabel.font =  UIFont.fontStyle(14, .medium)
+        emailLabel.font =  UIFont.fontStyle(14, .medium)
+        passwordLabel.font =  UIFont.fontStyle(14, .medium)
+        
+        firstNameTextField.font =  UIFont.fontStyle(15, .medium)
+        lastNameTextField.font =  UIFont.fontStyle(15, .medium)
+        mobileNoTextField.font =  UIFont.fontStyle(15, .medium)
+        emailTextField.font =  UIFont.fontStyle(15, .medium)
+        passwordTextField.font =  UIFont.fontStyle(15, .medium)
+        
+        registerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
+        emailLabel.font =  UIFont.fontStyle(15, .medium)
+        
     }
     
     

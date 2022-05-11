@@ -64,6 +64,33 @@ class UpcomingTableViewCell: UITableViewCell {
         design(tripStackView)
         buttonDesign(button: cancelButton)
         
+        sourceLabel.font = UIFont.fontStyle(17, .medium)
+        destinationLabel.font = UIFont.fontStyle(17, .medium)
+        dateLabel.font = UIFont.fontStyle(17, .medium)
+        timeLabel.font = UIFont.fontStyle(17, .medium)
+        serviceTypeLabel.font = UIFont.fontStyle(17, .medium)
+        serviceTypeValue.font = UIFont.fontStyle(17, .medium)
+        
+        bookingNoLabel.font = UIFont.fontStyle(17, .medium)
+        bookingNoValue.font = UIFont.fontStyle(17, .medium)
+        
+        krnNoLabel.font = UIFont.fontStyle(17, .medium)
+        krnNoValue.font = UIFont.fontStyle(17, .medium)
+        
+        krnNoValue.font = UIFont.fontStyle(15, .medium)
+        
+        krnNoValue.font = UIFont.fontStyle(15, .medium)
+        carNameLabel.font = UIFont.fontStyle(14, .medium)
+        carTypeLabel.font = UIFont.fontStyle(14, .medium)
+        mobileNumberLabel.font = UIFont.fontStyle(14, .medium)
+        vehicalNumberLabel.font = UIFont.fontStyle(14, .medium)
+        otpLabel.font = UIFont.fontStyle(14, .medium)
+        otpValue.font = UIFont.fontStyle(14, .medium)
+        
+        driverNameLabel.font = UIFont.fontStyle(14, .medium)
+        
+        cancelButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
 //        notificationView.isHidden = true
         
 //        borderLabel.layer.borderWidth = 2.0

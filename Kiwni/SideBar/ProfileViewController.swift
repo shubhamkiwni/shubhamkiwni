@@ -56,6 +56,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         self.userEmailTextField.text = UserDefaults.standard.string(forKey: "email")
         self.userMobileNumberTextField.text = UserDefaults.standard.string(forKey: "phoneNumber")
         
+        nameLabel.font = UIFont.fontStyle(13, .medium)
+        mobileNumberLabel.font = UIFont.fontStyle(13, .medium)
+        emailLabel.font = UIFont.fontStyle(13, .medium)
+        emergencyContactLabel.font = UIFont.fontStyle(13, .medium)
+        
+        userNameTextField.font = UIFont.fontStyle(15, .medium)
+        userMobileNumberTextField.font = UIFont.fontStyle(15, .medium)
+        userEmailTextField.font = UIFont.fontStyle(15, .medium)
+        emergencyContactNumberTextField.font = UIFont.fontStyle(15, .medium)
+        
+        logOutButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -86,6 +86,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell=tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        
         if indexPath.row == 0 {
             cell.backgroundColor = .systemGray2
             let cellImg: UIImageView!
@@ -105,9 +106,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             else{
                 cellImg.image = UIImage(named: "Profile Icon")
             }
-            
-        
-            
+
             DispatchQueue.main.async {
                 cellImg.image = self.storeimage
             }
@@ -116,18 +115,16 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
             cell.addSubview(cellLbl)
             cellLbl.text = titleArr[indexPath.row]
-            cellLbl.font=UIFont.systemFont(ofSize: 17)
+            cellLbl.font = UIFont.fontStyle(15, .medium)
             cellLbl.textColor=UIColor.black
             
             let cellLbl2 = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-(-15), width: 200, height: 20))
             print(cell.frame.height/2+50)
             cell.addSubview(cellLbl2)
             cellLbl2.text = UserDefaults.standard.string(forKey: "phoneNumber")
-            cellLbl2.font=UIFont.systemFont(ofSize: 15)
+            cellLbl.font = UIFont.fontStyle(17, .medium)
             cellLbl2.textColor=UIColor.black
         } else {
-            
-           
             
             let imgArray = ["","MyRide","Payment","Offers","Safety","faq","Feedback","Shareapp","Refer&Earn","Support","About"]
             
@@ -143,7 +140,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cellLbl = UILabel(frame: CGRect(x: 50, y: 5, width: 100, height: 30))
             cell.addSubview(cellLbl)
             cellLbl.text = titleArr[indexPath.row]
-            cellLbl.font=UIFont.systemFont(ofSize: 17)
+            cellLbl.font = UIFont.fontStyle(17, .medium)
             cellLbl.textColor=UIColor.black
         }
         return cell
