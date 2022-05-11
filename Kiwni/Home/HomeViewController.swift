@@ -223,9 +223,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         pickUpOnLable.font = .fontStyle(13, .medium)
         returnByLable.font = .fontStyle(13, .medium)
         
-        pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        returnByDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        pickUpOnTimePickerButton.titleLabel?.font = .fontStyle(15, .medium)
+        pickUpDatePickerButton.titleLabel?.font = .fontStyle(15, .medium)
+        returnByDatePickerButton.titleLabel?.font = .fontStyle(15, .medium)
         
         rentalSelectaPackageLable.font = UIFont.fontStyle(15, .medium)
         
