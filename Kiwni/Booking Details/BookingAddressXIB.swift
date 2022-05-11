@@ -33,8 +33,15 @@ class BookingAddressXIB: UIView {
         bookingDetailsView.layer.cornerRadius = 10.0
         bookingDetailsView.layer.borderColor = UIColor.black.cgColor
         bookingDetailsView.layer.borderWidth = 1.0
-//        labelDesign("SourceAddress", " New Airport Road, Viman Nagar, Pune, Maharashtra", sourceLabel)
-//        labelDesign("DestinationAddress", " Lane No. 5, H. No. 2587, Dhule, Maharashtra", destinationLabel)
+       
+        sourceLabel.font = UIFont.fontStyle(14, .medium)
+        destinationLabel.font = UIFont.fontStyle(14, .medium)
+        serviceTypeLabel.font = UIFont.fontStyle(14, .medium)
+        dateLabel.font = UIFont.fontStyle(12, .medium)
+        timeLabel.font = UIFont.fontStyle(12, .medium)
+        carNameLabel.font = UIFont.fontStyle(10, .medium)
+        carTypeLabel.font = UIFont.fontStyle(8, .medium)
+        estKMValueLabel.font = UIFont.fontStyle(12, .medium)
         
         let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
         let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""

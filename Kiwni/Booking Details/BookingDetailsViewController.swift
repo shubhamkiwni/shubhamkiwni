@@ -21,6 +21,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     var companyMobileNoString: String? = ""
     let reachability = try! Reachability()
     
+    @IBOutlet weak var bookingDetailsLabel: UILabel!
     
     
     func openPopUp() {
@@ -80,6 +81,9 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bookingDetailsLabel.font = UIFont.fontStyle(17, .medium)
+        
         print("carImagePath:", carImagePath)
         let url = URL(string: "https://kiwni.com/car_images/\(carImagePath)")
         let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch

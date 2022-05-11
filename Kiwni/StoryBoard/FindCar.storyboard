@@ -1570,6 +1570,10 @@
                                                 <constraint firstItem="rW6-oL-KMw" firstAttribute="top" secondItem="QVu-ds-VoU" secondAttribute="top" constant="19" id="x43-rZ-D2Y"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="reviewText" destination="QRB-y1-bXS" id="ii5-xB-RUQ"/>
+                                            <outlet property="userName" destination="rW6-oL-KMw" id="Ab1-zq-Ggc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1579,7 +1583,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cJp-Jf-H1s"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cJp-Jf-H1s" firstAttribute="trailing" secondItem="hAa-k3-4pY" secondAttribute="trailing" constant="15" id="1gj-E7-uHW"/>
                             <constraint firstItem="cJp-Jf-H1s" firstAttribute="bottom" secondItem="hAa-k3-4pY" secondAttribute="bottom" constant="15" id="ELx-2f-ViG"/>
@@ -1704,6 +1708,7 @@
                     </tableView>
                     <size key="freeformSize" width="375" height="1163"/>
                     <connections>
+                        <outlet property="bookingDetailsLabel" destination="C1u-Nt-muO" id="X1R-cV-Z1r"/>
                         <outlet property="bookingDetilsView" destination="NRA-ff-qHg" id="QSQ-uU-Kfb"/>
                         <outlet property="callButton" destination="MgT-3a-NWW" id="w7t-us-KQd"/>
                         <outlet property="kiniComfirtView" destination="wpe-cY-bmf" id="8VL-yr-ej0"/>

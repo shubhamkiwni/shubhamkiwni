@@ -74,44 +74,43 @@
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDJ-JV-Mvw">
-                                    <rect key="frame" x="15" y="5" width="80" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDJ-JV-Mvw">
+                                    <rect key="frame" x="15" y="5" width="81" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="gqS-Wd-8oF"/>
+                                        <constraint firstAttribute="width" constant="81" id="gqS-Wd-8oF"/>
                                         <constraint firstAttribute="height" constant="30" id="lQL-Ti-DwR"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Email" image="SquareCheck">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="99J-Z7-cHp"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Z-BZ-5kB">
-                                    <rect key="frame" x="105" y="5" width="85" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Z-BZ-5kB">
+                                    <rect key="frame" x="106" y="5" width="88" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="av6-tr-7EY"/>
+                                        <constraint firstAttribute="width" constant="88" id="av6-tr-7EY"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Phone" image="SquareCheck">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="SwR-9E-r9A"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-en-eSp">
-                                    <rect key="frame" x="200" y="5" width="115" height="33"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlV-en-eSp">
+                                    <rect key="frame" x="204" y="5" width="116" height="33"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="115" id="6l1-tT-1Pd"/>
+                                        <constraint firstAttribute="width" constant="116" id="6l1-tT-1Pd"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="WhatsApp" image="SquareCheck">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="notificationTypeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZPI-YL-QbV"/>
@@ -525,10 +524,11 @@
                 <outlet property="applyButton" destination="LYT-nr-AwP" id="h8W-fF-5QI"/>
                 <outlet property="applyCoupenAmountLabel" destination="xCp-ub-uko" id="Ob3-se-4Qw"/>
                 <outlet property="applyCoupnLabel" destination="ooC-bB-5zm" id="kDq-Pr-eXL"/>
-                <outlet property="bookingDetailsLabel" destination="GlY-bA-E0Y" id="BSW-3W-4ti"/>
+                <outlet property="billingDetailsLabel" destination="GlY-bA-E0Y" id="pqy-Ri-mvh"/>
                 <outlet property="bookingDetailsView" destination="EfO-mb-ROp" id="Wna-xR-4aZ"/>
                 <outlet property="businessButton" destination="ZFw-gr-7g7" id="Yev-SI-4N7"/>
                 <outlet property="businessDetailsView" destination="bMH-ul-qkA" id="XHw-pJ-nLE"/>
+                <outlet property="businessLabel" destination="uFL-2g-Juk" id="wxz-rP-raj"/>
                 <outlet property="companyEmailLabel" destination="y5d-hu-w8Y" id="fpi-b3-LTB"/>
                 <outlet property="companyEmailValueLabel" destination="26Z-KQ-ICk" id="kZq-VE-lx6"/>
                 <outlet property="companyNameLabel" destination="Z9F-QU-n2Y" id="aMM-tz-W7H"/>
@@ -553,6 +553,7 @@
                 <outlet property="pay50Label" destination="Cyp-9H-aVB" id="S9m-VU-Pe5"/>
                 <outlet property="payInAdvanceView" destination="NLE-E9-SSS" id="WzD-fs-dLV"/>
                 <outlet property="personalButton" destination="wSH-2C-JB5" id="6Yq-Tb-XOy"/>
+                <outlet property="personalLabel" destination="PSx-HH-Olu" id="8v4-KY-6PN"/>
                 <outlet property="phoneButton" destination="d9Z-BZ-5kB" id="eba-1v-piJ"/>
                 <outlet property="rideFareAmountLabel" destination="aa7-W2-0y0" id="jRT-js-T9y"/>
                 <outlet property="rideFareLabel" destination="kJZ-8k-o6t" id="Egx-UE-Qi9"/>

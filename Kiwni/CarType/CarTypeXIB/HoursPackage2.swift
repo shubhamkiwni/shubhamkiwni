@@ -10,5 +10,4 @@ import UIKit
 class HoursPackage2: UICollectionViewCell {
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var kmLabel: UILabel!
-    
 }

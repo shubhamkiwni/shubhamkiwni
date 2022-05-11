@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var rideScheduleView: UIView!
     @IBOutlet weak var driverContactDetailsView: UIView!
     @IBOutlet weak var tripDetailsView: UIView!
+    
 //    @IBOutlet weak var driverSchedulePopup : UIView!
     @IBOutlet weak var krnNumLabel: UILabel!
     @IBOutlet weak var onewaytripLabel: UILabel!
@@ -80,8 +81,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var driverOTPLabel : UILabel!
     @IBOutlet weak var doneButton : UIButton!
     @IBOutlet weak var driverCallButton: UIButton!
-    
-    
+        
     //MARK:- MapView
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var locatePinImage : UIImageView!
@@ -223,14 +223,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         pickUpOnLable.font = .fontStyle(13, .medium)
         returnByLable.font = .fontStyle(13, .medium)
         
-        pickUpOnTimePickerButton.titleLabel?.font = .fontStyle(15, .medium)
-        pickUpDatePickerButton.titleLabel?.font = .fontStyle(15, .medium)
-        returnByDatePickerButton.titleLabel?.font = .fontStyle(15, .medium)
+        pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        returnByDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         
         rentalSelectaPackageLable.font = UIFont.fontStyle(15, .medium)
         
         btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .medium)
         viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
+        cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
@@ -242,8 +245,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         blackScreen.isHidden=true
         self.navigationController?.view.addSubview(blackScreen)
         blackScreen.layer.zPosition=99
-       
-        
         
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

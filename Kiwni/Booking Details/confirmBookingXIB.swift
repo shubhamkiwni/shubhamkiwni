@@ -84,6 +84,10 @@ class confirmBooking: UIView {
     @IBOutlet weak var companyEmailValueLabel: UILabel!
     @IBOutlet weak var companyPhoneValueLabel: UILabel!
     
+    @IBOutlet weak var personalLabel: UILabel!
+    @IBOutlet weak var businessLabel: UILabel!
+    
+    @IBOutlet weak var billingDetailsLabel: UIButton!
     
     
     var companyName = ""
@@ -92,13 +96,61 @@ class confirmBooking: UIView {
     
     static let share = confirmBooking()
     override func awakeFromNib() {
-        tripTypeString = "Personal"
+        
+        emailButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+        whatsAppButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+        phoneButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
+        
         emailButton.isSelected = true
         whatsAppButton.isSelected = true
         phoneButton.isSelected =  true
         emailButton.setBackgroundColor(.clear, for: .selected)
         whatsAppButton.setBackgroundColor(.clear, for: .selected)
         phoneButton.setBackgroundColor(.clear, for: .selected)
+        
+        emailButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        phoneButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        whatsAppButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        sendMeBookingConfirmationLabel.font = UIFont.fontStyle(15, .medium)
+        billingDetailsLabel.titleLabel?.font = UIFont.fontStyle(14, .medium)
+        rideFareLabel.font = UIFont.fontStyle(14, .medium)
+        extraFareKMLabel.font = UIFont.fontStyle(14, .medium)
+        extraFarePerKMLabel.font = UIFont.fontStyle(14, .medium)
+        totalBaseFareLabel.font = UIFont.fontStyle(14, .medium)
+        applyCoupnLabel.font = UIFont.fontStyle(14, .medium)
+        gstLabel.font = UIFont.fontStyle(14, .medium)
+        totalLabel.font = UIFont.fontStyle(14, .medium)
+        rideFareAmountLabel.font = UIFont.fontStyle(14, .medium)
+        extraFareKMAmountLabel.font = UIFont.fontStyle(14, .medium)
+        extraFarePerKMAmountLabel.font = UIFont.fontStyle(14, .medium)
+        totalBaseFareAmountLabel.font = UIFont.fontStyle(14, .medium)
+        applyCoupnLabel.font = UIFont.fontStyle(14, .medium)
+        gstLabel.font = UIFont.fontStyle(14, .medium)
+        totalLabel.font = UIFont.fontStyle(14, .medium)
+        personalLabel.font = UIFont.fontStyle(15, .medium)
+        businessLabel.font = UIFont.fontStyle(15, .medium)
+        pay30Label.font = UIFont.fontStyle(15, .medium)
+        pay50Label.font = UIFont.fontStyle(15, .medium)
+        pay100Label.font = UIFont.fontStyle(15, .medium)
+        pay30AmountLabel.font = UIFont.fontStyle(14, .medium)
+        pay50AmountLabel.font = UIFont.fontStyle(14, .medium)
+        pay100AmountLabel.font = UIFont.fontStyle(14, .medium)
+        companyNameLabel.font = UIFont.fontStyle(15, .medium)
+        companyEmailLabel.font = UIFont.fontStyle(15, .medium)
+        companyPhoneLabel.font = UIFont.fontStyle(15, .medium)
+        companyNameValueLabel.font = UIFont.fontStyle(15, .medium)
+        companyEmailValueLabel.font = UIFont.fontStyle(15, .medium)
+        companyPhoneValueLabel.font = UIFont.fontStyle(15, .medium)
+        
+        emailButton.isSelected = true
+        whatsAppButton.isSelected = true
+        phoneButton.isSelected =  true
+        emailButton.setBackgroundColor(.clear, for: .selected)
+        whatsAppButton.setBackgroundColor(.clear, for: .selected)
+        phoneButton.setBackgroundColor(.clear, for: .selected)
+        
+        tripTypeString = "Personal"
+       
         notificationString = "Email,WSP,SMS"
         print("In Did Load notification String: ", notificationString ?? "")
         print("valueArr: ", valueArr)
@@ -178,7 +230,7 @@ class confirmBooking: UIView {
             print("Email Button Pressed.")
             if(emailButton.isSelected == true){
                 emailButton.isSelected = false
-                emailButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+                emailButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
                             
                 if let index = valueArr.firstIndex(of: "Email") {
                     valueArr.remove(at: index)
@@ -188,7 +240,7 @@ class confirmBooking: UIView {
                 print("valueArr: ",valueArr)
             }else{
                 emailButton.isSelected = true
-                emailButton.setImage(UIImage(named: "Check"), for: .normal)
+                emailButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
                 notificationTypeStr1 = "Email"
                 valueArr.append(notificationTypeStr1 ?? "")
             }
@@ -198,7 +250,7 @@ class confirmBooking: UIView {
 //            wspButton.isSelected = false
             if(whatsAppButton.isSelected == true){
                 whatsAppButton.isSelected = false
-                whatsAppButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+                whatsAppButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
   
                 if let index = valueArr.firstIndex(of: "WSP") {
                     valueArr.remove(at: index)
@@ -208,7 +260,7 @@ class confirmBooking: UIView {
                 print("valueArr: ",valueArr)
             }else{
                 whatsAppButton.isSelected = true
-                whatsAppButton.setImage(UIImage(named: "Check"), for: .normal)
+                whatsAppButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
                 notificationTypeStr2 = "WSP"
                 valueArr.append(notificationTypeStr2 ?? "")
             }
@@ -216,7 +268,7 @@ class confirmBooking: UIView {
             print("SMS Button Pressed.")
             if(phoneButton.isSelected == true){
                 phoneButton.isSelected = false
-                phoneButton.setImage(UIImage(named: "Uncheck"), for: .normal)
+                phoneButton.setImage(UIImage(named: "SquareUncheck"), for: .normal)
 
                 if let index = valueArr.firstIndex(of: "SMS") {
                     valueArr.remove(at: index)
@@ -225,7 +277,7 @@ class confirmBooking: UIView {
                 }
             }else{
                 phoneButton.isSelected = true
-                phoneButton.setImage(UIImage(named: "Check"), for: .normal)
+                phoneButton.setImage(UIImage(named: "SquareCheck"), for: .normal)
                 notificationTypeStr3 = "SMS"
                 valueArr.append(notificationTypeStr3 ?? "")
             }

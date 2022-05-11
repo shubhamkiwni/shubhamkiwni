@@ -9,9 +9,12 @@ import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var reviewText: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        userName.font = UIFont.fontStyle(17, .medium)
+        reviewText.font = UIFont.fontStyle(13, .medium)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

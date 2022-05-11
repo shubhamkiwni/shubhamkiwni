@@ -99,6 +99,16 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tripTypeLabel.font = UIFont.fontStyle(17, .medium)
+        tripVenueLabel.font = UIFont.fontStyle(15, .medium)
+        dateLabel.font = UIFont.fontStyle(13, .medium)
+        timeLabel.font = UIFont.fontStyle(13, .medium)
+        packageDetailsLabel.font = UIFont.fontStyle(10, .medium)
+        rentalPackageRuleLabel.font = UIFont.fontStyle(10, .medium)
+        viewDetailsButton.titleLabel?.font = UIFont.fontStyle(10, .medium)
+        estKMLabel.font = UIFont.fontStyle(13, .medium)
+        
         print(estimatedKM)
 //        print("dictForScheduleDates:",dictForScheduleDates)
         estKMLabel.text = "Est.km-\(forTrailingZero(temp: round(estimatedKM)))km"
