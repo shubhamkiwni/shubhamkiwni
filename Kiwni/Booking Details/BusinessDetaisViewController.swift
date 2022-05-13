@@ -23,14 +23,22 @@ class BusinessDetaisViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         
-        
-        
         businessDetailsView.layer.cornerRadius = 10.0
         businessDetailsView.layer.borderWidth = 1.0
         businessDetailsView.layer.borderColor = UIColor.black.cgColor
         
         businessDetailsView.layer.borderWidth = 1.0
         businessDetailsView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        businessDetailsLabel.font = UIFont.fontStyle(17, .medium)
+        companyNameLabel.font = UIFont.fontStyle(17, .medium)
+        companyEmailLabel.font = UIFont.fontStyle(17, .medium)
+        phoneNoLabel.font = UIFont.fontStyle(17, .medium)
+        companyNameTextField.font = UIFont.fontStyle(14, .medium)
+        companyEmailsTextField.font = UIFont.fontStyle(14, .medium)
+        phoneNoTextField.font = UIFont.fontStyle(14, .medium)
+        doneButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        dropShadow(doneButton)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {

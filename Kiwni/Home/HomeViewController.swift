@@ -238,7 +238,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
         self.mainView .addSubview(self.mapView)
-        self.mainView.addSubview(self.driverSchedulePopUpStackView)
+        
         
         blackScreen = UIView(frame: self.view.bounds)
         blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
@@ -248,7 +248,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mainView.addSubview(blurEffectofDriverPopUpView)
+
+        self.mainView.addSubview(blurEffectofDriverPopUpView)
+        self.mainView.addSubview(self.driverSchedulePopUpStackView)
+
         uiViewDesign(driverSchedulePopUpStackView)
        
 //        self.driverSchedulePopUpStackView.addSubview(doneButton)
@@ -966,7 +969,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-            cell?.tripTypeLable.font = UIFont.fontStyle(16, .medium)
+            
             cell?.backgroundColor = .systemGray5
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false

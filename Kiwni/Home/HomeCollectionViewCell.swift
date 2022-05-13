@@ -10,4 +10,11 @@ import UIKit
 class HomeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var tripTypeLable: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        tripTypeLable.font = UIFont.fontStyle(16, .medium)
+    }
+    
+    
 }

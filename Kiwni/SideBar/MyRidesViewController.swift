@@ -278,7 +278,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 let yourDate: Date? = formatter.date(from: myString)
                 formatter.dateFormat = "dd-MM-yyyy"
                 let dateStr = formatter.string(from: yourDate!)
-                print("dateStr : ", dateStr)
+                print("dateStr : ", dateStr)                                
                 
                 formatter.dateFormat = "hh:mm a"
                 let timeStr = formatter.string(from: yourDate!)
@@ -324,6 +324,30 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             return 170
+        }
+    }
+    
+    func dateConversion(dateValue: String) -> (String, String) {
+        if let myDate = DateFormattingHelper.strToDateTime(strDateTime: dateValue)
+        {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+            formatter.timeZone = TimeZone(identifier: "UTC")
+            let myString = formatter.string(from: myDate)
+            let yourDate: Date? = formatter.date(from: myString)
+            formatter.dateFormat = "E, MMM d"
+            let dateStr = formatter.string(from: yourDate!)
+            print("dateStr : ", dateStr)
+            
+            formatter.dateFormat = "hh:mm a"
+            let timeStr = formatter.string(from: yourDate!)
+            print("timeStr : ", timeStr)
+            print("Str time from popup : ","\(dateStr), \(timeStr)" )
+            return (dateStr,timeStr)
+        } else {
+            print("add another format")
+            return ("", "")
         }
     }
     

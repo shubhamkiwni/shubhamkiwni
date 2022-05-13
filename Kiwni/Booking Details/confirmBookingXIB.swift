@@ -141,6 +141,8 @@ class confirmBooking: UIView {
         companyNameValueLabel.font = UIFont.fontStyle(15, .medium)
         companyEmailValueLabel.font = UIFont.fontStyle(15, .medium)
         companyPhoneValueLabel.font = UIFont.fontStyle(15, .medium)
+        applyButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        offerCodeTextField.font = UIFont.fontStyle(15, .medium)
         
         emailButton.isSelected = true
         whatsAppButton.isSelected = true
