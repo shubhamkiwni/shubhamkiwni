@@ -216,6 +216,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         roundTripButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         oneWayButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        roundTripButton.setBackgroundColor(.buttonBackgroundColor, for: .normal)
+        
         
         pickUpTextField.font = UIFont.fontStyle(14, .medium)
         dropTextField.font = UIFont.fontStyle(14, .medium)
@@ -231,6 +233,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .medium)
         viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        viewCabsButton.setBackgroundColor(.buttonBackgroundColor, for: .normal)
+        btnConfirmLocation.setBackgroundColor(.buttonBackgroundColor, for: .normal)
         
         cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
@@ -277,6 +281,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         buttonDesign(roundTripButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.black.cgColor)
         buttonDesign(oneWayButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.black.cgColor)
         oneWayButton.backgroundColor = .white
+        oneWayButton.setTitleColor(UIColor.white, for: .normal)
         
         var currentTime: String {
             Date().description(with: .current)
