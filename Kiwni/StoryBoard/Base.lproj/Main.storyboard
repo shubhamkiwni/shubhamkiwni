@@ -350,7 +350,8 @@
                                                         <rect key="frame" x="52.5" y="10" width="250" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="AWa-Kg-tER"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Kez-GR-nET"/>
+                                                            <constraint firstAttribute="height" constant="30" id="gyP-sh-6hu"/>
                                                         </constraints>
                                                         <state key="normal" title="Confirm Location">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -372,13 +373,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="width" secondItem="O3g-tN-KeB" secondAttribute="width" id="9qS-Se-jyG"/>
-                                                    <constraint firstItem="O3g-tN-KeB" firstAttribute="centerX" secondItem="AqG-dh-cQc" secondAttribute="centerX" id="Jac-Cj-QOK"/>
-                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="top" secondItem="O3g-tN-KeB" secondAttribute="bottom" constant="-30" id="Pks-ec-PhJ"/>
-                                                    <constraint firstItem="O3g-tN-KeB" firstAttribute="centerY" secondItem="AqG-dh-cQc" secondAttribute="centerY" id="V9i-co-OiP"/>
+                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="width" secondItem="O3g-tN-KeB" secondAttribute="width" id="2rn-iQ-Wlg"/>
+                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="top" secondItem="O3g-tN-KeB" secondAttribute="top" id="Ilq-n8-5LH"/>
+                                                    <constraint firstItem="O3g-tN-KeB" firstAttribute="top" secondItem="AqG-dh-cQc" secondAttribute="top" constant="10" id="KGj-sg-BII"/>
+                                                    <constraint firstItem="O3g-tN-KeB" firstAttribute="centerX" secondItem="AqG-dh-cQc" secondAttribute="centerX" id="RwO-hQ-rJF"/>
+                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="height" secondItem="O3g-tN-KeB" secondAttribute="height" id="Xsm-2z-dnu"/>
+                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="centerX" secondItem="O3g-tN-KeB" secondAttribute="centerX" id="fUg-3R-6UV"/>
                                                     <constraint firstAttribute="height" constant="50" id="j5g-y1-hrj"/>
-                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="top" secondItem="O3g-tN-KeB" secondAttribute="top" id="m4P-Z9-MDA"/>
-                                                    <constraint firstItem="D5y-iF-C3M" firstAttribute="centerX" secondItem="O3g-tN-KeB" secondAttribute="centerX" id="vwE-aw-r1q"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

@@ -20,7 +20,7 @@ class LoginTypeViewController: UIViewController {
         
         dropShadow(signInButton)
         dropShadow(signUpButton)
-        
+
         signUpButton.titleLabel?.font =  UIFont.fontStyle(15, .light)
         signInButton.titleLabel?.font =  UIFont.fontStyle(15, .light)
     }
@@ -33,6 +33,13 @@ class LoginTypeViewController: UIViewController {
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    func buttonDesign(_ button: UIButton, radius: CGFloat, borderWidth: CGFloat, borderColor: CGColor) {
+        button.layer.cornerRadius = radius
+        button.layer.borderWidth = borderWidth
+        button.layer.borderColor = borderColor
+        
     }
     
 }

@@ -8,5 +8,5 @@
 import UIKit
 extension UIColor {
     static let buttonBackgroundColor = UIColor(red: 3.0/255.0, green: 131.0/255.0, blue: 83.0/255.0, alpha: 1.0)
-    static let selectedbuttonbackgroundColor = UIColor(red: 210.0/255.0, green: 105.0/255.0, blue: 130.0/255.0, alpha: 0.21)
+    static let selectedbuttonbackgroundColor = UIColor(red: 72.0/255.0, green: 153.0/255.0, blue: 123.0/255.0, alpha: 0.21)
 }

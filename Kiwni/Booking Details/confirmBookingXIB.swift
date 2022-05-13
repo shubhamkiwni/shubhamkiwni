@@ -8,6 +8,16 @@
 import Foundation
 import  UIKit
 
+func dropShadow(_ button: UIButton){
+    button.layer.masksToBounds = false
+    button.layer.shadowColor = UIColor.black.cgColor
+    button.layer.shadowOpacity = 0.5
+    button.layer.shadowOffset = CGSize(width: -1, height: 1)
+    button.layer.shadowRadius = 2.0
+    button.layer.cornerRadius = 10
+    button.backgroundColor = .buttonBackgroundColor
+}
+
 protocol openPopUp {
     func openPopUp()
 }
@@ -107,6 +117,8 @@ class confirmBooking: UIView {
         emailButton.setBackgroundColor(.clear, for: .selected)
         whatsAppButton.setBackgroundColor(.clear, for: .selected)
         phoneButton.setBackgroundColor(.clear, for: .selected)
+        
+        dropShadow(applyButton)
         
         emailButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         phoneButton.titleLabel?.font = UIFont.fontStyle(15, .medium)

@@ -84,6 +84,8 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         
         bookingDetailsLabel.font = UIFont.fontStyle(17, .medium)
         
+        dropShadow(button)
+        
         print("carImagePath:", carImagePath)
         let url = URL(string: "https://kiwni.com/car_images/\(carImagePath)")
         let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
@@ -230,6 +232,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
         button.setTitleColor( .white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 10.0
+        dropShadow(button)
         footerView.addSubview(button)
         return footerView
     }

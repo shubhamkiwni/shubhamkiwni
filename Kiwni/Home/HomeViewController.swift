@@ -222,8 +222,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         pickUpTextField.font = UIFont.fontStyle(14, .medium)
         dropTextField.font = UIFont.fontStyle(14, .medium)
         
-        pickUpOnLable.font = .fontStyle(13, .medium)
-        returnByLable.font = .fontStyle(13, .medium)
+        pickUpOnLable.font = UIFont.fontStyle(13, .medium)
+        returnByLable.font = UIFont.fontStyle(13, .medium)
         
         pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
@@ -233,11 +233,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .medium)
         viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        viewCabsButton.setBackgroundColor(.buttonBackgroundColor, for: .normal)
-        btnConfirmLocation.setBackgroundColor(.buttonBackgroundColor, for: .normal)
         
         cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        
+        
         
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
@@ -276,14 +276,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.bringSubviewToFront(locatePinImage)
         self.locatePinImage.isHidden = true
         
-        //buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
-        //buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
-        dropShadow(viewCabsButton)
-        dropShadow(btnConfirmLocation)
+//        buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
+//        buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         buttonDesign(roundTripButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         buttonDesign(oneWayButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
-       // oneWayButton.backgroundColor = .white
-//        oneWayButton.setTitleColor(UIColor.white, for: .normal)
+        
+        dropShadow(viewCabsButton)
+        dropShadow(btnConfirmLocation)
+        
+        oneWayButton.backgroundColor = .white
+        oneWayButton.setTitleColor(UIColor.black, for: .normal)
         
         var currentTime: String {
             Date().description(with: .current)
@@ -956,7 +958,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
-                cell.backgroundColor = .systemGray5
+                cell.backgroundColor = .selectedbuttonbackgroundColor
             }
             return cell
         } else {
@@ -977,7 +979,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
             
-            cell?.backgroundColor = .systemGray5
+            cell?.backgroundColor = .selectedbuttonbackgroundColor
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false
             if indexPath.row == 0 {

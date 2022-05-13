@@ -28,7 +28,8 @@ class ReferandEarnViewController: UIViewController {
         super.viewDidLoad()
         design(earnView)
         design(referalView)
-        buttonDesign(shareCodeButton)
+//        buttonDesign(shareCodeButton)
+        dropShadow(shareCodeButton)
     }
     
     @IBAction func copyButtonPressed(_ sender: UIButton) {
@@ -52,12 +53,12 @@ class ReferandEarnViewController: UIViewController {
         view.layer.borderColor = UIColor.black.cgColor
     }
     
-    func buttonDesign(_ button: UIButton) {
-        button.layer.cornerRadius = 10.0
-        button.layer.masksToBounds = false
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize(width: -1, height: 1)
-        button.layer.shadowRadius = 1
-    }
+//    func buttonDesign(_ button: UIButton) {
+//        button.layer.cornerRadius = 10.0
+//        button.layer.masksToBounds = false
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 0.5
+//        button.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        button.layer.shadowRadius = 1
+//    }
 }

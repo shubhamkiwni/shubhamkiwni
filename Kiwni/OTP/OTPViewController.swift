@@ -76,12 +76,14 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         */
         
         
-        loginButton.layer.cornerRadius = 10.0
-        loginButton.layer.masksToBounds = false
-        loginButton.layer.shadowColor = UIColor.black.cgColor
-        loginButton.layer.shadowOpacity = 0.5
-        loginButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        loginButton.layer.shadowRadius = 1
+//        loginButton.layer.cornerRadius = 10.0
+//        loginButton.layer.masksToBounds = false
+//        loginButton.layer.shadowColor = UIColor.black.cgColor
+//        loginButton.layer.shadowOpacity = 0.5
+//        loginButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        loginButton.layer.shadowRadius = 1
+        
+        dropShadow(loginButton)
  
      
         otpText1.delegate = self

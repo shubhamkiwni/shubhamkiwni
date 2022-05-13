@@ -30,11 +30,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         confirmButton.layer.cornerRadius = 10.0
         mobileNumTextField.layer.cornerRadius = 10.0
         
-        confirmButton.layer.masksToBounds = false
-        confirmButton.layer.shadowColor = UIColor.black.cgColor
-        confirmButton.layer.shadowOpacity = 0.5
-        confirmButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        confirmButton.layer.shadowRadius = 1
+//        confirmButton.layer.masksToBounds = false
+//        confirmButton.layer.shadowColor = UIColor.black.cgColor
+//        confirmButton.layer.shadowOpacity = 0.5
+//        confirmButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        confirmButton.layer.shadowRadius = 1
+        
+        dropShadow(confirmButton)
         
         mobileNumTextField.layer.masksToBounds = false
         mobileNumTextField.layer.shadowColor = UIColor.black.cgColor

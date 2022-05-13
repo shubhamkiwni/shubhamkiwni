@@ -26,6 +26,9 @@ class SafetyViewController: UIViewController {
         super.viewDidLoad()
         tryLaterButton.layer.borderWidth = 1.0
         tryLaterButton.layer.borderColor = UIColor.black.cgColor
+        dropShadow(alertButton)
+        tryLaterButton.layer.borderColor = UIColor.buttonBackgroundColor.cgColor
+        tryLaterButton.layer.cornerRadius = 10.0
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

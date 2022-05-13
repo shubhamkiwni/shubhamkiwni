@@ -353,6 +353,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.star4.setTitle("", for: .normal)
             seconCell.star5.setTitle("", for: .normal)
             
+            dropShadow(seconCell.bookButton)
+            
        if let myDate = DateFormattingHelper.strToDateTime(strDateTime: carsArray[indexPath.section].selectionData[indexPath.row - 1].regyear)
             {
                 print("myDate: ", myDate)

@@ -63,7 +63,7 @@ class UpcomingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         design(tripStackView)
         buttonDesign(button: cancelButton)
-        
+        dropShadow(cancelButton)
         sourceLabel.font = UIFont.fontStyle(17, .medium)
         destinationLabel.font = UIFont.fontStyle(17, .medium)
         dateLabel.font = UIFont.fontStyle(17, .medium)

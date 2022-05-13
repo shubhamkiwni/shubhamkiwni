@@ -23,6 +23,10 @@ class UpdateAlertDetailViewController: UIViewController {
         contactDetailsView.layer.cornerRadius = 10.0
         contactDetailsView.layer.borderColor = UIColor.black.cgColor
         contactDetailsView.layer.borderWidth = 1.0
+        
+        dropShadow(cancelButton)
+        dropShadow(saveButton)
+        
     }
    
     @IBAction func backButtonAction(_ sender: UIButton) {
