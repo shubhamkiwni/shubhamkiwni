@@ -234,22 +234,42 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             print("Seperated Strings",seperatedTripType, seperatedTripType2, seperatedServiceType, seperatedCarType)
             cell.serviceTypeValue.text = seperatedServiceType
             
-            let upcomingTripTime = upcomingTripArray[indexPath.row].startTime
-            if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: upcomingTripTime) {
-                print("upComingDate: ", dropDate)
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                formatter.timeZone = TimeZone(identifier: "UTC")
-                let myString = formatter.string(from: dropDate)
-                let yourDate: Date? = formatter.date(from: myString)
-                formatter.dateFormat = "dd-MM-yyyy"
-                let dateStr = formatter.string(from: yourDate!)
-                print("dateStr : ", dateStr)
-                cell.dateLabel.text = dateStr
-                formatter.dateFormat = "hh:mm a"
-                let timeStr = formatter.string(from: yourDate!)
-                print("timeStr : ", timeStr)
-                cell.timeLabel.text = timeStr
-                
+            let upcomingTripTime = upcomingTripArray[indexPath.row].startTime ?? ""
+            let returnTripTime = upcomingTripArray[indexPath.row].endTime ?? ""
+//            if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: upcomingTripTime) {
+//                print("upComingDate: ", dropDate)
+//                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+//                formatter.timeZone = TimeZone(identifier: "UTC")
+//                let myString = formatter.string(from: dropDate)
+//                let yourDate: Date? = formatter.date(from: myString)
+//                formatter.dateFormat = "dd-MM-yyyy"
+//                let dateStr = formatter.string(from: yourDate!)
+//                print("dateStr : ", dateStr)
+//                cell.dateLabel.text = dateStr
+//                formatter.dateFormat = "hh:mm a"
+//                let timeStr = formatter.string(from: yourDate!)
+//                print("timeStr : ", timeStr)
+//                cell.timeLabel.text = timeStr
+//
+//            }
+            
+            let startTimeResult =  dateConversion(dateValue: upcomingTripTime)
+            let endTimeResult =  dateConversion(dateValue: returnTripTime)
+            
+            print(startTimeResult, endTimeResult)
+            
+            let tripDirectionString : String
+            tripDirectionString = self.upcomingTripArray[indexPath.row].serviceType ?? ""
+            let fullSeperatedArray = tripDirectionString.components(separatedBy: "-")
+            let seperatedTripTypee: String = fullSeperatedArray[0]
+            let seperatedTripTypee2: String = fullSeperatedArray[1]
+            
+            let directionStr = seperatedTripTypee+"-"+seperatedTripTypee2
+            
+            if directionStr == "one-way" {
+                cell.dateLabel.text = startTimeResult.0
+            } else if directionStr == "two-way" {
+                cell.dateLabel.text = "\(startTimeResult.0) - \(endTimeResult.0)" //startTimeResult.0 + "-" + endTimeResult.0
             }
             
             cell.delegate = self
@@ -330,7 +350,6 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
     func dateConversion(dateValue: String) -> (String, String) {
         if let myDate = DateFormattingHelper.strToDateTime(strDateTime: dateValue)
         {
-            
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
             formatter.timeZone = TimeZone(identifier: "UTC")
