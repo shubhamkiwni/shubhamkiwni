@@ -966,6 +966,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
+            cell?.tripTypeLable.font = UIFont.fontStyle(16, .medium)
             cell?.backgroundColor = .systemGray5
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false
