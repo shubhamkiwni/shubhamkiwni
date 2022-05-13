@@ -276,12 +276,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.bringSubviewToFront(locatePinImage)
         self.locatePinImage.isHidden = true
         
-        buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
-        buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
-        buttonDesign(roundTripButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.black.cgColor)
-        buttonDesign(oneWayButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.black.cgColor)
-        oneWayButton.backgroundColor = .white
-        oneWayButton.setTitleColor(UIColor.white, for: .normal)
+        //buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
+        //buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.black.cgColor)
+        dropShadow(viewCabsButton)
+        dropShadow(btnConfirmLocation)
+        buttonDesign(roundTripButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
+        buttonDesign(oneWayButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
+       // oneWayButton.backgroundColor = .white
+//        oneWayButton.setTitleColor(UIColor.white, for: .normal)
         
         var currentTime: String {
             Date().description(with: .current)

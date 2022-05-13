@@ -106,6 +106,7 @@ extension UIViewController {
     func dropShadow(_ button: UIButton){
         button.layer.masksToBounds = false
         button.layer.shadowColor = UIColor.black.cgColor
+        button.setBackgroundColor(.buttonBackgroundColor, for: .normal)
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize(width: -1, height: 1)
         button.layer.shadowRadius = 2.0
