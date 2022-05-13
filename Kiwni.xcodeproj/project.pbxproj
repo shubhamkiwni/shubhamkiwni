@@ -126,6 +126,7 @@
 		7AFAD8BE282B70AC00E59A12 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AFAD8AC282B70AC00E59A12 /* Montserrat-SemiBoldItalic.ttf */; };
 		7AFAD8BF282B70AC00E59A12 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AFAD8AD282B70AC00E59A12 /* Montserrat-ExtraBoldItalic.ttf */; };
 		7AFAD8C1282B70B600E59A12 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFAD8C0282B70B600E59A12 /* FontExtension.swift */; };
+		7AFBD5E8282E74960090AB3E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFBD5E7282E74950090AB3E /* ColorExtension.swift */; };
 		8412703927D87EC200FD92F0 /* UpdateAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703827D87EC200FD92F0 /* UpdateAlertDetailViewController.swift */; };
 		8412703B27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703A27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift */; };
 		8412703D27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412703C27D87FD500FD92F0 /* AddNewPersonTableViewCell.swift */; };
@@ -304,6 +305,7 @@
 		7AFAD8AC282B70AC00E59A12 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		7AFAD8AD282B70AC00E59A12 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		7AFAD8C0282B70B600E59A12 /* FontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		7AFBD5E7282E74950090AB3E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7EBD3D49317A89891E441581 /* Pods-Kiwni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiwni.debug.xcconfig"; path = "Target Support Files/Pods-Kiwni/Pods-Kiwni.debug.xcconfig"; sourceTree = "<group>"; };
 		8412703827D87EC200FD92F0 /* UpdateAlertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertDetailViewController.swift; sourceTree = "<group>"; };
 		8412703A27D87FBE00FD92F0 /* ContactPersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPersonTableViewCell.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				7ADC6D76280DC85500EFB4ED /* FunctionsExtension.swift */,
 				7AC64B3327CCBE1300B82341 /* ErrorPopupView.swift */,
 				7AFAD8C0282B70B600E59A12 /* FontExtension.swift */,
+				7AFBD5E7282E74950090AB3E /* ColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1163,6 +1166,7 @@
 				7A686F3A27AA56E900DFF9A3 /* HomeViewControllerExtention.swift in Sources */,
 				7AEB31B12820FC7600CA8097 /* GoogleMapExtension.swift in Sources */,
 				7AE5A34627C4AF3000C1E5D4 /* ResultViewController.swift in Sources */,
+				7AFBD5E8282E74960090AB3E /* ColorExtension.swift in Sources */,
 				7ACF79D5279EB99800B8239F /* SidebarView.swift in Sources */,
 				7A44009927B4D71B00A2334D /* CarTypesViewController.swift in Sources */,
 				7A2DA05127BA662100490E5B /* KiwniComfirtCollectionViewCell.swift in Sources */,
