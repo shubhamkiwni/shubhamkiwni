@@ -21,17 +21,22 @@ extension HomeViewController {
         
         confirmDatePickerButton.frame = CGRect.init(x: (newDatePicker.frame.origin.x)+cancelDatePickerButton.frame.width+5, y: (newDatePicker.frame.origin.y)+300+10, width: newDatePicker.frame.width/2, height: 40)
         
-        cancelDatePickerButton.backgroundColor = .black
-        confirmDatePickerButton.backgroundColor = .black
+        newDatePicker.tintColor = .buttonBackgroundColor
+        
+        cancelDatePickerButton.backgroundColor = .buttonBackgroundColor
+        confirmDatePickerButton.backgroundColor = .buttonBackgroundColor
         
         cancelDatePickerButton.setTitle("Cancel", for: .normal)
         confirmDatePickerButton.setTitle("Confirm", for: .normal)
         
-        cancelDatePickerButton.titleLabel?.font =  UIFont(name: "Arial", size: 15)
-        confirmDatePickerButton.titleLabel?.font =  UIFont(name: "Arial", size: 15)
+        cancelDatePickerButton.titleLabel?.font =  UIFont.fontStyle(15, .medium)
+        confirmDatePickerButton.titleLabel?.font =  UIFont.fontStyle(15, .medium)        
         
         cancelDatePickerButton.setTitleColor(.white, for: .normal)
         confirmDatePickerButton.setTitleColor(.white, for: .normal)
+        
+        cancelDatePickerButton.layer.cornerRadius = 10.0
+        confirmDatePickerButton.layer.cornerRadius = 10.0
         
         // Set some of UIDatePicker properties
         newDatePicker.timeZone = NSTimeZone.local

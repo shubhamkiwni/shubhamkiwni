@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var driverContactDetailsView: UIView!
     @IBOutlet weak var tripDetailsView: UIView!
     
-//    @IBOutlet weak var driverSchedulePopup : UIView!
+    //    @IBOutlet weak var driverSchedulePopup : UIView!
     @IBOutlet weak var krnNumLabel: UILabel!
     @IBOutlet weak var onewaytripLabel: UILabel!
     @IBOutlet weak var driverImageView: UIImageView!
@@ -81,7 +81,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var driverOTPLabel : UILabel!
     @IBOutlet weak var doneButton : UIButton!
     @IBOutlet weak var driverCallButton: UIButton!
-        
+    
     //MARK:- MapView
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var locatePinImage : UIImageView!
@@ -214,10 +214,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        roundTripButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        oneWayButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        roundTripButton.setBackgroundColor(.buttonBackgroundColor, for: .normal)
-        
+        roundTripButton.titleLabel?.font = UIFont.fontStyle(13, .semiBold)
+        oneWayButton.titleLabel?.font = UIFont.fontStyle(13, .semiBold)
+        roundTripButton.backgroundColor = .buttonBackgroundColor
+        roundTripButton.setTitleColor(.white, for: .normal)
+        oneWayButton.backgroundColor = .white
+        oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
         
         pickUpTextField.font = UIFont.fontStyle(14, .medium)
         dropTextField.font = UIFont.fontStyle(14, .medium)
@@ -252,13 +254,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
         self.mainView.addSubview(blurEffectofDriverPopUpView)
         self.mainView.addSubview(self.driverSchedulePopUpStackView)
-
+        
         uiViewDesign(driverSchedulePopUpStackView)
-       
-//        self.driverSchedulePopUpStackView.addSubview(doneButton)
+        
+        //        self.driverSchedulePopUpStackView.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
         self.blurEffectofDriverPopUpView.isHidden = true
@@ -276,16 +278,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.bringSubviewToFront(locatePinImage)
         self.locatePinImage.isHidden = true
         
-//        buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
-//        buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
+        //        buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
+        //        buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         buttonDesign(roundTripButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         buttonDesign(oneWayButton, radius: 5.0, borderWidth: 1.0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         
         dropShadow(viewCabsButton)
         dropShadow(btnConfirmLocation)
         
-        oneWayButton.backgroundColor = .white
-        oneWayButton.setTitleColor(UIColor.black, for: .normal)
+       
+        //        oneWayButton.setTitleColor(UIColor.black, for: .normal)
         
         var currentTime: String {
             Date().description(with: .current)
@@ -381,14 +383,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         self.view1.addSubview(self.sideMenuButton)
         
         sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
         sidebarView.delegate = self
         sidebarView.layer.zPosition=100
         self.view.isUserInteractionEnabled = true
-       
+        
         self.navigationController?.view.addSubview(sidebarView)
         
         let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
@@ -486,7 +488,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             estimatedFareValueLabel.text = "Rs.\(round(self.driverdetailsArray[0].estimatedPrice ?? 0.0))"
             onewaytripLabel.text = "\(seperatedTripType.firstCapitalized) \(seperatedTripType2)" + " To " +  "\(driverdetailsArray[0].endlocationCity ?? "")"
-         
+            
             dropShadow(doneButton)
         }
     }
@@ -710,26 +712,38 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
-        
+        print(roundTripButton.tag)
         clearMap()
-        if rentalTag == 0 {
-            if returnByDatePickerButton.isHidden == true {
-                returnByDatePickerButton.isHidden = false
-                returnByLable.isHidden = false
-                roundTripButton.backgroundColor = .black
-                oneWayButton.backgroundColor = .white
-            }
-        } else if rentalTag == 1 {
-            returnByDatePickerButton.isHidden = true
-            returnByLable.isHidden = true
-            roundTripButton.backgroundColor = .black
-            oneWayButton.backgroundColor = .white
-        } else if rentalTag == 2 {
-            returnByDatePickerButton.isHidden = true
-            returnByLable.isHidden = true
-            roundTripButton.backgroundColor = .black
-            oneWayButton.backgroundColor = .white
-        }
+//        if roundTripButton.tag == 0 {
+//            if returnByDatePickerButton.isHidden == true {
+//                returnByDatePickerButton.isHidden = false
+//                returnByLable.isHidden = false
+//                roundTripButton.backgroundColor = .buttonBackgroundColor
+//                roundTripButton.setTitleColor(.white, for: .normal)
+//                oneWayButton.backgroundColor = .white
+//                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+//            }
+//        } else if roundTripButton.tag == 1 {
+//            returnByDatePickerButton.isHidden = true
+//            returnByLable.isHidden = true
+//            roundTripButton.backgroundColor = .buttonBackgroundColor
+//            roundTripButton.setTitleColor(.white, for: .normal)
+//            oneWayButton.backgroundColor = .white
+//            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+//        } else if roundTripButton.tag == 2 {
+//            returnByDatePickerButton.isHidden = true
+//            returnByLable.isHidden = true
+//            roundTripButton.backgroundColor = .buttonBackgroundColor
+//            roundTripButton.setTitleColor(.white, for: .normal)
+//            oneWayButton.backgroundColor = .white
+//            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+//        }
+        
+        roundTripButton.backgroundColor = .buttonBackgroundColor
+        roundTripButton.setTitleColor(.white, for: .normal)
+        oneWayButton.backgroundColor = .white
+        oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        
         self.pickUpTextField.text = self.usercurrentLocationAddress
         self.sourceCoordinate = userCurrentlocation
         self.mapView.isUserInteractionEnabled = false
@@ -739,15 +753,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
+        print(oneWayButton.tag)
         newDatePicker.date = Date()
         clearMap()
-        if returnByDatePickerButton.isHidden == false {
-            returnByDatePickerButton.isHidden = true
-            returnByLable.isHidden = true
-            
-        }
+        returnByDatePickerButton.isHidden = true
+        returnByLable.isHidden = true
         roundTripButton.backgroundColor = .white
-        oneWayButton.backgroundColor = .black
+        roundTripButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        oneWayButton.backgroundColor = .buttonBackgroundColor
+        oneWayButton.setTitleColor(.white, for: .normal)
+
         self.pickUpTextField.text = self.usercurrentLocationAddress
         self.sourceCoordinate = userCurrentlocation
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
@@ -801,7 +816,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let newdateformatter = DateFormatter()
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
-//                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
+                //                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
                 newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
                 self.journeystartTime = newdateformatter.string(from: newdate)
             } else {
@@ -939,7 +954,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tripTypeCollectionView {
@@ -959,6 +974,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
                 cell.backgroundColor = .selectedbuttonbackgroundColor
+                roundTripButton.backgroundColor = .buttonBackgroundColor
+                roundTripButton.setTitleColor(.white, for: .normal)
+                oneWayButton.backgroundColor = .white
+                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
             }
             return cell
         } else {
@@ -978,12 +997,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell
-            
             cell?.backgroundColor = .selectedbuttonbackgroundColor
             print("usercurrentLocationAddress :  ", usercurrentLocationAddress ?? "")
             self.mapView.isUserInteractionEnabled = false
             if indexPath.row == 0 {
-                rentalTag = 0
+                roundTripButton.tag = 0
+                oneWayButton.tag = 0
                 strServiceType = "Outstation"
                 print("Selected Service Type : ", strServiceType ?? "")
                 selectPackageView.isHidden = true
@@ -993,6 +1012,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
                 roundTripButton.setTitle("ROUND TRIP", for: .normal)
                 oneWayButton.setTitle("ONE WAY", for: .normal)
+                roundTripButton.backgroundColor = .buttonBackgroundColor
+                roundTripButton.setTitleColor(.white, for: .normal)
+                oneWayButton.backgroundColor = .white
+                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
                 
                 clearMap()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
@@ -1004,11 +1027,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 1 {
                 
-                rentalTag = 1
+                roundTripButton.tag = 1
+                oneWayButton.tag = 1
                 strServiceType = "Airport"
                 print("Selected Service Type : ", strServiceType ?? "")
                 roundTripButton.setTitle("AIRPORT PICKUP", for: .normal)
                 oneWayButton.setTitle("AIRPORT DROP", for: .normal)
+                roundTripButton.backgroundColor = .buttonBackgroundColor
+                roundTripButton.setTitleColor(.white, for: .normal)
+                oneWayButton.backgroundColor = .white
+                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
@@ -1032,11 +1060,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 returnByDatePickerButton.setTitle(currentDateString, for: .normal)
             } else if indexPath.row == 2 {
                 
-                rentalTag = 2
+                roundTripButton.tag = 2
+                oneWayButton.tag = 2
                 strServiceType = "Rental"
                 print("Selected Service Type : ", strServiceType ?? "")
                 roundTripButton.setTitle("CURRENT BOOKING", for: .normal)
                 oneWayButton.setTitle("SCHEDULE BOOKING", for: .normal)
+                roundTripButton.backgroundColor = .buttonBackgroundColor
+                roundTripButton.setTitleColor(.white, for: .normal)
+                oneWayButton.backgroundColor = .white
+                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
                 
                 returnByDatePickerButton.isHidden = true
                 returnByLable.isHidden = true
@@ -1131,7 +1164,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
 }
-    
+
 
 extension HomeViewController: SidebarViewDelegate {
     func sidebarDidSelectRow(row: Row) {
@@ -1417,8 +1450,8 @@ extension UITextField {
         rightView = iconContainerView
         rightViewMode = .always
     }
-
-   
+    
+    
 }
 
 

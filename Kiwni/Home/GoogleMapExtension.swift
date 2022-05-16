@@ -185,9 +185,6 @@ extension HomeViewController {
         isconfirmLocation = false
         mapView.clear()
         
-        roundTripButton.backgroundColor = .black
-        oneWayButton.backgroundColor = .white
-        
         setTimeToPicker()
         strStartTime = ""
         

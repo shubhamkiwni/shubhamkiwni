@@ -31,6 +31,8 @@ class CancelRideViewController: UIViewController {
         cancelView.layer.cornerRadius = 10.0
         dontCancelButton.layer.cornerRadius = 5.0
         cancelRideButton.layer.cornerRadius = 5.0
+        dontCancelButton.backgroundColor = .buttonBackgroundColor
+        cancelRideButton.backgroundColor = .buttonBackgroundColor
     }
     
     @IBAction func radioButton1Pressed(_ sender: UIButton) {
