@@ -970,7 +970,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
             cell.tripTypeLable.text = dataArray[indexPath.row]
-            
+            cell.tripTypeLable.textColor = .buttonBackgroundColor
             cell.layer.cornerRadius = 10.0
             if indexPath.row == 0 {
                 cell.backgroundColor = .selectedbuttonbackgroundColor
