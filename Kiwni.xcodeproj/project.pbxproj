@@ -89,6 +89,7 @@
 		7AD28FDD27A7C631004E232D /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD28FDC27A7C631004E232D /* OTPViewController.swift */; };
 		7ADC6D77280DC85500EFB4ED /* FunctionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC6D76280DC85500EFB4ED /* FunctionsExtension.swift */; };
 		7AE26260280EC9B400C7AF9A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE2625F280EC9B400C7AF9A /* MapViewController.swift */; };
+		7AE329422833692B00ADD74F /* GoTOSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE329412833692B00ADD74F /* GoTOSettingsViewController.swift */; };
 		7AE5A33C27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A33B27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift */; };
 		7AE5A33E27C4ADD800C1E5D4 /* HoursPackage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A33D27C4ADD800C1E5D4 /* HoursPackage2.swift */; };
 		7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */; };
@@ -268,6 +269,7 @@
 		7AD28FDC27A7C631004E232D /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		7ADC6D76280DC85500EFB4ED /* FunctionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsExtension.swift; sourceTree = "<group>"; };
 		7AE2625F280EC9B400C7AF9A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7AE329412833692B00ADD74F /* GoTOSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoTOSettingsViewController.swift; sourceTree = "<group>"; };
 		7AE5A33B27C4942900C1E5D4 /* HoursPackegeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursPackegeCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AE5A33D27C4ADD800C1E5D4 /* HoursPackage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursPackage2.swift; sourceTree = "<group>"; };
 		7AE5A34027C4AE9500C1E5D4 /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				7AAF1E0627C9152100B262D4 /* PickupLocationOnSearchView.xib */,
 				7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */,
 				7AEB31B02820FC7600CA8097 /* GoogleMapExtension.swift */,
+				7AE329412833692B00ADD74F /* GoTOSettingsViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1180,6 +1183,7 @@
 				7AE5A33E27C4ADD800C1E5D4 /* HoursPackage2.swift in Sources */,
 				845137AB28094EE900DFE0B0 /* SocketPassenger.swift in Sources */,
 				7A2DA04527BA5C4400490E5B /* BookingDetailsViewController.swift in Sources */,
+				7AE329422833692B00ADD74F /* GoTOSettingsViewController.swift in Sources */,
 				84398FB427BD0790008C8782 /* WebConstant.swift in Sources */,
 				7A35B40B2799292E00E0CFAE /* AppDelegate.swift in Sources */,
 				7A44009B27B4E91500A2334D /* CarTypeTableViewCell.swift in Sources */,

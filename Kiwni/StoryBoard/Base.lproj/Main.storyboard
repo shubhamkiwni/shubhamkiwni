@@ -1905,14 +1905,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v39-O4-55Q">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v39-O4-55Q">
                                 <rect key="frame" x="25" y="25" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="4DJ-yK-vjK"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="KSJ-NY-lrx"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button" image="BackButton"/>
+                                <state key="normal" image="BackButton"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="cd4-HM-RSW" eventType="touchUpInside" id="x1N-vO-jBM"/>
                                 </connections>
@@ -2825,6 +2825,74 @@
             </objects>
             <point key="canvasLocation" x="5084" y="90.404797601199405"/>
         </scene>
+        <!--GoTO Settings View Controller-->
+        <scene sceneID="SCk-ag-bCc">
+            <objects>
+                <viewController storyboardIdentifier="GoTOSettingsViewController" id="6Fo-qi-cMI" customClass="GoTOSettingsViewController" customModule="Kiwni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tx2-Xz-nRH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location Permission" translatesAutoresizingMaskIntoConstraints="NO" id="oxQ-Mm-mm7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="U7O-cJ-SDg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Permission Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87x-Yh-GHQ">
+                                <rect key="frame" x="25" y="300" width="226" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For providing Kiwni services need to enable location services." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWR-NZ-sci">
+                                <rect key="frame" x="25" y="341" width="335" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyf-Fw-G6o">
+                                <rect key="frame" x="10" y="597" width="355" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2fE-0l-oPR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Go to Settings">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goToSettingsButtonPressed:" destination="6Fo-qi-cMI" eventType="touchUpInside" id="ak8-b6-Pto"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KwQ-fU-pqk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oxQ-Mm-mm7" secondAttribute="trailing" id="26F-H2-I2b"/>
+                            <constraint firstItem="oxQ-Mm-mm7" firstAttribute="leading" secondItem="Tx2-Xz-nRH" secondAttribute="leading" id="BZh-IX-rvx"/>
+                            <constraint firstItem="87x-Yh-GHQ" firstAttribute="leading" secondItem="Tx2-Xz-nRH" secondAttribute="leading" constant="25" id="FyM-1J-hmS"/>
+                            <constraint firstItem="DWR-NZ-sci" firstAttribute="leading" secondItem="87x-Yh-GHQ" secondAttribute="leading" id="Gbi-9e-Su9"/>
+                            <constraint firstAttribute="trailing" secondItem="vyf-Fw-G6o" secondAttribute="trailing" constant="10" id="RbF-4x-M65"/>
+                            <constraint firstAttribute="trailing" secondItem="DWR-NZ-sci" secondAttribute="trailing" constant="15" id="Twf-tH-BPh"/>
+                            <constraint firstItem="oxQ-Mm-mm7" firstAttribute="top" secondItem="Tx2-Xz-nRH" secondAttribute="top" id="Wci-au-AHm"/>
+                            <constraint firstItem="87x-Yh-GHQ" firstAttribute="top" secondItem="oxQ-Mm-mm7" secondAttribute="bottom" constant="25" id="ZqH-Ca-Ovi"/>
+                            <constraint firstItem="DWR-NZ-sci" firstAttribute="top" secondItem="87x-Yh-GHQ" secondAttribute="bottom" constant="20" id="c9M-3r-UYV"/>
+                            <constraint firstItem="KwQ-fU-pqk" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="87x-Yh-GHQ" secondAttribute="trailing" symbolic="YES" id="itc-ju-2cx"/>
+                            <constraint firstItem="vyf-Fw-G6o" firstAttribute="leading" secondItem="Tx2-Xz-nRH" secondAttribute="leading" constant="10" id="jqe-aZ-U6E"/>
+                            <constraint firstAttribute="bottom" secondItem="vyf-Fw-G6o" secondAttribute="bottom" constant="20" id="qls-pn-Tsp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goToSettingsButton" destination="vyf-Fw-G6o" id="cqr-ss-RCB"/>
+                        <outlet property="locationPermissionImageView" destination="oxQ-Mm-mm7" id="RiT-XW-t1a"/>
+                        <outlet property="locationPermissionMessageLabel" destination="DWR-NZ-sci" id="sFS-XJ-lX5"/>
+                        <outlet property="locationPermissionRequiredLabel" destination="87x-Yh-GHQ" id="CxE-va-kz7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSI-z7-2VC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7136.8000000000002" y="749.7751124437782"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackButton" width="30" height="31"/>
@@ -2832,6 +2900,7 @@
         <image name="Change Profile" width="93.5" height="92"/>
         <image name="Clock" width="24" height="24"/>
         <image name="Edit" width="19" height="17"/>
+        <image name="Location Permission" width="375" height="294"/>
         <image name="Logouticon" width="35" height="35"/>
         <image name="Mobile icon" width="25" height="22"/>
         <image name="PinImage" width="70" height="70"/>

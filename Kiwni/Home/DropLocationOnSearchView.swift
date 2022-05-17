@@ -19,6 +19,11 @@ class DropLocationOnSearchView: UIView {
     var delegate : dropOnlocateSearchdelegate!
 
     @IBOutlet weak var dropLocateOnMap: UIButton!
+    
+    internal override func awakeFromNib() {
+        dropLocateOnMap.backgroundColor = .buttonBackgroundColor        
+    }
+    
 
     @IBAction fileprivate func droplocateOnMapAction(sender: UIButton)
     {

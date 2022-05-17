@@ -34,8 +34,8 @@ class BookingAddressXIB: UIView {
         bookingDetailsView.layer.borderColor = UIColor.black.cgColor
         bookingDetailsView.layer.borderWidth = 1.0
        
-        sourceLabel.font = UIFont.fontStyle(14, .medium)
-        destinationLabel.font = UIFont.fontStyle(14, .medium)
+        sourceLabel.font = UIFont.fontStyle(13, .medium)
+        destinationLabel.font = UIFont.fontStyle(13, .medium)
         serviceTypeLabel.font = UIFont.fontStyle(14, .medium)
         dateLabel.font = UIFont.fontStyle(12, .medium)
         timeLabel.font = UIFont.fontStyle(12, .medium)

@@ -19,6 +19,11 @@ class PickupLocationOnSearchView: UIView {
     @IBOutlet weak var pickupCurrentLocation: UIButton!
     @IBOutlet weak var pickupLocateOnMap: UIButton!
     
+    internal override func awakeFromNib() {
+        pickupCurrentLocation.backgroundColor = .buttonBackgroundColor
+        pickupLocateOnMap.backgroundColor = .buttonBackgroundColor
+    }
+    
     @IBAction fileprivate func pickupcurrentLocationAction(_ sender: UIButton) {
     
         LocationDetect.shareInstance.acController.dismiss(animated: true) { [self] in
