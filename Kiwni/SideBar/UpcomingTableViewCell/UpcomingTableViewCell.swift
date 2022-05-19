@@ -131,7 +131,7 @@ class UpcomingTableViewCell: UITableViewCell {
     
     @IBAction func rideCancelButtonPressed(_ sender: UIButton) {
         delegate?.didPressButton()
-        cancelDelegate?.cancelRide()
+//        cancelDelegate?.cancelRide()
     }
     
     
