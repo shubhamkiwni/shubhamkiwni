@@ -22,6 +22,11 @@ class ThankYouViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        okButton.backgroundColor = .buttonBackgroundColor
+        thankYouView.layer.borderColor = UIColor.black.cgColor
+        thankYouView.layer.borderWidth = 1
+        
         SocketIOManager.sharedInstance.establishConnection()
         
         print("Reservation Array: " ,SocketIOManager.sharedInstance.reservationArray)
@@ -57,12 +62,12 @@ class ThankYouViewController: UIViewController {
 
     
     @IBAction func okButtonPressed(_ sender: UIButton) {
-//        let hvc = navigationController?.viewControllers[2] as! HomeViewController
-//        navigationController?.popToViewController(hvc, animated: true)
+        let hvc = navigationController?.viewControllers[0] as! HomeViewController
+        navigationController?.popToViewController(hvc, animated: true)
         
       
-        let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-        navigationController?.pushViewController(homeVc, animated: true)
+//        let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+//        navigationController?.pushViewController(homeVc, animated: true)
     }
     
     

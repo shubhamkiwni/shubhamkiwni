@@ -29,16 +29,16 @@
                                 <rect key="frame" x="10" y="353" width="391.5" height="493"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-vF-yab">
-                                        <rect key="frame" x="125" y="10" width="170" height="18.5"/>
+                                        <rect key="frame" x="146.5" y="10" width="148.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ekM-yJ-jXK">
-                                        <rect key="frame" x="20" y="43.5" width="236.5" height="392"/>
+                                        <rect key="frame" x="20" y="42.5" width="236.5" height="392"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8m2-su-cNL">
-                                                <rect key="frame" x="0.0" y="0.0" width="155" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="146.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJZ-3Q-ZTS">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -57,7 +57,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Pay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-bq-ipr">
-                                                        <rect key="frame" x="68" y="0.0" width="87" height="28"/>
+                                                        <rect key="frame" x="68" y="0.0" width="78.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WAo-UZ-9hw">
-                                                <rect key="frame" x="0.0" y="33" width="131.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="33" width="123" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcR-Gp-lQT">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -78,7 +78,7 @@
                                                         <rect key="frame" x="32" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bN-oO-ZgE">
-                                                        <rect key="frame" x="68" y="0.0" width="63.5" height="28"/>
+                                                        <rect key="frame" x="68" y="0.0" width="55" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MIw-Q4-Bhb">
-                                                <rect key="frame" x="0.0" y="66" width="214.5" height="29"/>
+                                                <rect key="frame" x="0.0" y="66" width="198.5" height="29"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFG-S7-5Fr">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="29"/>
@@ -99,7 +99,7 @@
                                                         <rect key="frame" x="32" y="0.0" width="28" height="29"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Existing UPI Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cJ-qf-iBF">
-                                                        <rect key="frame" x="68" y="0.0" width="146.5" height="29"/>
+                                                        <rect key="frame" x="68" y="0.0" width="130.5" height="29"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="64a-X9-D2C">
-                                                <rect key="frame" x="0.0" y="100" width="124" height="28"/>
+                                                <rect key="frame" x="0.0" y="100" width="119" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skp-Jw-uwz">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -120,7 +120,7 @@
                                                         <rect key="frame" x="32" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Pal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHb-ZV-f7O">
-                                                        <rect key="frame" x="68" y="0.0" width="56" height="28"/>
+                                                        <rect key="frame" x="68" y="0.0" width="51" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="x6c-7L-Bzm">
-                                                <rect key="frame" x="0.0" y="133" width="157" height="28"/>
+                                                <rect key="frame" x="0.0" y="133" width="146.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-di-gcN">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -141,7 +141,7 @@
                                                         <rect key="frame" x="34" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gift Vocher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-XC-MP1">
-                                                        <rect key="frame" x="72" y="0.0" width="85" height="28"/>
+                                                        <rect key="frame" x="72" y="0.0" width="74.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -149,20 +149,20 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-5t-1sy">
-                                                <rect key="frame" x="0.0" y="166" width="155" height="28"/>
+                                                <rect key="frame" x="0.0" y="166" width="146.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ex-E7-o2L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="28"/>
                                                         <state key="normal" image="PaymodeUncheck"/>
                                                         <connections>
                                                             <action selector="paymentModeButtonPressed:" destination="Vil-wO-UtC" eventType="touchUpInside" id="SCQ-Yu-Cio"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Creditcard" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-C4-Hw5">
-                                                        <rect key="frame" x="32" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="33" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDl-uh-6d8">
-                                                        <rect key="frame" x="68" y="0.0" width="87" height="28"/>
+                                                        <rect key="frame" x="69" y="0.0" width="77.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lvZ-cD-huS">
-                                                <rect key="frame" x="0.0" y="199" width="150.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="199" width="140.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64D-2B-rxl">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -183,7 +183,7 @@
                                                         <rect key="frame" x="32" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9x-5H-Q1G">
-                                                        <rect key="frame" x="68" y="0.0" width="82.5" height="28"/>
+                                                        <rect key="frame" x="68" y="0.0" width="72.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mV4-B5-rHA">
-                                                <rect key="frame" x="0.0" y="232" width="200.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="232" width="183.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlf-m2-jqv">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -204,7 +204,7 @@
                                                         <rect key="frame" x="32" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NetBanking Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90S-zQ-LcZ">
-                                                        <rect key="frame" x="68" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="68" y="0.0" width="115.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -212,7 +212,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="7Wm-gw-zIO">
-                                                <rect key="frame" x="0.0" y="265" width="159" height="28"/>
+                                                <rect key="frame" x="0.0" y="265" width="152" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O9-qp-WfH">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -225,7 +225,7 @@
                                                         <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="8" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Cost EMI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKs-hQ-DIJ">
-                                                        <rect key="frame" x="66" y="0.0" width="93" height="28"/>
+                                                        <rect key="frame" x="66" y="0.0" width="86" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -233,7 +233,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="CXW-Ly-V1n">
-                                                <rect key="frame" x="0.0" y="298" width="122.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="298" width="114.5" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18I-DK-NjR">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -246,7 +246,7 @@
                                                         <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rga-Zq-2f4">
-                                                        <rect key="frame" x="66" y="0.0" width="56.5" height="28"/>
+                                                        <rect key="frame" x="66" y="0.0" width="48.5" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -254,7 +254,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nOz-eN-5ka">
-                                                <rect key="frame" x="0.0" y="331" width="189" height="28"/>
+                                                <rect key="frame" x="0.0" y="331" width="177" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vql-af-YJo">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -267,7 +267,7 @@
                                                         <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zero Money EMI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3U-BH-lXy">
-                                                        <rect key="frame" x="66" y="0.0" width="123" height="28"/>
+                                                        <rect key="frame" x="66" y="0.0" width="111" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="WxC-ZO-WVN">
-                                                <rect key="frame" x="0.0" y="364" width="103.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="364" width="101" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQt-Kc-aE3">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
@@ -288,7 +288,7 @@
                                                         <rect key="frame" x="31" y="0.0" width="28" height="28"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwm-zt-nvE">
-                                                        <rect key="frame" x="66" y="0.0" width="37.5" height="28"/>
+                                                        <rect key="frame" x="66" y="0.0" width="35" height="28"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -301,7 +301,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-bz-TXK">
-                                        <rect key="frame" x="121" y="454.5" width="150" height="31"/>
+                                        <rect key="frame" x="121" y="453.5" width="150" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="RSM-90-kMA"/>
@@ -352,9 +352,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="zSb-Fw-9fb"/>
                     <connections>
+                        <outlet property="addExistingUPIIDPayLabel" destination="5cJ-qf-iBF" id="FFG-b7-o7A"/>
+                        <outlet property="amazonPayLabel" destination="1bN-oO-ZgE" id="NMj-Ph-vdZ"/>
                         <outlet property="backButton" destination="zi2-do-wSf" id="ExY-Zb-D2i"/>
+                        <outlet property="cashLabel" destination="mwm-zt-nvE" id="GNf-QY-qgh"/>
+                        <outlet property="creditCardLabel" destination="EDl-uh-6d8" id="BxL-So-1g6"/>
+                        <outlet property="debitCardLabel" destination="m9x-5H-Q1G" id="4wv-ha-vsM"/>
+                        <outlet property="giftVocherLabel" destination="wJN-XC-MP1" id="zZL-Ka-jSH"/>
+                        <outlet property="googlePayLabel" destination="LZg-bq-ipr" id="Qhr-iF-OaV"/>
+                        <outlet property="netBankingLabel" destination="90S-zQ-LcZ" id="Yf9-Aj-3WU"/>
+                        <outlet property="noCostEMILabel" destination="eKs-hQ-DIJ" id="Ek0-LA-v0O"/>
                         <outlet property="payButton" destination="0TZ-bz-TXK" id="dTb-16-WAz"/>
+                        <outlet property="payPalLabel" destination="hHb-ZV-f7O" id="p2W-eQ-S7x"/>
                         <outlet property="paymentModeView" destination="if1-Fz-3Er" id="v0W-i1-fuG"/>
+                        <outlet property="selectPaymentModeLabel" destination="PgQ-vF-yab" id="rPL-HR-P9g"/>
+                        <outlet property="walletsLabel" destination="rga-Zq-2f4" id="BJ6-xs-ekK"/>
+                        <outlet property="zeroMoneyEMILabel" destination="h3U-BH-lXy" id="6ME-9t-vQT"/>
                         <outletCollection property="paymentModeButton" destination="rJZ-3Q-ZTS" collectionClass="NSMutableArray" id="5uV-nh-D4J"/>
                         <outletCollection property="paymentModeButton" destination="CcR-Gp-lQT" collectionClass="NSMutableArray" id="jAp-eb-Bs8"/>
                         <outletCollection property="paymentModeButton" destination="hFG-S7-5Fr" collectionClass="NSMutableArray" id="grf-kE-ZRU"/>

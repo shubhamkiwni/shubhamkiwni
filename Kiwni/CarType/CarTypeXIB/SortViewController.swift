@@ -20,33 +20,16 @@ class SortViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        latestButton.layer.cornerRadius = 10.0
-        latestButton.layer.masksToBounds = false
-        latestButton.layer.shadowColor = UIColor.black.cgColor
-        latestButton.layer.shadowOpacity = 0.5
-        latestButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        latestButton.layer.shadowRadius = 1
+        dropShadow(latestButton)
+        dropShadow(popularityButton)
+        dropShadow(highToLowButton)
+        dropShadow(lowToHighButton)
         
-        popularityButton.layer.cornerRadius = 10.0
-        popularityButton.layer.masksToBounds = false
-        popularityButton.layer.shadowColor = UIColor.black.cgColor
-        popularityButton.layer.shadowOpacity = 0.5
-        popularityButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        popularityButton.layer.shadowRadius = 1
-        
-        highToLowButton.layer.cornerRadius = 10.0
-        highToLowButton.layer.masksToBounds = false
-        highToLowButton.layer.shadowColor = UIColor.black.cgColor
-        highToLowButton.layer.shadowOpacity = 0.5
-        highToLowButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        highToLowButton.layer.shadowRadius = 1
-        
-        lowToHighButton.layer.cornerRadius = 10.0
-        lowToHighButton.layer.masksToBounds = false
-        lowToHighButton.layer.shadowColor = UIColor.black.cgColor
-        lowToHighButton.layer.shadowOpacity = 0.5
-        lowToHighButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        lowToHighButton.layer.shadowRadius = 1
+        latestButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        popularityButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        highToLowButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        lowToHighButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        sortLabel.font = UIFont.fontStyle(15, .semiBold)
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {

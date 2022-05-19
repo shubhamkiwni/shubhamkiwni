@@ -64,32 +64,32 @@ class UpcomingTableViewCell: UITableViewCell {
         design(tripStackView)
         buttonDesign(button: cancelButton)
         dropShadow(cancelButton)
-        sourceLabel.font = UIFont.fontStyle(17, .medium)
-        destinationLabel.font = UIFont.fontStyle(17, .medium)
-        dateLabel.font = UIFont.fontStyle(17, .medium)
-        timeLabel.font = UIFont.fontStyle(17, .medium)
-        serviceTypeLabel.font = UIFont.fontStyle(17, .medium)
-        serviceTypeValue.font = UIFont.fontStyle(17, .medium)
+        sourceLabel.font = UIFont.fontStyle(17, .regular)
+        destinationLabel.font = UIFont.fontStyle(17, .regular)
+        dateLabel.font = UIFont.fontStyle(17, .regular)
+        timeLabel.font = UIFont.fontStyle(17, .regular)
+        serviceTypeLabel.font = UIFont.fontStyle(17, .regular)
+        serviceTypeValue.font = UIFont.fontStyle(17, .regular)
         
-        bookingNoLabel.font = UIFont.fontStyle(17, .medium)
-        bookingNoValue.font = UIFont.fontStyle(17, .medium)
+        bookingNoLabel.font = UIFont.fontStyle(17, .regular)
+        bookingNoValue.font = UIFont.fontStyle(17, .regular)
         
-        krnNoLabel.font = UIFont.fontStyle(17, .medium)
-        krnNoValue.font = UIFont.fontStyle(17, .medium)
+        krnNoLabel.font = UIFont.fontStyle(17, .regular)
+        krnNoValue.font = UIFont.fontStyle(17, .regular)
         
-        krnNoValue.font = UIFont.fontStyle(15, .medium)
+        krnNoValue.font = UIFont.fontStyle(15, .regular)
         
-        krnNoValue.font = UIFont.fontStyle(15, .medium)
-        carNameLabel.font = UIFont.fontStyle(14, .medium)
-        carTypeLabel.font = UIFont.fontStyle(14, .medium)
-        mobileNumberLabel.font = UIFont.fontStyle(14, .medium)
-        vehicalNumberLabel.font = UIFont.fontStyle(14, .medium)
-        otpLabel.font = UIFont.fontStyle(14, .medium)
-        otpValue.font = UIFont.fontStyle(14, .medium)
+        krnNoValue.font = UIFont.fontStyle(15, .regular)
+        carNameLabel.font = UIFont.fontStyle(14, .regular)
+        carTypeLabel.font = UIFont.fontStyle(14, .regular)
+        mobileNumberLabel.font = UIFont.fontStyle(14, .regular)
+        vehicalNumberLabel.font = UIFont.fontStyle(14, .regular)
+        otpLabel.font = UIFont.fontStyle(14, .regular)
+        otpValue.font = UIFont.fontStyle(14, .regular)
         
-        driverNameLabel.font = UIFont.fontStyle(14, .medium)
+        driverNameLabel.font = UIFont.fontStyle(14, .regular)
         
-        cancelButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        cancelButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
 //        notificationView.isHidden = true
         

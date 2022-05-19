@@ -74,8 +74,7 @@ public enum PopinsStyle: String {
     case semiBold = "-SemiBold"
     case semiBoldItalic = "-SemiBoldItalic"
     case thin = "-Thin"
-    case thinItalic = "-ThinItalic"
-    case regularr = "-ThinItalicc"
+    case thinItalic = "-ThinItalic"    
 }
 
 internal extension UIFont {

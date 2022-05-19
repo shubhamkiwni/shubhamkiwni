@@ -161,7 +161,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var blackScreen: UIView!
     
     
-    var dataArray = ["Outstation", "Airport", "Rental"]
+    var tripTypeArray = ["Outstation", "Airport", "Rental"]
     var hoursArray = ["2hr", "4hr", "6hr", "8hr", "10hr", "12hr"]
     var kmArray = ["20km", "40km", "60km", "80km", "100km", "120km"]
     
@@ -215,30 +215,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        roundTripButton.titleLabel?.font = UIFont.fontStyle(13, .semiBold)
-        oneWayButton.titleLabel?.font = UIFont.fontStyle(13, .semiBold)
+        roundTripButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        oneWayButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         roundTripButton.backgroundColor = .buttonBackgroundColor
         roundTripButton.setTitleColor(.white, for: .normal)
         oneWayButton.backgroundColor = .white
         oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
         
-        pickUpTextField.font = UIFont.fontStyle(14, .medium)
-        dropTextField.font = UIFont.fontStyle(14, .medium)
+        pickUpTextField.font = UIFont.fontStyle(14, .regular)
+        dropTextField.font = UIFont.fontStyle(14, .regular)
         
-        pickUpOnLable.font = UIFont.fontStyle(13, .medium)
-        returnByLable.font = UIFont.fontStyle(13, .medium)
+        pickUpOnLable.font = UIFont.fontStyle(13, .regular)
+        returnByLable.font = UIFont.fontStyle(13, .regular)
         
-        pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        returnByDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        pickUpOnTimePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        pickUpDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        returnByDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
-        rentalSelectaPackageLable.font = UIFont.fontStyle(15, .medium)
+        rentalSelectaPackageLable.font = UIFont.fontStyle(15, .regular)
         
-        btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        btnConfirmLocation.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        viewCabsButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
-        cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
         
         
@@ -386,7 +386,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewWillAppear(animated)
         
         self.view1.addSubview(self.sideMenuButton)
-        
+
         sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
         sidebarView.delegate = self
         sidebarView.layer.zPosition=100
@@ -959,7 +959,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tripTypeCollectionView {
-            return dataArray.count
+            return tripTypeArray.count
         } else {
             return hoursArray.count
         }
@@ -970,9 +970,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if collectionView == tripTypeCollectionView {
             let cell = tripTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-            cell.tripTypeLable.text = dataArray[indexPath.row]
+            cell.tripTypeLable.text = tripTypeArray[indexPath.row]
             cell.tripTypeLable.textColor = .buttonBackgroundColor
             cell.layer.cornerRadius = 10.0
+            cell.tripTypeLable.font = UIFont.fontStyle(16, .regular)
             if indexPath.row == 0 {
                 cell.backgroundColor = .selectedbuttonbackgroundColor
                 roundTripButton.backgroundColor = .buttonBackgroundColor
@@ -1149,19 +1150,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func favirateButtonPressed(_ sender: UIButton) {
         print("Faviourate")
-        guard let popupViewController = CustomPopupView.instantiate() else { return }
-        popupViewController.delegate = self
-        //        popupViewController.titleString = "I am custom popup"
+//        guard let popupViewController = CustomPopupView.instantiate() else { return }
+//        popupViewController.delegate = self
+//        //        popupViewController.titleString = "I am custom popup"
+//
+//        let popupVC = PopupViewController(contentController: popupViewController, position: .bottom(0), popupWidth: self.view.frame.width, popupHeight: 300)
+//        popupVC.cornerRadius = 15
+//        popupVC.backgroundAlpha = 0.0
+//        popupVC.backgroundColor = .clear
+//        popupVC.canTapOutsideToDismiss = true
+//        popupVC.shadowEnabled = true
+//        popupVC.delegate = self
+//        popupVC.modalPresentationStyle = .popover
+//        self.present(popupVC, animated: true, completion: nil)
         
-        let popupVC = PopupViewController(contentController: popupViewController, position: .bottom(0), popupWidth: self.view.frame.width, popupHeight: 300)
-        popupVC.cornerRadius = 15
-        popupVC.backgroundAlpha = 0.0
-        popupVC.backgroundColor = .clear
-        popupVC.canTapOutsideToDismiss = true
-        popupVC.shadowEnabled = true
-        popupVC.delegate = self
-        popupVC.modalPresentationStyle = .popover
-        self.present(popupVC, animated: true, completion: nil)
+        let fvc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
+        present(fvc, animated: true, completion: nil)
     }
     
 }
@@ -1225,29 +1229,7 @@ extension HomeViewController: SidebarViewDelegate {
 }
 
 
-extension HomeViewController : PopupViewControllerDelegate, CustomPopupViewDelegate
-{
-    // MARK: Default Delegate Methods For Dismiss Popup
-    public func popupViewControllerDidDismissByTapGesture(_ sender: PopupViewController)
-    {
-        dismiss(animated: true)
-        {
-            debugPrint("Popup Dismiss")
-        }
-    }
-    
-    // MARK: Custom Delegate Methods For Dismiss Popup on Action
-    func customPopupViewExtension(sender: CustomPopupView, didSelectNumber: Int)
-    {
-        dismiss(animated: true)
-        {
-            if didSelectNumber == 1
-            {
-                debugPrint("Custom Popup Dismiss On Done Button Action")
-            }
-        }
-    }
-}
+
 // Delegates to handle events for the location manager.
 extension HomeViewController: CLLocationManagerDelegate
 {

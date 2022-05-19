@@ -30,6 +30,9 @@ open class PopupViewController: UIViewController {
         case offsetFromView(CGPoint? = nil, UIView)
     }
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    
     private(set) open var popupWidth: CGFloat?
     private(set) open var popupHeight: CGFloat?
     private(set) open var position: PopupPosition = .center(nil)
@@ -49,6 +52,14 @@ open class PopupViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    
+    @IBAction func cancelButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     public init(contentController: UIViewController, position: PopupPosition = .center(nil), popupWidth: CGFloat?, popupHeight: CGFloat?) {
         super.init(nibName: nil, bundle: nil)
         self.contentController = contentController
@@ -82,8 +93,10 @@ open class PopupViewController: UIViewController {
         addDismissGesture()
     }
     
+    
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+                
         
         if isViewDidLayoutSubviewsCalled == false {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

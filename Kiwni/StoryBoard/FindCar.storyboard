@@ -436,10 +436,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvq-sR-2Cd">
-                                        <rect key="frame" x="25" y="25" width="20" height="20"/>
+                                        <rect key="frame" x="25" y="25" width="25" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="0aL-vp-lUp"/>
-                                            <constraint firstAttribute="width" constant="20" id="oqt-5r-IH4"/>
+                                            <constraint firstAttribute="height" constant="25" id="0aL-vp-lUp"/>
+                                            <constraint firstAttribute="width" constant="25" id="oqt-5r-IH4"/>
                                         </constraints>
                                         <state key="normal" image="BackButton"/>
                                         <connections>
@@ -447,7 +447,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Y-bj-khS">
-                                        <rect key="frame" x="154" y="25" width="49" height="21"/>
+                                        <rect key="frame" x="163" y="25" width="49" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -455,10 +455,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="L7Y-bj-khS" firstAttribute="leading" secondItem="dvq-sR-2Cd" secondAttribute="trailing" constant="109" id="0Ot-Q3-crT"/>
                                     <constraint firstItem="dvq-sR-2Cd" firstAttribute="top" secondItem="VEL-AU-Xg9" secondAttribute="top" constant="25" id="JEG-F9-Fvm"/>
+                                    <constraint firstItem="L7Y-bj-khS" firstAttribute="centerX" secondItem="VEL-AU-Xg9" secondAttribute="centerX" id="QFD-T3-G6m"/>
                                     <constraint firstItem="dvq-sR-2Cd" firstAttribute="leading" secondItem="VEL-AU-Xg9" secondAttribute="leading" constant="25" id="rRf-OV-KaY"/>
-                                    <constraint firstAttribute="trailing" secondItem="L7Y-bj-khS" secondAttribute="trailing" constant="172" id="sSZ-Lk-Bd3"/>
                                     <constraint firstItem="L7Y-bj-khS" firstAttribute="top" secondItem="VEL-AU-Xg9" secondAttribute="top" constant="25" id="sh8-Iv-B6P"/>
                                     <constraint firstAttribute="height" constant="77" id="xjC-HN-Gfb"/>
                                 </constraints>
@@ -1611,21 +1610,21 @@
                         <sections>
                             <tableViewSection id="Wld-l4-nr0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1077" id="gOn-jB-LJz">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="1077"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1124" id="gOn-jB-LJz">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="1124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gOn-jB-LJz" id="S1z-AC-pYh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="1077"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="1124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Stb-u4-m2a">
                                                     <rect key="frame" x="0.0" y="21" width="375" height="46"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWm-U2-nID">
-                                                            <rect key="frame" x="8" y="19" width="20" height="20"/>
+                                                            <rect key="frame" x="8" y="19" width="25" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="1p0-Z9-xni"/>
-                                                                <constraint firstAttribute="height" constant="20" id="dIe-CD-WHJ"/>
+                                                                <constraint firstAttribute="width" constant="25" id="1p0-Z9-xni"/>
+                                                                <constraint firstAttribute="height" constant="25" id="dIe-CD-WHJ"/>
                                                             </constraints>
                                                             <state key="normal" image="BackButton"/>
                                                             <connections>
@@ -1666,7 +1665,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghK-i9-b12">
-                                                    <rect key="frame" x="5" y="312" width="365" height="765"/>
+                                                    <rect key="frame" x="5" y="312" width="365" height="812"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="765" id="ulT-E5-ehG"/>
@@ -1718,7 +1717,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INB-b6-aqg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5538" y="-744"/>
+            <point key="canvasLocation" x="5536.8000000000002" y="-744.3778110944528"/>
         </scene>
         <!--Cars View Controller-->
         <scene sceneID="dVA-bv-uFm">
@@ -2412,8 +2411,10 @@
                         <outlet property="dateLabel" destination="ybG-xN-vCp" id="Dzh-rS-nLZ"/>
                         <outlet property="detailsView" destination="Itk-b2-R3H" id="twU-Ly-b88"/>
                         <outlet property="estimatedKmLabel" destination="J6b-BK-AX5" id="9BE-Db-7Eb"/>
+                        <outlet property="filterButton" destination="j2R-Cs-CUu" id="LzC-cF-JTN"/>
                         <outlet property="hoursPackegeCollectionView" destination="a8P-ux-vNp" id="6dd-LQ-VCM"/>
                         <outlet property="luggageCapasityLabel" destination="bhN-07-V55" id="vhd-ts-vle"/>
+                        <outlet property="mapButton" destination="BLZ-Fh-Ldz" id="ob3-e2-FVb"/>
                         <outlet property="navigationView" destination="R8v-P0-fD5" id="dGa-ew-FwY"/>
                         <outlet property="packageDetailsLabel" destination="gnc-Se-ikm" id="aGl-r4-ali"/>
                         <outlet property="packageDetailsView" destination="3p1-1Q-5Gs" id="dVM-2Y-bvK"/>
@@ -2421,6 +2422,7 @@
                         <outlet property="rentalPackageRuleLabel" destination="ful-Bf-gC4" id="K0x-Xe-rfi"/>
                         <outlet property="seatCapacityLabel" destination="nt6-NA-74X" id="501-YM-NUK"/>
                         <outlet property="seatImageView" destination="DeK-wO-0jI" id="BKB-GW-hUA"/>
+                        <outlet property="sortButton" destination="YLl-ig-8MZ" id="qte-HZ-uq7"/>
                         <outlet property="tableBaseView" destination="nWC-Sa-XYU" id="gg3-6J-HAa"/>
                         <outlet property="timeLabel" destination="1IM-sO-QLZ" id="eLl-rx-f1m"/>
                         <outlet property="tripLabel" destination="cTg-bd-Z71" id="GQj-lF-reO"/>

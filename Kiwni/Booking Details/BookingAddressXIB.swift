@@ -34,14 +34,14 @@ class BookingAddressXIB: UIView {
         bookingDetailsView.layer.borderColor = UIColor.black.cgColor
         bookingDetailsView.layer.borderWidth = 1.0
        
-        sourceLabel.font = UIFont.fontStyle(13, .medium)
-        destinationLabel.font = UIFont.fontStyle(13, .medium)
-        serviceTypeLabel.font = UIFont.fontStyle(14, .medium)
-        dateLabel.font = UIFont.fontStyle(12, .medium)
-        timeLabel.font = UIFont.fontStyle(12, .medium)
-        carNameLabel.font = UIFont.fontStyle(10, .medium)
-        carTypeLabel.font = UIFont.fontStyle(8, .medium)
-        estKMValueLabel.font = UIFont.fontStyle(12, .medium)
+        sourceLabel.font = UIFont.fontStyle(13, .regular)
+        destinationLabel.font = UIFont.fontStyle(13, .regular)
+        serviceTypeLabel.font = UIFont.fontStyle(14, .regular)
+        dateLabel.font = UIFont.fontStyle(12, .regular)
+        timeLabel.font = UIFont.fontStyle(12, .regular)
+        carNameLabel.font = UIFont.fontStyle(10, .regular)
+        carTypeLabel.font = UIFont.fontStyle(8, .regular)
+        estKMValueLabel.font = UIFont.fontStyle(12, .regular)
         
         let distance : String = UserDefaults.standard.string(forKey: "distance") ?? ""
         let fromLocation : String = UserDefaults.standard.string(forKey: "fromLocation") ?? ""

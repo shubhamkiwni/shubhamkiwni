@@ -17,6 +17,7 @@ class GoTOSettingsViewController: UIViewController {
         super.viewDidLoad()
         goToSettingsButton.backgroundColor = .buttonBackgroundColor
         goToSettingsButton.layer.cornerRadius = 10.0
+        goToSettingsButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
     }
     

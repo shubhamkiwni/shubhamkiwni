@@ -62,8 +62,10 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var viewDetailsButton: UIButton!
     @IBOutlet weak var hoursPackegeCollectionView: UICollectionView!
     @IBOutlet weak var callButton: UIButton!
-    
     @IBOutlet weak var estimatedKmLabel: UILabel!
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     
     var tableViewData = [VehicleDetails]()
 //    var tableViewData = [cellData]()
@@ -92,17 +94,20 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        acLabel.font = UIFont.fontStyle(13, .medium)
-        tripTypeLabel.font = UIFont.fontStyle(17, .medium)
-        tripLabel.font = UIFont.fontStyle(15, .medium)
-        dateLabel.font = UIFont.fontStyle(12, .medium)
-        timeLabel.font = UIFont.fontStyle(12, .medium)
-        estimatedKmLabel.font = UIFont.fontStyle(12, .medium)
-        seatCapacityLabel.font = UIFont.fontStyle(13, .medium)
-        luggageCapasityLabel.font = UIFont.fontStyle(13, .medium)
-        packageDetailsLabel.font = UIFont.fontStyle(10, .medium)
-        rentalPackageRuleLabel.font = UIFont.fontStyle(10, .medium)
-        viewDetailsButton.titleLabel?.font = UIFont.fontStyle(10, .medium)
+        acLabel.font = UIFont.fontStyle(13, .regular)
+        tripTypeLabel.font = UIFont.fontStyle(17, .regular)
+        tripLabel.font = UIFont.fontStyle(15, .semiBold)
+        dateLabel.font = UIFont.fontStyle(12, .regular)
+        timeLabel.font = UIFont.fontStyle(12, .regular)
+        estimatedKmLabel.font = UIFont.fontStyle(12, .regular)
+        seatCapacityLabel.font = UIFont.fontStyle(13, .regular)
+        luggageCapasityLabel.font = UIFont.fontStyle(13, .regular)
+        packageDetailsLabel.font = UIFont.fontStyle(10, .regular)
+        rentalPackageRuleLabel.font = UIFont.fontStyle(10, .regular)
+        viewDetailsButton.titleLabel?.font = UIFont.fontStyle(10, .regular)
+        sortButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        filterButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        mapButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
         carTypeLabel.text = carTypeString
         estimatedKmLabel.text = "Est.Km - \(forTrailingZero(temp: estimatedKM) )km "
@@ -215,8 +220,8 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         let cell = hoursPackegeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RentalHoursPackageCollectionViewCell
         cell.hoursLable.text = hoursArray[indexPath.row]
         cell.kmLable.text = kmArray[indexPath.row]
-        cell.hoursLable.font = UIFont.fontStyle(13, .medium)
-        cell.kmLable.font = UIFont.fontStyle(10, .medium)
+        cell.hoursLable.font = UIFont.fontStyle(13, .regular)
+        cell.kmLable.font = UIFont.fontStyle(10, .regular)
         cell.layer.cornerRadius = 8.0
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
@@ -266,7 +271,6 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         
         if indexPath.row == 0 {
             let cell = self.carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
-            
         
             selectedIndex = indexPath.section
             

@@ -13,7 +13,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tripTypeLable.font = UIFont.fontStyle(16, .medium)
+        
         
     }
     

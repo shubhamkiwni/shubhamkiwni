@@ -48,15 +48,15 @@ class CarModelsTableViewCell: UITableViewCell {
 //        carModelsView.layer.shadowOffset = CGSize(width: -1, height: 1)
 //        carModelsView.layer.shadowRadius = 1
         
-        modelRegisterLabel.font = UIFont.fontStyle(13, .medium)
-        carModelRegisterYearLabel.font = UIFont.fontStyle(10, .medium)
-        ratingLabel.font = UIFont.fontStyle(13, .medium)
-        fareLabel.font = UIFont.fontStyle(13, .semiBold)
-        bookButton.titleLabel?.font = UIFont.fontStyle(12, .medium)
-        availabelStatusLabel.font = UIFont.fontStyle(10, .medium)
-        vehicalProviderLabel.font = UIFont.fontStyle(13, .medium)
-        vehicalProviderNoLabel.font = UIFont.fontStyle(10, .medium)
-        reviewButton.titleLabel?.font = UIFont.fontStyle(10, .medium)
+        modelRegisterLabel.font = UIFont.fontStyle(13, .regular)
+        carModelRegisterYearLabel.font = UIFont.fontStyle(12, .regular)
+        ratingLabel.font = UIFont.fontStyle(13, .regular)
+        fareLabel.font = UIFont.fontStyle(13, .regular)
+        bookButton.titleLabel?.font = UIFont.fontStyle(12, .regular)
+        availabelStatusLabel.font = UIFont.fontStyle(10, .regular)
+        vehicalProviderLabel.font = UIFont.fontStyle(13, .regular)
+        vehicalProviderNoLabel.font = UIFont.fontStyle(10, .regular)
+        reviewButton.titleLabel?.font = UIFont.fontStyle(11, .regular)
         
     }
 

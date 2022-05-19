@@ -100,14 +100,14 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tripTypeLabel.font = UIFont.fontStyle(17, .medium)
-        tripVenueLabel.font = UIFont.fontStyle(15, .medium)
-        dateLabel.font = UIFont.fontStyle(13, .medium)
-        timeLabel.font = UIFont.fontStyle(13, .medium)
-        packageDetailsLabel.font = UIFont.fontStyle(10, .medium)
-        rentalPackageRuleLabel.font = UIFont.fontStyle(10, .medium)
-        viewDetailsButton.titleLabel?.font = UIFont.fontStyle(10, .medium)
-        estKMLabel.font = UIFont.fontStyle(13, .medium)
+        tripTypeLabel.font = UIFont.fontStyle(17, .semiBold)
+        tripVenueLabel.font = UIFont.fontStyle(15, .regular)
+        dateLabel.font = UIFont.fontStyle(13, .regular)
+        timeLabel.font = UIFont.fontStyle(13, .regular)
+        packageDetailsLabel.font = UIFont.fontStyle(10, .regular)
+        rentalPackageRuleLabel.font = UIFont.fontStyle(10, .regular)
+        viewDetailsButton.titleLabel?.font = UIFont.fontStyle(10, .regular)
+        estKMLabel.font = UIFont.fontStyle(13, .regular)
         
         print(estimatedKM)
 //        print("dictForScheduleDates:",dictForScheduleDates)

@@ -23,12 +23,12 @@ class CarTypeTableViewCell: UITableViewCell {
     @IBOutlet weak var baseView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        carTypeLabel.font = UIFont.fontStyle(15, .medium)
-        availabelStatus.font = UIFont.fontStyle(15, .medium)
-        priceLabel.font = UIFont.fontStyle(15, .medium)
-        acLabel.font = UIFont.fontStyle(13, .medium)
-        seaterLabel.font = UIFont.fontStyle(13, .medium)
-        bagsLabel.font = UIFont.fontStyle(13, .medium)
+        carTypeLabel.font = UIFont.fontStyle(15, .regular)
+        availabelStatus.font = UIFont.fontStyle(15, .regular)
+        priceLabel.font = UIFont.fontStyle(15, .regular)
+        acLabel.font = UIFont.fontStyle(13, .regular)
+        seaterLabel.font = UIFont.fontStyle(13, .regular)
+        bagsLabel.font = UIFont.fontStyle(13, .regular)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

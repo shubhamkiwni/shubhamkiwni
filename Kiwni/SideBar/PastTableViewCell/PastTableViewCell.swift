@@ -32,13 +32,13 @@ class PastTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        pickUpdateTimeLable.font = UIFont.fontStyle(14, .bold)
-        sourceLable.font = UIFont.fontStyle(14, .medium)
-        dropDateTimeLable.font = UIFont.fontStyle(14, .bold)
-        destinationLable.font = UIFont.fontStyle(14, .medium)
-        tripTypelable.font = UIFont.fontStyle(14, .bold)
-        fareAmount.font = UIFont.fontStyle(14, .medium)
-        tripStatusLable.font = UIFont.fontStyle(14, .thin)
+        pickUpdateTimeLable.font = UIFont.fontStyle(14, .semiBold)
+        sourceLable.font = UIFont.fontStyle(14, .regular)
+        dropDateTimeLable.font = UIFont.fontStyle(14, .semiBold)
+        destinationLable.font = UIFont.fontStyle(14, .regular)
+        tripTypelable.font = UIFont.fontStyle(14, .semiBold)
+        fareAmount.font = UIFont.fontStyle(14, .regular)
+        tripStatusLable.font = UIFont.fontStyle(14, .regular)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

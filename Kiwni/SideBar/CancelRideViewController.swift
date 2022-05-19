@@ -33,27 +33,37 @@ class CancelRideViewController: UIViewController {
         cancelRideButton.layer.cornerRadius = 5.0
         dontCancelButton.backgroundColor = .buttonBackgroundColor
         cancelRideButton.backgroundColor = .buttonBackgroundColor
+        reasonLabel1.font = UIFont.fontStyle(13, .regular)
+        reasonLabel2.font = UIFont.fontStyle(13, .regular)
+        reasonLabel3.font = UIFont.fontStyle(13, .regular)
+        reasonLabel4.font = UIFont.fontStyle(13, .regular)
+        reasonFortripLabel.font = UIFont.fontStyle(15, .regular)
+        areYouSureLabel.font = UIFont.fontStyle(13, .regular)
+        cancelRideButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        dontCancelButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
     }
     
-    @IBAction func radioButton1Pressed(_ sender: UIButton) {
+    @IBAction func radioButtonAction(_ sender: UIButton) {
+        
+        for button in radioButton {
+            if button.tag == sender.tag {
+                button.setTitle("true", for: .normal)
+                button.setImage(UIImage(named: "Check"), for: .normal)
+            } else {
+                button.setTitle("false", for: .normal)
+                button.setImage(UIImage(named: "Uncheck"), for: .normal)
+            }
+        }
+        
     }
     
-    @IBAction func radioButton2Pressed(_ sender: UIButton) {
-    }
-    
-    @IBAction func radioButton3Pressed(_ sender: UIButton) {
-    }
-    
-    
-    @IBAction func radioButton4Pressed(_ sender: UIButton) {
-    }
     
     @IBAction func dontCancelButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelRideButtonPressed(_ sender: UIButton) {
-//        dismiss(animated: true, completion: nil)
-        cancelDelegate?.cancelRide()
+        dismiss(animated: true, completion: nil)
+//        cancelDelegate?.cancelRide()
     }
 }

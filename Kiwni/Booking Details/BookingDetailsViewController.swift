@@ -82,7 +82,7 @@ class BookingDetailsViewController: UITableViewController, openPopUp {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bookingDetailsLabel.font = UIFont.fontStyle(17, .medium)
+        bookingDetailsLabel.font = UIFont.fontStyle(17, .semiBold)
         
         dropShadow(button)
         

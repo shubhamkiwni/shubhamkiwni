@@ -42,6 +42,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     let reachability = try! Reachability()
     override func viewDidLoad() {
         super.viewDidLoad()
+
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
         
         self.tripsTableView.register(UpcomingTableViewCell.nib(), forCellReuseIdentifier: UpcomingTableViewCell.identifier)
@@ -108,9 +109,9 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 }
             }
         
-        myRideLable.font = UIFont.fontStyle(18, .bold)
-        upcomingButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        pastButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        myRideLable.font = UIFont.fontStyle(18, .semiBold)
+        upcomingButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        pastButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,7 +161,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         tripsTableView.reloadData()
         
         upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
-        pastButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
+        pastButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: pastButton.frame.width)
         
     }
     @IBAction func pastButtonPressed(_ sender: UIButton) {
@@ -173,7 +174,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         strTripType = "Past"
         tripsTableView.isHidden = false
         tripsTableView.reloadData()
-        pastButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
+        pastButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: pastButton.frame.width)
         upcomingButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
     }
 }
@@ -236,22 +237,6 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             
             let upcomingTripTime = upcomingTripArray[indexPath.row].startTime ?? ""
             let returnTripTime = upcomingTripArray[indexPath.row].endTime ?? ""
-//            if let dropDate = DateFormattingHelper.strToDateTime(strDateTime: upcomingTripTime) {
-//                print("upComingDate: ", dropDate)
-//                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-//                formatter.timeZone = TimeZone(identifier: "UTC")
-//                let myString = formatter.string(from: dropDate)
-//                let yourDate: Date? = formatter.date(from: myString)
-//                formatter.dateFormat = "dd-MM-yyyy"
-//                let dateStr = formatter.string(from: yourDate!)
-//                print("dateStr : ", dateStr)
-//                cell.dateLabel.text = dateStr
-//                formatter.dateFormat = "hh:mm a"
-//                let timeStr = formatter.string(from: yourDate!)
-//                print("timeStr : ", timeStr)
-//                cell.timeLabel.text = timeStr
-//
-//            }
             
             let startTimeResult =  dateConversion(dateValue: upcomingTripTime)
             let endTimeResult =  dateConversion(dateValue: returnTripTime)

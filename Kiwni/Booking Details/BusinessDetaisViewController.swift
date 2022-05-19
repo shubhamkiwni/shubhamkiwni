@@ -30,14 +30,14 @@ class BusinessDetaisViewController: UIViewController {
         businessDetailsView.layer.borderWidth = 1.0
         businessDetailsView.layer.borderColor = UIColor.lightGray.cgColor
         
-        businessDetailsLabel.font = UIFont.fontStyle(17, .medium)
-        companyNameLabel.font = UIFont.fontStyle(17, .medium)
-        companyEmailLabel.font = UIFont.fontStyle(17, .medium)
-        phoneNoLabel.font = UIFont.fontStyle(17, .medium)
-        companyNameTextField.font = UIFont.fontStyle(14, .medium)
-        companyEmailsTextField.font = UIFont.fontStyle(14, .medium)
-        phoneNoTextField.font = UIFont.fontStyle(14, .medium)
-        doneButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
+        businessDetailsLabel.font = UIFont.fontStyle(17, .regular)
+        companyNameLabel.font = UIFont.fontStyle(17, .regular)
+        companyEmailLabel.font = UIFont.fontStyle(17, .regular)
+        phoneNoLabel.font = UIFont.fontStyle(17, .regular)
+        companyNameTextField.font = UIFont.fontStyle(14, .regular)
+        companyEmailsTextField.font = UIFont.fontStyle(14, .regular)
+        phoneNoTextField.font = UIFont.fontStyle(14, .regular)
+        doneButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         dropShadow(doneButton)
     }
     
