@@ -120,9 +120,9 @@ class AuthManager {
                         UserDefaults.standard.setValue(true, forKey: "status")
                         print("Code Matches")
 
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
-//                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
                     }
             })
         }

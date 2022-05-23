@@ -245,13 +245,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
         self.mainView .addSubview(self.mapView)
+        self.baseStackView .addSubview(self.view1)
+        self.view1.addSubview(self.sideMenuButton)
         
+        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+        sidebarView.delegate = self
+        sidebarView.layer.zPosition=100
+        self.view1.isUserInteractionEnabled = true
+        self.navigationController?.view.addSubview(sidebarView)
         
         blackScreen = UIView(frame: self.view.bounds)
         blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
         blackScreen.isHidden=true
         self.navigationController?.view.addSubview(blackScreen)
         blackScreen.layer.zPosition=99
+        
+       
+        
+        
+        
+        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
+        blackScreen.addGestureRecognizer(tapGestRecognizer)
         
         blurEffectofDriverPopUpView.frame = self.view.bounds
         blurEffectofDriverPopUpView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -288,7 +302,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dropShadow(btnConfirmLocation)
         
        
-        //        oneWayButton.setTitleColor(UIColor.black, for: .normal)
+        //oneWayButton.setTitleColor(UIColor.black, for: .normal)
         
         var currentTime: String {
             Date().description(with: .current)
@@ -385,17 +399,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view1.addSubview(self.sideMenuButton)
 
-        sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate = self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled = true
-        
-        self.navigationController?.view.addSubview(sidebarView)
-        
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
         
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
@@ -1180,46 +1184,46 @@ extension HomeViewController: SidebarViewDelegate {
         }
         switch row {
         case .editProfile:
-            let epvc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            let epvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
             navigationController?.pushViewController(epvc, animated: true)
         case .myRides:
             print("MyRidesViewController")
-            let mrvc = storyboard?.instantiateViewController(withIdentifier: "MyRidesViewController") as! MyRidesViewController
+            let mrvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyRidesViewController") as! MyRidesViewController
             navigationController?.pushViewController(mrvc, animated: true)
         case .payment:
             print("Payment")
-            let pvc = storyboard?.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+            let pvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
             navigationController?.pushViewController(pvc, animated: true)
         case .offers:
             print("Offers")
-            let ovc = storyboard?.instantiateViewController(withIdentifier: "OffersViewController") as! OffersViewController
+            let ovc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OffersViewController") as! OffersViewController
             navigationController?.pushViewController(ovc, animated: true)
         case .safety:
             print("Safety")
-            let ovc = storyboard?.instantiateViewController(withIdentifier: "SafetyViewController") as! SafetyViewController
-            navigationController?.pushViewController(ovc, animated: true)
+            let sfvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SafetyViewController") as! SafetyViewController
+            navigationController?.pushViewController(sfvc, animated: true)
         case .faqs:
             print("FAQs")
-            let faqvc = storyboard?.instantiateViewController(withIdentifier: "FAQViewController") as! FAQViewController
+            let faqvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FAQViewController") as! FAQViewController
             navigationController?.pushViewController(faqvc, animated: true)
         case .feedback:
             print("Feedback")
-            let fvc = storyboard?.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
+            let fvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
             present(fvc, animated: true, completion: nil)
         case .shareApp:
             print("Share App")
             shareApp()
         case .referEarn:
             print("Refer & Earn")
-            let svc = storyboard?.instantiateViewController(withIdentifier: "ReferandEarnViewController") as! ReferandEarnViewController
+            let svc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReferandEarnViewController") as! ReferandEarnViewController
             navigationController?.pushViewController(svc, animated: true)
         case .support:
             print("Support")
-            let svc = storyboard?.instantiateViewController(withIdentifier: "SupportViewController") as! SupportViewController
+            let svc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SupportViewController") as! SupportViewController
             navigationController?.pushViewController(svc, animated: true)
         case .about:
             print("About")
-            let avc = storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+            let avc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
             navigationController?.pushViewController(avc, animated: true)
         case .none:
             print("None")

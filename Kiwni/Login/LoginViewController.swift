@@ -127,8 +127,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                 }
                 print("Got verification code")
-                let mainStoryboard = UIStoryboard(name: "User", bundle: nil)
-                let otpVc = mainStoryboard.instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
+               
+                let otpVc = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
                 otpVc.userMobileNumber = number
                 self?.navigationController?.pushViewController(otpVc, animated: true)
                 
