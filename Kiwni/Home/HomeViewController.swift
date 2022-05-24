@@ -1308,16 +1308,16 @@ extension HomeViewController: CLLocationManagerDelegate
             switch accuracy {
             case .fullAccuracy:
                 print("Location accuracy is precise.")
-                                
+
                 navigationController?.popViewController(animated: true)
                 locationManager.startUpdatingLocation()
-                
+
             case .reducedAccuracy:
                 print("Location accuracy is not precise.")
             @unknown default:
                 fatalError()
             }
-            
+
             // Handle authorization status
             switch status {
             case .restricted:
@@ -1326,11 +1326,11 @@ extension HomeViewController: CLLocationManagerDelegate
                 print("User denied access to location.")
                 // Display the map using the default location.
                 mapView.isHidden = false
-                
+
                 let gotoSVC = storyboard?.instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
-                navigationController?.pushViewController(gotoSVC, animated: true)                
-                
-                
+                navigationController?.pushViewController(gotoSVC, animated: true)
+
+
             case .notDetermined:
                 print("Location status not determined.")
             case .authorizedAlways: fallthrough
@@ -1342,18 +1342,18 @@ extension HomeViewController: CLLocationManagerDelegate
             }
         }
         
-        @objc func gotoSettingButtonClicked(){
-            print("Move To Seeting.")
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                       return
-                   }
-
-                   if UIApplication.shared.canOpenURL(settingsUrl) {
-                       UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                           print("Settings opened: \(success)") // Prints true
-                       })
-                   }
-        }
+//        @objc func gotoSettingButtonClicked(){
+//            print("Move To Seeting.")
+//            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//                       return
+//                   }
+//
+//                   if UIApplication.shared.canOpenURL(settingsUrl) {
+//                       UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                           print("Settings opened: \(success)") // Prints true
+//                       })
+//                   }
+//        }
         
         // Handle location manager errors.
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
