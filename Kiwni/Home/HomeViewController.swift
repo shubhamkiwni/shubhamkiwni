@@ -260,7 +260,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.navigationController?.view.addSubview(blackScreen)
         blackScreen.layer.zPosition=99
         
-       
+        
         
         
         
@@ -301,7 +301,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dropShadow(viewCabsButton)
         dropShadow(btnConfirmLocation)
         
-       
+        
         //oneWayButton.setTitleColor(UIColor.black, for: .normal)
         
         var currentTime: String {
@@ -399,7 +399,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-
+        
         
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
@@ -719,30 +719,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
         print(roundTripButton.tag)
         clearMap()
-//        if roundTripButton.tag == 0 {
-//            if returnByDatePickerButton.isHidden == true {
-//                returnByDatePickerButton.isHidden = false
-//                returnByLable.isHidden = false
-//                roundTripButton.backgroundColor = .buttonBackgroundColor
-//                roundTripButton.setTitleColor(.white, for: .normal)
-//                oneWayButton.backgroundColor = .white
-//                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
-//            }
-//        } else if roundTripButton.tag == 1 {
-//            returnByDatePickerButton.isHidden = true
-//            returnByLable.isHidden = true
-//            roundTripButton.backgroundColor = .buttonBackgroundColor
-//            roundTripButton.setTitleColor(.white, for: .normal)
-//            oneWayButton.backgroundColor = .white
-//            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
-//        } else if roundTripButton.tag == 2 {
-//            returnByDatePickerButton.isHidden = true
-//            returnByLable.isHidden = true
-//            roundTripButton.backgroundColor = .buttonBackgroundColor
-//            roundTripButton.setTitleColor(.white, for: .normal)
-//            oneWayButton.backgroundColor = .white
-//            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
-//        }
+        //        if roundTripButton.tag == 0 {
+        //            if returnByDatePickerButton.isHidden == true {
+        //                returnByDatePickerButton.isHidden = false
+        //                returnByLable.isHidden = false
+        //                roundTripButton.backgroundColor = .buttonBackgroundColor
+        //                roundTripButton.setTitleColor(.white, for: .normal)
+        //                oneWayButton.backgroundColor = .white
+        //                oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        //            }
+        //        } else if roundTripButton.tag == 1 {
+        //            returnByDatePickerButton.isHidden = true
+        //            returnByLable.isHidden = true
+        //            roundTripButton.backgroundColor = .buttonBackgroundColor
+        //            roundTripButton.setTitleColor(.white, for: .normal)
+        //            oneWayButton.backgroundColor = .white
+        //            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        //        } else if roundTripButton.tag == 2 {
+        //            returnByDatePickerButton.isHidden = true
+        //            returnByLable.isHidden = true
+        //            roundTripButton.backgroundColor = .buttonBackgroundColor
+        //            roundTripButton.setTitleColor(.white, for: .normal)
+        //            oneWayButton.backgroundColor = .white
+        //            oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        //        }
         
         roundTripButton.backgroundColor = .buttonBackgroundColor
         roundTripButton.setTitleColor(.white, for: .normal)
@@ -767,7 +767,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         roundTripButton.setTitleColor(.buttonBackgroundColor, for: .normal)
         oneWayButton.backgroundColor = .buttonBackgroundColor
         oneWayButton.setTitleColor(.white, for: .normal)
-
+        
         self.pickUpTextField.text = self.usercurrentLocationAddress
         self.sourceCoordinate = userCurrentlocation
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
@@ -1154,19 +1154,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func favirateButtonPressed(_ sender: UIButton) {
         print("Faviourate")
-//        guard let popupViewController = CustomPopupView.instantiate() else { return }
-//        popupViewController.delegate = self
-//        //        popupViewController.titleString = "I am custom popup"
-//
-//        let popupVC = PopupViewController(contentController: popupViewController, position: .bottom(0), popupWidth: self.view.frame.width, popupHeight: 300)
-//        popupVC.cornerRadius = 15
-//        popupVC.backgroundAlpha = 0.0
-//        popupVC.backgroundColor = .clear
-//        popupVC.canTapOutsideToDismiss = true
-//        popupVC.shadowEnabled = true
-//        popupVC.delegate = self
-//        popupVC.modalPresentationStyle = .popover
-//        self.present(popupVC, animated: true, completion: nil)
+        //        guard let popupViewController = CustomPopupView.instantiate() else { return }
+        //        popupViewController.delegate = self
+        //        //        popupViewController.titleString = "I am custom popup"
+        //
+        //        let popupVC = PopupViewController(contentController: popupViewController, position: .bottom(0), popupWidth: self.view.frame.width, popupHeight: 300)
+        //        popupVC.cornerRadius = 15
+        //        popupVC.backgroundAlpha = 0.0
+        //        popupVC.backgroundColor = .clear
+        //        popupVC.canTapOutsideToDismiss = true
+        //        popupVC.shadowEnabled = true
+        //        popupVC.delegate = self
+        //        popupVC.modalPresentationStyle = .popover
+        //        self.present(popupVC, animated: true, completion: nil)
         
         let fvc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
         present(fvc, animated: true, completion: nil)
@@ -1302,64 +1302,62 @@ extension HomeViewController: CLLocationManagerDelegate
     }
     
     // Handle authorization for the location manager.
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            // Check accuracy authorization
-            let accuracy = manager.accuracyAuthorization
-            switch accuracy {
-            case .fullAccuracy:
-                print("Location accuracy is precise.")
-
-                navigationController?.popViewController(animated: true)
-                locationManager.startUpdatingLocation()
-
-            case .reducedAccuracy:
-                print("Location accuracy is not precise.")
-            @unknown default:
-                fatalError()
-            }
-
-            // Handle authorization status
-            switch status {
-            case .restricted:
-                print("Location access was restricted.")
-            case .denied:
-                print("User denied access to location.")
-                // Display the map using the default location.
-                mapView.isHidden = false
-
-                let gotoSVC = storyboard?.instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
-                navigationController?.pushViewController(gotoSVC, animated: true)
-
-
-            case .notDetermined:
-                print("Location status not determined.")
-            case .authorizedAlways: fallthrough
-            case .authorizedWhenInUse:
-                print("Location status is OK.")
-                //locationManager.startUpdatingLocation()
-            @unknown default:
-                fatalError()
-            }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        // Check accuracy authorization
+        let accuracy = manager.accuracyAuthorization
+        switch accuracy {
+        case .fullAccuracy:
+            print("Location accuracy is precise.")
+            locationManager.startUpdatingLocation()
+            
+        case .reducedAccuracy:
+            print("Location accuracy is not precise.")
+        @unknown default:
+            fatalError()
         }
         
-//        @objc func gotoSettingButtonClicked(){
-//            print("Move To Seeting.")
-//            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//                       return
-//                   }
-//
-//                   if UIApplication.shared.canOpenURL(settingsUrl) {
-//                       UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                           print("Settings opened: \(success)") // Prints true
-//                       })
-//                   }
+        // Handle authorization status
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+            // Display the map using the default location.
+            mapView.isHidden = false
+            
+            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
+            navigationController?.pushViewController(gotoSVC, animated: true)
+            
+            
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+            //locationManager.startUpdatingLocation()
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+//    @objc func gotoSettingButtonClicked(){
+//        print("Move To Seeting.")
+//        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//            return
 //        }
-        
-        // Handle location manager errors.
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            locationManager.stopUpdatingLocation()
-            print("Error: \(error)")
-        }
+//        
+//        if UIApplication.shared.canOpenURL(settingsUrl) {
+//            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                print("Settings opened: \(success)") // Prints true
+//            })
+//        }
+//    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print("Error: \(error)")
+    }
 }
 
 extension HomeViewController: GMSAutocompleteViewControllerDelegate {

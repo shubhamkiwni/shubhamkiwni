@@ -13,6 +13,7 @@ import FirebaseAuth
 
 var globalAccessToken : String!
 
+
 class AuthManager {
     static let shared = AuthManager()
     
@@ -28,7 +29,7 @@ class AuthManager {
     var roles : [String] = []
     var rolename : String = ""
     
-   //MARK:- Start Auth For Phone Number
+    //MARK:- Start Auth For Phone Number
     public func startAuth(phoneNumber : String, completion: @escaping(Bool) -> Void){
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil){[weak self]verificationId, error in
             guard let verificationId = verificationId, error == nil else{
@@ -50,7 +51,7 @@ class AuthManager {
         }
         
         //auth.settings?.isAppVerificationDisabledForTesting = true;
-
+        
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: smsCode)
         
         auth.signIn(with: credential) { result, error in
@@ -59,16 +60,16 @@ class AuthManager {
                 return
             }
             completion(true)
-        
+            
             let currentUser = Auth.auth().currentUser
-
+            
             
             self.uid = currentUser?.uid
             self.displayName = currentUser?.displayName
             self.email = currentUser?.email
             self.phoneNumber = currentUser?.phoneNumber
             self.refreshToken = currentUser?.refreshToken
-       
+            
             
             print("uid : \(self.uid ?? "")")
             print("displayName : \(self.displayName ?? "")")
@@ -92,50 +93,40 @@ class AuthManager {
                 self.id_token = result? .token
                 print("id_token : \(self.id_token ?? "")")
                 UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
-              /*  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)*/
                 
                 self.roles = result?.claims["Roles"] as! [String]
                 print("Roles : \(self.roles)")
                 UserDefaults.standard.setValue(self.roles, forKey: "Roles")
                 print(UserDefaults.standard.stringArray(forKey: "Roles") ?? [""])
-                //self.rolesarr = UserDefaults.standard.stringArray(forKey: "Roles") ?? []
-
+                rolename = UserDefaults.standard.string(forKey: "Roles") ?? ""
+                print("RoleName : ", rolename)
+                
                 if(self.roles.isEmpty){
                     return
                 }
-                  self.rolename = self.roles[0]
-                    print("Role Name : ", self.rolename)
-                    if(self.rolename == "DRIVER"){
-
-                       // self.view.makeToast(ErrorMessage.list.notregisterUser)
-                        print("Not register as user")
-                        UserDefaults.standard.setValue(false, forKey: "status")
-                        let storyboard = UIStoryboard(name: "User", bundle: nil)
-                        let loginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
-
-                    }else if(self.rolename == "USER"){
-                        UserDefaults.standard.setValue(true, forKey: "status")
-                        print("Code Matches")
-
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let HomeVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
-//                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
-                    }
+                rolename = self.roles[0]
+                print("Role Name : ", rolename)
+                if(rolename == "DRIVER"){
+                    print("Not register as user")
+                    UserDefaults.standard.setValue(false, forKey: "status")
+                    let storyboard = UIStoryboard(name: "User", bundle: nil)
+                    let loginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
+                    
+                }
+                
             })
         }
     }
     
     func logout(){
         let firebaseAuth = Auth.auth()
-       do {
-         try firebaseAuth.signOut()
-        print("Logout Done")
-       } catch let signOutError as NSError {
-         print("Error signing out: %@", signOutError)
-       }
+        do {
+            try firebaseAuth.signOut()
+            print("Logout Done")
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
-
+    
 }
