@@ -164,6 +164,7 @@ class confirmBooking: UIView {
         phoneButton.setBackgroundColor(.clear, for: .selected)
         
         tripTypeString = "Personal"
+        UserDefaults.standard.set(tripTypeString, forKey: "selecttripType")
        
         notificationString = "Email,WSP,SMS"
         print("In Did Load notification String: ", notificationString ?? "")
