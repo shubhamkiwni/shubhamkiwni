@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
         
         print("Map back button is work")
         
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
 }

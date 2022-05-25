@@ -16,7 +16,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         tripsTableView.reloadData()
     }
     
-    func didPressButton() {     
+    func didPressButton() {
         let crvc = storyboard?.instantiateViewController(withIdentifier: "CancelRideViewController") as! CancelRideViewController
         present(crvc, animated: true, completion: nil)
     }
@@ -44,7 +44,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     let pastTripButtonBorder = CALayer()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         upComingTripButtonBorder.backgroundColor = UIColor.lightGray.cgColor
         upComingTripButtonBorder.frame = CGRect(x: 0, y: upcomingButton.frame.size.height - 2, width: upcomingButton.frame.width, height: 2)
         upcomingButton.layer.addSublayer(upComingTripButtonBorder)
@@ -55,12 +55,12 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         
         self.tripsTableView.register(UpcomingTableViewCell.nib(), forCellReuseIdentifier: UpcomingTableViewCell.identifier)
         self.tripsTableView.register(PastTableViewCell.nib(), forCellReuseIdentifier: PastTableViewCell.identifier)
-    
+        self.showIndicator(withTitle: "Loading", and: "Please Wait")
+        
         APIManager.shareInstance.callinggInProgressTripRequest() { response in
-            self.showIndicator(withTitle: "Loading", and: "Please Wait")
             switch response{
             case .success(let inProgressResponse):
-                
+                self.hideIndicator()
                 print("In progress responseArray:", inProgressResponse)
                 self.upcomingTripArray.append(contentsOf: inProgressResponse)
                 print("count:",self.upcomingTripArray.count)
@@ -72,51 +72,52 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 print("User Fail on ViewController")
             }
         }
-            APIManager.shareInstance.callinggFindTripByUserID() { response in
-                switch response{
-                case .success(let responseArray):
-                    print("User Success on ViewController")
-                    
-                    self.pastTripArray.append(contentsOf: responseArray)
-                    print(self.pastTripArray.count)
-                    
-                    for i in self.pastTripArray {
-                         if i.status != "In-Progress"{
-                             
-                             self.sortedPastTripArray.append(i)
-                             print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
-                         } else {
-                             print("other trips are In-progress")
-                         }
-                     }
-                    
-                    print("Sorted Past Trip",self.sortedPastTripArray)
-                    print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
-                    
-                    
-                    for i in self.sortedPastTripArray {
-                        self.db.deleteByID(id: Int(Double(i.id ?? 00)))
-                    }
-                    
-                    for i in self.sortedPastTripArray {
+        
+        APIManager.shareInstance.callinggFindTripByUserID() { response in
+            switch response{
+            case .success(let responseArray):
+                print("User Success on ViewController")
+                
+                self.pastTripArray.append(contentsOf: responseArray)
+                print(self.pastTripArray.count)
+                
+                for i in self.pastTripArray {
+                    if i.status != "In-Progress"{
                         
-                        self.db.insert(id: Double(i.id ?? 00), startLocationCity: i.startLocationCity ?? "", endlocationCity: i.endlocationCity ?? "", startTime: i.startTime ?? "", endTime: i.endTime ?? "", status: i.status ?? "", estimatedPrice: i.estimatedPrice ?? 00, serviceType: i.serviceType ?? "")
+                        self.sortedPastTripArray.append(i)
+                        print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
+                    } else {
+                        print("other trips are In-progress")
                     }
-                    
-                    self.persons = self.db.read()
-                    self.strTripType = "Upcoming"
-                    self.tripsTableView.reloadData()
-                    print("persons Count:",self.persons.count)
-//                    print("Data:", self.persons[0].id)
-                    
-                    print("User Success on ViewController")
-                    
-                case .failure(let err) :
-                    self.hideIndicator()
-                    print(err.localizedDescription)
-                    print("User Fail on ViewController")
                 }
+                
+                print("Sorted Past Trip",self.sortedPastTripArray)
+                print("sortedPastTripArray Count: ", self.sortedPastTripArray.count)
+                
+                
+                for i in self.sortedPastTripArray {
+                    self.db.deleteByID(id: Int(Double(i.id ?? 00)))
+                }
+                
+                for i in self.sortedPastTripArray {
+                    
+                    self.db.insert(id: Double(i.id ?? 00), startLocationCity: i.startLocationCity ?? "", endlocationCity: i.endlocationCity ?? "", startTime: i.startTime ?? "", endTime: i.endTime ?? "", status: i.status ?? "", estimatedPrice: i.estimatedPrice ?? 00, serviceType: i.serviceType ?? "")
+                }
+                
+                self.persons = self.db.read()
+                self.strTripType = "Upcoming"
+                self.tripsTableView.reloadData()
+                print("persons Count:",self.persons.count)
+                //                    print("Data:", self.persons[0].id)
+                
+                print("User Success on ViewController")
+                
+            case .failure(let err) :
+                self.hideIndicator()
+                print(err.localizedDescription)
+                print("User Fail on ViewController")
             }
+        }
         
         myRideLable.font = UIFont.fontStyle(18, .semiBold)
         upcomingButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
@@ -125,7 +126,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
                 if reachability.connection == .wifi {
@@ -139,7 +140,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
                 print("Not reachable")
                 self.noInternetErrorPopupShow("No Internet Connection")
             }
-
+            
             do {
                 try self.reachability.startNotifier()
             } catch {
@@ -153,7 +154,7 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -214,7 +215,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 print("OTP after decoding: ", decodedString)
                 cell.otpValue.text = "\(decodedString)"
                 
-//                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
+                //                cell.otpValue.text = upcomingTripArray[indexPath.row].otp
                 cell.bookingDetailsView.isHidden = true
                 cell.notificationView.isHidden = true
             } else {
@@ -226,7 +227,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.bookingNoValue.text = "-"
                 } else {
                     cell.krnNoValue.text = "\(upcomingTripArray[indexPath.row].reservationId ?? 0)"
-                    cell.bookingNoValue.text = "\(upcomingTripArray[indexPath.row].reservationId ?? 0)" 
+                    cell.bookingNoValue.text = "\(upcomingTripArray[indexPath.row].reservationId ?? 0)"
                 }
             }
             
@@ -292,7 +293,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 let yourDate: Date? = formatter.date(from: myString)
                 formatter.dateFormat = "dd-MM-yyyy"
                 let dateStr = formatter.string(from: yourDate!)
-                print("dateStr : ", dateStr)                                
+                print("dateStr : ", dateStr)
                 
                 formatter.dateFormat = "hh:mm a"
                 let timeStr = formatter.string(from: yourDate!)
@@ -322,7 +323,7 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.dropDateTimeLable.text  = "\(dateStr) on \(timeStr)"
                 
             }
-                        
+            
             return cell
         }
         
