@@ -748,6 +748,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         roundTripButton.setTitleColor(.white, for: .normal)
         oneWayButton.backgroundColor = .white
         oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
+        returnByDatePickerButton.isHidden = false
+        returnByLable.isHidden = false
         
         self.pickUpTextField.text = self.usercurrentLocationAddress
         self.sourceCoordinate = userCurrentlocation
