@@ -34,7 +34,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var sortingButton: UIButton!
-    @IBOutlet weak var carsTableView: UITableView!   
+    @IBOutlet weak var carsTableView: UITableView!
     var carsArray = ["", "", "", "", ""]
     
     var tableViewData = [cellData]()
@@ -60,13 +60,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        if sortingLabel == "Filter" {
-            let svc = navigationController?.viewControllers[5] as! FilterViewController
-            navigationController?.popToViewController(svc, animated: true)
-        } else {
-            let svc = navigationController?.viewControllers[5] as! SortViewController
-            navigationController?.popToViewController(svc, animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,7 +77,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! CarsTableViewCell
+            let cell = carsTableView.dequeueReusableCell(withIdentifier: "carCell") as! ResultCarsTableViewCell
             cell.carTypeLabel.text = tableViewData[indexPath.section].carType
             cell.carNameLabel.text = tableViewData[indexPath.section].carName
             cell.avaiLabelStatus.text = tableViewData[indexPath.section].avaiLabel
@@ -92,11 +86,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            cell.backgroundColor = .red
             return cell
         } else {
-            let seconCell = carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! CarModelsTableViewCell
+            let seconCell = carsTableView.dequeueReusableCell(withIdentifier: "carModelCell") as! ResultCarModelsTableViewCell
             seconCell.delegate1 = self
-//            seconCell.layer.borderColor = UIColor.black.cgColor
-//            seconCell.layer.borderWidth = 0.5
-//            seconCell.layer.cornerRadius = 5.0
+            seconCell.star1.setTitle("", for: .normal)
+            seconCell.star2.setTitle("", for: .normal)
+            seconCell.star3.setTitle("", for: .normal)
+            seconCell.star4.setTitle("", for: .normal)
+            seconCell.star5.setTitle("", for: .normal)
+            
+            seconCell.bookButton.backgroundColor = .buttonBackgroundColor
+            
+            
             return seconCell
         }
     }

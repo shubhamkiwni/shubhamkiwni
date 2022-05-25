@@ -25,6 +25,13 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var specialRequestView: UIView!
     @IBOutlet weak var specialRequestLabel: UILabel!
     @IBOutlet weak var specialRequestList: UIView!
+    @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var modelRegisteredYearLabel: UILabel!
+    @IBOutlet weak var wheelChairAssistantLabel: UILabel!
+    @IBOutlet weak var babyCarChairLabel: UILabel!
+    @IBOutlet weak var safetyBodyGuardLabel: UILabel!
+    @IBOutlet weak var vehicalWithCarriedLabel: UILabel!
     
     let footerView = UIView()
     let button = UIButton()
@@ -52,6 +59,8 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
         modelListButton.layer.cornerRadius = 5.0
         modelListButton.layer.borderColor = UIColor.black.cgColor
         modelListButton.layer.borderWidth = 1
+        modelListButton.backgroundColor = .buttonBackgroundColor
+        modelListButton.setTitleColor(.white, for: .normal)
         
         specialRequestView.layer.cornerRadius = 5.0
         specialRequestView.layer.borderColor = UIColor.black.cgColor
@@ -62,6 +71,14 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
         
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         
+        filterLabel.font = UIFont.fontStyle(15, .semiBold)
+        brandLabel.font = UIFont.fontStyle(15, .regular)
+        modelRegisteredYearLabel.font = UIFont.fontStyle(15, .regular)
+        wheelChairAssistantLabel.font = UIFont.fontStyle(15, .regular)
+        babyCarChairLabel.font = UIFont.fontStyle(15, .regular)
+        safetyBodyGuardLabel.font = UIFont.fontStyle(15, .regular)
+        vehicalWithCarriedLabel.font = UIFont.fontStyle(15, .regular)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,8 +86,7 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-//        let hvc = navigationController?.viewControllers[4] as! CarsViewController
-//        navigationController?.popToViewController(hvc, animated: true)
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -160,8 +176,10 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
         
         button.frame = CGRect(x: 80, y: 10, width: self.tableView.frame.width - 150, height: 40)
         button.setTitle("Apply", for: .normal)
+        button.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        button.backgroundColor = .buttonBackgroundColor
         button.setTitleColor( .white, for: .normal)
-        button.backgroundColor = .black
+//        button.backgroundColor = .black
         button.layer.cornerRadius = 10.0
         
         footerView.addSubview(button)
@@ -180,6 +198,7 @@ class FilterViewController: UITableViewController, UICollectionViewDelegate, UIC
         let cell = brandCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BrandCollectionViewCell
         cell.brandImage.image = UIImage(named: brandImageArray[indexPath.row])
         cell.brandLabel.text = brandLabelArray[indexPath.row]
+        cell.brandLabel.font = UIFont.fontStyle(15, .regular)
         return cell
     }
     

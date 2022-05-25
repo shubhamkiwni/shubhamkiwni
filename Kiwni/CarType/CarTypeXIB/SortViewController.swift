@@ -30,6 +30,11 @@ class SortViewController: UIViewController {
         highToLowButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         lowToHighButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         sortLabel.font = UIFont.fontStyle(15, .semiBold)
+        
+        latestButton.setTitleColor(.white, for: .normal)
+        popularityButton.setTitleColor(.white, for: .normal)
+        highToLowButton.setTitleColor(.white, for: .normal)
+        lowToHighButton.setTitleColor(.white, for: .normal)
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {

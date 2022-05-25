@@ -383,7 +383,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             seconCell.vehicalProviderLabel.text = carsArray[indexPath.section].selectionData[indexPath.row - 1].providername
             
 //            let priceString =  String(round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0))
-            seconCell.fareLabel.text = "\(forTrailingZero(temp: round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0)))/-"
+            seconCell.fareLabel.text = "₹ \(forTrailingZero(temp: round(carsArray[indexPath.section].selectionData[indexPath.row - 1].estimatedPrice ?? 0)))/-"
             seconCell.delegate1 = self
             return seconCell
         }

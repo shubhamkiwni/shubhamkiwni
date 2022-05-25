@@ -40,10 +40,18 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
     var strTripType :  String = ""
     let formatter = DateFormatter()
     let reachability = try! Reachability()
+    let upComingTripButtonBorder = CALayer()
+    let pastTripButtonBorder = CALayer()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
+        upComingTripButtonBorder.backgroundColor = UIColor.lightGray.cgColor
+        upComingTripButtonBorder.frame = CGRect(x: 0, y: upcomingButton.frame.size.height - 2, width: upcomingButton.frame.width, height: 2)
+        upcomingButton.layer.addSublayer(upComingTripButtonBorder)
+        
+        pastTripButtonBorder.backgroundColor = UIColor.white.cgColor
+        pastTripButtonBorder.frame = CGRect(x: 0, y: pastButton.frame.size.height - 2, width: pastButton.frame.width, height: 2)
+        pastButton.layer.addSublayer(pastTripButtonBorder)
         
         self.tripsTableView.register(UpcomingTableViewCell.nib(), forCellReuseIdentifier: UpcomingTableViewCell.identifier)
         self.tripsTableView.register(PastTableViewCell.nib(), forCellReuseIdentifier: PastTableViewCell.identifier)
@@ -52,11 +60,12 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
             switch response{
             case .success(let inProgressResponse):
-                self.hideIndicator()
+                
                 print("In progress responseArray:", inProgressResponse)
                 self.upcomingTripArray.append(contentsOf: inProgressResponse)
                 print("count:",self.upcomingTripArray.count)
                 self.tripsTableView.reloadData()
+                self.hideIndicator()
             case .failure(let err) :
                 self.hideIndicator()
                 print(err.localizedDescription)
@@ -160,22 +169,20 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         strTripType = "Upcoming"
         tripsTableView.reloadData()
         
-        upcomingButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: upcomingButton.frame.width)
-        pastButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: pastButton.frame.width)
-        
+        upComingTripButtonBorder.backgroundColor = UIColor.lightGray.cgColor
+        pastTripButtonBorder.backgroundColor = UIColor.white.cgColor
     }
     @IBAction func pastButtonPressed(_ sender: UIButton) {
         if sortedPastTripArray.isEmpty {
             tripsTableView.isHidden = true
             customErrorPopup("No past Trip found.")
-            
         }
         print("pastButtonPressed")
         strTripType = "Past"
         tripsTableView.isHidden = false
         tripsTableView.reloadData()
-        pastButton.addBottomBorderWithColor(color: .gray, width: 2, frameWidth: pastButton.frame.width)
-        upcomingButton.addBottomBorderWithColor(color: .white, width: 2, frameWidth: upcomingButton.frame.width)
+        upComingTripButtonBorder.backgroundColor = UIColor.white.cgColor
+        pastTripButtonBorder.backgroundColor = UIColor.lightGray.cgColor
     }
 }
 
@@ -253,8 +260,10 @@ extension MyRidesViewController: UITableViewDelegate, UITableViewDataSource {
             
             if directionStr == "one-way" {
                 cell.dateLabel.text = startTimeResult.0
+                cell.timeLabel.text = startTimeResult.1
             } else if directionStr == "two-way" {
                 cell.dateLabel.text = "\(startTimeResult.0) - \(endTimeResult.0)" //startTimeResult.0 + "-" + endTimeResult.0
+                cell.timeLabel.text = startTimeResult.1
             }
             
             cell.delegate = self

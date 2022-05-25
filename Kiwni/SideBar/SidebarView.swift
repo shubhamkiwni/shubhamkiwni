@@ -107,9 +107,9 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
                 cellImg.image = UIImage(named: "Profile Icon")
             }
 
-            DispatchQueue.main.async {
-                cellImg.image = self.storeimage
-            }
+//            DispatchQueue.main.async {
+//                cellImg.image = self.storeimage
+//            }
             cell.addSubview(cellImg)
             
             let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 300, height: 30))

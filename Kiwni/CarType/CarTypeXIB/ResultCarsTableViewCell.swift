@@ -31,6 +31,10 @@ class ResultCarsTableViewCell: UITableViewCell {
         carsDetailsView.layer.borderColor = UIColor.lightGray.cgColor
 //        carModelsView.addSubview(CarModelsXIB)
 //        CarModelsXIB.delegate2 = self
+        carTypeLabel.font = UIFont.fontStyle(14, .regular)
+        carNameLabel.font = UIFont.fontStyle(15, .regular)
+        avaiLabelStatus.font = UIFont.fontStyle(14, .regular)
+        priceLabel.font = UIFont.fontStyle(14, .regular)
     }
     
 //    func goNext() {

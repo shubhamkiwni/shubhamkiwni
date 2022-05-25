@@ -17,10 +17,14 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        mapView.isUserInteractionEnabled = false
+
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        print("Map back button is work")
+        
         navigationController?.popToRootViewController(animated: true)
     }
 

@@ -34,11 +34,15 @@ class ResultCarModelsTableViewCell: UITableViewCell {
         applyShadow(cornerRadius: 8)
         bookButton.layer.cornerRadius = 5.0
         
-//        carModelsView.layer.masksToBounds = false
-//        carModelsView.layer.shadowColor = UIColor.black.cgColor
-//        carModelsView.layer.shadowOpacity = 0.5
-//        carModelsView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        carModelsView.layer.shadowRadius = 1
+        modelRegisterLabel.font = UIFont.fontStyle(13, .regular)
+        carModelRegisterYearLabel.font = UIFont.fontStyle(12, .regular)
+        ratingLabel.font = UIFont.fontStyle(13, .regular)
+        fareLabel.font = UIFont.fontStyle(13, .regular)
+        bookButton.titleLabel?.font = UIFont.fontStyle(12, .regular)
+        availabelStatusLabel.font = UIFont.fontStyle(10, .regular)
+        vehicalProviderLabel.font = UIFont.fontStyle(13, .regular)
+        vehicalProviderNoLabel.font = UIFont.fontStyle(10, .regular)
+        reviewButton.titleLabel?.font = UIFont.fontStyle(11, .regular)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
