@@ -211,6 +211,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let reachability = try! Reachability()
     
+    let goToSettingView = UIView()
+    let goToSettingButton = UIButton()
+    let myImage = UIImageView()
+    let myLabel = UILabel()
+    let myLabel2 = UILabel()
+    
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,7 +257,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         sidebarView = SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
         sidebarView.delegate = self
         sidebarView.layer.zPosition=100
-        self.view1.isUserInteractionEnabled = true
+        self.view.isUserInteractionEnabled = true
         self.navigationController?.view.addSubview(sidebarView)
         
         blackScreen = UIView(frame: self.view.bounds)
@@ -718,7 +724,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func roundtripButtonPressed(_ sender: UIButton) {
         print(roundTripButton.tag)
-        clearMap()
+        //clearTextFieldWithMap()
         //        if roundTripButton.tag == 0 {
         //            if returnByDatePickerButton.isHidden == true {
         //                returnByDatePickerButton.isHidden = false
@@ -751,8 +757,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         returnByDatePickerButton.isHidden = false
         returnByLable.isHidden = false
         
-        self.pickUpTextField.text = self.usercurrentLocationAddress
-        self.sourceCoordinate = userCurrentlocation
+        if(pickUpTextField.text == ""){
+            self.pickUpTextField.text = self.usercurrentLocationAddress
+            self.sourceCoordinate = userCurrentlocation
+        }
+        
+        
+        
         self.mapView.isUserInteractionEnabled = false
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         selectedTripTypeMode = roundTripButton.titleLabel?.text ?? ""
@@ -762,7 +773,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
         print(oneWayButton.tag)
         newDatePicker.date = Date()
-        clearMap()
+      // clearTextFieldWithMap()
         returnByDatePickerButton.isHidden = true
         returnByLable.isHidden = true
         roundTripButton.backgroundColor = .white
@@ -770,8 +781,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         oneWayButton.backgroundColor = .buttonBackgroundColor
         oneWayButton.setTitleColor(.white, for: .normal)
         
-        self.pickUpTextField.text = self.usercurrentLocationAddress
-        self.sourceCoordinate = userCurrentlocation
+        if(pickUpTextField.text == ""){
+            self.pickUpTextField.text = self.usercurrentLocationAddress
+            self.sourceCoordinate = userCurrentlocation
+        }
+        
+        
         print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
         self.mapView.isUserInteractionEnabled = false
         selectedTripTypeMode = oneWayButton.titleLabel?.text ?? ""
@@ -1025,7 +1040,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 oneWayButton.backgroundColor = .white
                 oneWayButton.setTitleColor(.buttonBackgroundColor, for: .normal)
                 
-                clearMap()
+                clearTextFieldWithMap()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
                 self.sourceCoordinate = userCurrentlocation
                 print("usercurrentLocationAddress:",usercurrentLocationAddress ?? "")
@@ -1051,7 +1066,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 //                returnByDatePicker.isHidden = true
                 //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = true
-                clearMap()
+                clearTextFieldWithMap()
                 //                pickUpOnDatePicker.date = Date()
                 //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
@@ -1084,7 +1099,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 //                returnByDatePicker.isHidden = true
                 //                returnByDatePickerImageView.isHidden = true
                 selectPackageView.isHidden = false
-                clearMap()
+                clearTextFieldWithMap()
                 //                pickUpOnDatePicker.date = Date()
                 //                returnByDatePicker.date = Date()
                 self.pickUpTextField.text = self.usercurrentLocationAddress
@@ -1311,7 +1326,11 @@ extension HomeViewController: CLLocationManagerDelegate
         case .fullAccuracy:
             print("Location accuracy is precise.")
             locationManager.startUpdatingLocation()
-            
+            goToSettingView.isHidden = true
+//            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+//            navigationController?.pushViewController(gotoSVC, animated: true)
+ //          navigationController?.popViewController(animated:false)
+          //  navigationController?.dismiss(animated: false, completion: nil)
         case .reducedAccuracy:
             print("Location accuracy is not precise.")
         @unknown default:
@@ -1326,9 +1345,9 @@ extension HomeViewController: CLLocationManagerDelegate
             print("User denied access to location.")
             // Display the map using the default location.
             mapView.isHidden = false
-            
-            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
-            navigationController?.pushViewController(gotoSVC, animated: true)
+            goToSetting()
+//            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
+//            navigationController?.pushViewController(gotoSVC, animated: true)
             
             
         case .notDetermined:
@@ -1342,18 +1361,18 @@ extension HomeViewController: CLLocationManagerDelegate
         }
     }
     
-//    @objc func gotoSettingButtonClicked(){
-//        print("Move To Seeting.")
-//        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//            return
-//        }
-//        
-//        if UIApplication.shared.canOpenURL(settingsUrl) {
-//            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                print("Settings opened: \(success)") // Prints true
-//            })
-//        }
-//    }
+    @objc func gotoSettingButtonClicked(){
+        print("Move To Seeting.")
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
     
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

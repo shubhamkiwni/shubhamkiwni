@@ -11,6 +11,8 @@ import UIKit
 
 extension HomeViewController {
     
+
+    
     func design(_ view: UIView) {
         view.layer.cornerRadius = 10.0
         view.layer.masksToBounds = false
@@ -40,5 +42,45 @@ extension HomeViewController {
 
             self.present(activityVC, animated: true, completion: nil)
         }
+    }
+    
+    func goToSetting(){
+        
+       
+        
+        goToSettingView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        goToSettingView.backgroundColor = .white
+        goToSettingView.center = self.view.center
+        view.addSubview(goToSettingView)
+        print(goToSettingView.frame.origin.x, goToSettingView.frame.origin.y)
+        
+        myImage.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 280)
+        myImage.backgroundColor = .green
+        goToSettingView.addSubview(myImage)
+        myImage.image = UIImage(named: "Location Permission")
+        
+        myLabel.frame = CGRect.init(x: 15, y: myImage.frame.height + 20, width: UIScreen.main.bounds.width, height: 20)
+        goToSettingView.addSubview(myLabel)
+        myLabel.text = "Location Permission Required"
+        myLabel.textColor = .black
+        myLabel.font = UIFont.fontStyle(15, .regular)
+        
+        myLabel2.frame = CGRect.init(x: 15, y: myLabel.frame.origin.y + 50, width: UIScreen.main.bounds.width, height: 50)
+        goToSettingView.addSubview(myLabel2)
+        myLabel2.text = "For providing Kiwni services need to enable location services."
+        myLabel2.lineBreakMode = NSLineBreakMode.byWordWrapping
+        myLabel2.numberOfLines = 0
+        myLabel.textColor = .black
+        myLabel2.font = UIFont.fontStyle(15, .regular)
+        
+        goToSettingButton.frame = CGRect.init(x: 15, y: UIScreen.main.bounds.height - 80, width: UIScreen.main.bounds.width - 30, height: 40)
+        goToSettingButton.backgroundColor = UIColor.buttonBackgroundColor
+        goToSettingView.addSubview(goToSettingButton)
+        goToSettingButton.layer.cornerRadius = 10
+        goToSettingButton.setTitleColor(.white, for: .normal)
+        goToSettingButton.setTitle("Go To Setting", for: .normal)
+        goToSettingButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
+        
+        goToSettingButton.addTarget(self, action: #selector(gotoSettingButtonClicked), for: .touchUpInside)
     }
 }

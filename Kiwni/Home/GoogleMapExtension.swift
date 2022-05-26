@@ -174,7 +174,7 @@ extension HomeViewController {
         self.destinationCoordinate = nil
     }
     
-    func clearMap() {
+    func clearTextFieldWithMap() {
         pickUpTextField.text?.removeAll()
         sourceCoordinate = nil
         isconfirmLocation = false
