@@ -487,9 +487,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URc-C9-dip">
-                                <rect key="frame" x="12" y="304" width="168" height="31"/>
+                                <rect key="frame" x="12" y="304" width="104" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Resend Code in 00:03"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Resend OTP"/>
                                 <connections>
                                     <action selector="resendOTPButtonPressed:" destination="XwV-Cn-Ajm" eventType="touchUpInside" id="lv5-Er-FEh"/>
                                 </connections>

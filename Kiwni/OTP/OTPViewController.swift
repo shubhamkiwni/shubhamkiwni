@@ -26,6 +26,11 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var otp  = [String]()
     var userEnterdOtp : String = ""
     let reachability = try! Reachability()
+    //    var count = 60  // 60sec if you want
+    //    var resendTimer = Timer()
+    
+    var counter = 0
+    var timer = Timer()
     
     private lazy var textFieldsArray = [self.otpText1,self.otpText2,self.otpText3,self.otpText4,self.otpText5,self.otpText6]
     
@@ -34,6 +39,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
         print("User Mobile Numb : ", userMobileNumber ?? "")
         mobileNumberLabel.text = userMobileNumber ?? ""
+        reserndOTPButton.setTitle("Resend OTP", for: .normal)
+       // reserndOTPButton.setBackgroundColor(UIColor.buttonBackgroundColor, for: .normal)
+        reserndOTPButton.setTitleColor(.buttonBackgroundColor, for:.normal)
         self.initialLoads()
         
         /* otpText1.becomeFirstResponder()
@@ -209,10 +217,40 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func resendOTPButtonPressed(_ sender: UIButton) {
-        print("OTP resend successfully")
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        reserndOTPButton.isEnabled = false
+        loginButton.isEnabled = false
     }
     
-    
+    @objc func timerAction() {
+        counter += 1
+        reserndOTPButton.setTitle("Resend otp in \(counter)", for: .normal)
+        
+        if counter == 6 {
+            
+            timer.invalidate()
+            reserndOTPButton.isEnabled = true
+            counter = 0
+            self.reserndOTPButton.setTitle("Resend OTP", for: .normal)
+            self.reserndOTPButton.tintColor = .blue
+            AuthManager.shared.startAuth(phoneNumber: self.userMobileNumber!){[weak self] success in
+                
+                self?.hideIndicator()
+                
+                print("OTP resend successfully")
+                self?.view.makeToast(ErrorMessage.list.otpsendsuccessfully)
+                self?.loginButton.isEnabled = true
+                guard success
+                else  {
+                    self?.view.makeToast(ErrorMessage.list.numberBlock)
+                    print("Numb block")
+                    return
+                    
+                }
+            }
+        }
+    }
+   
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         //        let hVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         //        navigationController?.pushViewController(hVC, animated: true)

@@ -33,6 +33,7 @@ struct ErrorMessage {
     let passwordDonotMatch = "Password and Confirm password donot match"
     let enterOTP = "Enter OTP"
     let wrongOTP = "Wrong OTP"
+    let otpsendsuccessfully = "Otp send successfully."
     let EnterEmergencyNumber = "Enter Emergency PhoneNumber"
     let notabletodrawroute = "Not able to draw route"
     let entersourceaddress = "Please Enter Pickup Address"
