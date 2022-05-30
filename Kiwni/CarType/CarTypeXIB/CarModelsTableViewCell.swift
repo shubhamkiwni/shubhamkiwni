@@ -10,7 +10,7 @@ import UIKit
 protocol PaymentDelegate  {
     func payment(getName: String)
     func review()
-    func bookButtonPressed(_ cell: CarModelsTableViewCell)
+   func bookButtonPressed(_ cell: CarModelsTableViewCell)
 }
 
 
