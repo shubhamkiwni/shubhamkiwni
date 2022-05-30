@@ -8,7 +8,7 @@
 import UIKit
 
 class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PaymentDelegate3, PaymentDelegate {
-    func usernameClicked(_ cell: CarModelsTableViewCell) {
+    func bookButtonPressed(_ cell: CarModelsTableViewCell) {
         print("success")
     }
     
