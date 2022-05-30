@@ -440,7 +440,7 @@ class CarsViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         }
     }
     
-    func usernameClicked(_ cell: CarModelsTableViewCell) {
+    func bookButtonPressed(_ cell: CarModelsTableViewCell) {
         if let indexPath = self.carsTableView.indexPath(for: cell) {
             clickedPath = indexPath
             print(clickedPath ?? "")
