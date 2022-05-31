@@ -250,67 +250,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
             }
             completion(true)
             
-            let currentUser = Auth.auth().currentUser
-            
-            
-            self.uid = currentUser?.uid
-            self.displayName = currentUser?.displayName
-            self.email = currentUser?.email
-            self.phoneNumber = currentUser?.phoneNumber
-            self.refreshToken = currentUser?.refreshToken
-            
-            
-            print("uid : \(self.uid ?? "")")
-            print("displayName : \(self.displayName ?? "")")
-            print("email : \(self.email ?? "")")
-            print("Phone Num  :\(self.phoneNumber ?? "")")
-            print("Refresh Token :\(self.refreshToken ?? "")")
-            
-            UserDefaults.standard.setValue(self.uid, forKey: "uid")
-            UserDefaults.standard.setValue(self.displayName, forKey: "displayName")
-            UserDefaults.standard.setValue(self.email, forKey: "email")
-            UserDefaults.standard.setValue(self.phoneNumber, forKey: "phoneNumber")
-            UserDefaults.standard.setValue(self.refreshToken, forKey: "refreshToken")
-            
-            
-            currentUser?.getIDTokenResult(completion: { [self] (result, error) in
-                
-                self.partyId = result?.claims["partyId"] as? String
-                print("Party Id : \(self.partyId ?? "")")
-                UserDefaults.standard.setValue(self.partyId, forKey: "partyId")
-                
-                self.id_token = result? .token
-                print("id_token : \(self.id_token ?? "")")
-                UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
-                
-                self.roles = result?.claims["Roles"] as? [String] ?? []
-                print("Roles : \(self.roles)")
-                UserDefaults.standard.setValue(self.roles, forKey: "Roles")
-                print(UserDefaults.standard.stringArray(forKey: "Roles") ?? [""])
-                rolename = UserDefaults.standard.string(forKey: "Roles") ?? ""
-                print("RoleName : ", rolename)
-                
-                if(self.roles.isEmpty){
-                    let storyboard = UIStoryboard(name: "User", bundle: nil)
-                    let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-                    navigationController?.pushViewController(loginVC, animated: true)
-                }else{
-                    rolename = self.roles[0]
-                    print("Role Name : ", rolename)
-                    if(rolename != "USER"){
-                        print("Not register as user")
-                        UserDefaults.standard.setValue(false, forKey: "status")
-                        let storyboard = UIStoryboard(name: "User", bundle: nil)
-                        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-                        navigationController?.pushViewController(loginVC, animated: true)
-                    }
-                    else  if(rolename == "USER"){
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let loginVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
-                        navigationController?.pushViewController(loginVC, animated: true)
-                    }
-                }
-            })
+        
         }
     }
     
@@ -376,7 +316,73 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 UserDefaults.standard.setValue(true, forKey: "status")
-                print("Code Matches")    
+                print("Code Matches")
+                
+                let currentUser = Auth.auth().currentUser
+                
+                
+                self.uid = currentUser?.uid
+                self.displayName = currentUser?.displayName
+                self.email = currentUser?.email
+                self.phoneNumber = currentUser?.phoneNumber
+                self.refreshToken = currentUser?.refreshToken
+                
+                
+                print("uid : \(self.uid ?? "")")
+                print("displayName : \(self.displayName ?? "")")
+                print("email : \(self.email ?? "")")
+                print("Phone Num  :\(self.phoneNumber ?? "")")
+                print("Refresh Token :\(self.refreshToken ?? "")")
+                
+                UserDefaults.standard.setValue(self.uid, forKey: "uid")
+                UserDefaults.standard.setValue(self.displayName, forKey: "displayName")
+                UserDefaults.standard.setValue(self.email, forKey: "email")
+                UserDefaults.standard.setValue(self.phoneNumber, forKey: "phoneNumber")
+                UserDefaults.standard.setValue(self.refreshToken, forKey: "refreshToken")
+                
+                
+                currentUser?.getIDTokenResult(completion: { [self] (result, error) in
+                    
+                    self.partyId = result?.claims["partyId"] as? String
+                    print("Party Id : \(self.partyId ?? "")")
+                    UserDefaults.standard.setValue(self.partyId, forKey: "partyId")
+                    
+                    self.id_token = result? .token
+                    print("id_token : \(self.id_token ?? "")")
+                    UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
+                    
+                    self.roles = result?.claims["Roles"] as? [String] ?? []
+                    print("Roles : \(self.roles)")
+                    UserDefaults.standard.setValue(self.roles, forKey: "Roles")
+                    print(UserDefaults.standard.stringArray(forKey: "Roles") ?? [""])
+                    rolename = UserDefaults.standard.string(forKey: "Roles") ?? ""
+                    print("RoleName : ", rolename)
+                    
+                    if(self.roles.isEmpty){
+                        UserDefaults.standard.setValue(false, forKey: "status")
+                        let storyboard = UIStoryboard(name: "User", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                        navigationController?.pushViewController(loginVC, animated: true)
+                    }else{
+                        rolename = self.roles[0]
+                        print("Role Name : ", rolename)
+                        if(rolename != "USER"){
+                            print("Not register as user")
+                            UserDefaults.standard.setValue(false, forKey: "status")
+                            let storyboard = UIStoryboard(name: "User", bundle: nil)
+                            let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                            navigationController?.pushViewController(loginVC, animated: true)
+                        }
+                        else  if(rolename == "USER"){
+                            UserDefaults.standard.setValue(true, forKey: "status")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let loginVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
+                            navigationController?.pushViewController(loginVC, animated: true)
+                        }
+                    }
+                })
+                
+                
             }
         }
     }
