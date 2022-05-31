@@ -227,7 +227,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         otp.removeAll()
         
         guard let otp1 = otpText1.text, !otp1.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
