@@ -26,9 +26,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var otp  = [String]()
     var userEnterdOtp : String = ""
     let reachability = try! Reachability()
-    //    var count = 60  // 60sec if you want
-    //    var resendTimer = Timer()
-    
+   
     var getOTP = String()
     var otpCode = String()
     
@@ -43,60 +41,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         print("User Mobile Numb : ", userMobileNumber ?? "")
         mobileNumberLabel.text = userMobileNumber ?? ""
         reserndOTPButton.setTitle("Resend OTP", for: .normal)
-       // reserndOTPButton.setBackgroundColor(UIColor.buttonBackgroundColor, for: .normal)
         reserndOTPButton.setTitleColor(.buttonBackgroundColor, for:.normal)
         self.initialLoads()
-        
-        /* otpText1.becomeFirstResponder()
-         
-         otpText1.layer.masksToBounds = false
-         otpText1.layer.shadowColor = UIColor.black.cgColor
-         otpText1.layer.shadowOpacity = 0.5
-         otpText1.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText1.layer.shadowRadius = 1
-         
-         otpText2.layer.masksToBounds = false
-         otpText2.layer.shadowColor = UIColor.black.cgColor
-         otpText2.layer.shadowOpacity = 0.5
-         otpText2.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText2.layer.shadowRadius = 1
-         
-         otpText3.layer.masksToBounds = false
-         otpText3.layer.shadowColor = UIColor.black.cgColor
-         otpText3.layer.shadowOpacity = 0.5
-         otpText3.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText3.layer.shadowRadius = 1
-         
-         otpText4.layer.masksToBounds = false
-         otpText4.layer.shadowColor = UIColor.black.cgColor
-         otpText4.layer.shadowOpacity = 0.5
-         otpText4.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText4.layer.shadowRadius = 1
-         
-         otpText5.layer.masksToBounds = false
-         otpText5.layer.shadowColor = UIColor.black.cgColor
-         otpText5.layer.shadowOpacity = 0.5
-         otpText5.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText5.layer.shadowRadius = 1
-         
-         otpText6.layer.masksToBounds = false
-         otpText6.layer.shadowColor = UIColor.black.cgColor
-         otpText6.layer.shadowOpacity = 0.5
-         otpText6.layer.shadowOffset = CGSize(width: -1, height: 1)
-         otpText6.layer.shadowRadius = 1
-         */
-        
-        
-        //        loginButton.layer.cornerRadius = 10.0
-        //        loginButton.layer.masksToBounds = false
-        //        loginButton.layer.shadowColor = UIColor.black.cgColor
-        //        loginButton.layer.shadowOpacity = 0.5
-        //        loginButton.layer.shadowOffset = CGSize(width: -1, height: 1)
-        //        loginButton.layer.shadowRadius = 1
-        
         dropShadow(loginButton)
-        
-        
         otpText1.delegate = self
         otpText2.delegate = self
         otpText3.delegate = self
@@ -106,7 +53,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
         otpText1.textContentType = .oneTimeCode
         
-//        self.textField1.addTarget(self, action: #selector(changeTextField), for: .editingChanged)
         self.otpText1.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         self.otpText1.becomeFirstResponder()
         
@@ -176,7 +122,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
             textField?.layer.shadowOffset = CGSize(width: -1, height: 1)
             textField?.layer.shadowRadius = 1
         }
-        // self.view.dismissKeyBoardonTap()
         otpText1.becomeFirstResponder()
         
         otpText1.font =  UIFont.fontStyle(14, .medium)
@@ -191,7 +136,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
         reserndOTPButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
         loginButton.titleLabel?.font = UIFont.fontStyle(15, .medium)
-        
     }
     
     @objc func textFieldDidChange(textField: UITextField){
@@ -279,47 +223,40 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     }
    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        //        let hVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        //        navigationController?.pushViewController(hVC, animated: true)
+        
         otp.removeAll()
         
         guard let otp1 = otpText1.text, !otp1.isEmpty else {
-            //            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp2 = otpText2.text, !otp2.isEmpty else {
-            //            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp3 = otpText3.text, !otp3.isEmpty else {
-            //            self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp4 = otpText4.text, !otp4.isEmpty else {
-            //           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp5 = otpText5.text, !otp5.isEmpty else {
-            //           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp6 = otpText6.text, !otp6.isEmpty else {
-            //           self.view.makeToast(ErrorMessage.list.enterOTP.localize())
             print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
@@ -353,10 +290,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 UserDefaults.standard.setValue(true, forKey: "status")
-                print("Code Matches")
-//                let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-//                self.navigationController?.pushViewController(homeVc, animated: true)
-                
+                print("Code Matches")    
             }
         }
     }
