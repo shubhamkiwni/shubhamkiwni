@@ -7,7 +7,7 @@
 
 import UIKit
 import Reachability
-
+import FirebaseAuth
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var myMutableString = NSMutableAttributedString()
     let reachability = try! Reachability()
-
+    var getverificationId : String?
     override func viewDidLoad() {        
         super.viewDidLoad()
         
@@ -100,6 +100,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    public func startAuth(phoneNumber : String, completion: @escaping(Bool) -> Void){
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil){[weak self]verificationId, error in
+            guard let verificationId = verificationId, error == nil else{
+                completion(false)
+                return
+            }
+            self?.getverificationId = verificationId
+            print("verificationId: \(verificationId)")
+            completion(true)
+        }
+    }
+    
     @IBAction func confirmButtonPressed(_ sender: UIButton) {       
         guard  let phonenumber = mobileNumTextField.text else {return}
         if phonenumber == "" {
@@ -112,7 +124,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
            
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
             
-            AuthManager.shared.startAuth(phoneNumber: number){[weak self] success in
+            startAuth(phoneNumber: number){[weak self] success in
                 
                 self?.hideIndicator()
                 
@@ -130,6 +142,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                
                 let otpVc = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
                 otpVc.userMobileNumber = number
+                otpVc.getVerifyCode = self?.getverificationId
                 self?.navigationController?.pushViewController(otpVc, animated: true)
                 
             }

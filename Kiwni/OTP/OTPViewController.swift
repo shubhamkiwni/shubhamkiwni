@@ -7,7 +7,7 @@
 
 import UIKit
 import Reachability
-
+import FirebaseAuth
 class OTPViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mobileNumberLabel: UILabel!
@@ -27,7 +27,16 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var userEnterdOtp : String = ""
     let reachability = try! Reachability()
    
-    var getOTP = String()
+    var getVerifyCode : String?
+    var partyId : String? = ""
+    var id_token : String? = ""
+    var uid : String? = ""
+    var email : String? = ""
+    var displayName : String? = ""
+    var phoneNumber  :String? = ""
+    var refreshToken : String? = ""
+    var roles : [String] = []
+    var rolename : String = ""
     var otpCode = String()
     
     var counter = 0
@@ -35,9 +44,11 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var textFieldsArray = [self.otpText1,self.otpText2,self.otpText3,self.otpText4,self.otpText5,self.otpText6]
     
+    private let auth = Auth.auth()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("getVerifyCode", getVerifyCode ?? "")
         print("User Mobile Numb : ", userMobileNumber ?? "")
         mobileNumberLabel.text = userMobileNumber ?? ""
         reserndOTPButton.setTitle("Resend OTP", for: .normal)
@@ -53,8 +64,8 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
         otpText1.textContentType = .oneTimeCode
         
-        self.otpText1.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        self.otpText1.becomeFirstResponder()
+//        self.otpText1.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+//        self.otpText1.becomeFirstResponder()
         
         otpText1.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         otpText2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
@@ -65,21 +76,21 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        if #available(iOS 12.0, *) {
-            if textField.textContentType == UITextContentType.oneTimeCode{
-                //here split the text to your four text fields
-                if otpCode == getOTP, otpCode.count > 3{
-                    otpText1.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 0)])
-                    otpText2.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 1)])
-                    otpText3.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 2)])
-                    otpText4.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 3)])
-                    otpText5.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 4)])
-                    otpText6.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 5)])
-                }
-            }
-         }
-      }
+//    @objc func textFieldDidChange(_ textField: UITextField) {
+//        if #available(iOS 12.0, *) {
+//            if textField.textContentType == UITextContentType.oneTimeCode{
+//                //here split the text to your four text fields
+//                if otpCode == getOTP, otpCode.count > 3{
+//                    otpText1.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 0)])
+//                    otpText2.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 1)])
+//                    otpText3.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 2)])
+//                    otpText4.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 3)])
+//                    otpText5.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 4)])
+//                    otpText6.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 5)])
+//                }
+//            }
+//         }
+//      }
     
     
     
@@ -222,6 +233,87 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         }
     }
    
+    public func verifyCode(smsCode :String, completion: @escaping(Bool) -> Void){
+        guard let verificationId = getVerifyCode else{
+            completion(false)
+            return
+        }
+        
+        //auth.settings?.isAppVerificationDisabledForTesting = true;
+        
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: smsCode)
+        
+        auth.signIn(with: credential) { result, error in
+            guard result != nil , error == nil else{
+                completion(false)
+                return
+            }
+            completion(true)
+            
+            let currentUser = Auth.auth().currentUser
+            
+            
+            self.uid = currentUser?.uid
+            self.displayName = currentUser?.displayName
+            self.email = currentUser?.email
+            self.phoneNumber = currentUser?.phoneNumber
+            self.refreshToken = currentUser?.refreshToken
+            
+            
+            print("uid : \(self.uid ?? "")")
+            print("displayName : \(self.displayName ?? "")")
+            print("email : \(self.email ?? "")")
+            print("Phone Num  :\(self.phoneNumber ?? "")")
+            print("Refresh Token :\(self.refreshToken ?? "")")
+            
+            UserDefaults.standard.setValue(self.uid, forKey: "uid")
+            UserDefaults.standard.setValue(self.displayName, forKey: "displayName")
+            UserDefaults.standard.setValue(self.email, forKey: "email")
+            UserDefaults.standard.setValue(self.phoneNumber, forKey: "phoneNumber")
+            UserDefaults.standard.setValue(self.refreshToken, forKey: "refreshToken")
+            
+            
+            currentUser?.getIDTokenResult(completion: { [self] (result, error) in
+                
+                self.partyId = result?.claims["partyId"] as? String
+                print("Party Id : \(self.partyId ?? "")")
+                UserDefaults.standard.setValue(self.partyId, forKey: "partyId")
+                
+                self.id_token = result? .token
+                print("id_token : \(self.id_token ?? "")")
+                UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
+                
+                self.roles = result?.claims["Roles"] as? [String] ?? []
+                print("Roles : \(self.roles)")
+                UserDefaults.standard.setValue(self.roles, forKey: "Roles")
+                print(UserDefaults.standard.stringArray(forKey: "Roles") ?? [""])
+                rolename = UserDefaults.standard.string(forKey: "Roles") ?? ""
+                print("RoleName : ", rolename)
+                
+                if(self.roles.isEmpty){
+                    let storyboard = UIStoryboard(name: "User", bundle: nil)
+                    let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                    navigationController?.pushViewController(loginVC, animated: true)
+                }else{
+                    rolename = self.roles[0]
+                    print("Role Name : ", rolename)
+                    if(rolename != "USER"){
+                        print("Not register as user")
+                        UserDefaults.standard.setValue(false, forKey: "status")
+                        let storyboard = UIStoryboard(name: "User", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                        navigationController?.pushViewController(loginVC, animated: true)
+                    }
+                    else  if(rolename == "USER"){
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
+                        navigationController?.pushViewController(loginVC, animated: true)
+                    }
+                }
+            })
+        }
+    }
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
         otp.removeAll()
@@ -276,7 +368,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         } else {
             
             self.showIndicator(withTitle: "Loading", and: "Please Wait")
-            AuthManager.shared.verifyCode(smsCode: checkOtp){ success in
+            verifyCode(smsCode: checkOtp){ success in
                 guard success else {
                     self.hideIndicator()
                     print("Wrong OTP")
