@@ -94,7 +94,7 @@ class AuthManager {
                 print("id_token : \(self.id_token ?? "")")
                 UserDefaults.standard.setValue(self.id_token, forKey: "idToken")
                 
-                self.roles = result?.claims["Roles"] as! [String]
+                self.roles = result?.claims["Roles"] as? [String] ?? []
                 print("Roles : \(self.roles)")
                 UserDefaults.standard.setValue(self.roles, forKey: "Roles")
                 print(UserDefaults.standard.stringArray(forKey: "Roles") ?? [""])
@@ -102,18 +102,37 @@ class AuthManager {
                 print("RoleName : ", rolename)
                 
                 if(self.roles.isEmpty){
-                    return
-                }
-                rolename = self.roles[0]
-                print("Role Name : ", rolename)
-                if(rolename == "DRIVER"){
-                    print("Not register as user")
-                    UserDefaults.standard.setValue(false, forKey: "status")
                     let storyboard = UIStoryboard(name: "User", bundle: nil)
-                    let loginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
+                    let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
-                    
+                }else{
+                    rolename = self.roles[0]
+                    print("Role Name : ", rolename)
+                    if(rolename != "USER"){
+                        print("Not register as user")
+                        UserDefaults.standard.setValue(false, forKey: "status")
+                        let storyboard = UIStoryboard(name: "User", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
+
+                    }
+                    else  if(rolename == "USER"){
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(identifier: "GoToHome") as! HomeViewController
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
+
+                    }
                 }
+                
+                
+//                if(rolename == "DRIVER"){
+//                    print("Not register as user")
+//                    UserDefaults.standard.setValue(false, forKey: "status")
+//                    let storyboard = UIStoryboard(name: "User", bundle: nil)
+//                    let loginVC = storyboard.instantiateViewController(identifier: Storyboard.Ids.LoginViewController) as! LoginViewController
+//                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginVC)
+//
+//                }
                 
             })
         }

@@ -29,6 +29,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     //    var count = 60  // 60sec if you want
     //    var resendTimer = Timer()
     
+    var getOTP = String()
+    var otpCode = String()
+    
     var counter = 0
     var timer = Timer()
     
@@ -101,6 +104,12 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         otpText5.delegate = self
         otpText6.delegate = self
         
+        otpText1.textContentType = .oneTimeCode
+        
+//        self.textField1.addTarget(self, action: #selector(changeTextField), for: .editingChanged)
+        self.otpText1.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.otpText1.becomeFirstResponder()
+        
         otpText1.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         otpText2.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         otpText3.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
@@ -109,6 +118,24 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         otpText6.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if #available(iOS 12.0, *) {
+            if textField.textContentType == UITextContentType.oneTimeCode{
+                //here split the text to your four text fields
+                if otpCode == getOTP, otpCode.count > 3{
+                    otpText1.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 0)])
+                    otpText2.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 1)])
+                    otpText3.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 2)])
+                    otpText4.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 3)])
+                    otpText5.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 4)])
+                    otpText6.text = String(otpCode[otpCode.index(otpCode.startIndex, offsetBy: 5)])
+                }
+            }
+         }
+      }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -327,8 +354,8 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 }
                 UserDefaults.standard.setValue(true, forKey: "status")
                 print("Code Matches")
-                let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-                self.navigationController?.pushViewController(homeVc, animated: true)
+//                let homeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+//                self.navigationController?.pushViewController(homeVc, animated: true)
                 
             }
         }
