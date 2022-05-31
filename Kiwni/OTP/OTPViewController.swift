@@ -232,31 +232,26 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         }
         
         guard let otp2 = otpText2.text, !otp2.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp3 = otpText3.text, !otp3.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp4 = otpText4.text, !otp4.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp5 = otpText5.text, !otp5.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
         
         guard let otp6 = otpText6.text, !otp6.isEmpty else {
-            print("Enter OTP")
             customErrorPopup("Please enter OTP")
             return
         }
