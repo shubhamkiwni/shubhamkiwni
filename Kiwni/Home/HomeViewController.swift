@@ -838,23 +838,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let newdateformatter = DateFormatter()
             if strStartTime == "" {
                 strStartTime = (pickUpOnTimePickerButton.titleLabel?.text!)!
-                //                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
-                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
-                self.journeystartTime = newdateformatter.string(from: newdate)
-            } else {
-                let newDateString = String(self.myPickerDateString! + " " + strStartTime)
-                newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
-                let selecteddateformatter = DateFormatter()
-                selecteddateformatter.dateFormat = "YYYY EEE, MMM dd hh:mm a"
-                let currentDate = NSDate()
-                let newFormatter = DateFormatter()
-                newFormatter.dateFormat = "YYYY"
-                let YearString = newFormatter.string(from: currentDate as Date)
-                let newselectedDateString = String(YearString + " " + newDateString)
-                let selecteddate = selecteddateformatter.date(from: newselectedDateString)
-                self.journeystartTime = newdateformatter.string(from: selecteddate!)
-                
             }
+            let newDateString = String(self.myPickerDateString! + " " + strStartTime)
+            newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+            let selecteddateformatter = DateFormatter()
+            selecteddateformatter.dateFormat = "YYYY EEE, MMM dd hh:mm a"
+            let currentDate = NSDate()
+            let newFormatter = DateFormatter()
+            newFormatter.dateFormat = "YYYY"
+            let YearString = newFormatter.string(from: currentDate as Date)
+            let newselectedDateString = String(YearString + " " + newDateString)
+            let selecteddate = selecteddateformatter.date(from: newselectedDateString)
+            newdateformatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"
+            self.journeystartTime = newdateformatter.string(from: selecteddate!)
             
             if(strDirection == "one-way"){
                 calculateEndTime(startTime: self.journeystartTime! as NSString)
