@@ -581,7 +581,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             pickUpDatePickerButton.setTitle(dateStr, for: .normal)
             
             strDate = dateStr
-            print("strDate ", strDate ?? "")
+            print("strDate in datepicker function ", strDate ?? "")
             myPickerDateString = strDate
             print("myPickerDateString: ", myPickerDateString ?? "")
             if(currentDateString != myPickerDateString){
@@ -605,7 +605,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //let dateStr = formatter.string(from: selectedReturnDate)
             returnByDatePickerButton.setTitle(dateStr, for: .normal)
             strDate = dateStr
-            print("myReturnDateString:", strDate ?? "")
+            print("myReturnDateString in datepicker function:", strDate ?? "")
             timeFormatter.dateFormat = "yyyy-MM-dd"
             myDropDateString = timeFormatter.string(from: selectedReturnDate)
             print("myDropDateString : ",myDropDateString ?? "")
@@ -853,6 +853,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let newselectedDateString = String(YearString + " " + newDateString)
                 let selecteddate = selecteddateformatter.date(from: newselectedDateString)
                 self.journeystartTime = newdateformatter.string(from: selecteddate!)
+                
             }
             
             if(strDirection == "one-way"){
@@ -893,7 +894,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }else if(destinationcityName == "" || ((destinationcityName?.isEmpty) == nil)){
                     customErrorPopup("Please select proper address.")
                 } else {
-                    
+                    print("journy start time on viewcab button : ", journeystartTime)
                     let getAllProjectionAvailable = GetAllProjectionScheduleRequestModel(startTime: self.journeystartTime ?? "", endTime: self.journeyendTime ?? "", startLocation: pickupcityName ?? "", direction: strDirection ?? "", serviceType: "outstation", vehicleType: "", classType: "", distance:self.distanceValue ?? 0 ,matchExactTime: true)
                     print("getAllProjectionAvailable: ",getAllProjectionAvailable)
                     UserDefaults.standard.setValue(self.journeystartTime, forKey: "journeyTime")

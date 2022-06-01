@@ -49,6 +49,10 @@ class MyRidesViewController: UIViewController, MyRideDelegate, CancelRideDelegat
         upComingTripButtonBorder.frame = CGRect(x: 0, y: upcomingButton.frame.size.height - 2, width: upcomingButton.frame.width, height: 2)
         upcomingButton.layer.addSublayer(upComingTripButtonBorder)
         
+        upComingTripButtonBorder.backgroundColor = UIColor.lightGray.cgColor
+        upComingTripButtonBorder.frame = CGRect(x: upcomingButton.frame.width - 2, y: 0, width: 2, height: upcomingButton.frame.height)
+        upcomingButton.layer.addSublayer(upComingTripButtonBorder)
+        
         pastTripButtonBorder.backgroundColor = UIColor.white.cgColor
         pastTripButtonBorder.frame = CGRect(x: 0, y: pastButton.frame.size.height - 2, width: pastButton.frame.width, height: 2)
         pastButton.layer.addSublayer(pastTripButtonBorder)
