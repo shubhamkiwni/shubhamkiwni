@@ -14,14 +14,12 @@ class DBHelper
         db = openDatabase()
         createTable()
     }
-
+    
     let dbPath: String = "FindTripByUserIDDB.sqlite"
     var db:OpaquePointer?
-
+    
     func openDatabase() -> OpaquePointer?
     {
-        
-        
         
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(dbPath)
@@ -36,7 +34,6 @@ class DBHelper
         {
             print("Successfully opened connection to database at \(dbPath)")
             return db
-            
         }
         
     }
@@ -108,7 +105,7 @@ class DBHelper
         sqlite3_finalize(queryStatement)
         return psns
     }
-
+    
     func deleteByID(id:Int) {
         let deleteStatementStirng = "DELETE FROM person WHERE id = ?;"
         var deleteStatement: OpaquePointer? = nil
