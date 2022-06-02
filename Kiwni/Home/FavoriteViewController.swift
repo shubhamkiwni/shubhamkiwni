@@ -20,10 +20,10 @@ class FavoriteViewController: UIViewController {
     @IBOutlet weak var homeRadioButton: UIButton!
     @IBOutlet weak var officeRadioButton: UIButton!
     @IBOutlet weak var otherRadioButton: UIButton!
-    
+    var getAddress = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addressLabel.text = getAddress
         favouiteView.layer.cornerRadius = 10.0
         saveFavouiteLabel.font = UIFont.fontStyle(23, .regular)
         addressLabel.font = UIFont.fontStyle(17, .regular)

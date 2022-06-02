@@ -1168,21 +1168,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func favirateButtonPressed(_ sender: UIButton) {
         print("Faviourate")
-        //        guard let popupViewController = CustomPopupView.instantiate() else { return }
-        //        popupViewController.delegate = self
-        //        //        popupViewController.titleString = "I am custom popup"
-        //
-        //        let popupVC = PopupViewController(contentController: popupViewController, position: .bottom(0), popupWidth: self.view.frame.width, popupHeight: 300)
-        //        popupVC.cornerRadius = 15
-        //        popupVC.backgroundAlpha = 0.0
-        //        popupVC.backgroundColor = .clear
-        //        popupVC.canTapOutsideToDismiss = true
-        //        popupVC.shadowEnabled = true
-        //        popupVC.delegate = self
-        //        popupVC.modalPresentationStyle = .popover
-        //        self.present(popupVC, animated: true, completion: nil)
         
         let fvc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
+        fvc.getAddress = pickUpTextField.text ?? ""
         present(fvc, animated: true, completion: nil)
     }
     
