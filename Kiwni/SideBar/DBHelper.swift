@@ -61,15 +61,7 @@ class DBHelper
     
     
     func insert(id:Double, startLocationCity:String, endlocationCity: String, startTime:String, endTime:String, status: String, estimatedPrice:Double, serviceType: String) {
-//        let persons = read()
-//        for p in persons
-//        {
-//            if p.id == id
-//            {
-//                print("Data exist")
-//                return
-//            }
-//        }
+        
         let insertStatementString = "INSERT INTO person (id, startLocationCity, endlocationCity, startTime, endTime, status, estimatedPrice, serviceType) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"
         var insertStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
