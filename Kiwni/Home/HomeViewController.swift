@@ -412,6 +412,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if strTxtFieldType == "FromDestination" {
             self.locatePinImage.isHidden = false
             btnConfirmLocation.isHidden = false
+            viewCabsButton.isHidden = true
             mapView.animate(toZoom: 10)
             mapView.isUserInteractionEnabled = true
             strTxtFieldType = "FromDestination"
@@ -422,6 +423,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if strTxtFieldType == "ToDestination" {
             self.locatePinImage.isHidden = false
             btnConfirmLocation.isHidden = false
+            viewCabsButton.isHidden = true
             mapView.animate(toZoom: 10)
             mapView.isUserInteractionEnabled = true
             strTxtFieldType = "ToDestination"
@@ -433,17 +435,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         else if strTxtFieldType == "pickupTextFieldFromDropDown" {
             pickUpTextField.text = selectedAddressName
             sourceCoordinate = selectedAddressCoordinate
+            btnConfirmLocation.isHidden = false
+            viewCabsButton.isHidden = true
             isconfirmLocation = false
             mapView.clear()
         }
         else if strTxtFieldType == "destinationTextFieldFromDropDown" {
             dropTextField.text = selectedAddressName
             destinationCoordinate = selectedAddressCoordinate
+            btnConfirmLocation.isHidden = false
+            viewCabsButton.isHidden = true
             isconfirmLocation = false
             mapView.clear()
             
         }else if strTxtFieldType == "CurrentLocation"{
             pickUpTextField.text = usercurrentLocationAddress
+            btnConfirmLocation.isHidden = false
+            viewCabsButton.isHidden = true
             sourceCoordinate = userCurrentlocation
             isconfirmLocation = false
             mapView.clear()

@@ -53,6 +53,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     var strAddressPickupTextFieldType : String = ""
     
     @IBOutlet weak var addressTableView : UITableView!
+    @IBOutlet weak var backButton: UIButton!
     var predictionData = [String]()
     var fetcher: GMSAutocompleteFetcher?
     var placesClient: GMSPlacesClient!
@@ -66,7 +67,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     var address = [LocationAddress]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         address = DataBaseHelper.shareinstance.getData()
         pickupLocationSearchView.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width , height: 40)
         
@@ -79,6 +80,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
             pickupLocationSearchView.pickupCurrentLocation.isHidden = true
             pickupLocationSearchView.pickupLocateOnMap.isHidden = true
             pickupLocationSearchView.dropLocateOnMap.isHidden = false
+            addressTableView.isHidden = true
         }
         
         view.addSubview(pickupLocationSearchView)
@@ -114,6 +116,10 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         fetcher?.delegate = self as? GMSAutocompleteFetcherDelegate
         addressSerachTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
         
+    }
+    
+    @IBAction func backButtonClick(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
  

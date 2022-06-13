@@ -24,6 +24,7 @@ class PickupLocationOnSearchView: UIView {
     internal override func awakeFromNib() {
         pickupCurrentLocation.backgroundColor = .buttonBackgroundColor
         pickupLocateOnMap.backgroundColor = .buttonBackgroundColor
+        dropLocateOnMap.backgroundColor = .buttonBackgroundColor
     }
     
     @IBAction fileprivate func pickupcurrentLocationAction(_ sender: UIButton) {
