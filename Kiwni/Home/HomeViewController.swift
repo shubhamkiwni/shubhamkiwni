@@ -217,6 +217,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let myLabel = UILabel()
     let myLabel2 = UILabel()
     
+    var selectedAddressCoordinate : CLLocationCoordinate2D!
+    var selectedAddressName  :String? = ""
+    var strAddressPickupTextFieldType : String = ""
+    
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -392,8 +396,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.isUserInteractionEnabled = false
         self.locatePinImage.isHidden = true
         
-        pickUpTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
-        dropTextField.addTarget(self, action: #selector(textFieldShouldBeginEditing), for: .touchDown)
+        pickUpTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
+        dropTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
         placesClient = GMSPlacesClient.shared()
         self.nearbyPlaces()
         
@@ -405,6 +409,45 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if strTxtFieldType == "FromDestination" {
+            self.locatePinImage.isHidden = false
+            btnConfirmLocation.isHidden = false
+            mapView.animate(toZoom: 10)
+            mapView.isUserInteractionEnabled = true
+            strTxtFieldType = "FromDestination"
+            self.destinationCoordinate = nil
+            dropTextField.text?.removeAll()
+            isconfirmLocation = false
+            mapView.clear()
+        } else if strTxtFieldType == "ToDestination" {
+            self.locatePinImage.isHidden = false
+            btnConfirmLocation.isHidden = false
+            mapView.animate(toZoom: 10)
+            mapView.isUserInteractionEnabled = true
+            strTxtFieldType = "ToDestination"
+            self.sourceCoordinate = nil
+            pickUpTextField.text?.removeAll()
+            isconfirmLocation = false
+            mapView.clear()
+        }
+        else if strTxtFieldType == "pickupTextFieldFromDropDown" {
+            pickUpTextField.text = selectedAddressName
+            sourceCoordinate = selectedAddressCoordinate
+            isconfirmLocation = false
+            mapView.clear()
+        }
+        else if strTxtFieldType == "destinationTextFieldFromDropDown" {
+            dropTextField.text = selectedAddressName
+            destinationCoordinate = selectedAddressCoordinate
+            isconfirmLocation = false
+            mapView.clear()
+            
+        }else if strTxtFieldType == "CurrentLocation"{
+            pickUpTextField.text = usercurrentLocationAddress
+            sourceCoordinate = userCurrentlocation
+            isconfirmLocation = false
+            mapView.clear()
+        }
         
         
         DispatchQueue.main.async {
@@ -502,6 +545,61 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             dropShadow(doneButton)
         }
+    }
+    
+    @objc func textFieldDidChanged(_ textField:UITextField ){
+        print(pickUpTextField.text!)
+        if(textField == pickUpTextField){
+            strTxtFieldType = "ToDestination"
+            print(strTxtFieldType)
+            strAddressPickupTextFieldType  = "pickupTextFieldFromDropDown"
+            let nextVC = storyboard?.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
+            nextVC.strTxtFieldType = strTxtFieldType
+            
+            self.navigationController?.pushViewController(nextVC, animated: true)
+            
+            nextVC.locateonmapcallback = { textFieldType in
+                print("textFieldType: ",textFieldType)
+                self.strTxtFieldType = textFieldType
+            }
+            
+            
+            nextVC.searchAddressLocation = { textFieldType, addressValue, coordinateValue in
+
+                self.strTxtFieldType = textFieldType
+                self.selectedAddressCoordinate = coordinateValue
+                self.selectedAddressName = addressValue
+
+            }
+            
+            
+        }else if(textField == dropTextField){
+            strTxtFieldType = "FromDestination"
+            print(strTxtFieldType)
+            
+            strAddressPickupTextFieldType  = "destinationTextFieldFromDropDown"
+            
+            let nextVC = storyboard?.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
+            nextVC.strTxtFieldType = strTxtFieldType
+            self.navigationController?.pushViewController(nextVC, animated: true)
+            
+            nextVC.locateonmapcallback = { textFieldType in
+                
+                print("textFieldType: ",textFieldType)
+                self.strTxtFieldType = textFieldType
+            }
+            nextVC.searchAddressLocation = { textFieldType, addressValue, coordinateValue in
+                
+                self.strTxtFieldType = textFieldType
+                self.selectedAddressCoordinate = coordinateValue
+                self.selectedAddressName = addressValue
+                
+            }
+            
+            
+        }
+        
+        btnConfirmLocation.isHidden = false
     }
     
     deinit{
@@ -1171,6 +1269,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let fvc = storyboard?.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
         fvc.getAddress = pickUpTextField.text ?? ""
+        fvc.addressCoordinate = sourceCoordinate
         present(fvc, animated: true, completion: nil)
     }
     

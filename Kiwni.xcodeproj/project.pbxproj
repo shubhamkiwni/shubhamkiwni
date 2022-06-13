@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		15D7667676B84D2F4E1B39A2 /* Pods_Kiwni_KiwniUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3916E0E7DB16C2CCCA09D4A2 /* Pods_Kiwni_KiwniUITests.framework */; };
 		22370781D67EDFE4B0820C04 /* Pods_Kiwni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2CA2AF98CDFE669179D002 /* Pods_Kiwni.framework */; };
+		7A0A4E8F2857023800CA291F /* KiwniCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E8D2857023800CA291F /* KiwniCoreDataModel.xcdatamodeld */; };
+		7A0A4E91285702BD00CA291F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0A4E90285702BD00CA291F /* CoreData.framework */; };
+		7A0A4E94285702FB00CA291F /* LocationAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E92285702F800CA291F /* LocationAddress+CoreDataClass.swift */; };
+		7A0A4E95285702FB00CA291F /* LocationAddress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E93285702FB00CA291F /* LocationAddress+CoreDataProperties.swift */; };
+		7A0A4E972857039C00CA291F /* DataBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E962857039C00CA291F /* DataBaseHelper.swift */; };
+		7A0A4E9C2857111900CA291F /* AddressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E992857111000CA291F /* AddressSearchViewController.swift */; };
+		7A0A4E9D2857111900CA291F /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A4E9A2857111700CA291F /* AddressTableViewCell.swift */; };
 		7A128DD227B3D84E00F8554C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A128DD127B3D84E00F8554C /* HomeCollectionViewCell.swift */; };
 		7A170E6E27CF393800B0BE66 /* ViewDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A170E6C27CF393800B0BE66 /* ViewDetailsViewController.swift */; };
 		7A170E6F27CF393800B0BE66 /* ViewDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A170E6D27CF393800B0BE66 /* ViewDetailsViewController.xib */; };
@@ -183,6 +190,13 @@
 		3D2CA2AF98CDFE669179D002 /* Pods_Kiwni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kiwni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40AC52BDA76764EAB4BEDC22 /* Pods-Kiwni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiwni.release.xcconfig"; path = "Target Support Files/Pods-Kiwni/Pods-Kiwni.release.xcconfig"; sourceTree = "<group>"; };
 		5FB95D0E51CA5A16A96423C6 /* Pods-Kiwni_User_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiwni_User_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kiwni_User_AppTests/Pods-Kiwni_User_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A0A4E8E2857023800CA291F /* KiwniCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KiwniCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		7A0A4E90285702BD00CA291F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7A0A4E92285702F800CA291F /* LocationAddress+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7A0A4E93285702FB00CA291F /* LocationAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7A0A4E962857039C00CA291F /* DataBaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseHelper.swift; sourceTree = "<group>"; };
+		7A0A4E992857111000CA291F /* AddressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchViewController.swift; sourceTree = "<group>"; };
+		7A0A4E9A2857111700CA291F /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		7A128DD127B3D84E00F8554C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A170E6C27CF393800B0BE66 /* ViewDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDetailsViewController.swift; sourceTree = "<group>"; };
 		7A170E6D27CF393800B0BE66 /* ViewDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewDetailsViewController.xib; sourceTree = "<group>"; };
@@ -353,6 +367,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0A4E91285702BD00CA291F /* CoreData.framework in Frameworks */,
 				22370781D67EDFE4B0820C04 /* Pods_Kiwni.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,11 +394,23 @@
 		418D0D818A0D39E9013993A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A0A4E90285702BD00CA291F /* CoreData.framework */,
 				3D2CA2AF98CDFE669179D002 /* Pods_Kiwni.framework */,
 				3916E0E7DB16C2CCCA09D4A2 /* Pods_Kiwni_KiwniUITests.framework */,
 				A1A228A3F1D7FD1BA96CC80E /* Pods_KiwniTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A0A4E9828570A7600CA291F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7A0A4E92285702F800CA291F /* LocationAddress+CoreDataClass.swift */,
+				7A0A4E93285702FB00CA291F /* LocationAddress+CoreDataProperties.swift */,
+				7A0A4E962857039C00CA291F /* DataBaseHelper.swift */,
+				7A0A4E8D2857023800CA291F /* KiwniCoreDataModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		7A170E7927CF667000B0BE66 /* FindTripByUserID */ = {
@@ -456,6 +483,7 @@
 				84398FAA27BD049C008C8782 /* Payment Mode */,
 				84398FA527BD0467008C8782 /* SideBar */,
 				7A5FCD0627ACF2A5004F9DC3 /* Custom Popup */,
+				7A0A4E9828570A7600CA291F /* CoreData */,
 				7A35B4132799293400E0CFAE /* Assets.xcassets */,
 				8436804327C38C8300FAC71C /* GoogleService-Info.plist */,
 				7A35B4182799293400E0CFAE /* Info.plist */,
@@ -568,6 +596,8 @@
 				7A82F51E27DB0F4F00EEAE96 /* DatePickerExtension.swift */,
 				7AEB31B02820FC7600CA8097 /* GoogleMapExtension.swift */,
 				7AE329452833A3A000ADD74F /* FavoriteViewController.swift */,
+				7A0A4E992857111000CA291F /* AddressSearchViewController.swift */,
+				7A0A4E9A2857111700CA291F /* AddressTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1121,6 +1151,7 @@
 				7A5E735A2806EA6400ACA10D /* FirebaeRequestPayload.swift in Sources */,
 				7A5FCD1327AD1845004F9DC3 /* SafetyViewController.swift in Sources */,
 				7A5E73582806DE3700ACA10D /* ReservationScheduleModel.swift in Sources */,
+				7A0A4E9D2857111900CA291F /* AddressTableViewCell.swift in Sources */,
 				7A686F3D27AA7D5900DFF9A3 /* UpcomingTableViewCell.swift in Sources */,
 				7A5FCD1527AD2A73004F9DC3 /* CancelRideViewController.swift in Sources */,
 				7A686F4C27AAB5F300DFF9A3 /* SupportTableViewCell.swift in Sources */,
@@ -1131,7 +1162,9 @@
 				7AFAD8C1282B70B600E59A12 /* FontExtension.swift in Sources */,
 				845137A728094EAB00DFE0B0 /* SocketCreatedByparty.swift in Sources */,
 				7AF91F2627C61FAA0023B399 /* PaymentViewController.swift in Sources */,
+				7A0A4E95285702FB00CA291F /* LocationAddress+CoreDataProperties.swift in Sources */,
 				7A170E8A27CF66B000B0BE66 /* API.swift in Sources */,
+				7A0A4E94285702FB00CA291F /* LocationAddress+CoreDataClass.swift in Sources */,
 				846C8D7228043B22003D4FFA /* Vehicle.swift in Sources */,
 				84FE635327BBBD440026289D /* CarsTableViewCell.swift in Sources */,
 				7A128DD227B3D84E00F8554C /* HomeCollectionViewCell.swift in Sources */,
@@ -1189,6 +1222,7 @@
 				7A44009B27B4E91500A2334D /* CarTypeTableViewCell.swift in Sources */,
 				7A2DA05027BA662100490E5B /* SafetyCompliancesXIB.swift in Sources */,
 				7A4400B727B4F1A800A2334D /* CarModelsTableViewCell.swift in Sources */,
+				7A0A4E9C2857111900CA291F /* AddressSearchViewController.swift in Sources */,
 				84398FBB27BD0A22008C8782 /* TimePicker.swift in Sources */,
 				7AF91F0F27C604710023B399 /* KiwniComfirtXIB.swift in Sources */,
 				7ADC6D77280DC85500EFB4ED /* FunctionsExtension.swift in Sources */,
@@ -1207,6 +1241,7 @@
 				7A35B40D2799292E00E0CFAE /* SceneDelegate.swift in Sources */,
 				7A41AE3E27ABF8B30067BD3C /* FeedbackViewController.swift in Sources */,
 				7AF91F2827C6361D0023B399 /* BusinessDetaisViewController.swift in Sources */,
+				7A0A4E972857039C00CA291F /* DataBaseHelper.swift in Sources */,
 				7AE26260280EC9B400C7AF9A /* MapViewController.swift in Sources */,
 				7AAF1DFF27C906B100B262D4 /* DropLocationOnSearchView.swift in Sources */,
 				7AD28FDB27A7C624004E232D /* LoginViewController.swift in Sources */,
@@ -1215,6 +1250,7 @@
 				7AF91F0A27C601660023B399 /* FilterViewController.swift in Sources */,
 				7AE5A34227C4AE9500C1E5D4 /* SortViewController.swift in Sources */,
 				7AC63A2F282926F500BC670D /* ResultCarsTableViewCell.swift in Sources */,
+				7A0A4E8F2857023800CA291F /* KiwniCoreDataModel.xcdatamodeld in Sources */,
 				7A41AE3627ABE2AB0067BD3C /* OffersViewController.swift in Sources */,
 				7A170E8127CF667000B0BE66 /* MyRideProvider.swift in Sources */,
 				7A5FCD0527ACF275004F9DC3 /* PopupViewController.swift in Sources */,
@@ -1565,6 +1601,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7A0A4E8D2857023800CA291F /* KiwniCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7A0A4E8E2857023800CA291F /* KiwniCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 7A0A4E8E2857023800CA291F /* KiwniCoreDataModel.xcdatamodel */;
+			path = KiwniCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7A35B3FF2799292E00E0CFAE /* Project object */;
 }
