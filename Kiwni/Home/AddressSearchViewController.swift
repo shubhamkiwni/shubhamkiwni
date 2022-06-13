@@ -93,7 +93,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         addressTableView.showsVerticalScrollIndicator = true
      
         
-        pickupLocationSearchView.pickupDelegate = self
+        pickupLocationSearchView.delegate = self
         placesClient = GMSPlacesClient.shared()
         
         self.edgesForExtendedLayout = []
@@ -150,8 +150,9 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
             
             let searchedLatitude = place.coordinate.latitude
             let searchedLongitude = place.coordinate.longitude
-            let place_name  = place.name
-            print("Place Name : ", place_name)
+            let place_name  = place.formattedAddress
+            
+            print("Place Name : ", place.formattedAddress ?? "")
             print("searchedLatitude: ",searchedLatitude)
             print("searchedLongitude: ",searchedLongitude)
             

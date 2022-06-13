@@ -10,6 +10,7 @@ import UIKit
 protocol pickupOnlocateSearchdelegate{
     func pickupGetCurrentLocation()
     func pickupLocateUserOnMap()
+    func dropLocateUserOnMap()
 }
 
 class PickupLocationOnSearchView: UIView {
@@ -18,6 +19,7 @@ class PickupLocationOnSearchView: UIView {
 
     @IBOutlet weak var pickupCurrentLocation: UIButton!
     @IBOutlet weak var pickupLocateOnMap: UIButton!
+    @IBOutlet weak var dropLocateOnMap: UIButton!
     
     internal override func awakeFromNib() {
         pickupCurrentLocation.backgroundColor = .buttonBackgroundColor
@@ -48,7 +50,11 @@ class PickupLocationOnSearchView: UIView {
                 d.pickupLocateUserOnMap()
             }
         }
-       
+    }
+    
+    @IBAction func dropLocateOnMaoAction(_ sender: UIButton) {
+        print("dropLocateOnMaoAction button clicked")
+        delegate.dropLocateUserOnMap()
     }
 }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-Rq-c6O">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="GvL-go-ckH"/>
+                        <constraint firstAttribute="height" constant="40" id="PbZ-z4-P9j"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Locate On Map">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="dropLocateOnMaoAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="h7g-eM-5mt"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-ao-jMm">
                     <rect key="frame" x="0.0" y="0.0" width="188" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -26,7 +42,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pju-Qr-Fqf">
-                    <rect key="frame" x="187" y="0.0" width="187.66666666666666" height="40"/>
+                    <rect key="frame" x="187.33333333333337" y="0.0" width="187.66666666666663" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="187.66666666666666" id="52J-VG-o19"/>
@@ -44,16 +60,21 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="5eK-ao-jMm" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="9hu-au-yal"/>
+                <constraint firstItem="NO6-Rq-c6O" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Kze-6b-zEs"/>
                 <constraint firstItem="5eK-ao-jMm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="LOU-AG-lwh"/>
                 <constraint firstItem="5eK-ao-jMm" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="M8R-vz-cUS"/>
                 <constraint firstItem="pju-Qr-Fqf" firstAttribute="leading" secondItem="5eK-ao-jMm" secondAttribute="trailing" constant="-0.66666666666665719" id="P8x-fj-GCo"/>
+                <constraint firstItem="NO6-Rq-c6O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ykm-Ya-edk"/>
                 <constraint firstItem="pju-Qr-Fqf" firstAttribute="leading" secondItem="5eK-ao-jMm" secondAttribute="trailing" constant="-0.66666666666665719" id="cXn-Jg-IR2"/>
+                <constraint firstItem="NO6-Rq-c6O" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="i0e-Kg-PjE"/>
                 <constraint firstItem="pju-Qr-Fqf" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="jf9-1E-XIa"/>
                 <constraint firstItem="pju-Qr-Fqf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="n8E-B8-1E0"/>
+                <constraint firstItem="NO6-Rq-c6O" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="umk-MR-wCJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pju-Qr-Fqf" secondAttribute="trailing" id="z5H-0C-28g"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="dropLocateOnMap" destination="NO6-Rq-c6O" id="zGa-1J-z75"/>
                 <outlet property="pickupCurrentLocation" destination="5eK-ao-jMm" id="gHy-6l-8Tp"/>
                 <outlet property="pickupLocateOnMap" destination="pju-Qr-Fqf" id="BK6-Df-6IW"/>
             </connections>
