@@ -419,7 +419,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.destinationCoordinate = nil
             dropTextField.text?.removeAll()
             isconfirmLocation = false
-            mapView.clear()
+            //mapView.clear()
         } else if strTxtFieldType == "ToDestination" {
             self.locatePinImage.isHidden = false
             btnConfirmLocation.isHidden = false
@@ -435,10 +435,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         else if strTxtFieldType == "pickupTextFieldFromDropDown" {
             pickUpTextField.text = selectedAddressName
             sourceCoordinate = selectedAddressCoordinate
+            //destinationCoordinate = nil
+            
             btnConfirmLocation.isHidden = false
             viewCabsButton.isHidden = true
             isconfirmLocation = false
-            mapView.clear()
+            
+           mapView.clear()
         }
         else if strTxtFieldType == "destinationTextFieldFromDropDown" {
             dropTextField.text = selectedAddressName
@@ -926,6 +929,47 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else {
             print("sourceCoordinate or destinationCoordinate are nil")
+            
+            if(strTxtFieldType == "ToDestination" || strTxtFieldType == "pickupTextFieldFromDropDown"){
+                
+                let originmarkerImage = UIImage(named: "Pickuppoint")!.withRenderingMode(.alwaysTemplate)
+                //creating a marker view
+                let originmarkerView = UIImageView(image: originmarkerImage)
+                originmarkerView.tintColor = UIColor.green
+                
+                
+                let originMarker = GMSMarker(position: self.sourceCoordinate)
+                originMarker.map = self.mapView
+                originMarker.iconView = originmarkerView
+                originMarker.title = self.pickupName
+                
+                let camera = GMSCameraPosition.camera(withLatitude: sourceCoordinate.latitude, longitude: sourceCoordinate.longitude, zoom: 16)
+                    mapView?.camera = camera
+                    mapView?.animate(to: camera)
+                
+                
+            }else if(strTxtFieldType == "FromDestination" || strTxtFieldType == "destinationTextFieldFromDropDown"){
+                let destinationmarkerImage = UIImage(named: "DropPoint")!.withRenderingMode(.alwaysTemplate)
+                //creating a marker view
+                let destinationmarkerView = UIImageView(image: destinationmarkerImage)
+                destinationmarkerView.tintColor = UIColor.red
+                
+              
+                let destinationMarker = GMSMarker(position: self.destinationCoordinate)
+                destinationMarker.map = self.mapView
+                destinationMarker.iconView = destinationmarkerView
+                destinationMarker.title = self.destionationName
+                
+                let camera = GMSCameraPosition.camera(withLatitude: destinationCoordinate.latitude, longitude: destinationCoordinate.longitude, zoom: 16)
+                    mapView?.camera = camera
+                    mapView?.animate(to: camera)
+                
+            }
+            
+          
+            
+           
+            
         }
         
         print("destinationTextField text:",self.dropTextField.text ?? "" ,self.selectedDropAddress )
