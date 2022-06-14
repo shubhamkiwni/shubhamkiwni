@@ -28,6 +28,7 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
     var isUpdate: Bool = false
     var addressValueType = String()
     var addressCoordinate: CLLocationCoordinate2D!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = getAddress
@@ -42,7 +43,7 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
         saveButton.backgroundColor = .buttonBackgroundColor
         homeRadioButton.setImage(UIImage(named: "Check"), for: .normal)
         addressValueType = "Home"
-        otherTextField.text = "Other"
+//        otherTextField.text = "Other"
         otherTextField.isHidden = true
         otherTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .valueChanged)
     }

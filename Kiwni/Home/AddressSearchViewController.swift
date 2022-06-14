@@ -65,11 +65,16 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     var selectedAddressCoordinate: CLLocationCoordinate2D!
     var selectedAddress : String = ""
     var address = [LocationAddress]()
+    var pickupDelegate : pickupOnlocateSearchdelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         address = DataBaseHelper.shareinstance.getData()
-        pickupLocationSearchView.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width , height: 40)
+        
+        addressSerachTextField.becomeFirstResponder()
+        
+        UITextField.appearance(whenContainedInInstancesOf: [AddressSearchViewController.self]).inputAccessoryView = pickupLocationSearchView
+        pickupLocationSearchView.delegate = self
         
         if(strTxtFieldType == "ToDestination"){
             pickupLocationSearchView.pickupCurrentLocation.isHidden = false
@@ -83,13 +88,10 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
             addressTableView.isHidden = true
         }
         
-        view.addSubview(pickupLocationSearchView)
-        
         addressSerachTextField.delegate = self
         addressTableView.delegate = self
         addressTableView.dataSource = self
         addressTableView.backgroundColor = .lightGray
-//        addressTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         addressTableView.allowsSelection = true
         addressTableView.bounces = false
         addressTableView.showsVerticalScrollIndicator = true
@@ -196,12 +198,15 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         
         let cell = addressTableView.dequeueReusableCell(withIdentifier: "cell") as! AddressTableViewCell
         if address[indexPath.row].addressType == "Home" {
-            cell.addressTypeImageView.image = UIImage(systemName: "house")
+            cell.addressTypeImageView.image = UIImage(named: "Home")
         } else if address[indexPath.row].addressType == "Work" {
-            cell.addressTypeImageView.image = UIImage(systemName: "bag")
+            cell.addressTypeImageView.image = UIImage(named: "Work")
         } else {
-            cell.addressTypeImageView.image = UIImage(named: "DropPoint")
+            cell.addressTypeImageView.image = UIImage(named: "Other")
         }
+        
+        
+        
         cell.addressTypeValue.text = address[indexPath.row].addressType
         cell.addressValue.text = address[indexPath.row].addressValue
         
@@ -210,7 +215,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 75
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
