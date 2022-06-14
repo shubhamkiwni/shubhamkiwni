@@ -419,7 +419,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.destinationCoordinate = nil
             dropTextField.text?.removeAll()
             isconfirmLocation = false
-            //mapView.clear()
+            mapView.clear()
         } else if strTxtFieldType == "ToDestination" {
             self.locatePinImage.isHidden = false
             btnConfirmLocation.isHidden = false
