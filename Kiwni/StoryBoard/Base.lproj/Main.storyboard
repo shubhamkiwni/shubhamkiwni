@@ -1792,13 +1792,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as favourite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-Ga-fJc">
-                                                <rect key="frame" x="20" y="10" width="335" height="27"/>
+                                                <rect key="frame" x="10" y="10" width="355" height="27"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dighi, Pune, Maharashtra, India" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evl-ba-Wcg">
-                                                <rect key="frame" x="20" y="42" width="238.5" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dighi, Pune, Maharashtra, India Mhada Colony, Viman Nagar, Pune, Maharashtra 41" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evl-ba-Wcg">
+                                                <rect key="frame" x="10" y="42" width="335" height="40"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1808,9 +1808,9 @@
                                         <constraints>
                                             <constraint firstItem="sxi-Ga-fJc" firstAttribute="top" secondItem="0Md-mP-mex" secondAttribute="top" constant="10" id="Cno-Ux-3sE"/>
                                             <constraint firstItem="evl-ba-Wcg" firstAttribute="top" secondItem="sxi-Ga-fJc" secondAttribute="bottom" constant="5" id="FfS-UH-JoX"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="evl-ba-Wcg" secondAttribute="trailing" constant="20" id="MIw-H4-eU9"/>
-                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="leading" secondItem="0Md-mP-mex" secondAttribute="leading" constant="20" id="RQy-Tf-kBi"/>
-                                            <constraint firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" constant="20" id="hXR-bO-i7b"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="evl-ba-Wcg" secondAttribute="trailing" constant="10" id="MIw-H4-eU9"/>
+                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="leading" secondItem="0Md-mP-mex" secondAttribute="leading" constant="10" id="RQy-Tf-kBi"/>
+                                            <constraint firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" constant="10" id="hXR-bO-i7b"/>
                                             <constraint firstAttribute="height" constant="70" id="xa0-I1-gI5"/>
                                             <constraint firstItem="evl-ba-Wcg" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="zeg-tS-Ob1"/>
                                         </constraints>
@@ -1819,7 +1819,7 @@
                                         <rect key="frame" x="0.0" y="70" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8IV-Bk-L1d">
-                                                <rect key="frame" x="20" y="10" width="268" height="24"/>
+                                                <rect key="frame" x="10" y="10" width="268" height="24"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTX-xR-0hP">
                                                         <rect key="frame" x="0.0" y="0.0" width="72" height="24"/>
@@ -1867,7 +1867,7 @@
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name your favourite (e.g. My Home)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-z4-aUT">
-                                                <rect key="frame" x="20" y="10" width="335" height="34"/>
+                                                <rect key="frame" x="10" y="10" width="355" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -1928,7 +1928,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8QO-z4-aUT" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="Drp-Qy-m3A"/>
-                                    <constraint firstAttribute="height" constant="230" id="Vml-Ul-a76"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="230" id="Vml-Ul-a76"/>
                                     <constraint firstItem="8IV-Bk-L1d" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="YHH-xa-3TV"/>
                                     <constraint firstItem="8QO-z4-aUT" firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" id="dSm-xe-aIV"/>
                                 </constraints>
