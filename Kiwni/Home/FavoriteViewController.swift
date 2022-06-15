@@ -10,18 +10,19 @@ import GoogleMaps
 
 class FavoriteViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var favouiteView: UIView!
+    @IBOutlet weak var favouiteStackView: UIView!
     @IBOutlet weak var saveFavouiteLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var homeLabel: UILabel!
-    @IBOutlet weak var officeLabel: UILabel!
-    @IBOutlet weak var otherLabel: UILabel!
     @IBOutlet weak var homeRadioButton: UIButton!
     @IBOutlet weak var officeRadioButton: UIButton!
     @IBOutlet weak var otherRadioButton: UIButton!
     @IBOutlet weak var otherTextField: UITextField!
+    @IBOutlet weak var addressView: UIView!
+    @IBOutlet weak var radioButtonView: UIView!
+    @IBOutlet weak var otherTextFieldView: UIView!
+    @IBOutlet weak var saveButtonVIew: UIView!
     var getAddress = String()
     var address = [LocationAddress]()
     var i = Int()
@@ -32,19 +33,19 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = getAddress
-        favouiteView.layer.cornerRadius = 10.0
+        favouiteStackView.layer.cornerRadius = 10.0
         saveFavouiteLabel.font = UIFont.fontStyle(23, .regular)
         addressLabel.font = UIFont.fontStyle(17, .regular)
-        homeLabel.font = UIFont.fontStyle(17, .regular)
-        officeLabel.font = UIFont.fontStyle(17, .regular)
-        otherLabel.font = UIFont.fontStyle(17, .regular)
+        homeRadioButton.titleLabel?.font = UIFont.fontStyle(17, .regular)
+        officeRadioButton.titleLabel?.font = UIFont.fontStyle(17, .regular)
+        otherRadioButton.titleLabel?.font = UIFont.fontStyle(17, .regular)
         cancelButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         saveButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         saveButton.backgroundColor = .buttonBackgroundColor
         homeRadioButton.setImage(UIImage(named: "Check"), for: .normal)
         addressValueType = "Home"
 //        otherTextField.text = "Other"
-        otherTextField.isHidden = true
+        otherTextFieldView.isHidden = true
         otherTextField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .valueChanged)
     }
     
@@ -107,7 +108,7 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
         otherRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
         homeRadioButton.setImage(UIImage(named: "Check"), for: .normal)
         addressValueType = "Home"
-        otherTextField.isHidden = true
+        otherTextFieldView.isHidden = true
     }
     
     @IBAction func officeRadioButtonClicked(_ sender: UIButton) {
@@ -115,7 +116,7 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
         otherRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
         homeRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
         addressValueType = "Work"
-        otherTextField.isHidden = true
+        otherTextFieldView.isHidden = true
     }
     
     @IBAction func otherRadioButtonClicked(_ sender: UIButton) {
@@ -123,7 +124,7 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate {
         otherRadioButton.setImage(UIImage(named: "Check"), for: .normal)
         homeRadioButton.setImage(UIImage(named: "Uncheck"), for: .normal)
         addressValueType = "Other"
-        otherTextField.isHidden = false
+        otherTextFieldView.isHidden = false
         saveButton.isEnabled = false
         saveButton.backgroundColor = .lightGray
     }

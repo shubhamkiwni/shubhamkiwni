@@ -121,7 +121,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     }
     
     @IBAction func backButtonClick(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
  
