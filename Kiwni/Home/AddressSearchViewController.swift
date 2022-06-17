@@ -75,7 +75,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         addressSerachTextField.becomeFirstResponder()
         addressSerachTextField.delegate = self
         addressSerachTextField.text = strLocationAddress
-        addressSerachTextField.selectedTextRange = addressSerachTextField.textRange(from: addressSerachTextField.beginningOfDocument, to: addressSerachTextField.endOfDocument)
+       
         print("addressSerachTextField.text: ", addressSerachTextField.text)
         
         UITextField.appearance(whenContainedInInstancesOf: [AddressSearchViewController.self]).inputAccessoryView = pickupLocationSearchView
@@ -122,6 +122,14 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         fetcher = GMSAutocompleteFetcher(filter: filter)
         fetcher?.delegate = self as? GMSAutocompleteFetcherDelegate
         addressSerachTextField.addTarget(self, action: #selector(textFieldDidChanged), for: UIControl.Event.editingChanged)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        addressSerachTextField.becomeFirstResponder()
+        addressSerachTextField.selectedTextRange = addressSerachTextField.textRange(from: addressSerachTextField.beginningOfDocument, to: addressSerachTextField.endOfDocument)
+        
         
     }
     
