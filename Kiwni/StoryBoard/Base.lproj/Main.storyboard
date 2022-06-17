@@ -363,7 +363,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="viewCabsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5dw-oM-PX6"/>
+                                                            <action selector="viewCabsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DdX-rd-lVw"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -658,7 +658,7 @@
                         <outlet property="view4" destination="Nnv-hm-rDg" id="qAz-tZ-qlr"/>
                         <outlet property="view5" destination="5Of-fa-BZt" id="phw-e8-bUM"/>
                         <outlet property="view6" destination="AqG-dh-cQc" id="DkL-GS-s0n"/>
-                        <outlet property="viewCabsButton" destination="D5y-iF-C3M" id="p0r-b6-0Cp"/>
+                        <outlet property="viewCabsButton" destination="D5y-iF-C3M" id="bGJ-7w-9c1"/>
                         <segue destination="cvi-E8-XtO" kind="show" identifier="GoToFindCarStoryboard" id="SaX-aW-hOf"/>
                     </connections>
                 </viewController>

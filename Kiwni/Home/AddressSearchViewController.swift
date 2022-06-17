@@ -51,6 +51,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     
     var strTxtFieldType : String = ""
     var strAddressPickupTextFieldType : String = ""
+    var strLocationAddress : String = ""
     
     @IBOutlet weak var addressTableView : UITableView!
     @IBOutlet weak var backButton: UIButton!
@@ -72,6 +73,10 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         address = DataBaseHelper.shareinstance.getData()
         
         addressSerachTextField.becomeFirstResponder()
+        addressSerachTextField.delegate = self
+        addressSerachTextField.text = strLocationAddress
+        addressSerachTextField.selectedTextRange = addressSerachTextField.textRange(from: addressSerachTextField.beginningOfDocument, to: addressSerachTextField.endOfDocument)
+        print("addressSerachTextField.text: ", addressSerachTextField.text)
         
         UITextField.appearance(whenContainedInInstancesOf: [AddressSearchViewController.self]).inputAccessoryView = pickupLocationSearchView
         pickupLocationSearchView.delegate = self
@@ -85,7 +90,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
             pickupLocationSearchView.pickupCurrentLocation.isHidden = true
             pickupLocationSearchView.pickupLocateOnMap.isHidden = true
             pickupLocationSearchView.dropLocateOnMap.isHidden = false
-            addressTableView.isHidden = true
+            
         }
         
         addressSerachTextField.delegate = self
@@ -122,6 +127,9 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     
     @IBAction func backButtonClick(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+        if let locateonmapcallback = locateonmapcallback{
+            locateonmapcallback("NoLocationSelected")
+        }
     }
     
  

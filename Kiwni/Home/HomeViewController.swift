@@ -250,8 +250,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cancelDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         confirmDatePickerButton.titleLabel?.font = UIFont.fontStyle(15, .regular)
         
-        
-        
         self.view .addSubview(self.mainView)
         self.mainView .addSubview(self.baseStackView)
         self.mainView .addSubview(self.mapView)
@@ -270,10 +268,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.navigationController?.view.addSubview(blackScreen)
         blackScreen.layer.zPosition=99
         
-        
-        
-        
-        
         let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
         blackScreen.addGestureRecognizer(tapGestRecognizer)
         
@@ -285,7 +279,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         uiViewDesign(driverSchedulePopUpStackView)
         
-        //        self.driverSchedulePopUpStackView.addSubview(doneButton)
+        // self.driverSchedulePopUpStackView.addSubview(doneButton)
         
         SocketIOManager.sharedInstance.establishConnection()
         self.blurEffectofDriverPopUpView.isHidden = true
@@ -302,6 +296,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.mapView.bringSubviewToFront(locatePinImage)
         self.locatePinImage.isHidden = true
+        self.viewCabsButton.isHidden = false
+        self.btnConfirmLocation.isHidden = true
         
         //        buttonDesign(btnConfirmLocation, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
         //        buttonDesign(viewCabsButton, radius: 10.0, borderWidth: 0, borderColor: UIColor.buttonBackgroundColor.cgColor)
@@ -394,7 +390,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.isUserInteractionEnabled = false
-        self.locatePinImage.isHidden = true
+        //  self.locatePinImage.isHidden = true
         
         pickUpTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
         dropTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
@@ -404,6 +400,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         strDirection = "two-way"
         selectedTripTypeMode = "ROUND TRIP"
         strServiceType = "Outstation"
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -411,8 +409,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if strTxtFieldType == "FromDestination" {
             self.locatePinImage.isHidden = false
-            btnConfirmLocation.isHidden = false
             viewCabsButton.isHidden = true
+            btnConfirmLocation.isHidden = false
             mapView.animate(toZoom: 10)
             mapView.isUserInteractionEnabled = true
             strTxtFieldType = "FromDestination"
@@ -420,10 +418,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             dropTextField.text?.removeAll()
             isconfirmLocation = false
             mapView.clear()
-        } else if strTxtFieldType == "ToDestination" {
+        }
+        else if strTxtFieldType == "ToDestination" {
             self.locatePinImage.isHidden = false
-            btnConfirmLocation.isHidden = false
             viewCabsButton.isHidden = true
+            btnConfirmLocation.isHidden = false
             mapView.animate(toZoom: 10)
             mapView.isUserInteractionEnabled = true
             strTxtFieldType = "ToDestination"
@@ -435,31 +434,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         else if strTxtFieldType == "pickupTextFieldFromDropDown" {
             pickUpTextField.text = selectedAddressName
             sourceCoordinate = selectedAddressCoordinate
-            //destinationCoordinate = nil
-            
-            btnConfirmLocation.isHidden = false
             viewCabsButton.isHidden = true
             isconfirmLocation = false
-            
-           mapView.clear()
+            mapView.clear()
         }
         else if strTxtFieldType == "destinationTextFieldFromDropDown" {
             dropTextField.text = selectedAddressName
             destinationCoordinate = selectedAddressCoordinate
-            btnConfirmLocation.isHidden = false
             viewCabsButton.isHidden = true
             isconfirmLocation = false
             mapView.clear()
             
-        }else if strTxtFieldType == "CurrentLocation"{
+        }
+        else if strTxtFieldType == "CurrentLocation"{
             pickUpTextField.text = usercurrentLocationAddress
-            btnConfirmLocation.isHidden = false
-            viewCabsButton.isHidden = true
             sourceCoordinate = userCurrentlocation
+            viewCabsButton.isHidden = true
             isconfirmLocation = false
             mapView.clear()
         }
-        
+        else if strTxtFieldType == "NoLocationSelected"{
+            viewCabsButton.isHidden = false
+            isconfirmLocation = true
+            btnConfirmLocation.isHidden = true
+        }
         
         DispatchQueue.main.async {
             self.reachability.whenReachable = { reachability in
@@ -563,10 +561,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if(textField == pickUpTextField){
             strTxtFieldType = "ToDestination"
             print(strTxtFieldType)
+            
             strAddressPickupTextFieldType  = "pickupTextFieldFromDropDown"
             let nextVC = storyboard?.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
             nextVC.strTxtFieldType = strTxtFieldType
-            
+            nextVC.strLocationAddress = pickUpTextField.text ?? ""
             self.navigationController?.pushViewController(nextVC, animated: true)
             
             nextVC.locateonmapcallback = { textFieldType in
@@ -576,22 +575,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             
             nextVC.searchAddressLocation = { textFieldType, addressValue, coordinateValue in
-
+                
                 self.strTxtFieldType = textFieldType
                 self.selectedAddressCoordinate = coordinateValue
                 self.selectedAddressName = addressValue
-
+                
             }
-            
-            
         }else if(textField == dropTextField){
             strTxtFieldType = "FromDestination"
             print(strTxtFieldType)
-            
             strAddressPickupTextFieldType  = "destinationTextFieldFromDropDown"
             
             let nextVC = storyboard?.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
             nextVC.strTxtFieldType = strTxtFieldType
+            nextVC.strLocationAddress = dropTextField.text ?? ""
             self.navigationController?.pushViewController(nextVC, animated: true)
             
             nextVC.locateonmapcallback = { textFieldType in
@@ -606,7 +603,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.selectedAddressName = addressValue
                 
             }
-            
             
         }
         
@@ -882,7 +878,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBAction func oneWayTripButtonPressed(_ sender: UIButton) {
         print(oneWayButton.tag)
         newDatePicker.date = Date()
-      // clearTextFieldWithMap()
+        // clearTextFieldWithMap()
         returnByDatePickerButton.isHidden = true
         returnByLable.isHidden = true
         roundTripButton.backgroundColor = .white
@@ -912,7 +908,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.locatePinImage.isHidden = true
         self.btnConfirmLocation.isHidden = true
-        
+        viewCabsButton.isHidden = false
         
         mapView.isUserInteractionEnabled = false
         if(sourceCoordinate != nil && destinationCoordinate != nil)
@@ -944,8 +940,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 originMarker.title = self.pickupName
                 
                 let camera = GMSCameraPosition.camera(withLatitude: sourceCoordinate.latitude, longitude: sourceCoordinate.longitude, zoom: 16)
-                    mapView?.camera = camera
-                    mapView?.animate(to: camera)
+                mapView?.camera = camera
+                mapView?.animate(to: camera)
                 
                 
             }else if(strTxtFieldType == "FromDestination" || strTxtFieldType == "destinationTextFieldFromDropDown"){
@@ -954,22 +950,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let destinationmarkerView = UIImageView(image: destinationmarkerImage)
                 destinationmarkerView.tintColor = UIColor.red
                 
-              
+                
                 let destinationMarker = GMSMarker(position: self.destinationCoordinate)
                 destinationMarker.map = self.mapView
                 destinationMarker.iconView = destinationmarkerView
                 destinationMarker.title = self.destionationName
                 
                 let camera = GMSCameraPosition.camera(withLatitude: destinationCoordinate.latitude, longitude: destinationCoordinate.longitude, zoom: 16)
-                    mapView?.camera = camera
-                    mapView?.animate(to: camera)
+                mapView?.camera = camera
+                mapView?.animate(to: camera)
                 
             }
-            
-          
-            
-           
-            
         }
         
         print("destinationTextField text:",self.dropTextField.text ?? "" ,self.selectedDropAddress )
@@ -1463,10 +1454,10 @@ extension HomeViewController: CLLocationManagerDelegate
             print("Location accuracy is precise.")
             locationManager.startUpdatingLocation()
             goToSettingView.isHidden = true
-//            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
-//            navigationController?.pushViewController(gotoSVC, animated: true)
- //          navigationController?.popViewController(animated:false)
-          //  navigationController?.dismiss(animated: false, completion: nil)
+            //            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoToHome") as! HomeViewController
+            //            navigationController?.pushViewController(gotoSVC, animated: true)
+            //          navigationController?.popViewController(animated:false)
+            //  navigationController?.dismiss(animated: false, completion: nil)
         case .reducedAccuracy:
             print("Location accuracy is not precise.")
         @unknown default:
@@ -1482,8 +1473,8 @@ extension HomeViewController: CLLocationManagerDelegate
             // Display the map using the default location.
             mapView.isHidden = false
             goToSetting()
-//            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
-//            navigationController?.pushViewController(gotoSVC, animated: true)
+            //            let gotoSVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GoTOSettingsViewController") as! GoTOSettingsViewController
+            //            navigationController?.pushViewController(gotoSVC, animated: true)
             
             
         case .notDetermined:
