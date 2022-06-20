@@ -238,7 +238,7 @@ class CarTypesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func callButtonAction(_ sender: UIButton) {
-        if let phoneCallURL = URL(string: "telprompt://8308628266") {
+        if let phoneCallURL = URL(string: "telprompt://1234567890") {
 
                 let application:UIApplication = UIApplication.shared
                 if (application.canOpenURL(phoneCallURL)) {
