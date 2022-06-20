@@ -18,7 +18,7 @@ typealias getSelectedAddressBack = (String,String, CLLocationCoordinate2D) -> Vo
 class AddressSearchViewController: UIViewController , UITextFieldDelegate, pickupOnlocateSearchdelegate , UITableViewDelegate, UITableViewDataSource {
     func pickupGetCurrentLocation() {
         print("Pickup Get Current Location")
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
         if let locateonmapcallback = locateonmapcallback{
             locateonmapcallback("CurrentLocation")
         }
@@ -26,7 +26,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     
     func pickupLocateUserOnMap() {
         print("Pickup Get Current Location")
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
         if let locateonmapcallback = locateonmapcallback{
             locateonmapcallback("ToDestination")
         }
@@ -35,7 +35,7 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
     
     func dropLocateUserOnMap() {
         print("Drop Locate User on Map")
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
         if let locateonmapcallback = locateonmapcallback{
             locateonmapcallback("FromDestination")
         }
@@ -185,21 +185,27 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
             
             if(self.strTxtFieldType == "ToDestination"){
                 self.strAddressPickupTextFieldType = "pickupTextFieldFromDropDown"
-                self.navigationController?.popToRootViewController(animated: true)
-                if let locateonmapcallback = self.searchAddressLocation{
-                    locateonmapcallback(self.strAddressPickupTextFieldType, self.selectedAddress, self.selectedAddressCoordinate)
-                    
-                }
+                self.selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: self.selectedAddress, selectedAddressCordinateValue: self.selectedAddressCoordinate)
+                
+//                self.strAddressPickupTextFieldType = "pickupTextFieldFromDropDown"
+//                self.navigationController?.popViewController(animated: true)
+//                if let locateonmapcallback = self.searchAddressLocation{
+//                    locateonmapcallback(self.strAddressPickupTextFieldType, self.selectedAddress, self.selectedAddressCoordinate)
+//
+//                }
                 
               
                 
             }else  if(self.strTxtFieldType == "FromDestination"){
                 self.strAddressPickupTextFieldType = "destinationTextFieldFromDropDown"
-                self.navigationController?.popToRootViewController(animated: true)
-                if let locateonmapcallback = self.searchAddressLocation{
-                    locateonmapcallback(self.strAddressPickupTextFieldType, self.selectedAddress, self.selectedAddressCoordinate)
-                    
-                }
+                self.selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: self.selectedAddress, selectedAddressCordinateValue: self.selectedAddressCoordinate)
+                
+//                self.strAddressPickupTextFieldType = "destinationTextFieldFromDropDown"
+//                self.navigationController?.popViewController(animated: true)
+//                if let locateonmapcallback = self.searchAddressLocation{
+//                    locateonmapcallback(self.strAddressPickupTextFieldType, self.selectedAddress, self.selectedAddressCoordinate)
+//
+//                }
                
               
             }
@@ -242,16 +248,43 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
         
         selectedAddressCoordinate = CLLocationCoordinate2D(latitude: getLatitude ?? 0.0, longitude: getLongitude ?? 0.0)
         selectedAddress = address[indexPath.row].addressValue ?? ""
+       
+       if(self.strTxtFieldType == "ToDestination"){
+           self.strAddressPickupTextFieldType = "pickupTextFieldFromDropDown"
+           selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: selectedAddress, selectedAddressCordinateValue: selectedAddressCoordinate)
+         
+        }else if(self.strTxtFieldType == "FromDestination"){
+            self.strAddressPickupTextFieldType = "destinationTextFieldFromDropDown"
+            selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: selectedAddress, selectedAddressCordinateValue: selectedAddressCoordinate)
+        }
+    }
+    
+    func selectAddressWithCoorinate (textFieldTypeValue : String, selectedAddressValue: String, selectedAddressCordinateValue : CLLocationCoordinate2D){
         
-        if(self.strTxtFieldType == "ToDestination"){
+        if let locateonmapcallback = self.searchAddressLocation{
+            locateonmapcallback(textFieldTypeValue, selectedAddressValue, selectedAddressCordinateValue)
+            
+        }
+        self.navigationController?.popViewController(animated: true)
+        
+        
+       /* if(textFieldTypeValue == "ToDestination"){
             self.strAddressPickupTextFieldType = "pickupTextFieldFromDropDown"
-            self.navigationController?.popToRootViewController(animated: true)
             if let locateonmapcallback = self.searchAddressLocation{
-                locateonmapcallback(self.strAddressPickupTextFieldType, self.selectedAddress, self.selectedAddressCoordinate)
+                locateonmapcallback(textFieldTypeValue, selectedAddressValue, selectedAddressCordinateValue)
                 
             }
-        }
-        navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
+            
+        }else if(self.strTxtFieldType == "FromDestination"){
+            self.strAddressPickupTextFieldType = "destinationTextFieldFromDropDown"
+            if let locateonmapcallback = self.searchAddressLocation{
+                locateonmapcallback(self.strAddressPickupTextFieldType, selectedAddressValue, selectedAddressCordinateValue)
+                
+            }
+            self.navigationController?.popViewController(animated: true)
+            
+        }*/
     }
         
 }
