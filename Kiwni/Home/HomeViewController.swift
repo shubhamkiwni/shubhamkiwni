@@ -390,8 +390,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.isUserInteractionEnabled = false
-        //  self.locatePinImage.isHidden = true
-        
         pickUpTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
         dropTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .touchDown)
         placesClient = GMSPlacesClient.shared()
