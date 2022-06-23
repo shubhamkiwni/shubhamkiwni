@@ -1648,8 +1648,8 @@ extension UITextField {
 }
 
 
-class LocationDetect {
-    static let shareInstance = LocationDetect()
-    let acController = GMSAutocompleteViewController()
-    
-}
+//class LocationDetect {
+//    static let shareInstance = LocationDetect()
+//    let acController = GMSAutocompleteViewController()
+//
+//}
