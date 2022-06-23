@@ -1786,10 +1786,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-P7-2ys">
-                                <rect key="frame" x="0.0" y="437" width="375" height="230"/>
+                                <rect key="frame" x="0.0" y="397" width="375" height="270"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Md-mP-mex">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as favourite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-Ga-fJc">
                                                 <rect key="frame" x="10" y="10" width="355" height="27"/>
@@ -1797,26 +1797,34 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dighi, Pune, Maharashtra, India Mhada Colony, Viman Nagar, Pune, Maharashtra 41" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evl-ba-Wcg">
-                                                <rect key="frame" x="10" y="42" width="335" height="40"/>
-                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="top" secondItem="0Md-mP-mex" secondAttribute="top" constant="10" id="Cno-Ux-3sE"/>
+                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="leading" secondItem="0Md-mP-mex" secondAttribute="leading" constant="10" id="RQy-Tf-kBi"/>
+                                            <constraint firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" constant="10" id="hXR-bO-i7b"/>
+                                            <constraint firstAttribute="height" constant="40" id="xa0-I1-gI5"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vd-Df-Efv">
+                                        <rect key="frame" x="0.0" y="40" width="375" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dighi, Pune, Maharashtra, India Mhada Colony, Viman Nagar, Pune, Maharashtra 41" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryo-Fw-8zG">
+                                                <rect key="frame" x="10" y="5" width="320" height="35"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="top" secondItem="0Md-mP-mex" secondAttribute="top" constant="10" id="Cno-Ux-3sE"/>
-                                            <constraint firstItem="evl-ba-Wcg" firstAttribute="top" secondItem="sxi-Ga-fJc" secondAttribute="bottom" constant="5" id="FfS-UH-JoX"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="evl-ba-Wcg" secondAttribute="trailing" constant="10" id="MIw-H4-eU9"/>
-                                            <constraint firstItem="sxi-Ga-fJc" firstAttribute="leading" secondItem="0Md-mP-mex" secondAttribute="leading" constant="10" id="RQy-Tf-kBi"/>
-                                            <constraint firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" constant="10" id="hXR-bO-i7b"/>
-                                            <constraint firstAttribute="height" constant="70" id="xa0-I1-gI5"/>
-                                            <constraint firstItem="evl-ba-Wcg" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="zeg-tS-Ob1"/>
+                                            <constraint firstAttribute="height" constant="70" id="nil-p9-55q"/>
+                                            <constraint firstItem="Ryo-Fw-8zG" firstAttribute="top" secondItem="4Vd-Df-Efv" secondAttribute="top" constant="5" id="toi-Wl-u2H"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ryo-Fw-8zG" secondAttribute="trailing" constant="5" id="ykP-uA-M3G"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv7-E4-gLX">
-                                        <rect key="frame" x="0.0" y="70" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="110" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8IV-Bk-L1d">
                                                 <rect key="frame" x="10" y="10" width="268" height="24"/>
@@ -1864,7 +1872,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXS-w2-dWV">
-                                        <rect key="frame" x="0.0" y="110" width="375" height="55"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="55"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name your favourite (e.g. My Home)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-z4-aUT">
                                                 <rect key="frame" x="10" y="10" width="355" height="34"/>
@@ -1882,7 +1890,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4y-3k-Fb3">
-                                        <rect key="frame" x="0.0" y="165" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="205" width="375" height="65"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Snn-M5-z2M">
                                                 <rect key="frame" x="24.5" y="15" width="326" height="30"/>
@@ -1928,9 +1936,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8QO-z4-aUT" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="Drp-Qy-m3A"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="230" id="Vml-Ul-a76"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="Vml-Ul-a76"/>
                                     <constraint firstItem="8IV-Bk-L1d" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="YHH-xa-3TV"/>
                                     <constraint firstItem="8QO-z4-aUT" firstAttribute="trailing" secondItem="sxi-Ga-fJc" secondAttribute="trailing" id="dSm-xe-aIV"/>
+                                    <constraint firstItem="Ryo-Fw-8zG" firstAttribute="leading" secondItem="sxi-Ga-fJc" secondAttribute="leading" id="k1u-tY-WZN"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -1943,7 +1952,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addressLabel" destination="evl-ba-Wcg" id="7HW-YZ-SKk"/>
+                        <outlet property="addressLabel" destination="Ryo-Fw-8zG" id="YtU-mh-9tr"/>
                         <outlet property="addressView" destination="0Md-mP-mex" id="P7S-md-t6O"/>
                         <outlet property="cancelButton" destination="BfK-VY-9BH" id="D0A-Eb-Nib"/>
                         <outlet property="favouiteStackView" destination="3gK-P7-2ys" id="Xco-Eg-yc5"/>
@@ -2978,11 +2987,11 @@
                                 <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="57" id="aCO-x1-lJW" customClass="AddressTableViewCell" customModule="Kiwni" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="57"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="71" id="aCO-x1-lJW" customClass="AddressTableViewCell" customModule="Kiwni" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aCO-x1-lJW" id="P0q-sM-pFx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Work" translatesAutoresizingMaskIntoConstraints="NO" id="Waw-gd-hIk">
@@ -3000,7 +3009,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boc-3C-D2H">
-                                                    <rect key="frame" x="40" y="35" width="325" height="16"/>
+                                                    <rect key="frame" x="40" y="35" width="330" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3008,12 +3017,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ij2-WO-J3h" firstAttribute="top" secondItem="P0q-sM-pFx" secondAttribute="top" constant="10" id="1eX-AD-khC"/>
-                                                <constraint firstItem="Boc-3C-D2H" firstAttribute="trailing" secondItem="ij2-WO-J3h" secondAttribute="trailing" id="4yY-JM-2lv"/>
                                                 <constraint firstItem="ij2-WO-J3h" firstAttribute="leading" secondItem="Waw-gd-hIk" secondAttribute="trailing" constant="10" id="J8z-fx-rnu"/>
                                                 <constraint firstAttribute="trailing" secondItem="ij2-WO-J3h" secondAttribute="trailing" constant="10" id="POr-t9-xrN"/>
                                                 <constraint firstItem="Boc-3C-D2H" firstAttribute="top" secondItem="ij2-WO-J3h" secondAttribute="bottom" constant="4" id="QNa-de-JGy"/>
                                                 <constraint firstItem="Waw-gd-hIk" firstAttribute="top" secondItem="P0q-sM-pFx" secondAttribute="top" constant="18" id="RPe-vO-yHR"/>
                                                 <constraint firstItem="Boc-3C-D2H" firstAttribute="leading" secondItem="ij2-WO-J3h" secondAttribute="leading" id="f7y-rV-a9h"/>
+                                                <constraint firstAttribute="trailing" secondItem="Boc-3C-D2H" secondAttribute="trailing" constant="5" id="fgs-hx-lHR"/>
                                                 <constraint firstItem="Waw-gd-hIk" firstAttribute="leading" secondItem="P0q-sM-pFx" secondAttribute="leading" constant="10" id="gNV-Og-CAN"/>
                                             </constraints>
                                         </tableViewCellContentView>
