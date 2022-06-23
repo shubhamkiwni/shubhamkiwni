@@ -260,10 +260,20 @@ class AddressSearchViewController: UIViewController , UITextFieldDelegate, picku
        if(self.strTxtFieldType == "ToDestination"){
            self.strAddressPickupTextFieldType = "pickupTextFieldFromDropDown"
            selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: selectedAddress, selectedAddressCordinateValue: selectedAddressCoordinate)
+           let sourceLat = NSNumber(value:self.selectedAddressCoordinate.latitude)
+           let sourceLon = NSNumber(value:self.selectedAddressCoordinate.longitude)
+           let userSourceLocation : NSMutableDictionary
+           userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
+           UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
          
         }else if(self.strTxtFieldType == "FromDestination"){
             self.strAddressPickupTextFieldType = "destinationTextFieldFromDropDown"
             selectAddressWithCoorinate(textFieldTypeValue: self.strAddressPickupTextFieldType, selectedAddressValue: selectedAddress, selectedAddressCordinateValue: selectedAddressCoordinate)
+            let destLat = NSNumber(value:self.selectedAddressCoordinate.latitude)
+            let destLon = NSNumber(value:self.selectedAddressCoordinate.longitude)
+            let userDestinationLocation : NSMutableDictionary
+            userDestinationLocation = ["DestinationLatitude": destLat, "DestinationLongitude": destLon]
+            UserDefaults.standard.setValue(userDestinationLocation, forKey:"DestinationCoordinate")
         }
     }
     

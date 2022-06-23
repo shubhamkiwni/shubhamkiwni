@@ -755,7 +755,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     //MARK:- TEXTFIELD DELEGATE for Pickup And Drop Textfield
-    @objc func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+  /*  @objc func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == pickUpTextField
         {
             strTxtFieldType = "ToDestination"
@@ -793,7 +793,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        LocationDetect.shareInstance.acController.delegate = self
         self.present(LocationDetect.shareInstance.acController, animated: true, completion: nil)
         return false
-    }
+    }*/
     
     @IBAction func callButtonAction(_ sender: UIButton) {
         if let phoneCallURL = URL(string: "telprompt://1234567890") {
