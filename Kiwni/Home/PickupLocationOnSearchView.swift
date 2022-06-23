@@ -29,28 +29,28 @@ class PickupLocationOnSearchView: UIView {
     
     @IBAction fileprivate func pickupcurrentLocationAction(_ sender: UIButton) {
     
-        LocationDetect.shareInstance.acController.dismiss(animated: true) { [self] in
-            print("currentLocation button clicked")
-            
+//        LocationDetect.shareInstance.acController.dismiss(animated: true) { [self] in
+//            print("currentLocation button clicked")
+//
             
             if let d = delegate
             {
                 d.pickupGetCurrentLocation()
             }
           
-        }
+//        }
         
     }
     
     @IBAction fileprivate func pickuplocateOnMapAction(_ sender: UIButton) {
-        LocationDetect.shareInstance.acController.dismiss(animated: true) {
-            print("locateOnMapAction button clicked")
-           
+//        LocationDetect.shareInstance.acController.dismiss(animated: true) {
+//            print("locateOnMapAction button clicked")
+//
             if let d = self.delegate
             {
                 d.pickupLocateUserOnMap()
             }
-        }
+//        }
     }
     
     @IBAction func dropLocateOnMaoAction(_ sender: UIButton) {

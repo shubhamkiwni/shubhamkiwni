@@ -27,14 +27,14 @@ class DropLocationOnSearchView: UIView {
 
     @IBAction fileprivate func droplocateOnMapAction(sender: UIButton)
     {
-        LocationDetect.shareInstance.acController.dismiss(animated: true) {
-                    print("click")
+//        LocationDetect.shareInstance.acController.dismiss(animated: true) {
+//                    print("click")
             
             if let de = self.delegate
             {
                 de.dropLocateUserOnMap()
             }
-        }
+//        }
         
         
         
