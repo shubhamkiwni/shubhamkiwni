@@ -506,11 +506,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             print("imageString : \(imageString)")
             
             imageurlString  = "\(imageString)"
-            //            if(imageurlString.isEmpty == false){
-            //                if let url = URL(string:imageurlString){
-            //                    driverImageView.load(url: url)
-            //                }
-            //            }
+          
             if(imageurlString?.isEmpty == false){
                 let url = URL(string:imageurlString ?? "")
                 let data = try? Data(contentsOf: url!)
