@@ -790,7 +790,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         btnConfirmLocation.isHidden = false
         UINavigationBar.appearance().tintColor = UIColor.red
         
-        LocationDetect.shareInstance.acController.delegate = self
+//        LocationDetect.shareInstance.acController.delegate = self
         self.present(LocationDetect.shareInstance.acController, animated: true, completion: nil)
         return false
     }
@@ -1508,131 +1508,131 @@ extension HomeViewController: CLLocationManagerDelegate
     }
 }
 
-extension HomeViewController: GMSAutocompleteViewControllerDelegate {
-    
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
-        self.viewCabsButton?.isHidden = true
-        print("Place name: \(String(describing: place.name))")
-        print("Place address: \(place.formattedAddress ?? "null")")
-        
-        if strTxtFieldType == "ToDestination"
-        {
-            
-            self.pickUpTextField.text = place.formattedAddress
-            print("Place Fomated Add : ", place)
-            self.selectedToDestination = place
-            sourceCoordinate = place.coordinate
-            print("sourceCoordinate",sourceCoordinate as Any)
-            pickupName = place.name
-            UserDefaults.standard.setValue(place.formattedAddress, forKey:"SourceAddress")
-            
-            let arrays : NSArray = place.addressComponents! as NSArray
-            for i in 0..<arrays.count {
-                
-                let dics : GMSAddressComponent = arrays[i] as! GMSAddressComponent
-                let str : String = dics.type as String
-                
-                print("Address Dics for pickup: \(dics)")
-                
-                if(str == "locality")
-                {
-                    pickupcityName = dics.shortName
-                    print ("localoty name : \(dics.name)")
-                    print("locality shortname : \(dics.shortName ?? "")")
-                }
-            }
-            sourceMarker = GMSMarker()
-            let markerImage = UIImage(named: "Pickuppoint")!.withRenderingMode(.alwaysTemplate)
-            //creating a marker view
-            let markerView = UIImageView(image: markerImage)
-            markerView.tintColor = UIColor.green
-            sourceMarker.position = sourceCoordinate
-            sourceMarker.title = place.name
-            sourceMarker.iconView = markerView
-            sourceMarker.map = self.mapView
-            sourceMarker.snippet = place.name
-            
-            let sourceLat = NSNumber(value:sourceCoordinate.latitude)
-            let sourceLon = NSNumber(value:sourceCoordinate.longitude)
-            let userSourceLocation : NSMutableDictionary
-            userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
-            UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
-            UserDefaults.standard.setValue(self.pickupcityName, forKey: "PickupCityName")
-            self.btnConfirmLocation.isHidden = false
-        }
-        else if strTxtFieldType == "FromDestination"
-        {
-            self.dropTextField.text = place.formattedAddress
-            UserDefaults.standard.setValue(place.formattedAddress, forKey:"DestinationAddress")
-            
-            destinationCoordinate = place.coordinate
-            destionationName = place.name
-            let arrays : NSArray = place.addressComponents! as NSArray
-            for i in 0..<arrays.count {
-                
-                let dics : GMSAddressComponent = arrays[i] as! GMSAddressComponent
-                let str : String = dics.type as String
-                
-                if(str == "locality")
-                {
-                    destinationcityName = dics.shortName
-                }
-            }
-            destinationMarker = GMSMarker()
-            let markerImage = UIImage(named: "DropPoint")!.withRenderingMode(.alwaysTemplate)
-            //creating a marker view
-            let markerView = UIImageView(image: markerImage)
-            markerView.tintColor = UIColor.red
-            destinationMarker.position = destinationCoordinate
-            destinationMarker.title = place.name
-            destinationMarker.iconView = markerView
-            destinationMarker.map = self.mapView
-            
-            let camera = GMSCameraPosition.camera(withLatitude: destinationCoordinate.latitude,
-                                                  longitude: destinationCoordinate.longitude,
-                                                  zoom: 15)
-            self.mapView?.camera = camera
-            self.mapView?.animate(to: camera)
-            
-            if(self.pickupcityName == self.destinationcityName){
-                self.view.makeToast(ErrorMessage.list.selectOtherCity)
-                self.dropTextField.text = ""
-            }else{
-                //  self.mapView.animate(toLocation: self.destinationCoordinate)
-                self.strTxtFieldType = "FromDestination"
-            }
-            let sourceLat = NSNumber(value:destinationCoordinate.latitude)
-            let sourceLon = NSNumber(value:destinationCoordinate.longitude)
-            let userDestinationLocation : NSMutableDictionary
-            userDestinationLocation = ["DestinationLatitude": sourceLat, "DestinationLongitude": sourceLon]
-            UserDefaults.standard.setValue(userDestinationLocation, forKey:"DestinationCoordinate")
-            UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
-            self.btnConfirmLocation.isHidden = false
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
-        customErrorPopup(error.localizedDescription)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    // User canceled the operation.
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        self.dismiss(animated: true) {
-            if self.pickUpTextField.text == "" {
-                self.strTxtFieldType = "ToDestination"
-                self.pickUpTextField.text = self.usercurrentLocationAddress
-                self.sourceCoordinate = self.userCurrentlocation
-            }
-        }
-        //self.dismiss(animated: true, completion: nil)
-    }
-    
-}
+//extension HomeViewController: GMSAutocompleteViewControllerDelegate {
+//
+//
+//    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+//
+//        self.viewCabsButton?.isHidden = true
+//        print("Place name: \(String(describing: place.name))")
+//        print("Place address: \(place.formattedAddress ?? "null")")
+//
+//        if strTxtFieldType == "ToDestination"
+//        {
+//
+//            self.pickUpTextField.text = place.formattedAddress
+//            print("Place Fomated Add : ", place)
+//            self.selectedToDestination = place
+//            sourceCoordinate = place.coordinate
+//            print("sourceCoordinate",sourceCoordinate as Any)
+//            pickupName = place.name
+//            UserDefaults.standard.setValue(place.formattedAddress, forKey:"SourceAddress")
+//
+//            let arrays : NSArray = place.addressComponents! as NSArray
+//            for i in 0..<arrays.count {
+//
+//                let dics : GMSAddressComponent = arrays[i] as! GMSAddressComponent
+//                let str : String = dics.type as String
+//
+//                print("Address Dics for pickup: \(dics)")
+//
+//                if(str == "locality")
+//                {
+//                    pickupcityName = dics.shortName
+//                    print ("localoty name : \(dics.name)")
+//                    print("locality shortname : \(dics.shortName ?? "")")
+//                }
+//            }
+//            sourceMarker = GMSMarker()
+//            let markerImage = UIImage(named: "Pickuppoint")!.withRenderingMode(.alwaysTemplate)
+//            //creating a marker view
+//            let markerView = UIImageView(image: markerImage)
+//            markerView.tintColor = UIColor.green
+//            sourceMarker.position = sourceCoordinate
+//            sourceMarker.title = place.name
+//            sourceMarker.iconView = markerView
+//            sourceMarker.map = self.mapView
+//            sourceMarker.snippet = place.name
+//
+//            let sourceLat = NSNumber(value:sourceCoordinate.latitude)
+//            let sourceLon = NSNumber(value:sourceCoordinate.longitude)
+//            let userSourceLocation : NSMutableDictionary
+//            userSourceLocation = ["SourceLatitude": sourceLat, "SourceLongitude": sourceLon]
+//            UserDefaults.standard.setValue(userSourceLocation, forKey:"SourceCoordinate")
+//            UserDefaults.standard.setValue(self.pickupcityName, forKey: "PickupCityName")
+//            self.btnConfirmLocation.isHidden = false
+//        }
+//        else if strTxtFieldType == "FromDestination"
+//        {
+//            self.dropTextField.text = place.formattedAddress
+//            UserDefaults.standard.setValue(place.formattedAddress, forKey:"DestinationAddress")
+//
+//            destinationCoordinate = place.coordinate
+//            destionationName = place.name
+//            let arrays : NSArray = place.addressComponents! as NSArray
+//            for i in 0..<arrays.count {
+//
+//                let dics : GMSAddressComponent = arrays[i] as! GMSAddressComponent
+//                let str : String = dics.type as String
+//
+//                if(str == "locality")
+//                {
+//                    destinationcityName = dics.shortName
+//                }
+//            }
+//            destinationMarker = GMSMarker()
+//            let markerImage = UIImage(named: "DropPoint")!.withRenderingMode(.alwaysTemplate)
+//            //creating a marker view
+//            let markerView = UIImageView(image: markerImage)
+//            markerView.tintColor = UIColor.red
+//            destinationMarker.position = destinationCoordinate
+//            destinationMarker.title = place.name
+//            destinationMarker.iconView = markerView
+//            destinationMarker.map = self.mapView
+//
+//            let camera = GMSCameraPosition.camera(withLatitude: destinationCoordinate.latitude,
+//                                                  longitude: destinationCoordinate.longitude,
+//                                                  zoom: 15)
+//            self.mapView?.camera = camera
+//            self.mapView?.animate(to: camera)
+//
+//            if(self.pickupcityName == self.destinationcityName){
+//                self.view.makeToast(ErrorMessage.list.selectOtherCity)
+//                self.dropTextField.text = ""
+//            }else{
+//                //  self.mapView.animate(toLocation: self.destinationCoordinate)
+//                self.strTxtFieldType = "FromDestination"
+//            }
+//            let sourceLat = NSNumber(value:destinationCoordinate.latitude)
+//            let sourceLon = NSNumber(value:destinationCoordinate.longitude)
+//            let userDestinationLocation : NSMutableDictionary
+//            userDestinationLocation = ["DestinationLatitude": sourceLat, "DestinationLongitude": sourceLon]
+//            UserDefaults.standard.setValue(userDestinationLocation, forKey:"DestinationCoordinate")
+//            UserDefaults.standard.setValue(self.destinationcityName, forKey: "DestinationCityName")
+//            self.btnConfirmLocation.isHidden = false
+//        }
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+//        // TODO: handle the error.
+//        customErrorPopup(error.localizedDescription)
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//
+//    // User canceled the operation.
+//    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+//        self.dismiss(animated: true) {
+//            if self.pickUpTextField.text == "" {
+//                self.strTxtFieldType = "ToDestination"
+//                self.pickUpTextField.text = self.usercurrentLocationAddress
+//                self.sourceCoordinate = self.userCurrentlocation
+//            }
+//        }
+//        //self.dismiss(animated: true, completion: nil)
+//    }
+//
+//}
 
 extension UITextField {
     func setIcon(_ image: UIImage) {
